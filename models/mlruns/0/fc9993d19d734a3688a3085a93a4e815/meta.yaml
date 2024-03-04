@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/admin/Documents/projects/dummy_3900/dummy_3900_mlflow/mlruns/0/fc9993d19d734a3688a3085a93a4e815/artifacts
+end_time: 1708916565110
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: fc9993d19d734a3688a3085a93a4e815
+run_name: chill-dolphin-247
+run_uuid: fc9993d19d734a3688a3085a93a4e815
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1708916558809
+status: 3
+tags: []
+user_id: admin

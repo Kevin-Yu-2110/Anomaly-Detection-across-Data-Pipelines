@@ -16,6 +16,17 @@ npm start
 cd backend
 python manage.py runserver
 ```
+### Run backend tests
+```
+cd backend
+python manage.py test
+```
+### Update Database Schema to reflect backend changes
+```
+cd backend
+python manage.py makemigrations
+python manage.py migrate
+```
 ### Run MLflow tracking server
 ```
 cd models

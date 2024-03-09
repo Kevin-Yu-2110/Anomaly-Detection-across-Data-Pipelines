@@ -17,9 +17,9 @@ const LoginPage = () => {
         password,
       });
       if (response.data.success) {
-        if (response.data.form.accountType === "Client") {
+        if (response.data.accountType === "Client") {
           navigate("/clientHome");
-        } else if (response.data.form.accountType === "BusinessClient") {
+        } else if (response.data.accountType === "BusinessClient") {
           navigate("/businessHome");
         }
       } else {

@@ -6,32 +6,38 @@ const SignupPage = () => {
   const [signupFailed, setSignupFailed] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordConfirmation, setPasswordConfirmation] = useState('');
-  const [accountType, setAccountType] = useState('');
+  const [password1, setPassword1] = useState('');
+  const [password2, setPassword2] = useState('');
+  const [accountType, setAccountType] = useState("Client");
 
   const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/signup/', {
+      const response = await axios.post('http://localhost:8000/api/signup/', {
         username,
-        password,
-        passwordConfirmation,
+        email,
+        password1,
+        password2,
         accountType,
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        } 
       });
+      console.log(response.data)
       if (response.data.success) {
-        if (response.data.form.accountType === "Client") {
+        if (response.data.accountType === "Client") {
           navigate("/clientHome");
-        } else if (response.data.form.accountType === "BusinessClient") {
+        } else if (response.data.accountType === "BusinessClient") {
           navigate("/businessHome");
         }
       } else {
-        setSignupFailed('Invalid Credentials')
+        setSignupFailed("Invalid credentials")
       }
     } catch (error) {
-      console.error('Signup Failed: Failed to contact server:', error);
+      console.error('Signup Failed with error:', error);
     }
   };
 
@@ -47,10 +53,10 @@ const SignupPage = () => {
           <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
         </label>
         <label>Password:
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input type="password" value={password1} onChange={(e) => setPassword1(e.target.value)} />
         </label>
         <label>Password:
-          <input type="password" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)} />
+          <input type="password" value={password2} onChange={(e) => setPassword2(e.target.value)} />
         </label>
         <select value={accountType} onChange={(e) => setAccountType(e.target.value)} >
           <option value="Client">Individual</option>

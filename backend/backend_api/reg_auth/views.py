@@ -1,31 +1,40 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import login
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate, login
 from backend_api.reg_auth.forms import SignUpForm
 from backend_api.models import StandardUser
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 
-def signup(request):
+import json
+
+@csrf_exempt
+@require_POST
+def user_signup(request):
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
+        data = json.loads(request.body)
+        form = SignUpForm(data)
         if form.is_valid():
             form.save()
-            return JsonResponse({'success': True, 'accountType' : request.POST.get('accountType')})
-    else:
-        form = SignUpForm()
+            return JsonResponse({'success': True, 'accountType': data.get('accountType')})
+        else:
+            return JsonResponse({'success': False, 'errors': form.errors})
     return JsonResponse({'success': False})
 
-def login(request):
+@csrf_exempt
+@require_POST
+def user_login(request):
     if request.method == 'POST':
-        form = AuthenticationForm(data=request.POST)
-        if form.is_valid():
-            user = form.get_user()
+        data = json.loads(request.body)
+        user = authenticate(request, username=data['username'], password=data['password'])
+        user = StandardUser.objects.get(username=data['username'])
+        pass_correct = user.check_password(data['password']) if user else False
+        if user and pass_correct:
             login(request, user)
-            return JsonResponse({'success': True, 'accountType' : request.POST.get('accountType')})
-    else:
-        form = AuthenticationForm()
-    return JsonResponse({'success': False, 'accountType' : request.POST.get('accountType')})
+            return JsonResponse({'success': True, 'accountType' : user.accountType})
+    return JsonResponse({'success': False})
 
+@csrf_exempt
+@require_POST
 def delete_account(request):
     if request.method == 'POST':
         try:

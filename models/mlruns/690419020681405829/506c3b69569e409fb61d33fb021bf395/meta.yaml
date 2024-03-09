@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/690419020681405829/506c3b69569e409fb61d33fb021bf395/artifacts
+end_time: 1709963022942
+entry_point_name: ''
+experiment_id: '690419020681405829'
+lifecycle_stage: active
+run_id: 506c3b69569e409fb61d33fb021bf395
+run_name: agreeable-stork-137
+run_uuid: 506c3b69569e409fb61d33fb021bf395
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1709963012234
+status: 3
+tags: []
+user_id: admin

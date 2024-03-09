@@ -26,7 +26,10 @@ def user_login(request):
     if request.method == 'POST':
         data = json.loads(request.body)
         user = authenticate(request, username=data['username'], password=data['password'])
-        user = StandardUser.objects.get(username=data['username'])
+        try:
+            user = StandardUser.objects.get(username=data['username'])
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)})
         pass_correct = user.check_password(data['password']) if user else False
         if user and pass_correct:
             login(request, user)
@@ -38,7 +41,8 @@ def user_login(request):
 def delete_account(request):
     if request.method == 'POST':
         try:
-            username = request.POST.get('username')
+            data = json.loads(request.body)
+            username = data.get('username')
             StandardUser.objects.get(username=username).delete()
             return JsonResponse({'success': True})
         except Exception as e:

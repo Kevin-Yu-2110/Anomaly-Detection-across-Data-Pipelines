@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
+import json
 
 class UserAuthenticationTests(TestCase):
 
@@ -11,7 +12,7 @@ class UserAuthenticationTests(TestCase):
             'password1': 'newpassword123',
             'password2': 'newpassword123',
             'accountType': 'client'
-        })
+        }, content_type='application/json')
         self.assertTrue(response.json()['success'])
         # duplicate registration
         response = self.client.post(reverse('signup'), {
@@ -20,38 +21,37 @@ class UserAuthenticationTests(TestCase):
             'password1': 'newpassword123',
             'password2': 'newpassword123',
             'accountType': 'client'
-        })
+        }, content_type='application/json')
         self.assertFalse(response.json()['success'])
         # account deletion
         response = self.client.post(reverse('delete_account'), {
             'username': 'newuser',
-        })
-        print("THIS IS THE RESPONSE: ", response.json(), end="")
+        }, content_type='application/json')
         self.assertTrue(response.json()['success'])
 
     def test_user_authentication(self):
         # register new user
         response = self.client.post(reverse('signup'), {
-            'username': 'newuser',
-            'email': 'newuser@example.com',
-            'password1': 'newpassword123',
-            'password2': 'newpassword123',
+            'username': 'newuser2',
+            'email': 'newuser2@example.com',
+            'password1': 'newpassword1234',
+            'password2': 'newpassword1234',
             'accountType': 'client'
-        })
+        }, content_type='application/json')
         self.assertTrue(response.json()['success'])
         # login new user
         response = self.client.post(reverse('login'), {
-            'username': 'newuser',
-            'password': 'newpassword123'
-        })
+            'username': 'newuser2',
+            'password': 'newpassword1234'
+        }, content_type='application/json')
         # delete new user account
         response = self.client.post(reverse('delete_account'), {
-            'username': 'newuser',
-        })
+            'username': 'newuser2',
+        }, content_type='application/json')
         self.assertTrue(response.json()['success'])
         # login non-existent user
         response = self.client.post(reverse('login'), {
             'username': 'newuser',
             'password': 'newpassword123'
-        })
+        }, content_type='application/json')
         self.assertFalse(response.json()['success'])

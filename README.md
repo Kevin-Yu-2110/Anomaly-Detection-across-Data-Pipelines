@@ -32,3 +32,8 @@ python manage.py migrate
 cd models
 mlflow server
 ```
+### Train network models
+```
+cd models
+python client_model.py
+```

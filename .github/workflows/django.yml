@@ -8,6 +8,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Set up Python 3.11.5
         uses: actions/setup-python@v2
         with:
@@ -19,3 +21,4 @@ jobs:
       - name: Run Tests
         run: |
           python backend/manage.py test
+

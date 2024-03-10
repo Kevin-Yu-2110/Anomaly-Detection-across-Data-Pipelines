@@ -1,17 +1,19 @@
 import React from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '../UserContext';
 
-const LogoutButton = () => {
-    
+const LogoutButton = () => {    
   const navigate = useNavigate();
+  const {user_logout} = useUser();
 
   const handleClick = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/logout/');
       if (response.data.success) {
-          navigate("/");
+        user_logout()
+        navigate("/");
       } else {
         console.log("Logout failed: Server-Side Error")
       }

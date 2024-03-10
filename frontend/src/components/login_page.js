@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const LoginPage = () => {
   const [loginFailed, setLoginFailed] = useState('');
-  const {setUsername} = useUser();
+  const {user_login} = useUser();
   const [username, setUsernameInput] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ const LoginPage = () => {
         password,
       });
       if (response.data.success) {
-        setUsername(username)
+        user_login(username)
         if (response.data.accountType === "Client") {
           navigate("/clientHome");
         } else if (response.data.accountType === "BusinessClient") {

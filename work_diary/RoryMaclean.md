@@ -8,7 +8,6 @@
 - Implement Github Workflow Pipelines (for automated backend tests)
 ### Sprint One
 - Implement user authentication/registration
-- Implement frontend/backend user-state and session
-- Implement make-transaction and transaction-history
-- Implement CORS policy
-- Implement CSRF-security
+- Implement make-transaction and transaction-history in client and business-client home pages
+- Implement frontend/backend user-state and session with react context, JWT and django.auth
+- Implement CORS and CSRF security policy

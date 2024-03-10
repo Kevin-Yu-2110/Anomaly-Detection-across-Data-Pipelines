@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const SignupPage = () => {
   const [signupFailed, setSignupFailed] = useState('');
-  const {setUsername} = useUser();
+  const {user_login} = useUser();
   const [username, setUsernameInput] = useState('');
   const [email, setEmail] = useState('');
   const [password1, setPassword1] = useState('');
@@ -29,7 +29,7 @@ const SignupPage = () => {
         } 
       });
       if (response.data.success) {
-        setUsername(username)
+        user_login(username)
         if (response.data.accountType === "Client") {
           navigate("/clientHome");
         } else if (response.data.accountType === "BusinessClient") {

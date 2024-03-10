@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '../UserContext';
 import axios from 'axios';
 
 const LoginPage = () => {
   const [loginFailed, setLoginFailed] = useState('');
-  const [username, setUsername] = useState('');
+  const {user_login} = useUser();
+  const [username, setUsernameInput] = useState('');
   const [password, setPassword] = useState('');
-
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -17,6 +18,7 @@ const LoginPage = () => {
         password,
       });
       if (response.data.success) {
+        user_login(username)
         if (response.data.accountType === "Client") {
           navigate("/clientHome");
         } else if (response.data.accountType === "BusinessClient") {
@@ -36,7 +38,7 @@ const LoginPage = () => {
       {loginFailed && <div>{loginFailed}</div>}
       <form onSubmit={handleLogin}>
         <label>Username:
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <input type="text" value={username} onChange={(e) => setUsernameInput(e.target.value)} />
         </label>
         <label>Password:
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />

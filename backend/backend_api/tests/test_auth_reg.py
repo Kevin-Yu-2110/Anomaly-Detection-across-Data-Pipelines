@@ -1,6 +1,5 @@
 from django.test import TestCase
 from django.urls import reverse
-import json
 
 class UserAuthenticationTests(TestCase):
 
@@ -55,3 +54,24 @@ class UserAuthenticationTests(TestCase):
             'password': 'newpassword123'
         }, content_type='application/json')
         self.assertFalse(response.json()['success'])
+
+    def test_user_logout(self):
+        # register new user
+        response = self.client.post(reverse('signup'), {
+            'username': 'newuser3',
+            'email': 'newuser2@example.com',
+            'password1': 'newpassword12345',
+            'password2': 'newpassword12345',
+            'accountType': 'client'
+        }, content_type='application/json')
+        self.assertTrue(response.json()['success'])
+        # login new user
+        response = self.client.post(reverse('login'), {
+            'username': 'newuser3',
+            'password': 'newpassword12345'
+        }, content_type='application/json')
+        # logout new user
+        response = self.client.post(reverse('logout'), {
+            'username': 'newuser3'
+        }, content_type='application/json')
+

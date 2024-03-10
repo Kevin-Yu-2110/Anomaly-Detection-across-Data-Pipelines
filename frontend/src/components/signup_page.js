@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '../UserContext';
 import axios from 'axios';
 
 const SignupPage = () => {
   const [signupFailed, setSignupFailed] = useState('');
-  const [username, setUsername] = useState('');
+  const {user_login} = useUser();
+  const [username, setUsernameInput] = useState('');
   const [email, setEmail] = useState('');
   const [password1, setPassword1] = useState('');
   const [password2, setPassword2] = useState('');
@@ -26,8 +28,8 @@ const SignupPage = () => {
           'Content-Type': 'application/json'
         } 
       });
-      console.log(response.data)
       if (response.data.success) {
+        user_login(username)
         if (response.data.accountType === "Client") {
           navigate("/clientHome");
         } else if (response.data.accountType === "BusinessClient") {
@@ -47,7 +49,7 @@ const SignupPage = () => {
       {signupFailed && <div>{signupFailed}</div>}
       <form onSubmit={handleSignup}>
         <label>Username:
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <input type="text" value={username} onChange={(e) => setUsernameInput(e.target.value)} />
         </label>
         <label>Email:
           <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />

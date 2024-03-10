@@ -1,11 +1,12 @@
 import React from 'react';
+import LogoutButton from './logout_button';
 
 const BusinessHome = () => {
   return (
     <div>
-      <h1>This is the home page for business users</h1>
+      <LogoutButton />
     </div>
   );
-}
+};
 
 export default BusinessHome;

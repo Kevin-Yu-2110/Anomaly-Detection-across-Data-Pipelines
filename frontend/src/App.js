@@ -1,20 +1,16 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import LoginPage from './components/login_page';
-import SignupPage from './components/signup_page';
-import ClientHome from './components/client_home';
-import BusinessHome from './components/business_home';
+import { UserProvider } from './UserContext';
+import { BrowserRouter } from 'react-router-dom';
+import AppRoutes from './components/app_routes'
 
 function App() {
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/clientHome" element={<ClientHome />} />
-        <Route path="/businessHome" element={<BusinessHome />} />
-      </Routes>
-    </Router>
+    <UserProvider>
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
+    </UserProvider>
   );
 }
 

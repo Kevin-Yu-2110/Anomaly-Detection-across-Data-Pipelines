@@ -5,6 +5,8 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from datetime import datetime
+import smtplib
+from email.message import EmailMessage
 
 import json
 
@@ -78,4 +80,57 @@ def make_transaction(request):
             return JsonResponse({'success': False, 'error': str(e)})
     else:
         return JsonResponse({'success': False, 'error': 'Invalid request method'})
+    
+@csrf_exempt
+@require_POST
+def reset_request(request):
+    data = json.loads(request.body)
+    email = data['email']
+    user = StandardUser.objects.get(email=email)
+    if StandardUser.objects.filter(email=email).exists():
+        # send email with otp
+        msg = EmailMessage()
+        msg.set_content(user.otp)
+        msg['Subject'] = "Password Reset Link"
+        msg['From'] = "leotrack123@gmail.com"
+        msg['To'] = email
+        mail_server = smtplib.SMTP('localhost')
+        mail_server.send_message(msg)
+        mail_server.quit
+        return JsonResponse({'success': True})
+    else:
+        message = {
+            'detail': 'Some Error Message'}
+        return JsonResponse({'success': False, 'error': 'cant find email'})
+    
+@csrf_exempt
+@require_POST
+def reset_password(request):
+    """reset_password with email, OTP and new password"""
+    data = request.data
+    user = StandardUser.objects.get(email=data['email'])
+    if user.is_active:
+        # Check if otp is valid
+        if data['otp'] == user.opt:
+            if data['password'] != '':
+                # Change Password
+                user.set_password(data['password'])
+                user.save() # Here user otp will also be changed on save automatically 
+                return JsonResponse({'success': True})
+            else:
+                message = {
+                    'detail': 'Password cant be empty'}
+                return JsonResponse({'success': False, 'error': 'password cant be empty'})
+        else:
+            message = {
+                'detail': 'OTP did not matched'}
+            return JsonResponse({'success': False, 'error': 'incorrect OTP'})
+    else:
+        message = {
+            'detail': 'Something went wrong'}
+        return JsonResponse({'success': False, 'error': 'something went wrong'})
+    
+    
+    
+
 

@@ -91,10 +91,12 @@ def reset_request(request):
         # send email with otp
         msg = EmailMessage()
         msg.set_content(user.otp)
-        msg['Subject'] = "Password Reset Link"
-        msg['From'] = "leotrack123@gmail.com"
+        msg['Subject'] = "OTP for password reset"
+        msg['From'] = "zhoukevinyu1@gmail.com"
         msg['To'] = email
-        mail_server = smtplib.SMTP('localhost')
+        mail_server = smtplib.SMTP("smtp.gmail.com", 587)
+        mail_server.starttls()
+        mail_server.login(msg['From'], "ojru rqgg waus syia")
         mail_server.send_message(msg)
         mail_server.quit
         return JsonResponse({'success': True})
@@ -107,11 +109,14 @@ def reset_request(request):
 @require_POST
 def reset_password(request):
     """reset_password with email, OTP and new password"""
-    data = request.data
+    data = json.loads(request.body)
     user = StandardUser.objects.get(email=data['email'])
+    if data['password1'] != data['password2']:
+        return JsonResponse({'success': False, 'error': 'passwords dont match'})
+    data['password'] = data['password1']
     if user.is_active:
         # Check if otp is valid
-        if data['otp'] == user.opt:
+        if data['otp'] == user.otp:
             if data['password'] != '':
                 # Change Password
                 user.set_password(data['password'])
@@ -123,7 +128,7 @@ def reset_password(request):
                 return JsonResponse({'success': False, 'error': 'password cant be empty'})
         else:
             message = {
-                'detail': 'OTP did not matched'}
+                'detail': 'OTP did not match'}
             return JsonResponse({'success': False, 'error': 'incorrect OTP'})
     else:
         message = {

@@ -16,7 +16,7 @@ const ResetRequestPage = () => {
         email,
       });
       if (response.data.success) {
-        navigate("/resetPassword")
+        navigate("/resetPassword", {state: {email: email}})
       }
       else {
         setOTPSendFailed("Invalid email")

@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 const ResetPasswordPage = () => {
   const [resetFailed, setResetFailed] = useState('');
   const [password1, setPassword1] = useState('');
   const [password2, setPassword2] = useState('');
-  const [email, setEmail] = useState('');
-  const [OTP, setOTP] = useState('');
+  const [otp, setotp] = useState('');
+
+  const location = useLocation();
+  const email = location.state.email;
 
   const navigate = useNavigate();
 
@@ -15,7 +17,7 @@ const ResetPasswordPage = () => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:8000/api/reset_password/', {
-        OTP,
+        otp,
         email,
         password1,
         password2,
@@ -39,11 +41,8 @@ const ResetPasswordPage = () => {
       <h2>Reset</h2>
       {resetFailed && <div>{resetFailed}</div>}
       <form onSubmit={handleReset}>
-        <label>Username:
-          <input type="text" value={OTP} onChange={(e) => setOTP(e.target.value)} />
-        </label>
-        <label>Email:
-          <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <label>otp:
+          <input type="text" value={otp} onChange={(e) => setotp(e.target.value)} />
         </label>
         <label>Password:
           <input type="password" value={password1} onChange={(e) => setPassword1(e.target.value)} />

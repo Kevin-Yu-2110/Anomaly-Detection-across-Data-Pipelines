@@ -92,11 +92,11 @@ def reset_request(request):
         msg = EmailMessage()
         msg.set_content(user.otp)
         msg['Subject'] = "OTP for password reset"
-        msg['From'] = "zhoukevinyu1@gmail.com"
+        msg['From'] = "pearproject3900@gmail.com"
         msg['To'] = email
         mail_server = smtplib.SMTP("smtp.gmail.com", 587)
         mail_server.starttls()
-        mail_server.login(msg['From'], "ojru rqgg waus syia")
+        mail_server.login(msg['From'], "obed iylr awsd trqg")
         mail_server.send_message(msg)
         mail_server.quit
         return JsonResponse({'success': True})

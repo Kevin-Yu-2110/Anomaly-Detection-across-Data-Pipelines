@@ -27,8 +27,8 @@ const Header = ({ isBusiness, isClient }) => {
         )}
       </div>
       <div>
-        <UserProfile></UserProfile>
-        <LogoutButton></LogoutButton>
+        <UserProfile />
+        <LogoutButton />
       </div>
     </header>
   );

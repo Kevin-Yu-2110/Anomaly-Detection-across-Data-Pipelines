@@ -4,19 +4,26 @@ import LogoutButton from './logout_button';
 import { useUser } from '../UserContext';
 
 const ClientHome = () => {
-  const {username} = useUser();
+  const {username, token} = useUser();
   const [successMessage, setSuccessMessage] = useState('');
   const [payeeName, setPayeeName] = useState('');
-  const [amountPayed, setAmountPayed] = useState('');
+  const [amountPayed, setAmountPayed] = useState(''); 
 
   const makeTransaction = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/make_transaction/', {
-        username,
-        payeeName,
-        amountPayed
-      });
+      const response = await axios.post('http://127.0.0.1:8000/api/make_transaction/',
+        {
+          username,
+          payeeName,
+          amountPayed
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
       if (response.data.success) {
         setSuccessMessage("Transferred Succesfully")
       } else {

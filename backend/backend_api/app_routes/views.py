@@ -89,7 +89,10 @@ def delete_account(request):
 def reset_request(request):
     data = json.loads(request.body)
     email = data['email']
-    user = StandardUser.objects.get(email=email)
+    try:
+        user = StandardUser.objects.get(email=email)
+    except:
+        return JsonResponse({'success': False, 'error' : 'User with email does not exist'})   
     if StandardUser.objects.filter(email=email).exists():
         # send email with otp
         msg = EmailMessage()
@@ -104,8 +107,6 @@ def reset_request(request):
         mail_server.quit
         return JsonResponse({'success': True})
     else:
-        message = {
-            'detail': 'Some Error Message'}
         return JsonResponse({'success': False, 'error': 'cant find email'})
     
 @csrf_exempt
@@ -126,16 +127,10 @@ def reset_password(request):
                 user.save() # Here user otp will also be changed on save automatically 
                 return JsonResponse({'success': True})
             else:
-                message = {
-                    'detail': 'Password cant be empty'}
                 return JsonResponse({'success': False, 'error': 'password cant be empty'})
         else:
-            message = {
-                'detail': 'OTP did not match'}
             return JsonResponse({'success': False, 'error': 'incorrect OTP'})
     else:
-        message = {
-            'detail': 'Something went wrong'}
         return JsonResponse({'success': False, 'error': 'something went wrong'})
     
     

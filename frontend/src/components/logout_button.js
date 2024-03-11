@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../UserContext';
+import { Button } from 'react-bootstrap';
 
 const LogoutButton = () => {    
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ const LogoutButton = () => {
   };
 
   return (
-    <button onClick={handleClick}>Logout</button>
+    <Button variant='danger' size='sm' onClick={handleClick}>Logout</Button>
   );
 };
 

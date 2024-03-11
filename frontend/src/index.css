@@ -11,3 +11,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Header start */
+.header {
+  grid-area: header;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px 0 30px;
+  box-shadow: 0 8px 8px -4px rgba(0, 0, 0, 0.35);
+  background-color: #23324d;
+  color: white;
+}
+
+.icon {
+  line-height: 1px;
+  font-size: 25px;
+  vertical-align: middle;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+/* Header end */

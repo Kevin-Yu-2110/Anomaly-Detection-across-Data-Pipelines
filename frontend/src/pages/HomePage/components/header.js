@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { BsUpload } from "react-icons/bs";
 import LogoutButton from "../../../components/logout_button";
 import UserProfile from "./user_profile";
 import MakeTransaction from "./make_transaction";
 import { Button } from "react-bootstrap";
 import UploadData from "./upload_data";
 
-const Header = ({ isBusiness, isClient }) => {
+const Header = (props) => {
   const [successMessage, setSuccessMessage] = useState('test');
   const [showOverlay, setShowOverlay] = useState(false);
+  const { isBusiness, isClient } = props;
 
   return (
     <header className="header">

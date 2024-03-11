@@ -5,8 +5,8 @@ import { useUser } from "../../../UserContext";
 import axios from "axios";
 
 const MakeTransaction = ({ setSuccessMessage, setShowOverlay }) => {
+  const {username, token} = useUser();
   const [show, setShow] = useState(false);
-  const {username} = useUser();
   const [payeeName, setPayeeName] = useState('');
   const [amountPayed, setAmountPayed] = useState('');
 
@@ -16,11 +16,18 @@ const MakeTransaction = ({ setSuccessMessage, setShowOverlay }) => {
   const makeTransaction = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/make_transaction/', {
-        username,
-        payeeName,
-        amountPayed
-      });
+      const response = await axios.post('http://127.0.0.1:8000/api/make_transaction/',
+        {
+          username,
+          payeeName,
+          amountPayed
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
       if (response.data.success) {
         setSuccessMessage("Transferred Succesfully")
       } else {
@@ -29,8 +36,9 @@ const MakeTransaction = ({ setSuccessMessage, setShowOverlay }) => {
     } catch (error) {
       console.error('Transaction Failed: Server-Side Error:', error);
     }
+    handleClose();
     setShowOverlay(true);
-    setTimeout(() => setShowOverlay(false), 10000);
+    setTimeout(() => setShowOverlay(false), 8000);
   };
 
   return (
@@ -48,7 +56,8 @@ const MakeTransaction = ({ setSuccessMessage, setShowOverlay }) => {
           <Form onSubmit={makeTransaction}>
             <Form.Group className="mb-3">
               <Form.Label>Transfer To:</Form.Label>
-              <Form.Control 
+              <Form.Control
+                required
                 type="text"
                 value={payeeName}
                 onChange={e => setPayeeName(e.target.value)}
@@ -56,19 +65,18 @@ const MakeTransaction = ({ setSuccessMessage, setShowOverlay }) => {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Transfer Amount:</Form.Label>
-              <Form.Control 
+              <Form.Control
+                required
                 type="text"
                 value={amountPayed}
                 onChange={e => setAmountPayed(e.target.value)}
               />
             </Form.Group>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" type="submit" onClick={handleClose}>
-            Submit
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   );

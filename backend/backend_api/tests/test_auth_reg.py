@@ -75,3 +75,23 @@ class UserAuthenticationTests(TestCase):
             'username': 'newuser3'
         }, content_type='application/json')
 
+    def test_reset_pass_req(self):
+        #register new user
+        response = self.client.post(reverse('signup'), {
+            'username': 'newuser',
+            'email': 'newuser@email.com',
+            'password1': 'newpassword12345',
+            'password2': 'newpassword12345',
+            'accountType': 'client'
+        }, content_type='application/json')
+        self.assertTrue(response.json()['success'])
+        #request password reset
+        response = self.client.post(reverse('reset_request'), {
+            'email': 'newuser@email.com'
+        }, content_type='application/json')
+        self.assertTrue(response.json()['success'])
+
+
+
+
+

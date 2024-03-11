@@ -18,7 +18,7 @@ const LoginPage = () => {
         password,
       });
       if (response.data.success) {
-        user_login(username)
+        user_login(username, response.data.token)
         if (response.data.accountType === "Client") {
           navigate("/clientHome");
         } else if (response.data.accountType === "BusinessClient") {

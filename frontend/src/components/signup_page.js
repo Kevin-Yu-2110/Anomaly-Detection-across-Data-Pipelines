@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const SignupPage = () => {
   const [signupFailed, setSignupFailed] = useState('');
-  const {user_login} = useUser();
+  const {user_login, token} = useUser();
   const [username, setUsernameInput] = useState('');
   const [email, setEmail] = useState('');
   const [password1, setPassword1] = useState('');
@@ -17,19 +17,22 @@ const SignupPage = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8000/api/signup/', {
-        username,
-        email,
-        password1,
-        password2,
-        accountType,
-      }, {
-        headers: {
-          'Content-Type': 'application/json'
+      const response = await axios.post('http://localhost:8000/api/signup/', 
+        {
+          username,
+          email,
+          password1,
+          password2,
+          accountType,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
         } 
-      });
+      );
       if (response.data.success) {
-        user_login(username)
+        user_login(username, response.data.token)
         if (response.data.accountType === "Client") {
           navigate("/clientHome");
         } else if (response.data.accountType === "BusinessClient") {

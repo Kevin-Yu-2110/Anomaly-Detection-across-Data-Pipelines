@@ -6,6 +6,8 @@ import ClientHome from './client_home';
 import BusinessHome from './business_home';
 import ResetRequestPage from './reset_request';
 import ResetPasswordPage from './reset_password_page';
+import ClientHome from '../pages/ClientHome/client_home';
+import BusinessHome from '../pages/BusinessHome/business_home';
 import { useUser } from '../UserContext';
 
 const AppRoutes = () => {

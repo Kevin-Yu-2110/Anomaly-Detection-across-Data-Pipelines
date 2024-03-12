@@ -2,8 +2,8 @@ import React from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import LoginPage from './login_page';
 import SignupPage from './signup_page';
-import ClientHome from './client_home';
-import BusinessHome from './business_home';
+import ClientHome from '../pages/ClientHome/client_home';
+import BusinessHome from '../pages/BusinessHome/business_home';
 import { useUser } from '../UserContext';
 
 const AppRoutes = () => {

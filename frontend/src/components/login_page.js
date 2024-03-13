@@ -48,6 +48,7 @@ const LoginPage = () => {
       <div>
         <p>Create a new account? <button onClick={() => navigate("/signup")}>Sign Up</button></p>
       </div>
+        <p>Forgot password? <button onClick={() => navigate("/resetRequest")}>Reset Password</button></p>
     </div>
   );
 };

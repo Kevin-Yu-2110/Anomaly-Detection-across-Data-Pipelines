@@ -4,10 +4,12 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from backend_api.models import StandardUser, Transaction
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+from email.message import EmailMessage
 from django.http import JsonResponse
 from datetime import datetime, timedelta
 import json
 import jwt
+import smtplib
 
 JWT_KEY = "3fRKDzIVo2m6sPhDkhNU9URS8nT0hTTYRbeCd3iVHyeBFuUf7mAY6n5sJ2MiinE7Jem0QzYbHVla8FtqIb4xHt1GmdWgOQDa"
 
@@ -81,9 +83,59 @@ def delete_account(request):
         return JsonResponse({'success': True})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
-
+    
 @csrf_exempt
 @require_POST
+def reset_request(request):
+    data = json.loads(request.body)
+    email = data['email']
+    try:
+        user = StandardUser.objects.get(email=email)
+    except:
+        return JsonResponse({'success': False, 'error' : 'User with email does not exist'})   
+    if StandardUser.objects.filter(email=email).exists():
+        # send email with otp
+        msg = EmailMessage()
+        msg.set_content(user.otp)
+        msg['Subject'] = "OTP for password reset"
+        msg['From'] = "pearproject3900@gmail.com"
+        msg['To'] = email
+        mail_server = smtplib.SMTP("smtp.gmail.com", 587)
+        mail_server.starttls()
+        mail_server.login(msg['From'], "obed iylr awsd trqg")
+        mail_server.send_message(msg)
+        mail_server.quit
+        return JsonResponse({'success': True})
+    else:
+        return JsonResponse({'success': False, 'error': 'cant find email'})
+    
+@csrf_exempt
+@require_POST
+def reset_password(request):
+    """reset_password with email, OTP and new password"""
+    data = json.loads(request.body)
+    user = StandardUser.objects.get(email=data['email'])
+    if data['password1'] != data['password2']:
+        return JsonResponse({'success': False, 'error': 'passwords dont match'})
+    data['password'] = data['password1']
+    if user.is_active:
+        # Check if otp is valid
+        if data['otp'] == user.otp:
+            if data['password'] != '':
+                # Change Password
+                user.set_password(data['password'])
+                user.save() # Here user otp will also be changed on save automatically 
+                return JsonResponse({'success': True})
+            else:
+                return JsonResponse({'success': False, 'error': 'password cant be empty'})
+        else:
+            return JsonResponse({'success': False, 'error': 'incorrect OTP'})
+    else:
+        return JsonResponse({'success': False, 'error': 'something went wrong'})
+    
+    
+    
+
 def make_transaction(request):    
     try:
         data = json.loads(request.body)

@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useUser } from '../UserContext';
 import axios from 'axios';
 
+import style from './style.module.css';
+
 const SignupPage = () => {
   const [signupFailed, setSignupFailed] = useState('');
   const {user_login, token} = useUser();
@@ -47,30 +49,29 @@ const SignupPage = () => {
   };
 
   return (
-    <div>
-      <h2>Signup</h2>
+    <div className={style.container}>
+      <p className={style.headsignup}>Create account</p>
       {signupFailed && <div>{signupFailed}</div>}
       <form onSubmit={handleSignup}>
-        <label>Username:
-          <input type="text" value={username} onChange={(e) => setUsernameInput(e.target.value)} />
-        </label>
-        <label>Email:
-          <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-        </label>
-        <label>Password:
-          <input type="password" value={password1} onChange={(e) => setPassword1(e.target.value)} />
-        </label>
-        <label>Password:
-          <input type="password" value={password2} onChange={(e) => setPassword2(e.target.value)} />
-        </label>
-        <select value={accountType} onChange={(e) => setAccountType(e.target.value)} >
+        
+        <input className={style.input} type="text" value={username} placeholder='Username' onChange={(e) => setUsernameInput(e.target.value)} />
+        
+        <input className={style.input} type="text" value={email} placeholder='Email' onChange={(e) => setEmail(e.target.value)} />
+        
+        <input className={style.input} type="password" value={password1} placeholder='Password' onChange={(e) => setPassword1(e.target.value)} />
+
+        <input className={style.input} type="password" value={password2} placeholder='Confirm Password' onChange={(e) => setPassword2(e.target.value)} />
+        
+        <select  className={style.select} value={accountType} onChange={(e) => setAccountType(e.target.value)} >
           <option value="Client">Individual</option>
           <option value="BusinessClient">Business</option>
         </select>
-        <button type="submit">Signup</button>
+        <br></br>
+        
+        <button className={style.button} type="submit">Signup</button>
       </form>
       <div>
-        <p>Already have an account? <button onClick={() => navigate("/")}>Login</button></p>
+        <p>Already have an account? <button className={style.button} onClick={() => navigate("/")}>Login</button></p>
       </div>
     </div>
   );

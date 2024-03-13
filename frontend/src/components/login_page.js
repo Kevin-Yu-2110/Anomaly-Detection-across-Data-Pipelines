@@ -4,7 +4,7 @@ import { useUser } from '../UserContext';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-import './login_style.css'
+import login_style from './style.module.css';
 
 const LoginPage = () => {
   const [loginFailed, setLoginFailed] = useState('');
@@ -36,18 +36,18 @@ const LoginPage = () => {
   };
 
   return (
-    <div className='container'>
-      <h2>Login</h2>
+    <div className={login_style.container}>
+      <p className={login_style.headlogin}>Login</p>
       {loginFailed && <div>{loginFailed}</div>}
       <form onSubmit={handleLogin}>
-        <input className='input' type="text" placeholder='Username' value={username} onChange={(e) => setUsernameInput(e.target.value)} />
+        <input className={login_style.input} type="text" placeholder='Username' value={username} onChange={(e) => setUsernameInput(e.target.value)} />
         <br></br>
-        <input className='input' type="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
+        <input className={login_style.input} type="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
         <br></br>
-        <button className='button' type="submit">Login</button>
+        <button className={login_style.button} type="submit">Login</button>
       </form>
       <div style={{marginTop:'10px'}}>
-        <p>Create a new account? <button className='button' onClick={() => navigate("/signup")}>Sign Up</button></p>
+        <p>Create a new account? <button className={login_style.button} onClick={() => navigate("/signup")}>Sign Up</button></p>
       </div>
       <div>
         <Link to="/forgot">Forgot Password?</Link>

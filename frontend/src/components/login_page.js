@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../UserContext';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
+import './login_style.css'
 
 const LoginPage = () => {
   const [loginFailed, setLoginFailed] = useState('');
@@ -33,20 +36,21 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
+    <div className='container'>
       <h2>Login</h2>
       {loginFailed && <div>{loginFailed}</div>}
       <form onSubmit={handleLogin}>
-        <label>Username:
-          <input type="text" value={username} onChange={(e) => setUsernameInput(e.target.value)} />
-        </label>
-        <label>Password:
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        </label>
-        <button type="submit">Login</button>
+        <input className='input' type="text" placeholder='Username' value={username} onChange={(e) => setUsernameInput(e.target.value)} />
+        <br></br>
+        <input className='input' type="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
+        <br></br>
+        <button className='button' type="submit">Login</button>
       </form>
+      <div style={{marginTop:'10px'}}>
+        <p>Create a new account? <button className='button' onClick={() => navigate("/signup")}>Sign Up</button></p>
+      </div>
       <div>
-        <p>Create a new account? <button onClick={() => navigate("/signup")}>Sign Up</button></p>
+        <Link to="/forgot">Forgot Password?</Link>
       </div>
     </div>
   );

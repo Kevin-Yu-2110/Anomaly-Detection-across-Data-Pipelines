@@ -52,6 +52,7 @@ const LoginPage = () => {
       <div>
         <Link to="/forgot">Forgot Password?</Link>
       </div>
+        <p>Forgot password? <button onClick={() => navigate("/resetRequest")}>Reset Password</button></p>
     </div>
   );
 };

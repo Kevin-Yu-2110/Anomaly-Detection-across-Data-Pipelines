@@ -1,5 +1,6 @@
 from django.urls import path
 from backend_api.app_routes import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('signup/', views.user_signup, name='signup'),
@@ -7,4 +8,6 @@ urlpatterns = [
     path('logout/', views.user_logout, name='logout'),
     path('delete_account/', views.delete_account, name='delete_account'),
     path('make_transaction/', views.make_transaction, name='make_transaction'),
+    path('reset_request/', views.reset_request, name='reset_request'),
+    path('reset_password/', views.reset_password, name='reset_password'),
 ]

@@ -6,7 +6,7 @@ import { Button } from "react-bootstrap";
 import UploadData from "./upload_data";
 
 const Header = (props) => {
-  const [successMessage, setSuccessMessage] = useState('test');
+  const [successMessage, setSuccessMessage] = useState('Transfer Failed');
   const [showOverlay, setShowOverlay] = useState(false);
   const { isBusiness, isClient } = props;
 

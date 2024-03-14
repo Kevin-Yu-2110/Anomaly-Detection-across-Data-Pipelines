@@ -132,11 +132,10 @@ def reset_password(request):
             return JsonResponse({'success': False, 'error': 'incorrect OTP'})
     else:
         return JsonResponse({'success': False, 'error': 'something went wrong'})
-    
-    
-    
 
-def make_transaction(request):    
+@csrf_exempt
+@require_POST
+def make_transaction(request):
     try:
         data = json.loads(request.body)
         Transaction.objects.create(

@@ -35,6 +35,17 @@
     margin-bottom: 30px;
 }
 
+.headforgot {
+    width: 320px;
+    height: 30px;
+    position: relative;
+    left:50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+    color: #333;
+    margin-bottom: 30px;
+}
+
 .input {
     width: 100%;
     padding: 10px;

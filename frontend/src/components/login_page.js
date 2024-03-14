@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../UserContext';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 
 import login_style from './style.module.css';
 
@@ -49,10 +48,9 @@ const LoginPage = () => {
       <div style={{marginTop:'10px'}}>
         <p>Create a new account? <button className={login_style.button} onClick={() => navigate("/signup")}>Sign Up</button></p>
       </div>
-      <div>
-        <Link to="/forgot">Forgot Password?</Link>
+      <div style={{marginTop:'10px'}}>
+        <p>Forgot password? <button className={login_style.button} onClick={() => navigate("/resetRequest")}>Reset Password</button></p>
       </div>
-        <p>Forgot password? <button onClick={() => navigate("/resetRequest")}>Reset Password</button></p>
     </div>
   );
 };

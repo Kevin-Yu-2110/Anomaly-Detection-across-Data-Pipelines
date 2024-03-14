@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
+import style from './style.module.css';
+
 const ResetPasswordPage = () => {
   const [resetFailed, setResetFailed] = useState('');
   const [password1, setPassword1] = useState('');
@@ -37,21 +39,21 @@ const ResetPasswordPage = () => {
   };
 
   return (
-    <div>
-      <h2>Reset</h2>
+    <div className={style.container}>
+      <p className={style.headforgot}>Reset Password</p>
       {resetFailed && <div>{resetFailed}</div>}
       <form onSubmit={handleReset}>
-        <label>otp:
-          <input type="text" value={otp} onChange={(e) => setotp(e.target.value)} />
-        </label>
-        <label>Password:
-          <input type="password" value={password1} onChange={(e) => setPassword1(e.target.value)} />
-        </label>
-        <label>Password:
-          <input type="password" value={password2} onChange={(e) => setPassword2(e.target.value)} />
-        </label>
-        <button type="submit">Reset</button>
+        <input className={style.input} type="text" value={otp} placeholder='6 digit otp' onChange={(e) => setotp(e.target.value)} />
+
+        <input className={style.input} type="password" value={password1} placeholder='new password' onChange={(e) => setPassword1(e.target.value)} />
+
+        <input className={style.input} type="password" value={password2} placeholder='confirm new password' onChange={(e) => setPassword2(e.target.value)} />
+
+        <button className={style.button} type="submit">Reset</button>
       </form>
+      <div style={{marginTop:'10px'}}>
+        <p>Back to <button className={style.button} onClick={() => navigate("/")}>Login</button></p>
+      </div>
     </div>
   );
 };

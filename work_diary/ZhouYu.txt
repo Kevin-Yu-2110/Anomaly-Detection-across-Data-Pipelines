@@ -1,0 +1,10 @@
+Week 1:
+
+- Wrote one of the two background reference projects.
+- Contributed to user stories
+
+Week 2
+
+- Set up pipeline architecture
+- Implemented password reset
+- Handled demonstration of said password reset

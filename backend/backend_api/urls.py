@@ -10,4 +10,6 @@ urlpatterns = [
     path('make_transaction/', views.make_transaction, name='make_transaction'),
     path('reset_request/', views.reset_request, name='reset_request'),
     path('reset_password/', views.reset_password, name='reset_password'),
+    path('update_username/', views.update_username, name='update_username'),
+    path('update_email/', views.update_email, name='update_email'),
 ]

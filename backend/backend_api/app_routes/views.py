@@ -1,12 +1,12 @@
 from django.contrib.auth import login, logout
 from backend_api.app_routes.forms import SignUpForm
-from rest_framework_simplejwt.tokens import RefreshToken
 from backend_api.models import StandardUser, Transaction
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from email.message import EmailMessage
 from django.http import JsonResponse
 from datetime import datetime, timedelta
+from functools import wraps
 import json
 import jwt
 import smtplib
@@ -30,6 +30,14 @@ def validate_attached_token(request):
         return False
     except jwt.InvalidTokenError:
         return False
+
+def auth_required(func):
+    @wraps(func)
+    def wrapper(request, *args, **kwargs):
+        if not validate_attached_token(request):
+            return JsonResponse({'success': False, 'error': "Failed to authenticate"})
+        return func(request, *args, **kwargs)
+    return wrapper
 
 @csrf_exempt
 @require_POST
@@ -64,6 +72,7 @@ def user_login(request):
 
 @csrf_exempt
 @require_POST
+@auth_required
 def user_logout(request):
     try:
         logout(request)
@@ -73,6 +82,7 @@ def user_logout(request):
 
 @csrf_exempt
 @require_POST
+@auth_required
 def delete_account(request):
     if not validate_attached_token(request):
         return JsonResponse({'success': False, 'error': 'Invalid session token'})
@@ -112,20 +122,22 @@ def reset_request(request):
 @csrf_exempt
 @require_POST
 def reset_password(request):
-    """reset_password with email, OTP and new password"""
+    # reset_password with email, OTP and new password
     data = json.loads(request.body)
     user = StandardUser.objects.get(email=data['email'])
     if data['password1'] != data['password2']:
         return JsonResponse({'success': False, 'error': 'passwords dont match'})
-    data['password'] = data['password1']
+    new_password = data['password1']
     if user.is_active:
         # Check if otp is valid
         if data['otp'] == user.otp:
-            if data['password'] != '':
+            if new_password != '':
                 # Change Password
-                user.set_password(data['password'])
-                user.save() # Here user otp will also be changed on save automatically 
-                return JsonResponse({'success': True})
+                user.set_password(new_password)
+                user.save() # Here user otp will also be changed on save automatically
+                # return new auth token derived from reset password
+                new_auth_token = generate_jwt(user.username, new_password)
+                return JsonResponse({'success': True, 'token' : new_auth_token})
             else:
                 return JsonResponse({'success': False, 'error': 'password cant be empty'})
         else:
@@ -135,6 +147,7 @@ def reset_password(request):
 
 @csrf_exempt
 @require_POST
+@auth_required
 def make_transaction(request):
     try:
         data = json.loads(request.body)
@@ -148,3 +161,46 @@ def make_transaction(request):
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
 
+@csrf_exempt
+@require_POST
+@auth_required
+def update_username(request):
+    try:
+        data = json.loads(request.body)
+    except Exception as e:
+        # malformed request
+        return JsonResponse({'success': False, 'error': str(e)})
+    try:
+        username=data['username']
+        updated_username=data['new_username']
+        # return query failure if proposed username already exists in database
+        StandardUser.objects.get(username=updated_username)
+        return JsonResponse({'success': False, 'error' : 'User already exists'})
+    except StandardUser.DoesNotExist:
+        # if proposed username does not exist, update and return success
+        user = StandardUser.objects.get(username=username)
+        user.username = updated_username
+        user.save()
+        # return new auth token derived from updated username
+        auth_token = generate_jwt(user.username, user.password)
+        return JsonResponse({'success': True, 'token' : auth_token})
+
+@csrf_exempt
+@require_POST
+@auth_required
+def update_email(request):
+    try:
+        data = json.loads(request.body)
+    except Exception as e:
+        # malformed request
+        return JsonResponse({'success': False, 'error': str(e)})
+    try:
+        username=data['username']
+        updated_email=data['new_email']
+        user = StandardUser.objects.get(username=username)
+        user.email = updated_email
+        user.save()
+        return JsonResponse({'success': True})
+    except Exception as e:
+        # something went wrong
+        return JsonResponse({'success': False, 'error': str(e)})

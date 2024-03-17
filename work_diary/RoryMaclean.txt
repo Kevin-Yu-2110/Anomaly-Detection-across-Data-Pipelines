@@ -1,4 +1,4 @@
-### Project Setup
+Project Setup (w1-w3)
 - Design Full System Architecture
 - Implement proof-of-concept frontend react framework
 - Implement proof-of-concept backend Django framework
@@ -6,9 +6,17 @@
 - Implement proof-of-concept full-stack routes
 - Dependency Management (requirements.txt + package.json)
 - Implement Github Workflow Pipelines (for automated backend tests)
-### Sprint One
+
+Sprint One (w4-w5)
 - Implement user authentication/registration
 - Implement make-transaction and transaction-history in client and business-client home pages
 - Implement frontend/backend user-state and session with react context, JWT and django.auth
 - Prevent JWT impersonation attacks via comparison between requesting user fields and decoded token fields
 - Implement CORS and CSRF security policy
+
+Sprint Two (w6-w8)
+- Create update-username and update-email backend routes
+- Create get-transaction-history backend route
+- Update user sign-up with features required for anomaly analysis
+- Update make-transaction route with features required for anomaly analysis
+- embed current authentication system within http cookies to preserve state across user-refresh

@@ -1,11 +1,14 @@
-from django.contrib.auth import login, logout
 from backend_api.app_routes.forms import SignUpForm
 from backend_api.models import StandardUser, Transaction
+from django.core.paginator import Paginator
+from django.http import JsonResponse
+from email.message import EmailMessage
+from datetime import datetime, timedelta
+from django.db.models import Q
+from django.core.serializers import serialize
+from django.contrib.auth import login, logout
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
-from email.message import EmailMessage
-from django.http import JsonResponse
-from datetime import datetime, timedelta
 from functools import wraps
 import json
 import jwt
@@ -152,7 +155,7 @@ def make_transaction(request):
     try:
         data = json.loads(request.body)
         Transaction.objects.create(
-            username=StandardUser.objects.get(username=data.get('username')),
+            username=data.get('username'),
             payee_name=data.get('payeeName'),
             amount=data.get('amountPayed'),
             time_of_transfer=datetime.now()
@@ -201,6 +204,32 @@ def update_email(request):
         user.email = updated_email
         user.save()
         return JsonResponse({'success': True})
+    except Exception as e:
+        # something went wrong
+        return JsonResponse({'success': False, 'error': str(e)})
+
+@csrf_exempt
+@require_POST
+@auth_required
+def get_transaction_history(request):
+    try:
+        data = json.loads(request.body)
+    except Exception as e:
+        # malformed request
+        return JsonResponse({'success': False, 'error': str(e)})
+    try:
+        username=data['username']
+        page_no=data['page_no']
+        items_per_page = 50
+        # get all transactions involving user as payer or payee
+        transactions = Transaction.objects.filter(Q(username=username) | Q(payee_name=username)).order_by('time_of_transfer')
+        paginator = Paginator(transactions, items_per_page)
+        page = paginator.page(page_no)
+        transactions = page.object_list
+        transaction_history = serialize('json', transactions)
+        transaction_history = json.loads(transaction_history)
+        transaction_history = [transaction['fields'] for transaction in transaction_history]
+        return JsonResponse({'success': True, 'transaction_history' : transaction_history})
     except Exception as e:
         # something went wrong
         return JsonResponse({'success': False, 'error': str(e)})

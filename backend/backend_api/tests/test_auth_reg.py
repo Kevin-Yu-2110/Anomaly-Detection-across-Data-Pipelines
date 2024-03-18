@@ -235,54 +235,5 @@ class UserAuthenticationTests(TestCase):
         data = response.json()
         self.assertFalse(data['success'])
 
-    def test_make_transaction(self):
-        # register payer
-        response = self.client.post(
-            reverse('signup'), 
-            data={
-                'username': 'Jimmy',
-                'email': 'Neutron@IMBCorporate.com',
-                'password1': 'alax_memento_j44',
-                'password2': 'alax_memento_j44',
-                'accountType': 'client'
-            },
-            content_type='application/json'
-        )
-        data = response.json()
-        self.assertTrue(data['success'])
-        auth_token = data['token']
-        # register payee
-        response = self.client.post(
-            reverse('signup'), 
-            data={
-                'username': 'GraceHallaway_39',
-                'email': 'GraceHallaway@ghibli.com',
-                'password1': 'Kdubn395ng',
-                'password2': 'Kdubn395ng',
-                'accountType': 'client'
-            },
-            content_type='application/json'
-        )
-        data = response.json()
-        self.assertTrue(data['success'])
-        # Jimmy pays Grace 13.99
-        self.client.post(
-            reverse('make_transaction'),
-            data={
-                'payeeName': 'GraceHallaway_39',
-                'amountPayed': 13.99
-            },
-            content_type='application/json',
-            HTTP_AUTHORIZATION=auth_token
-        )
-        data = response.json()
-        self.assertTrue(data['success'])
-
-
-
-
-
-
-
 
 

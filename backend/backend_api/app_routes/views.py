@@ -22,7 +22,7 @@ def generate_jwt(username, password):
 def validate_attached_token(request):
     try:
         token = request.META.get('HTTP_AUTHORIZATION')
-        decoded_token = jwt.decode(token, JWT_KEY, algorithms=['HS256'])
+        decoded_token = jwt.decode(token.split()[1], JWT_KEY, algorithms=['HS256'])
         impacted_user = json.loads(request.body).get('username')
         requesting_user = decoded_token.get('username')
         return impacted_user == requesting_user

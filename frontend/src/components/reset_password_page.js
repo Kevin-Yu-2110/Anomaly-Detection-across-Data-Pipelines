@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 import style from './style.module.css';
 
 const ResetPasswordPage = () => {
-  const [resetFailed, setResetFailed] = useState('');
   const [password1, setPassword1] = useState('');
   const [password2, setPassword2] = useState('');
   const [otp, setotp] = useState('');
@@ -14,6 +14,8 @@ const ResetPasswordPage = () => {
   const email = location.state.email;
 
   const navigate = useNavigate();
+
+  const resetFailed = () => toast.error("Invalid");
 
   const handleReset = async (e) => {
     e.preventDefault();
@@ -31,7 +33,7 @@ const ResetPasswordPage = () => {
       if (response.data.success) {
           navigate("/resetDone");
       } else {
-        setResetFailed("Invalid")
+        resetFailed();
       }
     } catch (error) {
       console.error('Invalid', error);

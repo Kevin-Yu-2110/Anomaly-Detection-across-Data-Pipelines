@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../UserContext';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 import login_style from './style.module.css';
 
 const LoginPage = () => {
-  const [loginFailed, setLoginFailed] = useState('');
   const {user_login} = useUser();
   const [username, setUsernameInput] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+
+  const loginFailed = () => toast.error("Invalid credentials");
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -27,7 +29,7 @@ const LoginPage = () => {
           navigate("/businessHome");
         }
       } else {
-        setLoginFailed('Invalid Credentials')
+        loginFailed();
       }
     } catch (error) {
       console.error('Login Failed: Failed to contact server:', error);
@@ -37,7 +39,6 @@ const LoginPage = () => {
   return (
     <div className={login_style.container}>
       <p className={login_style.headlogin}>Login</p>
-      {loginFailed && <div>{loginFailed}</div>}
       <form onSubmit={handleLogin}>
         <input className={login_style.input} type="text" placeholder='Username' value={username} onChange={(e) => setUsernameInput(e.target.value)} />
         <br></br>

@@ -2,19 +2,20 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../UserContext';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 import style from './style.module.css';
 
 const SignupPage = () => {
-  const [signupFailed, setSignupFailed] = useState('');
   const {user_login, token} = useUser();
   const [username, setUsernameInput] = useState('');
   const [email, setEmail] = useState('');
   const [password1, setPassword1] = useState('');
   const [password2, setPassword2] = useState('');
   const [accountType, setAccountType] = useState("Client");
-
   const navigate = useNavigate();
+
+  const signupFailed = () => toast.error("Invalid credentials");
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -41,7 +42,7 @@ const SignupPage = () => {
           navigate("/businessHome");
         }
       } else {
-        setSignupFailed("Invalid credentials")
+        signupFailed();
       }
     } catch (error) {
       console.error('Signup Failed with error:', error);

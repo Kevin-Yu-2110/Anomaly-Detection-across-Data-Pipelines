@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 import style from './style.module.css';
 
 const ResetRequestPage = () => {
-  
-  const [OTPSendFailed, setOTPSendFailed] = useState('');
   const [email, setEmail] = useState('');
 
   const navigate = useNavigate()
+
+  const OTPSendFailed = () => toast.error("Invalid email");
 
   const handleReset = async(e) => {
     e.preventDefault();
@@ -21,7 +22,7 @@ const ResetRequestPage = () => {
         navigate("/resetPassword", {state: {email: email}})
       }
       else {
-        setOTPSendFailed("Invalid email")
+        OTPSendFailed();
       }
     } catch(error) {
       console.error("email failed with error:", error)

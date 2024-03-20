@@ -10,9 +10,10 @@ from django.contrib.auth import login, logout
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from functools import wraps
+import smtplib
 import json
 import jwt
-import smtplib
+import csv
 
 JWT_KEY = "3fRKDzIVo2m6sPhDkhNU9URS8nT0hTTYRbeCd3iVHyeBFuUf7mAY6n5sJ2MiinE7Jem0QzYbHVla8FtqIb4xHt1GmdWgOQDa"
 
@@ -24,10 +25,12 @@ def generate_jwt(username, password):
 
 def validate_attached_token(request):
     try:
-        token = request.META.get('HTTP_AUTHORIZATION')
+        print(request.META['HTTP_AUTHORIZATION'])
+        token = request.META['HTTP_AUTHORIZATION'][7:] # remove "Bearer " prefix
+        print(token)
         decoded_token = jwt.decode(token, JWT_KEY, algorithms=['HS256'])
-        impacted_user = json.loads(request.body).get('username')
         requesting_user = decoded_token.get('username')
+        impacted_user = request.POST['username']
         return impacted_user == requesting_user
     except jwt.ExpiredSignatureError:
         return False
@@ -232,4 +235,30 @@ def get_transaction_history(request):
         return JsonResponse({'success': True, 'transaction_history' : transaction_history})
     except Exception as e:
         # something went wrong
+        return JsonResponse({'success': False, 'error': str(e)})
+
+@csrf_exempt
+@require_POST
+@auth_required
+def process_transaction_log(request):
+    try:
+        uploaded_file = request.FILES['transaction_log']
+        decoded_file = uploaded_file.read().decode('utf-8').splitlines()
+        csv_reader = csv.reader(decoded_file)
+        rows_read = 0
+        for row in csv_reader:
+            if rows_read:
+                print(row[0], row[1], row[2], row[3])
+                Transaction.objects.create(
+                    username=row[0],
+                    payee_name=row[1],
+                    amount=float(row[2]),
+                    time_of_transfer=row[3]
+                ) 
+            rows_read += 1
+        transactions = Transaction.objects.all()
+        print(transactions)
+        return JsonResponse({'success': True})
+    except Exception as e:
+        print("ERROR ", e)
         return JsonResponse({'success': False, 'error': str(e)})

@@ -6,12 +6,15 @@ import { Button } from 'react-bootstrap';
 
 const LogoutButton = () => {    
   const navigate = useNavigate();
-  const {user_logout, token} = useUser();
+  const {user_logout, token, username} = useUser();
 
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/logout/', 
+      const response = await axios.post('http://127.0.0.1:8000/api/logout/',
+        {
+          username
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`

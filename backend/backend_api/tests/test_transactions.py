@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 class UserAuthenticationTests(TestCase):
 
@@ -41,8 +42,10 @@ class UserAuthenticationTests(TestCase):
                 'payeeName': 'GraceHallaway_39',
                 'amountPayed': 13.99
             },
+            headers={
+                'Authorization': f"Bearer {auth_token}"
+            },
             content_type='application/json',
-            HTTP_AUTHORIZATION=auth_token
         )
         data = response.json()
         self.assertTrue(data['success'])
@@ -101,8 +104,10 @@ class UserAuthenticationTests(TestCase):
                 'payeeName': 'Bob',
                 'amountPayed': 13.99
             },
+            headers={
+                'Authorization': f"Bearer {alice_auth}"
+            },
             content_type='application/json',
-            HTTP_AUTHORIZATION=alice_auth
         )
         data = response.json()
         self.assertTrue(data['success'])
@@ -114,8 +119,10 @@ class UserAuthenticationTests(TestCase):
                 'payeeName': 'Alice',
                 'amountPayed': 19.99
             },
+            headers={
+                'Authorization': f"Bearer {bob_auth}"
+            },
             content_type='application/json',
-            HTTP_AUTHORIZATION=bob_auth
         )
         data = response.json()
         self.assertTrue(data['success'])
@@ -127,8 +134,10 @@ class UserAuthenticationTests(TestCase):
                 'payeeName': 'Alice',
                 'amountPayed': 24.99
             },
+            headers={
+                'Authorization': f"Bearer {claire_auth}"
+            },
             content_type='application/json',
-            HTTP_AUTHORIZATION=claire_auth
         )
         data = response.json()
         self.assertTrue(data['success'])
@@ -136,8 +145,10 @@ class UserAuthenticationTests(TestCase):
         response = self.client.post(
             reverse('get_transaction_history'),
             data={'username': 'Alice', 'page_no' : 1},
+            headers={
+                'Authorization': f"Bearer {alice_auth}"
+            },
             content_type='application/json',
-            HTTP_AUTHORIZATION=alice_auth
         )
         data = response.json()
         self.assertTrue(len(data['transaction_history']) == 3)
@@ -145,8 +156,10 @@ class UserAuthenticationTests(TestCase):
         response = self.client.post(
             reverse('get_transaction_history'),
             data={'username': 'Bob', 'page_no' : 1},
+            headers={
+                'Authorization': f"Bearer {bob_auth}"
+            },
             content_type='application/json',
-            HTTP_AUTHORIZATION=bob_auth
         )
         data = response.json()
         self.assertTrue(len(data['transaction_history']) == 2)
@@ -154,8 +167,10 @@ class UserAuthenticationTests(TestCase):
         response = self.client.post(
             reverse('get_transaction_history'),
             data={'username': 'Claire', 'page_no' : 1},
+            headers={
+                'Authorization': f"Bearer {claire_auth}"
+            },
             content_type='application/json',
-            HTTP_AUTHORIZATION=claire_auth
         )
         data = response.json()
         self.assertTrue(len(data['transaction_history']) == 1)
@@ -199,19 +214,68 @@ class UserAuthenticationTests(TestCase):
                     'payeeName': 'Bob',
                     'amountPayed': 1.00
                 },
-            content_type='application/json',
-            HTTP_AUTHORIZATION=alice_auth
+            headers={
+                'Authorization': f"Bearer {alice_auth}"
+            },
+            content_type='application/json'
         )
         # get transaction history
         response = self.client.post(
             reverse('get_transaction_history'),
             data={'username': 'Alice', 'page_no' : 1},
-            content_type='application/json',
-            HTTP_AUTHORIZATION=alice_auth
+            headers={
+                'Authorization': f"Bearer {alice_auth}"
+            },
+            content_type='application/json'
         )
         # default capped at 50
         data = response.json()
         self.assertTrue(len(data['transaction_history']) == 50)
 
-
-
+    def test_process_transaction_log(self):
+        # register user Alice
+        response = self.client.post(
+            reverse('signup'), 
+            data={
+                'username': 'Alice',
+                'email': 'Alice814@gmail.com',
+                'password1': 'SpringClean__324',
+                'password2': 'SpringClean__324',
+                'accountType': 'business'
+            },
+            content_type='application/json'
+        )
+        data = response.json()
+        self.assertTrue(data['success'])
+        alice_auth = data['token']
+        # register user Bob
+        response = self.client.post(
+            reverse('signup'), 
+            data={
+                'username': 'Bob',
+                'email': 'Bob2394@gmail.com',
+                'password1': 'CleanSpring__391',
+                'password2': 'CleanSpring__391',
+                'accountType': 'client'
+            },
+            content_type='application/json'
+        )
+        # Alice uploads transaction log
+        csv_content = b'username,payee_name,amount,time_of_transfer\n' + \
+        'Alice_9348,Bob_2227,13.99,2024-03-18::14:30:15.302193\n' + \
+        'Bob_2227,Alice_9348,24.99,2024-03-19::17:22:34.202849\n'
+        csv_file = SimpleUploadedFile("file.csv", csv_content, content_type="text/csv")
+        response = self.client.post(
+            reverse('process_transaction_log'),
+            data={
+                'username': 'Alice',
+                'transaction_log': csv_file
+            },
+            format='multipart',
+            headers={
+                'Authorization': f"Bearer {alice_auth}"
+            },
+            content_type='application/json',
+        )
+        data = response.json()
+        self.assertTrue(data['success'])

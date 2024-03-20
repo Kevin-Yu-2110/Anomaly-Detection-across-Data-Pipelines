@@ -1,6 +1,8 @@
 import random
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from datetime import datetime
+from django.utils import timezone
 
 class StandardUser(AbstractUser):
     accountType = models.CharField(max_length=100)
@@ -40,7 +42,7 @@ class Transaction(models.Model):
     username = models.CharField(max_length=100)
     payee_name = models.CharField(max_length=100)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-    time_of_transfer = models.DateTimeField(auto_now_add=True)
+    time_of_transfer = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"Transaction from {self.username.username} to {self.payee_name} - ${self.amount}"
+        return f"Transaction from {self.username} to {self.payee_name} - ${self.amount}\n"

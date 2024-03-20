@@ -29,9 +29,9 @@ const SignupPage = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: token
           }
-        } 
+        }
       );
       if (response.data.success) {
         user_login(username, response.data.token)

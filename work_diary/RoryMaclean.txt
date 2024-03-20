@@ -19,4 +19,6 @@ Sprint Two (w6-w8)
 - Create get-transaction-history backend route
 - Update user sign-up with features required for anomaly analysis
 - Update make-transaction route with features required for anomaly analysis
+- modify all frontend/backend routes from using application/json to multipart/form-data
+- merge client/business dashboards, remove accountType specification from frontend/backend
 - embed current authentication system within http cookies to preserve state across user-refresh

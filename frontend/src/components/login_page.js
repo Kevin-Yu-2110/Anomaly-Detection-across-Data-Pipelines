@@ -14,18 +14,24 @@ const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    // Create Request Form
+    const formData = new FormData();
+    formData.append('username', username);
+    formData.append('password', password);
+    // Send Request Form
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/login/', {
-        username,
-        password,
-      });
+      const response = await axios.post('http://127.0.0.1:8000/api/login/', 
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          }
+        }
+      );
+      // Handle Response
       if (response.data.success) {
         user_login(username, response.data.token)
-        if (response.data.accountType === "Client") {
-          navigate("/clientHome");
-        } else if (response.data.accountType === "BusinessClient") {
-          navigate("/businessHome");
-        }
+        navigate("/home");
       } else {
         setLoginFailed('Invalid Credentials')
       }

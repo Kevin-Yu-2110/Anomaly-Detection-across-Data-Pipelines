@@ -18,23 +18,19 @@ import csv
 JWT_KEY = "3fRKDzIVo2m6sPhDkhNU9URS8nT0hTTYRbeCd3iVHyeBFuUf7mAY6n5sJ2MiinE7Jem0QzYbHVla8FtqIb4xHt1GmdWgOQDa"
 
 def generate_jwt(username, password):
-    expiration = datetime.utcnow() + timedelta(days=1)
+    expiration = datetime.now() + timedelta(days=1)
     payload = {'username' : username, 'password' : password, 'exp' : expiration}
     token = jwt.encode(payload, JWT_KEY, algorithm='HS256')
     return token
 
 def validate_attached_token(request):
     try:
-        print(request.META['HTTP_AUTHORIZATION'])
         token = request.META['HTTP_AUTHORIZATION'][7:] # remove "Bearer " prefix
-        print(token)
         decoded_token = jwt.decode(token, JWT_KEY, algorithms=['HS256'])
         requesting_user = decoded_token.get('username')
         impacted_user = request.POST['username']
         return impacted_user == requesting_user
-    except jwt.ExpiredSignatureError:
-        return False
-    except jwt.InvalidTokenError:
+    except:
         return False
 
 def auth_required(func):
@@ -48,32 +44,34 @@ def auth_required(func):
 @csrf_exempt
 @require_POST
 def user_signup(request):
-    data = json.loads(request.body)
-    form = SignUpForm(data)
+    username = request.POST['username']
+    password = request.POST['password1']
+    form = SignUpForm(request.POST)
     if form.is_valid():
         form.save()
         # Generate JSON Web Token for User-Auth
-        token = generate_jwt(data['username'], data['password1'])
-        login(request, StandardUser.objects.get(username=data['username']))
-        return JsonResponse({'success': True, 'accountType': data.get('accountType'), 'token' : token})
+        token = generate_jwt(username, password)
+        login(request, StandardUser.objects.get(username=username))
+        return JsonResponse({'success': True, 'token' : token})
     else:
         return JsonResponse({'success': False, 'errors': form.errors})
 
 @csrf_exempt
 @require_POST
 def user_login(request):
-    data = json.loads(request.body)
+    username = request.POST['username']
+    password = request.POST['password']
     # if user does not exist, return failure
     try:
-        user = StandardUser.objects.get(username=data['username'])
+        user = StandardUser.objects.get(username=username)
     except:
         return JsonResponse({'success': False, 'error' : 'Invalid Credentials'})        
     # validate password
-    if user.check_password(data['password']):
+    if user.check_password(password):
         # Generate JSON Web Token for User-Auth
-        token = generate_jwt(data['username'], data['password'])
+        token = generate_jwt(username, password)
         login(request, user)
-        return JsonResponse({'success': True, 'accountType' : user.accountType, 'token' : token})
+        return JsonResponse({'success': True, 'token' : token})
     return JsonResponse({'success': False, 'error' : 'Invalid Credentials'})
 
 @csrf_exempt
@@ -93,8 +91,7 @@ def delete_account(request):
     if not validate_attached_token(request):
         return JsonResponse({'success': False, 'error': 'Invalid session token'})
     try:
-        data = json.loads(request.body)
-        username = data.get('username')
+        username = request.POST['username']
         StandardUser.objects.get(username=username).delete()
         return JsonResponse({'success': True})
     except Exception as e:
@@ -103,8 +100,7 @@ def delete_account(request):
 @csrf_exempt
 @require_POST
 def reset_request(request):
-    data = json.loads(request.body)
-    email = data['email']
+    email = request.POST['email']
     try:
         user = StandardUser.objects.get(email=email)
     except:
@@ -129,14 +125,17 @@ def reset_request(request):
 @require_POST
 def reset_password(request):
     # reset_password with email, OTP and new password
-    data = json.loads(request.body)
-    user = StandardUser.objects.get(email=data['email'])
-    if data['password1'] != data['password2']:
+    otp = request.POST['otp']
+    email = request.POST['email']
+    password1 = request.POST['password1']
+    password2 = request.POST['password2']
+    user = StandardUser.objects.get(email=email)
+    if password1 != password2:
         return JsonResponse({'success': False, 'error': 'passwords dont match'})
-    new_password = data['password1']
+    new_password = password1
     if user.is_active:
         # Check if otp is valid
-        if data['otp'] == user.otp:
+        if otp == user.otp:
             if new_password != '':
                 # Change Password
                 user.set_password(new_password)
@@ -156,11 +155,10 @@ def reset_password(request):
 @auth_required
 def make_transaction(request):
     try:
-        data = json.loads(request.body)
         Transaction.objects.create(
-            username=data.get('username'),
-            payee_name=data.get('payeeName'),
-            amount=data.get('amountPayed'),
+            username=request.POST['username'],
+            payee_name=request.POST['payeeName'],
+            amount=request.POST['amountPayed'],
             time_of_transfer=datetime.now()
         )
         return JsonResponse({'success': True})
@@ -172,13 +170,8 @@ def make_transaction(request):
 @auth_required
 def update_username(request):
     try:
-        data = json.loads(request.body)
-    except Exception as e:
-        # malformed request
-        return JsonResponse({'success': False, 'error': str(e)})
-    try:
-        username=data['username']
-        updated_username=data['new_username']
+        username=request.POST['username']
+        updated_username=request.POST['new_username']
         # return query failure if proposed username already exists in database
         StandardUser.objects.get(username=updated_username)
         return JsonResponse({'success': False, 'error' : 'User already exists'})
@@ -196,13 +189,8 @@ def update_username(request):
 @auth_required
 def update_email(request):
     try:
-        data = json.loads(request.body)
-    except Exception as e:
-        # malformed request
-        return JsonResponse({'success': False, 'error': str(e)})
-    try:
-        username=data['username']
-        updated_email=data['new_email']
+        username = request.POST['username']
+        updated_email = request.POST['new_email']
         user = StandardUser.objects.get(username=username)
         user.email = updated_email
         user.save()
@@ -216,13 +204,8 @@ def update_email(request):
 @auth_required
 def get_transaction_history(request):
     try:
-        data = json.loads(request.body)
-    except Exception as e:
-        # malformed request
-        return JsonResponse({'success': False, 'error': str(e)})
-    try:
-        username=data['username']
-        page_no=data['page_no']
+        username=request.POST['username']
+        page_no=request.POST['page_no']
         items_per_page = 50
         # get all transactions involving user as payer or payee
         transactions = Transaction.objects.filter(Q(username=username) | Q(payee_name=username)).order_by('time_of_transfer')
@@ -248,7 +231,6 @@ def process_transaction_log(request):
         rows_read = 0
         for row in csv_reader:
             if rows_read:
-                print(row[0], row[1], row[2], row[3])
                 Transaction.objects.create(
                     username=row[0],
                     payee_name=row[1],
@@ -257,8 +239,6 @@ def process_transaction_log(request):
                 ) 
             rows_read += 1
         transactions = Transaction.objects.all()
-        print(transactions)
         return JsonResponse({'success': True})
     except Exception as e:
-        print("ERROR ", e)
         return JsonResponse({'success': False, 'error': str(e)})

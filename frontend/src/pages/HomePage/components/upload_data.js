@@ -14,9 +14,11 @@ const UploadData = () => {
 
   const uploadFile = async (e) => {
     e.preventDefault();
+    // Create Request Form
     const formData = new FormData();
     formData.append('transaction_log', file);
     formData.append('username', username);
+    // Send Request Form
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/process_transaction_log/',
         formData,
@@ -27,6 +29,7 @@ const UploadData = () => {
           }
         }
       );
+      // Handle Response
       if (response.data.success) {
         console.log("File uploaded succesfully")
       } else {
@@ -36,7 +39,6 @@ const UploadData = () => {
       console.error('Error uploading file:', error);
     }
   }
-  
 
   return (
     <>

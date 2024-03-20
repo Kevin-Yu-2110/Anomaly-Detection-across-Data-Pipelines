@@ -17,17 +17,23 @@ const ResetPasswordPage = () => {
 
   const handleReset = async (e) => {
     e.preventDefault();
+    // Create Request Form
+    const formData = new FormData();
+    formData.append('otp', otp);
+    formData.append('email', email);
+    formData.append('password1', password1);
+    formData.append('password2', password2);
+    // Send Request Form
     try {
-      const response = await axios.post('http://localhost:8000/api/reset_password/', {
-        otp,
-        email,
-        password1,
-        password2,
-      }, {
-        headers: {
-          'Content-Type': 'application/json'
-        } 
-      });
+      const response = await axios.post('http://localhost:8000/api/reset_password/',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          }
+        }
+      );
+      // Handle Response
       if (response.data.success) {
           navigate("/resetDone");
       } else {

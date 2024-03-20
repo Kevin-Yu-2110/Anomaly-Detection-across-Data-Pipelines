@@ -18,28 +18,25 @@ const SignupPage = () => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
+    // Create Request Form
+    const formData = new FormData();
+    formData.append('username', username);
+    formData.append('email', email);
+    formData.append('password1', password1);
+    formData.append('password2', password2);
+    // Send Request Form
     try {
-      const response = await axios.post('http://localhost:8000/api/signup/', 
-        {
-          username,
-          email,
-          password1,
-          password2,
-          accountType,
-        },
-        {
-          headers: {
-            Authorization: token
-          }
+      const response = await axios.post('http://localhost:8000/api/signup/', formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
         }
+      }
       );
+      // Handle Response
       if (response.data.success) {
         user_login(username, response.data.token)
-        if (response.data.accountType === "Client") {
-          navigate("/clientHome");
-        } else if (response.data.accountType === "BusinessClient") {
-          navigate("/businessHome");
-        }
+        navigate("/home");
       } else {
         setSignupFailed("Invalid credentials")
       }

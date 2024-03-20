@@ -10,17 +10,21 @@ const LogoutButton = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
+    // Create Request Form
+    const formData = new FormData();
+    formData.append('username', username);
+    // Send Request Form
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/logout/',
-        {
-          username
-        },
+        formData,
         {
           headers: {
-            Authorization: `Bearer ${token}`
+            'Content-Type': 'multipart/form-data',
+            Authorization: token
           }
         }
       );
+      // Handle Response
       if (response.data.success) {
         user_logout()
         navigate("/");

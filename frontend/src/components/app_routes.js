@@ -4,8 +4,7 @@ import LoginPage from './login_page';
 import SignupPage from './signup_page';
 import ResetRequestPage from './reset_request';
 import ResetPasswordPage from './reset_password_page';
-import ClientHome from '../pages/ClientHome/client_home';
-import BusinessHome from '../pages/BusinessHome/business_home';
+import HomePage from '../pages/HomePage/home_page';
 import { useUser } from '../UserContext';
 
 const AppRoutes = () => {
@@ -15,8 +14,7 @@ const AppRoutes = () => {
     <Routes>
       <Route path="" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
-      <Route path="/clientHome" element={isLoggedIn ? <ClientHome /> : <Navigate to="/" />} />
-      <Route path="/businessHome" element={isLoggedIn ? <BusinessHome /> : <Navigate to="/" />} />
+      <Route path="/home" element={isLoggedIn ? <HomePage /> : <Navigate to="/" />} />
       <Route path="/resetRequest" element={<ResetRequestPage />} />
       <Route path="/resetPassword" element={<ResetPasswordPage />} />
       <Route path="*" element={<Navigate to="/" />} />

@@ -5,23 +5,18 @@ import MakeTransaction from "./make_transaction";
 import { Button } from "react-bootstrap";
 import UploadData from "./upload_data";
 
-const Header = (props) => {
+const Header = () => {
   const [successMessage, setSuccessMessage] = useState('Transfer Failed');
   const [showOverlay, setShowOverlay] = useState(false);
-  const { isBusiness, isClient } = props;
 
   return (
     <header className="header">
       <div>
-        {isBusiness && (
-          <UploadData></UploadData>
-        )}
-        {isClient && (
-          <MakeTransaction 
-            setSuccessMessage={setSuccessMessage}
-            setShowOverlay={setShowOverlay}
-          ></MakeTransaction>
-        )}
+        <MakeTransaction 
+          setSuccessMessage={setSuccessMessage}
+          setShowOverlay={setShowOverlay}
+        ></MakeTransaction>
+        <UploadData></UploadData>
         {showOverlay && (
           <Button variant="warning" disabled>{successMessage}</Button>
         )}

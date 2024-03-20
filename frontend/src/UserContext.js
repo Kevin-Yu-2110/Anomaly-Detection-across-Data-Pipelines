@@ -10,7 +10,7 @@ export const UserProvider = ({ children }) => {
   const user_login = (username, token) => {
     setUsername(username);
     setIsLoggedIn(true)
-    setToken(token);
+    setToken(`Bearer ${token}`);
   };
 
   const user_logout = () => {

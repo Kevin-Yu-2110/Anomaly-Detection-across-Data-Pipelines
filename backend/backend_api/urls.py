@@ -1,6 +1,5 @@
 from django.urls import path
 from backend_api.app_routes import views
-from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('signup/', views.user_signup, name='signup'),
@@ -12,4 +11,6 @@ urlpatterns = [
     path('reset_password/', views.reset_password, name='reset_password'),
     path('update_username/', views.update_username, name='update_username'),
     path('update_email/', views.update_email, name='update_email'),
+    path('get_transaction_history/', views.get_transaction_history, name='get_transaction_history'),
+    path('process_transaction_log/', views.process_transaction_log, name='process_transaction_log'),
 ]

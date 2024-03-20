@@ -12,9 +12,7 @@ class UserUpdateTests(TestCase):
                 'email': 'newuser@example.com',
                 'password1': 'newpassword123',
                 'password2': 'newpassword123',
-                'accountType': 'client'
-            },
-            content_type='application/json',
+            }
         )
         data = response.json()
         self.assertTrue(data['success'])
@@ -26,8 +24,9 @@ class UserUpdateTests(TestCase):
                 'username': 'newuser',
                 'new_username': 'updated_user'
             },
-            content_type='application/json',
-            HTTP_AUTHORIZATION=auth_token
+            headers={
+                'Authorization': f"Bearer {auth_token}"
+            }
         )
         data = response.json()
         self.assertTrue(data['success'])
@@ -39,8 +38,9 @@ class UserUpdateTests(TestCase):
                 'username': 'updated_user',
                 'new_email': 'updated_user@example.com'
             },
-            content_type='application/json',
-            HTTP_AUTHORIZATION=new_auth_token
+            headers={
+                'Authorization': f"Bearer {new_auth_token}"
+            }
         )
         data = response.json()
         self.assertTrue(data['success'])
@@ -51,8 +51,9 @@ class UserUpdateTests(TestCase):
                 'username': 'updated_user',
                 'new_email': 'newuser@example.com'
             },
-            content_type='application/json',
-            HTTP_AUTHORIZATION=auth_token
+            headers={
+                'Authorization': f"Bearer {auth_token}"
+            }
         )
         data = response.json()
         self.assertFalse(data['success'])

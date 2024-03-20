@@ -15,10 +15,18 @@ const ForgotPage = () => {
 
   const handleSend = async (e) => {
     e.preventDefault();
+    // Create Request Form
+    const formData = new FormData();
+    formData.append('email', email);
+    // Send Request Form
     try {
-      const response = await axios.post('', 
+      const response = await axios.post('',
+        formData,
         {
-          email,
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: token
+          }
         }
       );
       if (response.data.success) {

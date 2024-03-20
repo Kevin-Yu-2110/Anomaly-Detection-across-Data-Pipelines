@@ -7,40 +7,36 @@ import { toast } from 'react-toastify';
 import style from './style.module.css';
 
 const SignupPage = () => {
-  const {user_login, token} = useUser();
+  const {user_login} = useUser();
   const [username, setUsernameInput] = useState('');
   const [email, setEmail] = useState('');
   const [password1, setPassword1] = useState('');
   const [password2, setPassword2] = useState('');
-  const [accountType, setAccountType] = useState("Client");
   const navigate = useNavigate();
 
   const signupFailed = () => toast.error("Invalid credentials");
 
   const handleSignup = async (e) => {
     e.preventDefault();
+    // Create Request Form
+    const formData = new FormData();
+    formData.append('username', username);
+    formData.append('email', email);
+    formData.append('password1', password1);
+    formData.append('password2', password2);
+    // Send Request Form
     try {
-      const response = await axios.post('http://localhost:8000/api/signup/', 
-        {
-          username,
-          email,
-          password1,
-          password2,
-          accountType,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        } 
+      const response = await axios.post('http://localhost:8000/api/signup/', formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        }
+      }
       );
+      // Handle Response
       if (response.data.success) {
         user_login(username, response.data.token)
-        if (response.data.accountType === "Client") {
-          navigate("/clientHome");
-        } else if (response.data.accountType === "BusinessClient") {
-          navigate("/businessHome");
-        }
+        navigate("/home");
       } else {
         signupFailed();
       }
@@ -62,11 +58,7 @@ const SignupPage = () => {
         <input className={style.input} type="password" value={password1} placeholder='Password' onChange={(e) => setPassword1(e.target.value)} />
 
         <input className={style.input} type="password" value={password2} placeholder='Confirm Password' onChange={(e) => setPassword2(e.target.value)} />
-        
-        <select  className={style.select} value={accountType} onChange={(e) => setAccountType(e.target.value)} >
-          <option value="Client">Individual</option>
-          <option value="BusinessClient">Business</option>
-        </select>
+
         <br></br>
         
         <button className={style.button} type="submit">Signup</button>

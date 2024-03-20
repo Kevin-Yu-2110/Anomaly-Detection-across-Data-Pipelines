@@ -19,19 +19,23 @@ const MakeTransaction = () => {
 
   const makeTransaction = async (e) => {
     e.preventDefault();
+    // Create Request Form
+    const formData = new FormData();
+    formData.append('username', username);
+    formData.append('payeeName', payeeName);
+    formData.append('amountPayed', amountPayed);
+    // Send Request Form
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/make_transaction/',
-        {
-          username,
-          payeeName,
-          amountPayed
-        },
+        formData,
         {
           headers: {
-            Authorization: `Bearer ${token}`
+            'Content-Type': 'multipart/form-data',
+            Authorization: token
           }
         }
       );
+      // Handle Response
       if (response.data.success) {
         transferSuccess();
       } else {

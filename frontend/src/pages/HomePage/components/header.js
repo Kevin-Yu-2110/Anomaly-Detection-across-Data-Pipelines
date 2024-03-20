@@ -4,16 +4,12 @@ import UserProfile from "./user_profile";
 import MakeTransaction from "./make_transaction";
 import UploadData from "./upload_data";
 
-const Header = ({ isBusiness, isClient }) => {
+const Header = () => {
   return (
     <header className="header">
       <div>
-        {isBusiness && (
-          <UploadData />
-        )}
-        {isClient && (
-          <MakeTransaction />
-        )}
+        <MakeTransaction />
+        <UploadData />
       </div>
       <div>
         <UserProfile />

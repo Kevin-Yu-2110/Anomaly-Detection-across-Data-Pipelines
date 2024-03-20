@@ -14,10 +14,20 @@ const ResetRequestPage = () => {
 
   const handleReset = async(e) => {
     e.preventDefault();
+    // Create Request Form
+    const formData = new FormData();
+    formData.append('email', email);
+    // Send Request Form
     try {
-      const response = await axios.post('http://localhost:8000/api/reset_request/', {
-        email,
-      });
+      const response = await axios.post('http://localhost:8000/api/reset_request/', 
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          }
+        }
+      );
+      // Handle Response
       if (response.data.success) {
         navigate("/resetPassword", {state: {email: email}})
       }

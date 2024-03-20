@@ -1,0 +1,32 @@
+Week 1
+- Joined group
+- Selected project 15 based on the skillset of group members
+- Set up jira
+
+Week 2
+- Finalised group members and project selection
+- Selected as scrum master
+
+Week 3
+- Met with client 
+- Worked on and wrote user stories, requirements section of project proposal together with rest of the group
+- Wrote the sprints and novelty section of project proposal 
+- Created user stories on Jira and assigned some for first sprint
+- Submitted project proposal
+
+Sprint 1:
+Week 4
+- Brainstorm and research possible models for anomaly detection
+- Created a basic Autoencoder model 
+- Tested basic Autoencoder model with basic preprocessed data
+- Created 2 other neural network models that did not work well
+- Found a more suitable dataset and finalised dataset selection
+
+Week 5
+- Check on group progress for demo A as scrum master
+- Prepared model results for demo A
+- Meeting with team after demo for retrospective/reflection on sprint 1 as well as discussing plans for sprint 2
+- Submitted retrospective A
+
+Sprint 2:
+Week 6

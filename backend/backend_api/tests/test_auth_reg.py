@@ -218,5 +218,28 @@ class UserAuthenticationTests(TestCase):
         data = response.json()
         self.assertFalse(data['success'])
 
+    def test_get_email(self):
+        # register new user
+        response = self.client.post(
+            reverse('signup'), 
+            data={
+                'username': 'randomuser',
+                'email': 'randomuser@gmail.com',
+                'password1': 'randompassword',
+                'password2': 'randompassword',
+            }
+        )
+        data = response.json()
+        self.assertTrue(data['success'])
+        # get email of new user
+        response = self.client.get(
+            reverse('get_email'),
+            data={
+                'username': 'randomuser'
+            }
+        )
+        data = response.json()
+        self.assertTrue(data['email'] == 'randomuser@gmail.com')
+
 
 

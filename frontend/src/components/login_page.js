@@ -32,7 +32,7 @@ const LoginPage = () => {
       );
       // Handle Response
       if (response.data.success) {
-        user_login(username, response.data.token)
+        user_login(username, response.data.token);
         navigate("/home");
       } else {
         loginFailed();

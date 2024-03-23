@@ -3,6 +3,7 @@ import { Button, Form, Modal } from "react-bootstrap";
 import { BsUpload } from "react-icons/bs";
 import { useUser } from "../../../UserContext.js";
 import axios from 'axios';
+import { toast } from "react-toastify";
 
 const UploadData = () => {
   const [show, setShow] = useState(false);
@@ -11,6 +12,9 @@ const UploadData = () => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const uploadSuccess = () => toast.success("File uploaded succesfully");
+  const uploadFailed = () => toast.error("File upload failed");
 
   const uploadFile = async (e) => {
     e.preventDefault();
@@ -31,9 +35,9 @@ const UploadData = () => {
       );
       // Handle Response
       if (response.data.success) {
-        console.log("File uploaded succesfully")
+        uploadSuccess();
       } else {
-        console.error("File upload failed")
+        uploadFailed();
       }
     } catch (error) {
       console.error('Error uploading file:', error);
@@ -62,7 +66,7 @@ const UploadData = () => {
               />
             </Form.Group>
             <Button variant="primary" type="submit" onClick={handleClose}>
-            Upload
+              Upload
             </Button>
           </Form>
         </Modal.Body>

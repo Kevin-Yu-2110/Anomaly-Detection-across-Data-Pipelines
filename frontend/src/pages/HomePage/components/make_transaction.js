@@ -3,8 +3,9 @@ import { Button, Form, Modal } from "react-bootstrap";
 import { BsCash } from "react-icons/bs";
 import { useUser } from "../../../UserContext";
 import axios from "axios";
+import { toast } from 'react-toastify';
 
-const MakeTransaction = ({ setSuccessMessage, setShowOverlay }) => {
+const MakeTransaction = () => {
   const {username, token} = useUser();
   const [show, setShow] = useState(false);
   const [payeeName, setPayeeName] = useState('');
@@ -12,6 +13,9 @@ const MakeTransaction = ({ setSuccessMessage, setShowOverlay }) => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const transferSuccess = () => toast.success("Transferred successfully");
+  const transferFailed = () => toast.error("Transfer failed");
 
   const makeTransaction = async (e) => {
     e.preventDefault();
@@ -33,16 +37,14 @@ const MakeTransaction = ({ setSuccessMessage, setShowOverlay }) => {
       );
       // Handle Response
       if (response.data.success) {
-        setSuccessMessage("Transferred Succesfully")
+        transferSuccess();
       } else {
-        setSuccessMessage("Transfer Failed")
+        transferFailed();
       }
     } catch (error) {
       console.error('Transaction Failed: Server-Side Error:', error);
     }
     handleClose();
-    setShowOverlay(true);
-    setTimeout(() => setShowOverlay(false), 8000);
   };
 
   return (

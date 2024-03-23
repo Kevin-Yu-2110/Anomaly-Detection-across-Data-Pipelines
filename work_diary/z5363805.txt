@@ -1,0 +1,13 @@
+### Sprint One
+# week 4
+- Create basic model for anomaly detection using isolation forests
+- Explored other possible anomaly detection models including local outlier factor and SVM
+
+# week 5
+- selected new dataset that's more comprehensive
+- cleaned up dataset to extract variables in the correct format
+- implemented basic mlflow logging
+
+# week 6
+- added ability to log statistics to track performance of IsolationForest model
+- began developing alternative anomaly detection models and testing performance - LocalOutlierFactor 

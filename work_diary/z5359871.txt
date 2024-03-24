@@ -30,3 +30,10 @@ Week 5
 
 Sprint 2:
 Week 6
+- Planned objectives for sprint 2 with group
+- Trained Autoencoder model on actual dataset
+- Trained KNN model on actual dataset
+- Trained SVC model on actual dataset
+- Trained Gradient boosted tree model on actual dataset
+- Trained Random Forest model on actual dataset
+- Trained Adaboosted tree model on actual dataset

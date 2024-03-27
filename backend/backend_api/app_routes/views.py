@@ -8,7 +8,7 @@ from django.db.models import Q
 from django.core.serializers import serialize
 from django.contrib.auth import login, logout
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_POST, require_GET
 from functools import wraps
 import smtplib
 import json
@@ -85,11 +85,20 @@ def user_logout(request):
         return JsonResponse({'success': False, 'error': str(e)})
 
 @csrf_exempt
+@require_GET
+# Required to get email for user profile purposes, called once while logging in
+def get_email(request):
+    try:
+        username = request.GET['username']
+        user = StandardUser.objects.get(username=username)
+        return JsonResponse({'success': True, 'email': user.email})
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)})
+
+@csrf_exempt
 @require_POST
 @auth_required
 def delete_account(request):
-    if not validate_attached_token(request):
-        return JsonResponse({'success': False, 'error': 'Invalid session token'})
     try:
         username = request.POST['username']
         StandardUser.objects.get(username=username).delete()

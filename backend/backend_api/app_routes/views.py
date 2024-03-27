@@ -251,3 +251,20 @@ def process_transaction_log(request):
         return JsonResponse({'success': True})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
+    
+def get_transaction_by_field(request):
+    try:
+        username=request.POST['username']
+        page_no=request.POST['page_no']
+        field=request.POST['field']
+        items_per_page = 50
+        transactions = Transaction.objects.filter((Q(username=username) | Q(payee_name=username)) & Q(field=field)).order_by('time_of_transfer')
+        paginator = Paginator(transactions, items_per_page)
+        page = paginator.page(page_no)
+        transactions = page.object_list
+        transaction_history = serialize('json', transactions)
+        transaction_history = json.loads(transaction_history)
+        transaction_history = [transaction['fields'] for transaction in transaction_history]
+        return JsonResponse({'success': True})
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)})

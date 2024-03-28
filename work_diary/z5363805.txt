@@ -10,4 +10,8 @@
 
 # week 6
 - added ability to log statistics to track performance of IsolationForest model
-- began developing alternative anomaly detection models and testing performance - LocalOutlierFactor 
+- began developing alternative anomaly detection models and testing performance - LocalOutlierFactor
+
+# week 7
+- added ability to store models so there's no need to retrain model so parameters are stored
+- cleaned up model to adhere better to code qualtiy practices

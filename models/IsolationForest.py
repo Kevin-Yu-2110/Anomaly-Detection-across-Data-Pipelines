@@ -3,6 +3,7 @@ import os
 import pickle
 import numpy as np
 import pandas as pd
+from sklearn.metrics import confusion_matrix
 from sklearn.ensemble import IsolationForest
 from sklearn.preprocessing import LabelEncoder
 
@@ -59,20 +60,27 @@ def train_model():
         false_positives = sum(1 if (y_actual[i] == 0 and y_predict[i] == 1) else 0 for i in range(len(y_actual)))
         mlflow.log_metric("false positive rate", false_positives/len(y_actual))
         false_negatives = sum(1 if (y_actual[i] == 1 and y_predict[i] == 0) else 0 for i in range(len(y_actual)))
-        mlflow.log_metric("false negative rate", false_negatives/len(y_actual)) 
-    return model
+        mlflow.log_metric("false negative rate", false_negatives/len(y_actual))
+        print(confusion_matrix(y_actual, y_predict))
+    return model, enc
     
 class isolationForestModel():
-    def __init__():
+    def __init__(self):
         try:
-            MPE = open('IsolationForest.pickle', 'rb')
-            return pickle.load(MPE) 
+            self.model = open('models/IsolationForest.pickle', 'rb')
+            self.encoder = open('models/Encoder.pickle', 'rb')      
         except:    
-            model = train_model()
-            with open('IsolationForest.pickle', 'wb') as handle:
+            model, encoder = train_model()
+            with open('models/IsolationForest.pickle', 'wb') as handle:
                 pickle.dump(model, handle)
-            return model
+            with open('models/Enocder.pickle', 'wb') as handle:
+                pickle.dump(encoder, handle)
+            self.model = model
+            self.encoder = encoder
+        
+    def predict(self, X):
+        data_input = pd.DataFrame(X, columns=['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob'])
+        return self.model.predict(clean_up(data_input, self.encoder))
     
-   
-        
-        
+if __name__ == '__main__':
+    badModel = isolationForestModel()

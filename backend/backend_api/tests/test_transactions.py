@@ -11,6 +11,9 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Jimmy',
                 'email': 'Neutron@IMBCorporate.com',
+                'city': 'Melbourne',
+                'job': 'Cartographer',
+                'dob': '1971-11-03',
                 'password1': 'alax_memento_j44',
                 'password2': 'alax_memento_j44',
             }
@@ -24,6 +27,9 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'GraceHallaway_39',
                 'email': 'GraceHallaway@ghibli.com',
+                'city': 'Melbourne',
+                'job': 'Cartographer',
+                'dob': '1971-11-03',
                 'password1': 'Kdubn395ng',
                 'password2': 'Kdubn395ng',
             }
@@ -36,7 +42,8 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Jimmy',
                 'payeeName': 'GraceHallaway_39',
-                'amountPayed': 13.99
+                'amountPayed': 13.99,
+                'category' : 'entertainment'
             },
             headers={
                 'Authorization': f"Bearer {auth_token}"
@@ -52,6 +59,9 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Alice',
                 'email': 'Alice814@gmail.com',
+                'city': 'Melbourne',
+                'job': 'Cartographer',
+                'dob': '1971-11-03',
                 'password1': 'SpringClean__324',
                 'password2': 'SpringClean__324',
             }
@@ -65,6 +75,9 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Bob',
                 'email': 'Bob2394@gmail.com',
+                'city': 'Melbourne',
+                'job': 'Cartographer',
+                'dob': '1971-11-03',
                 'password1': 'CleanSpring__391',
                 'password2': 'CleanSpring__391',
             }
@@ -78,6 +91,9 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Claire',
                 'email': 'Claire@protonmail.com',
+                'city': 'Melbourne',
+                'job': 'Cartographer',
+                'dob': '1971-11-03',
                 'password1': 'Elly294F4our',
                 'password2': 'Elly294F4our',
             }
@@ -91,7 +107,8 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Alice',
                 'payeeName': 'Bob',
-                'amountPayed': 13.99
+                'amountPayed': 13.99,
+                'category' : 'personal_care'
             },
             headers={
                 'Authorization': f"Bearer {alice_auth}"
@@ -105,7 +122,8 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Bob',
                 'payeeName': 'Alice',
-                'amountPayed': 19.99
+                'amountPayed': 19.99,
+                'category' : 'travel'
             },
             headers={
                 'Authorization': f"Bearer {bob_auth}"
@@ -119,7 +137,8 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Claire',
                 'payeeName': 'Alice',
-                'amountPayed': 24.99
+                'amountPayed': 24.99,
+                'category' : 'home'
             },
             headers={
                 'Authorization': f"Bearer {claire_auth}"
@@ -136,7 +155,7 @@ class UserAuthenticationTests(TestCase):
             },
         )
         data = response.json()
-        self.assertTrue(len(data['transaction_history']) == 3)
+        self.assertTrue(data['total_entries'] == "3")
         # get Bob's transaction history
         response = self.client.post(
             reverse('get_transaction_history'),
@@ -146,7 +165,7 @@ class UserAuthenticationTests(TestCase):
             }
         )
         data = response.json()
-        self.assertTrue(len(data['transaction_history']) == 2)
+        self.assertTrue(data['total_entries'] == "2")
         # get Claire's transaction history
         response = self.client.post(
             reverse('get_transaction_history'),
@@ -156,7 +175,7 @@ class UserAuthenticationTests(TestCase):
             }
         )
         data = response.json()
-        self.assertTrue(len(data['transaction_history']) == 1)
+        self.assertTrue(data['total_entries'] == "1")
 
     def test_transaction_history_pagination(self):
         # register user Alice
@@ -165,6 +184,9 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Alice',
                 'email': 'Alice814@gmail.com',
+                'city': 'Melbourne',
+                'job': 'Cartographer',
+                'dob': '1971-11-03',
                 'password1': 'SpringClean__324',
                 'password2': 'SpringClean__324',
             }
@@ -178,6 +200,9 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Bob',
                 'email': 'Bob2394@gmail.com',
+                'city': 'Melbourne',
+                'job': 'Cartographer',
+                'dob': '1971-11-03',
                 'password1': 'CleanSpring__391',
                 'password2': 'CleanSpring__391',
             }
@@ -191,7 +216,8 @@ class UserAuthenticationTests(TestCase):
                 data={
                     'username': 'Alice',
                     'payeeName': 'Bob',
-                    'amountPayed': 1.00
+                    'amountPayed': 1.00,
+                    'category' : 'shopping_net'
                 },
                 headers={
                     'Authorization': f"Bearer {alice_auth}"
@@ -208,6 +234,7 @@ class UserAuthenticationTests(TestCase):
         # default capped at 50
         data = response.json()
         self.assertTrue(len(data['transaction_history']) == 50)
+        self.assertTrue(data['total_entries'] == "100")
 
     def test_process_transaction_log(self):
         # register user Alice
@@ -216,6 +243,9 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Alice',
                 'email': 'Alice814@gmail.com',
+                'city': 'Melbourne',
+                'job': 'Cartographer',
+                'dob': '1971-11-03',
                 'password1': 'SpringClean__324',
                 'password2': 'SpringClean__324',
             }
@@ -229,14 +259,17 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Bob',
                 'email': 'Bob2394@gmail.com',
+                'city': 'Melbourne',
+                'job': 'Cartographer',
+                'dob': '1971-11-03',
                 'password1': 'CleanSpring__391',
                 'password2': 'CleanSpring__391',
             }
         )
         # Alice uploads transaction log
-        csv_content = b'username,payee_name,amount,time_of_transfer\n' + \
-        b'Alice_9348,Bob_2227,13.99,2024-03-18 14:30:15.302193\n' + \
-        b'Bob_2227,Alice_9348,24.99,2024-03-19 17:22:34.202849\n'
+        csv_content = b'username,payee_name,amount,category,time_of_transfer\n' + \
+        b'Alice_9348,Bob_2227,13.99,entertainment,2024-03-20 15:30:00.291929\n' + \
+        b'Bob_2227,Alice_9348,24.99,personal_care,2024-03-25 17:11:39.394759\n'
         csv_file = SimpleUploadedFile("file.csv", csv_content, content_type="text/csv")
         response = self.client.post(
             reverse('process_transaction_log'),

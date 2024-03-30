@@ -21,4 +21,9 @@ Sprint Two (w6-w8)
 - Update make-transaction route with features required for anomaly analysis
 - modify all frontend/backend routes from using application/json to multipart/form-data
 - merge client/business dashboards, remove accountType specification from frontend/backend
-- embed current authentication system within http cookies to preserve state across user-refresh
+- remove bloated frontend styling (login_page_style.css) and fix frontend border issues for user login/sign-up/password-reset
+- create searchable dropdown menus for user-sign up + update backend user_signup routes for model compatibility
+- fix css styling for login-page/signup-page/password-reset-page
+- create feature processing scripts for frontend dropdown menus
+- update make, get and process routes for compatibility between transaction handling and model calls
+- create detect_anomaly backend route to link backend with detection models

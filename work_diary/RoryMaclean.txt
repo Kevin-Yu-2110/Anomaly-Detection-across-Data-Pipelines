@@ -22,7 +22,8 @@ Sprint Two (w6-w8)
 - modify all frontend/backend routes from using application/json to multipart/form-data
 - merge client/business dashboards, remove accountType specification from frontend/backend
 - remove bloated frontend styling (login_page_style.css) and fix frontend border issues for user login/sign-up/password-reset
-- create searchable dropdown menus for user-sign up + fix css styling for login-page/signup-page/password-reset-page
+- create searchable dropdown menus for user-sign up + update backend user_signup routes for model compatibility
+- fix css styling for login-page/signup-page/password-reset-page
 - create feature processing scripts for frontend dropdown menus
-- make_transaction backend routes for compatibility with model features
-- create backend route model_call to link backend with anomaly detection models
+- update make, get and process routes for compatibility between transaction handling and model calls
+- create detect_anomaly backend route to link backend with detection models

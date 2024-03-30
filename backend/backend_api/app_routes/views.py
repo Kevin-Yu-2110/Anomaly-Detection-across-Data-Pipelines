@@ -174,6 +174,7 @@ def make_transaction(request):
             username=request.POST['username'],
             payee_name=request.POST['payeeName'],
             amount=request.POST['amountPayed'],
+            category=request.POST['category'],
             time_of_transfer=datetime.now()
         )
         return JsonResponse({'success': True})
@@ -243,17 +244,19 @@ def process_transaction_log(request):
     try:
         uploaded_file = request.FILES['transaction_log']
         decoded_file = uploaded_file.read().decode('utf-8').splitlines()
-        csv_reader = csv.reader(decoded_file)
-        rows_read = 0
-        for row in csv_reader:
-            if rows_read:
+        rows = csv.reader(decoded_file)
+        row_count = 0
+        for row in rows:
+            if row_count: 
                 Transaction.objects.create(
                     username=row[0],
                     payee_name=row[1],
                     amount=float(row[2]),
-                    time_of_transfer=row[3]
-                ) 
-            rows_read += 1
+                    category=row[3],
+                    time_of_transfer=row[4]
+                )
+            row_count += 1
         return JsonResponse({'success': True})
     except Exception as e:
+        print("ERROR: ", e)
         return JsonResponse({'success': False, 'error': str(e)})

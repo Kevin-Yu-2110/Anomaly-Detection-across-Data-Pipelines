@@ -42,7 +42,8 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Jimmy',
                 'payeeName': 'GraceHallaway_39',
-                'amountPayed': 13.99
+                'amountPayed': 13.99,
+                'category' : 'entertainment'
             },
             headers={
                 'Authorization': f"Bearer {auth_token}"
@@ -106,7 +107,8 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Alice',
                 'payeeName': 'Bob',
-                'amountPayed': 13.99
+                'amountPayed': 13.99,
+                'category' : 'personal_care'
             },
             headers={
                 'Authorization': f"Bearer {alice_auth}"
@@ -120,7 +122,8 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Bob',
                 'payeeName': 'Alice',
-                'amountPayed': 19.99
+                'amountPayed': 19.99,
+                'category' : 'travel'
             },
             headers={
                 'Authorization': f"Bearer {bob_auth}"
@@ -134,7 +137,8 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Claire',
                 'payeeName': 'Alice',
-                'amountPayed': 24.99
+                'amountPayed': 24.99,
+                'category' : 'home'
             },
             headers={
                 'Authorization': f"Bearer {claire_auth}"
@@ -212,7 +216,8 @@ class UserAuthenticationTests(TestCase):
                 data={
                     'username': 'Alice',
                     'payeeName': 'Bob',
-                    'amountPayed': 1.00
+                    'amountPayed': 1.00,
+                    'category' : 'shopping_net'
                 },
                 headers={
                     'Authorization': f"Bearer {alice_auth}"
@@ -228,7 +233,7 @@ class UserAuthenticationTests(TestCase):
         )
         # default capped at 50
         data = response.json()
-        self.assertTrue(len(data['transaction_history']) == "50")
+        self.assertTrue(len(data['transaction_history']) == 50)
         self.assertTrue(data['total_entries'] == "100")
 
     def test_process_transaction_log(self):
@@ -262,9 +267,9 @@ class UserAuthenticationTests(TestCase):
             }
         )
         # Alice uploads transaction log
-        csv_content = b'username,payee_name,amount,time_of_transfer\n' + \
-        b'Alice_9348,Bob_2227,13.99,2024-03-18 14:30:15.302193\n' + \
-        b'Bob_2227,Alice_9348,24.99,2024-03-19 17:22:34.202849\n'
+        csv_content = b'username,payee_name,amount,category,time_of_transfer\n' + \
+        b'Alice_9348,Bob_2227,13.99,entertainment,2024-03-20 15:30:00.291929\n' + \
+        b'Bob_2227,Alice_9348,24.99,personal_care,2024-03-25 17:11:39.394759\n'
         csv_file = SimpleUploadedFile("file.csv", csv_content, content_type="text/csv")
         response = self.client.post(
             reverse('process_transaction_log'),

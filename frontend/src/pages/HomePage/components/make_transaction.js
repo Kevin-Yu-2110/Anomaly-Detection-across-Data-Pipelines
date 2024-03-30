@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { BsCash } from "react-icons/bs";
 import { useUser } from "../../../UserContext";
+import SearchableDropdown from "../../../components/search_dropdown";
+import { categories } from "../../../components/model_features";
 import axios from "axios";
 import { toast } from 'react-toastify';
 
@@ -10,6 +12,7 @@ const MakeTransaction = () => {
   const [show, setShow] = useState(false);
   const [payeeName, setPayeeName] = useState('');
   const [amountPayed, setAmountPayed] = useState('');
+  const [transactionType, setTransactionType] = useState('');
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -24,6 +27,7 @@ const MakeTransaction = () => {
     formData.append('username', username);
     formData.append('payeeName', payeeName);
     formData.append('amountPayed', amountPayed);
+    formData.append('category', transactionType);
     // Send Request Form
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/make_transaction/',
@@ -77,6 +81,10 @@ const MakeTransaction = () => {
                 value={amountPayed}
                 onChange={e => setAmountPayed(e.target.value)}
               />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Transaction Type:</Form.Label>
+              <SearchableDropdown items={categories} selectedItem={transactionType} setSelectedItem={setTransactionType} custom_prompt={"Select Transaction Type..."}/>
             </Form.Group>
             <Button variant="primary" type="submit">
               Submit

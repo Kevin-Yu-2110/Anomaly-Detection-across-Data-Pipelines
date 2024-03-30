@@ -10,6 +10,7 @@ from django.contrib.auth import login, logout
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST, require_GET
 from functools import wraps
+import random
 import smtplib
 import json
 import jwt
@@ -44,10 +45,15 @@ def auth_required(func):
 @csrf_exempt
 @require_POST
 def user_signup(request):
-    username = request.POST['username']
-    password = request.POST['password1']
     form = SignUpForm(request.POST)
+    # validate form
     if form.is_valid():
+        username, password = request.POST['username'], request.POST['password1']
+        # create account number and save to database
+        cc_num = random.randint(10**15, (10**16)-1)
+        while StandardUser.objects.filter(cc_num=cc_num).exists():
+            cc_num = random.randint(10**15, (10**16)-1)
+        form.instance.cc_num = cc_num
         form.save()
         # Generate JSON Web Token for User-Auth
         token = generate_jwt(username, password)
@@ -218,13 +224,14 @@ def get_transaction_history(request):
         items_per_page = 50
         # get all transactions involving user as payer or payee
         transactions = Transaction.objects.filter(Q(username=username) | Q(payee_name=username)).order_by('time_of_transfer')
+        total_entries = str(len(transactions))
         paginator = Paginator(transactions, items_per_page)
         page = paginator.page(page_no)
         transactions = page.object_list
         transaction_history = serialize('json', transactions)
         transaction_history = json.loads(transaction_history)
         transaction_history = [transaction['fields'] for transaction in transaction_history]
-        return JsonResponse({'success': True, 'transaction_history' : transaction_history})
+        return JsonResponse({'success': True, 'transaction_history' : transaction_history, 'total_entries' : total_entries})
     except Exception as e:
         # something went wrong
         return JsonResponse({'success': False, 'error': str(e)})
@@ -247,7 +254,6 @@ def process_transaction_log(request):
                     time_of_transfer=row[3]
                 ) 
             rows_read += 1
-        transactions = Transaction.objects.all()
         return JsonResponse({'success': True})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})

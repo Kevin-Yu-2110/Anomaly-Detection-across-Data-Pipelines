@@ -11,6 +11,9 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Jimmy',
                 'email': 'Neutron@IMBCorporate.com',
+                'city': 'Melbourne',
+                'job': 'Cartographer',
+                'dob': '1971-11-03',
                 'password1': 'alax_memento_j44',
                 'password2': 'alax_memento_j44',
             }
@@ -24,6 +27,9 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'GraceHallaway_39',
                 'email': 'GraceHallaway@ghibli.com',
+                'city': 'Melbourne',
+                'job': 'Cartographer',
+                'dob': '1971-11-03',
                 'password1': 'Kdubn395ng',
                 'password2': 'Kdubn395ng',
             }
@@ -52,6 +58,9 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Alice',
                 'email': 'Alice814@gmail.com',
+                'city': 'Melbourne',
+                'job': 'Cartographer',
+                'dob': '1971-11-03',
                 'password1': 'SpringClean__324',
                 'password2': 'SpringClean__324',
             }
@@ -65,6 +74,9 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Bob',
                 'email': 'Bob2394@gmail.com',
+                'city': 'Melbourne',
+                'job': 'Cartographer',
+                'dob': '1971-11-03',
                 'password1': 'CleanSpring__391',
                 'password2': 'CleanSpring__391',
             }
@@ -78,6 +90,9 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Claire',
                 'email': 'Claire@protonmail.com',
+                'city': 'Melbourne',
+                'job': 'Cartographer',
+                'dob': '1971-11-03',
                 'password1': 'Elly294F4our',
                 'password2': 'Elly294F4our',
             }
@@ -136,7 +151,7 @@ class UserAuthenticationTests(TestCase):
             },
         )
         data = response.json()
-        self.assertTrue(len(data['transaction_history']) == 3)
+        self.assertTrue(data['total_entries'] == "3")
         # get Bob's transaction history
         response = self.client.post(
             reverse('get_transaction_history'),
@@ -146,7 +161,7 @@ class UserAuthenticationTests(TestCase):
             }
         )
         data = response.json()
-        self.assertTrue(len(data['transaction_history']) == 2)
+        self.assertTrue(data['total_entries'] == "2")
         # get Claire's transaction history
         response = self.client.post(
             reverse('get_transaction_history'),
@@ -156,7 +171,7 @@ class UserAuthenticationTests(TestCase):
             }
         )
         data = response.json()
-        self.assertTrue(len(data['transaction_history']) == 1)
+        self.assertTrue(data['total_entries'] == "1")
 
     def test_transaction_history_pagination(self):
         # register user Alice
@@ -165,6 +180,9 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Alice',
                 'email': 'Alice814@gmail.com',
+                'city': 'Melbourne',
+                'job': 'Cartographer',
+                'dob': '1971-11-03',
                 'password1': 'SpringClean__324',
                 'password2': 'SpringClean__324',
             }
@@ -178,6 +196,9 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Bob',
                 'email': 'Bob2394@gmail.com',
+                'city': 'Melbourne',
+                'job': 'Cartographer',
+                'dob': '1971-11-03',
                 'password1': 'CleanSpring__391',
                 'password2': 'CleanSpring__391',
             }
@@ -207,7 +228,8 @@ class UserAuthenticationTests(TestCase):
         )
         # default capped at 50
         data = response.json()
-        self.assertTrue(len(data['transaction_history']) == 50)
+        self.assertTrue(len(data['transaction_history']) == "50")
+        self.assertTrue(data['total_entries'] == "100")
 
     def test_process_transaction_log(self):
         # register user Alice
@@ -216,6 +238,9 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Alice',
                 'email': 'Alice814@gmail.com',
+                'city': 'Melbourne',
+                'job': 'Cartographer',
+                'dob': '1971-11-03',
                 'password1': 'SpringClean__324',
                 'password2': 'SpringClean__324',
             }
@@ -229,6 +254,9 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Bob',
                 'email': 'Bob2394@gmail.com',
+                'city': 'Melbourne',
+                'job': 'Cartographer',
+                'dob': '1971-11-03',
                 'password1': 'CleanSpring__391',
                 'password2': 'CleanSpring__391',
             }

@@ -1,11 +1,13 @@
 import random
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from datetime import datetime
-from django.utils import timezone
 
 class StandardUser(AbstractUser):
-    accountType = models.CharField(max_length=100)
+    otp = models.CharField(max_length=6, null=True, blank=True)
+    cc_num = models.IntegerField(unique=True)
+    city = models.CharField(max_length=100)
+    job = models.CharField(max_length=100)
+    dob = models.DateField()
 
     groups = models.ManyToManyField(
         'auth.Group',
@@ -16,23 +18,11 @@ class StandardUser(AbstractUser):
         'auth.Permission',
         related_name='standard_users_permissions'
     )
-
-    otp = models.CharField( #Referenced from https://stackoverflow.com/questions/71856923/django-password-reset-with-email-using-rest-apis
-    max_length=6, null=True, blank=True)
     
     # Method to Put a Random OTP in the CustomerUser table.
     def save(self, *args, **kwargs):
-        number_list = [x for x in range(10)]  # Use of list comprehension
-        code_items_for_otp = []
-
-        for i in range(6):
-            num = random.choice(number_list)
-            code_items_for_otp.append(num)
-
-        code_string = "".join(str(item)
-                                        for item in code_items_for_otp)  # list comprehension again
         # A six digit random number from the list will be saved in top field
-        self.otp = code_string
+        self.otp = ''.join(random.choices([str(i) for i in range(10)], k=6))
         super().save(*args, **kwargs)
 
     def __str__(self):

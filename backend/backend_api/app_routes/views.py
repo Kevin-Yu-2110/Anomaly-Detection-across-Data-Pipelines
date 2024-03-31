@@ -10,6 +10,7 @@ from django.contrib.auth import login, logout
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST, require_GET
 from functools import wraps
+from models.IsolationForest import isolationForestModel
 import random
 import smtplib
 import json
@@ -170,13 +171,14 @@ def reset_password(request):
 @auth_required
 def make_transaction(request):
     try:
-        Transaction.objects.create(
+        transaction = Transaction.objects.create(
             username=request.POST['username'],
             payee_name=request.POST['payeeName'],
             amount=request.POST['amountPayed'],
             category=request.POST['category'],
             time_of_transfer=datetime.now()
         )
+        detect_anomaly(transaction)
         return JsonResponse({'success': True})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
@@ -248,15 +250,24 @@ def process_transaction_log(request):
         row_count = 0
         for row in rows:
             if row_count: 
-                Transaction.objects.create(
+                transaction = Transaction.objects.create(
                     username=row[0],
                     payee_name=row[1],
                     amount=float(row[2]),
                     category=row[3],
                     time_of_transfer=row[4]
                 )
+                detect_anomaly(transaction)
             row_count += 1
         return JsonResponse({'success': True})
     except Exception as e:
-        print("ERROR: ", e)
         return JsonResponse({'success': False, 'error': str(e)})
+
+def detect_anomaly(transaction):
+    model = isolationForestModel()
+    user = StandardUser.objects.get(username=transaction.username)
+    # 'trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob'
+    model_input = [[transaction.time_of_transfer, user.cc_num, transaction.payee_name, transaction.category, transaction.amount, \
+               user.city, user.job, user.dob]]
+    # update transaction 'anomalous' field according to result
+    transaction.anomalous = model.predict(model_input)

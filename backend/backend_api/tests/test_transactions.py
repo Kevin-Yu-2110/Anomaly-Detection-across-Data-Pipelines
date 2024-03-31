@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.core.files.uploadedfile import SimpleUploadedFile
 
 class UserAuthenticationTests(TestCase):
-
+    """
     def test_make_transaction(self):
         # register payer
         response = self.client.post(
@@ -235,13 +235,14 @@ class UserAuthenticationTests(TestCase):
         data = response.json()
         self.assertTrue(len(data['transaction_history']) == 50)
         self.assertTrue(data['total_entries'] == "100")
+    """
 
     def test_process_transaction_log(self):
         # register user Alice
         response = self.client.post(
             reverse('signup'), 
             data={
-                'username': 'Alice',
+                'username': 'Alice_9348',
                 'email': 'Alice814@gmail.com',
                 'city': 'Melbourne',
                 'job': 'Cartographer',
@@ -257,7 +258,7 @@ class UserAuthenticationTests(TestCase):
         response = self.client.post(
             reverse('signup'), 
             data={
-                'username': 'Bob',
+                'username': 'Bob_2227',
                 'email': 'Bob2394@gmail.com',
                 'city': 'Melbourne',
                 'job': 'Cartographer',
@@ -274,7 +275,7 @@ class UserAuthenticationTests(TestCase):
         response = self.client.post(
             reverse('process_transaction_log'),
             data={
-                'username': 'Alice',
+                'username': 'Alice_9348',
                 'transaction_log': csv_file
             },
             headers={

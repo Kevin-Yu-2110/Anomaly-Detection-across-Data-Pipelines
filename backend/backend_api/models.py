@@ -34,6 +34,7 @@ class Transaction(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     category=models.CharField(max_length=100)
     time_of_transfer = models.CharField(max_length=100)
+    anomalous = models.BooleanField(null=True, blank=True)
 
     def __str__(self):
         return f"Transaction from {self.username} to {self.payee_name} of type {self.category} and amount ${self.amount}\n"

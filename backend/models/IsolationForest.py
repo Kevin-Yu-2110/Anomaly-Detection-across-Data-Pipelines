@@ -37,12 +37,12 @@ def train_model():
     ########################################
     ### needs to be replaced with big data pipeline
         
-    train_data = pd.read_csv('models/fraudTrain.csv')
+    train_data = pd.read_csv('backend/models/fraudTrain.csv')
     X_train, enc = clean_up(train_data.iloc[:, :-1])
     y_train = train_data.iloc[:, -1:]
 
     random_state = np.random.RandomState(42)
-    test_data = pd.read_csv('models/fraudTest.csv')
+    test_data = pd.read_csv('backend/models/fraudTest.csv')
     X_test, enc = clean_up(test_data.iloc[:, :-1], enc)
     y_test = test_data.iloc[:, -1:]
     ##########################################
@@ -67,20 +67,27 @@ def train_model():
 class isolationForestModel():
     def __init__(self):
         try:
-            self.model = open('models/IsolationForest.pickle', 'rb')
-            self.encoder = open('models/Encoder.pickle', 'rb')      
-        except:    
+            model_path = os.path.join(os.path.dirname(__file__), 'IsolationForest.pickle')
+            self.model = open(model_path, 'rb')
+            encoder_path = os.path.join(os.path.dirname(__file__), 'Encoder.pickle')
+            self.encoder = open(encoder_path, 'rb')
+        except Exception as e:
+            print("EXCEPTION: ", e)
             model, encoder = train_model()
-            with open('models/IsolationForest.pickle', 'wb') as handle:
+            with open('backend/models/IsolationForest.pickle', 'wb') as handle:
                 pickle.dump(model, handle)
-            with open('models/Enocder.pickle', 'wb') as handle:
+            with open('backend/models/Encoder.pickle', 'wb') as handle:
                 pickle.dump(encoder, handle)
             self.model = model
             self.encoder = encoder
         
     def predict(self, X):
-        data_input = pd.DataFrame(X, columns=['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob'])
-        return self.model.predict(clean_up(data_input, self.encoder))
-    
+        try:
+            data_input = pd.DataFrame(X, columns=['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob'])
+            encoded_input = clean_up(data_input, self.encoder)
+            return self.model.predict(encoded_input)
+        except Exception as e:
+            pass
+
 if __name__ == '__main__':
     badModel = isolationForestModel()

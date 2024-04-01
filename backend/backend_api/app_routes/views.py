@@ -171,16 +171,22 @@ def reset_password(request):
 @auth_required
 def make_transaction(request):
     try:
+        print("SOMETHING-A")
         transaction = Transaction.objects.create(
-            username=request.POST['username'],
-            payee_name=request.POST['payeeName'],
-            amount=request.POST['amountPayed'],
-            category=request.POST['category'],
-            time_of_transfer=datetime.now()
+            time_of_transfer = datetime.now(),
+            cc_num = request.POST['cc_num'],
+            merchant = request.POST['merchant'],
+            category = request.POST['category'],
+            amt = request.POST['amt'],
+            city = request.POST['city'],
+            job = request.POST['job'],
+            dob = request.POST['dob'],
         )
+        print("SOMETHING-B")
         detect_anomaly(transaction)
         return JsonResponse({'success': True})
     except Exception as e:
+        print("ERROR: ", e)
         return JsonResponse({'success': False, 'error': str(e)})
 
 @csrf_exempt
@@ -225,8 +231,7 @@ def get_transaction_history(request):
         username=request.POST['username']
         page_no=request.POST['page_no']
         items_per_page = 50
-        # get all transactions involving user as payer or payee
-        transactions = Transaction.objects.filter(Q(username=username) | Q(payee_name=username)).order_by('time_of_transfer')
+        transactions = Transaction.objects.filter(Q(username=username) | Q(merchant=username)).order_by('time_of_transfer')
         total_entries = str(len(transactions))
         paginator = Paginator(transactions, items_per_page)
         page = paginator.page(page_no)
@@ -251,23 +256,26 @@ def process_transaction_log(request):
         for row in rows:
             if row_count: 
                 transaction = Transaction.objects.create(
-                    username=row[0],
-                    payee_name=row[1],
-                    amount=float(row[2]),
-                    category=row[3],
-                    time_of_transfer=row[4]
+                    time_of_transfer = row[0],
+                    cc_num = row[1],
+                    merchant = row[2],
+                    category = row[3],
+                    amt = row[4],
+                    city = row[5],
+                    job = row[6],
+                    dob = row[7],
                 )
                 detect_anomaly(transaction)
             row_count += 1
         return JsonResponse({'success': True})
     except Exception as e:
+        print("ERROR: ", e)
         return JsonResponse({'success': False, 'error': str(e)})
 
 def detect_anomaly(transaction):
     model = isolationForestModel()
-    user = StandardUser.objects.get(username=transaction.username)
     # 'trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob'
-    model_input = [[transaction.time_of_transfer, user.cc_num, transaction.payee_name, transaction.category, transaction.amount, \
-               user.city, user.job, user.dob]]
+    model_input = [[transaction.time_of_transfer, transaction.cc_num, transaction.merchant, transaction.category, transaction.amt, \
+        transaction.city, transaction.job, transaction.dob]]
     # update transaction 'anomalous' field according to result
     transaction.anomalous = model.predict(model_input)

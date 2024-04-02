@@ -43,3 +43,4 @@ Week 7
 - Explore ways to improve model preformance
 - Performed hyperparameter tuning for KNN, Gradient boosted tree and Random Forest model
 - Explored options for better predictions such as combining models
+- Extracted list of possible values for categorical features

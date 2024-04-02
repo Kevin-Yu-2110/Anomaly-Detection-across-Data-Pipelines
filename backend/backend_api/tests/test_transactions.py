@@ -77,7 +77,7 @@ class UserAuthenticationTests(TestCase):
         data = response.json()
         self.assertTrue(data['success'])
 
-    """
+
     def test_get_transaction_history(self):
         # register user Alice
         response = self.client.post(
@@ -127,14 +127,18 @@ class UserAuthenticationTests(TestCase):
         data = response.json()
         self.assertTrue(data['success'])
         claire_auth = data['token']
-        # Alice sends Bob money
+        # Alice sends money
         response = self.client.post(
             reverse('make_transaction'),
             data={
                 'username': 'Alice',
-                'payeeName': 'Bob',
-                'amountPayed': 13.99,
-                'category' : 'personal_care'
+                'cc_num': '1947292075921022',
+                'merchant': 'GraceHallaway_94',
+                'category': 'personal_care',
+                'amt': '59.99',
+                'city': 'Melbourne',
+                'job': 'Accountant',
+                'dob': '1995-04-23',
             },
             headers={
                 'Authorization': f"Bearer {alice_auth}"
@@ -142,14 +146,18 @@ class UserAuthenticationTests(TestCase):
         )
         data = response.json()
         self.assertTrue(data['success'])
-        # Bob sends Alice money
+        # Bob sends money
         response = self.client.post(
             reverse('make_transaction'),
             data={
                 'username': 'Bob',
-                'payeeName': 'Alice',
-                'amountPayed': 19.99,
-                'category' : 'travel'
+                'cc_num': '8392019210595825',
+                'merchant': 'JimmyJones938',
+                'category': 'personal_care',
+                'amt': '59.99',
+                'city': 'Melbourne',
+                'job': 'Accountant',
+                'dob': '1984-05-17',
             },
             headers={
                 'Authorization': f"Bearer {bob_auth}"
@@ -157,14 +165,36 @@ class UserAuthenticationTests(TestCase):
         )
         data = response.json()
         self.assertTrue(data['success'])
-        # Claire sends Alice money
+        # Claire makes two transactions
         response = self.client.post(
             reverse('make_transaction'),
             data={
                 'username': 'Claire',
-                'payeeName': 'Alice',
-                'amountPayed': 24.99,
-                'category' : 'home'
+                'cc_num': '3948595920202184',
+                'merchant': 'JimmyJones938',
+                'category': 'entertainment',
+                'amt': '129.99',
+                'city': 'Melbourne',
+                'job': 'Accountant',
+                'dob': '1995-04-23',
+            },
+            headers={
+                'Authorization': f"Bearer {claire_auth}"
+            },
+        )
+        data = response.json()
+        self.assertTrue(data['success'])
+        response = self.client.post(
+            reverse('make_transaction'),
+            data={
+                'username': 'Claire',
+                'cc_num': '3948595920202184',
+                'merchant': 'JimmyJones938',
+                'category': 'entertainment',
+                'amt': '129.99',
+                'city': 'Melbourne',
+                'job': 'Accountant',
+                'dob': '1995-04-23',
             },
             headers={
                 'Authorization': f"Bearer {claire_auth}"
@@ -181,7 +211,7 @@ class UserAuthenticationTests(TestCase):
             },
         )
         data = response.json()
-        self.assertTrue(data['total_entries'] == "3")
+        self.assertTrue(data['total_entries'] == "1")
         # get Bob's transaction history
         response = self.client.post(
             reverse('get_transaction_history'),
@@ -191,7 +221,7 @@ class UserAuthenticationTests(TestCase):
             }
         )
         data = response.json()
-        self.assertTrue(data['total_entries'] == "2")
+        self.assertTrue(data['total_entries'] == "1")
         # get Claire's transaction history
         response = self.client.post(
             reverse('get_transaction_history'),
@@ -201,7 +231,7 @@ class UserAuthenticationTests(TestCase):
             }
         )
         data = response.json()
-        self.assertTrue(data['total_entries'] == "1")
+        self.assertTrue(data['total_entries'] == "2")
 
     def test_transaction_history_pagination(self):
         # register user Alice
@@ -220,35 +250,26 @@ class UserAuthenticationTests(TestCase):
         data = response.json()
         self.assertTrue(data['success'])
         alice_auth = data['token']
-        # register user Bob
-        response = self.client.post(
-            reverse('signup'), 
-            data={
-                'username': 'Bob',
-                'email': 'Bob2394@gmail.com',
-                'city': 'Melbourne',
-                'job': 'Cartographer',
-                'dob': '1971-11-03',
-                'password1': 'CleanSpring__391',
-                'password2': 'CleanSpring__391',
-            }
-        )
-        data = response.json()
-        self.assertTrue(data['success'])
-        # Alice makes 100 transactions to Bob
+        # Alice makes 100 transactions
         for _ in range(100):
             response = self.client.post(
                 reverse('make_transaction'),
                 data={
                     'username': 'Alice',
-                    'payeeName': 'Bob',
-                    'amountPayed': 1.00,
-                    'category' : 'shopping_net'
+                    'cc_num': '3948595920202184',
+                    'merchant': 'JimmyJones938',
+                    'category': 'shopping_net',
+                    'amt': '4.99',
+                    'city': 'Melbourne',
+                    'job': 'Accountant',
+                    'dob': '1995-04-23',
                 },
                 headers={
                     'Authorization': f"Bearer {alice_auth}"
                 }
             )
+            data = response.json()
+            self.assertTrue(data['success'])
         # get transaction history
         response = self.client.post(
             reverse('get_transaction_history'),
@@ -261,4 +282,3 @@ class UserAuthenticationTests(TestCase):
         data = response.json()
         self.assertTrue(len(data['transaction_history']) == 50)
         self.assertTrue(data['total_entries'] == "100")
-    """

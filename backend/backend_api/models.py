@@ -29,6 +29,8 @@ class StandardUser(AbstractUser):
         return self.username
 
 class Transaction(models.Model):
+    # auth user fields
+    uploading_user = models.CharField(max_length=100)
     # model feature fields: 'trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob'
     time_of_transfer = models.CharField(max_length=100)
     cc_num = models.IntegerField()

@@ -171,8 +171,8 @@ def reset_password(request):
 @auth_required
 def make_transaction(request):
     try:
-        print("SOMETHING-A")
         transaction = Transaction.objects.create(
+            uploading_user = request.POST['username'],
             time_of_transfer = datetime.now(),
             cc_num = request.POST['cc_num'],
             merchant = request.POST['merchant'],
@@ -182,11 +182,9 @@ def make_transaction(request):
             job = request.POST['job'],
             dob = request.POST['dob'],
         )
-        print("SOMETHING-B")
         detect_anomaly(transaction)
         return JsonResponse({'success': True})
     except Exception as e:
-        print("ERROR: ", e)
         return JsonResponse({'success': False, 'error': str(e)})
 
 @csrf_exempt
@@ -231,7 +229,7 @@ def get_transaction_history(request):
         username=request.POST['username']
         page_no=request.POST['page_no']
         items_per_page = 50
-        transactions = Transaction.objects.filter(Q(username=username) | Q(merchant=username)).order_by('time_of_transfer')
+        transactions = Transaction.objects.filter(Q(uploading_user=username)).order_by('time_of_transfer')
         total_entries = str(len(transactions))
         paginator = Paginator(transactions, items_per_page)
         page = paginator.page(page_no)
@@ -241,7 +239,6 @@ def get_transaction_history(request):
         transaction_history = [transaction['fields'] for transaction in transaction_history]
         return JsonResponse({'success': True, 'transaction_history' : transaction_history, 'total_entries' : total_entries})
     except Exception as e:
-        # something went wrong
         return JsonResponse({'success': False, 'error': str(e)})
 
 @csrf_exempt
@@ -256,6 +253,7 @@ def process_transaction_log(request):
         for row in rows:
             if row_count: 
                 transaction = Transaction.objects.create(
+                    uploading_user = request.POST['username'],
                     time_of_transfer = row[0],
                     cc_num = row[1],
                     merchant = row[2],
@@ -269,7 +267,6 @@ def process_transaction_log(request):
             row_count += 1
         return JsonResponse({'success': True})
     except Exception as e:
-        print("ERROR: ", e)
         return JsonResponse({'success': False, 'error': str(e)})
 
 def detect_anomaly(transaction):

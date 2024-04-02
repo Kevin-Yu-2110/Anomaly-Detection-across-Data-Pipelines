@@ -1,0 +1,11 @@
+.homepage-container {
+    display: grid;
+    grid-template-rows: 0.3fr 3fr;
+    grid-template-areas:
+      'header'
+      'main';
+    height: 100%;
+    background-color: #23324d;
+    color: white;
+}
+  

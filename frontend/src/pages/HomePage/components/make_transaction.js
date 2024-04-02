@@ -2,24 +2,40 @@ import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { BsCash } from "react-icons/bs";
 import { useUser } from "../../../UserContext";
+import SearchableDropdown from "../../../components/search_dropdown";
+import { cities, jobs, categories } from "../../../components/model_features";
 import axios from "axios";
+import { toast } from 'react-toastify';
 
-const MakeTransaction = ({ setSuccessMessage, setShowOverlay }) => {
+const MakeTransaction = () => {
   const {username, token} = useUser();
   const [show, setShow] = useState(false);
-  const [payeeName, setPayeeName] = useState('');
-  const [amountPayed, setAmountPayed] = useState('');
+  const [cc_num, setCc_num] = useState('');
+  const [merchant, setMerchant] = useState('');
+  const [category, setCategory] = useState('');
+  const [amt, setAmt] = useState('');
+  const [city, setCity] = useState('');
+  const [job, setJob] = useState('');
+  const [dob, setDob] = useState('');
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const transferSuccess = () => toast.success("Transferred successfully");
+  const transferFailed = () => toast.error("Transfer failed");
 
   const makeTransaction = async (e) => {
     e.preventDefault();
     // Create Request Form
     const formData = new FormData();
     formData.append('username', username);
-    formData.append('payeeName', payeeName);
-    formData.append('amountPayed', amountPayed);
+    formData.append('cc_num', cc_num);
+    formData.append('merchant', merchant);
+    formData.append('category', category);
+    formData.append('amt', amt);
+    formData.append('city', city);
+    formData.append('job', job);
+    formData.append('dob', dob);
     // Send Request Form
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/make_transaction/',
@@ -33,16 +49,14 @@ const MakeTransaction = ({ setSuccessMessage, setShowOverlay }) => {
       );
       // Handle Response
       if (response.data.success) {
-        setSuccessMessage("Transferred Succesfully")
+        transferSuccess();
       } else {
-        setSuccessMessage("Transfer Failed")
+        transferFailed();
       }
     } catch (error) {
       console.error('Transaction Failed: Server-Side Error:', error);
     }
     handleClose();
-    setShowOverlay(true);
-    setTimeout(() => setShowOverlay(false), 8000);
   };
 
   return (
@@ -59,21 +73,51 @@ const MakeTransaction = ({ setSuccessMessage, setShowOverlay }) => {
         <Modal.Body>
           <Form onSubmit={makeTransaction}>
             <Form.Group className="mb-3">
-              <Form.Label>Transfer To:</Form.Label>
+              <Form.Label>Sending Account Number:</Form.Label>
               <Form.Control
                 required
                 type="text"
-                value={payeeName}
-                onChange={e => setPayeeName(e.target.value)}
+                value={cc_num}
+                onChange={e => setCc_num(e.target.value)}
               />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Label>Transfer Amount:</Form.Label>
+              <Form.Label>Merchant Account:</Form.Label>
               <Form.Control
                 required
                 type="text"
-                value={amountPayed}
-                onChange={e => setAmountPayed(e.target.value)}
+                value={merchant}
+                onChange={e => setMerchant(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Transaction Category:</Form.Label>
+              <SearchableDropdown items={categories} selectedItem={category} setSelectedItem={setCategory} custom_prompt={"Select Transaction Category..."}/>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Transaction Amount:</Form.Label>
+              <Form.Control
+                required
+                type="text"
+                value={amt}
+                onChange={e => setAmt(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>City of Sending User Account:</Form.Label>
+              <SearchableDropdown items={cities} selectedItem={city} setSelectedItem={setCity} custom_prompt={"Select City..."}/>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Job of Sending User Account:</Form.Label>
+              <SearchableDropdown items={jobs} selectedItem={job} setSelectedItem={setJob} custom_prompt={"Select Job..."}/>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>D/O/B of Sending User Account:</Form.Label>
+              <Form.Control
+                required
+                type="date"
+                value={dob}
+                onChange={e => setDob(e.target.value)}
               />
             </Form.Group>
             <Button variant="primary" type="submit">

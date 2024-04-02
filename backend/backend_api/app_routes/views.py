@@ -271,18 +271,25 @@ def process_transaction_log(request):
     
 def get_transaction_by_field(request):
     try:
+       
         username=request.POST['username']
         page_no=request.POST['page_no']
-        field=request.POST['field']
+        search_fields=json.loads(request.POST['search_fields'])
+        sort_fields=json.loads(request.POST['sort_fields'])
+        if not sort_fields:
+            sort_fields = ['time_of_transfer']
         items_per_page = 50
-        transactions = Transaction.objects.filter((Q(username=username) | Q(payee_name=username)) & Q(field=field)).order_by('time_of_transfer')
+        transactions = Transaction.objects.filter(uploading_user=username)
+        transactions = transactions.filter(**search_fields)
+        transactions = transactions.order_by(*sort_fields)
+        total_entries = str(len(transactions))
         paginator = Paginator(transactions, items_per_page)
         page = paginator.page(page_no)
         transactions = page.object_list
         transaction_history = serialize('json', transactions)
         transaction_history = json.loads(transaction_history)
         transaction_history = [transaction['fields'] for transaction in transaction_history]
-        return JsonResponse({'success': True})
+        return JsonResponse({'success': True, 'total_entries': total_entries})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
 

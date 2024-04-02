@@ -49,8 +49,6 @@ const TransactionHistory = () => {
         }
       }
     );
-    console.log(response);
-    console.log(response.data.transaction_history);
     setData(response.data.transaction_history);
     setTotalRows(response.data.total_entries);
     setLoading(false);

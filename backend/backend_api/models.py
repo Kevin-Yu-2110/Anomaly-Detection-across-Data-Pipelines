@@ -29,11 +29,18 @@ class StandardUser(AbstractUser):
         return self.username
 
 class Transaction(models.Model):
-    username = models.CharField(max_length=100)
-    payee_name = models.CharField(max_length=100)
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
-    category=models.CharField(max_length=100)
+    # auth user fields
+    uploading_user = models.CharField(max_length=100)
+    # model feature fields: 'trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob'
     time_of_transfer = models.CharField(max_length=100)
+    cc_num = models.IntegerField()
+    merchant = models.CharField(max_length=100)
+    category=models.CharField(max_length=100)
+    amt = models.DecimalField(max_digits=10, decimal_places=2)
+    city = models.CharField(max_length=100)
+    job = models.CharField(max_length=100)
+    dob = models.DateField()
+    # fields storing result of model analysis
     anomalous = models.BooleanField(null=True, blank=True)
 
     def __str__(self):

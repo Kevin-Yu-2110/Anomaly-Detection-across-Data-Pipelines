@@ -12,7 +12,6 @@ def clean_up(X, enc = None):
     numerical_X["time"] = date_information.second + 60 * date_information.minute + 3600 * date_information.second
     numerical_X["age"] = (pd.to_datetime(X["trans_date_trans_time"]) - pd.to_datetime(X["dob"])).dt.days
     categorical_X = X[["cc_num", "merchant", "category", "city", "job"]].copy()
-    categorical_X['merchant'] = categorical_X['merchant'].str[6:]
     if not enc:
         enc = LabelEncoder()
     for column in categorical_X:

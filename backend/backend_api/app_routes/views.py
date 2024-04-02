@@ -10,6 +10,8 @@ from django.contrib.auth import login, logout
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST, require_GET
 from functools import wraps
+from models.IsolationForest import isolationForestModel
+import random
 import smtplib
 import json
 import jwt
@@ -44,10 +46,15 @@ def auth_required(func):
 @csrf_exempt
 @require_POST
 def user_signup(request):
-    username = request.POST['username']
-    password = request.POST['password1']
     form = SignUpForm(request.POST)
+    # validate form
     if form.is_valid():
+        username, password = request.POST['username'], request.POST['password1']
+        # create account number and save to database
+        cc_num = random.randint(10**15, (10**16)-1)
+        while StandardUser.objects.filter(cc_num=cc_num).exists():
+            cc_num = random.randint(10**15, (10**16)-1)
+        form.instance.cc_num = cc_num
         form.save()
         # Generate JSON Web Token for User-Auth
         token = generate_jwt(username, password)
@@ -164,12 +171,18 @@ def reset_password(request):
 @auth_required
 def make_transaction(request):
     try:
-        Transaction.objects.create(
-            username=request.POST['username'],
-            payee_name=request.POST['payeeName'],
-            amount=request.POST['amountPayed'],
-            time_of_transfer=datetime.now()
+        transaction = Transaction.objects.create(
+            uploading_user = request.POST['username'],
+            time_of_transfer = datetime.now(),
+            cc_num = request.POST['cc_num'],
+            merchant = request.POST['merchant'],
+            category = request.POST['category'],
+            amt = request.POST['amt'],
+            city = request.POST['city'],
+            job = request.POST['job'],
+            dob = request.POST['dob'],
         )
+        detect_anomaly(transaction)
         return JsonResponse({'success': True})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
@@ -216,17 +229,16 @@ def get_transaction_history(request):
         username=request.POST['username']
         page_no=request.POST['page_no']
         items_per_page = 50
-        # get all transactions involving user as payer or payee
-        transactions = Transaction.objects.filter(Q(username=username) | Q(payee_name=username)).order_by('time_of_transfer')
+        transactions = Transaction.objects.filter(Q(uploading_user=username)).order_by('time_of_transfer')
+        total_entries = str(len(transactions))
         paginator = Paginator(transactions, items_per_page)
         page = paginator.page(page_no)
         transactions = page.object_list
         transaction_history = serialize('json', transactions)
         transaction_history = json.loads(transaction_history)
         transaction_history = [transaction['fields'] for transaction in transaction_history]
-        return JsonResponse({'success': True, 'transaction_history' : transaction_history})
+        return JsonResponse({'success': True, 'transaction_history' : transaction_history, 'total_entries' : total_entries})
     except Exception as e:
-        # something went wrong
         return JsonResponse({'success': False, 'error': str(e)})
 
 @csrf_exempt
@@ -236,18 +248,23 @@ def process_transaction_log(request):
     try:
         uploaded_file = request.FILES['transaction_log']
         decoded_file = uploaded_file.read().decode('utf-8').splitlines()
-        csv_reader = csv.reader(decoded_file)
-        rows_read = 0
-        for row in csv_reader:
-            if rows_read:
-                Transaction.objects.create(
-                    username=row[0],
-                    payee_name=row[1],
-                    amount=float(row[2]),
-                    time_of_transfer=row[3]
-                ) 
-            rows_read += 1
-        transactions = Transaction.objects.all()
+        rows = csv.reader(decoded_file)
+        row_count = 0
+        for row in rows:
+            if row_count: 
+                transaction = Transaction.objects.create(
+                    uploading_user = request.POST['username'],
+                    time_of_transfer = row[0],
+                    cc_num = row[1],
+                    merchant = row[2],
+                    category = row[3],
+                    amt = row[4],
+                    city = row[5],
+                    job = row[6],
+                    dob = row[7],
+                )
+                detect_anomaly(transaction)
+            row_count += 1
         return JsonResponse({'success': True})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
@@ -268,3 +285,11 @@ def get_transaction_by_field(request):
         return JsonResponse({'success': True})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
+
+def detect_anomaly(transaction):
+    model = isolationForestModel()
+    # 'trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob'
+    model_input = [[transaction.time_of_transfer, transaction.cc_num, transaction.merchant, transaction.category, transaction.amt, \
+        transaction.city, transaction.job, transaction.dob]]
+    # update transaction 'anomalous' field according to result
+    transaction.anomalous = model.predict(model_input)

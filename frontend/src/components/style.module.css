@@ -1,14 +1,14 @@
 
 .container {
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     justify-content: center;
     align-items: center;
     width: 500px;
     background-color: #fff;
-    padding: 50px;
+    padding: 40px 50px 30px 50px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -46,11 +46,16 @@
     margin-bottom: 30px;
 }
 
+::placeholder {
+    color: gray
+}
+
 .input {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
     box-sizing: border-box;
+    border: 1px solid black;
 }
 
 .select {
@@ -75,15 +80,36 @@
     border-radius: 4px;
     cursor: pointer;
     margin-bottom: 20px;
+
 }
 
 button:hover {
     background-color: #45a049;
 }
 
-.signup-link {
-    margin-top: 15px;
-    display: block;
-    color: #555;
-    text-decoration: none;
+.searchable_dropdown {
+    position: relative;
+    width: 100%;
+    display: inline-block;    
 }
+
+.dropdown_menu {
+    position: absolute;
+    width: 100%;
+    top: calc(100% - 20px);
+    z-index: 1;
+    background-color: #fff;
+    border: 1px solid black;
+    border-top: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown_item {
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.dropdown_item:hover {
+    background-color: #f0f0f0;
+}
+  

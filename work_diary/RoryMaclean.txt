@@ -26,3 +26,4 @@ Sprint Two (w6-w8)
 - create feature processing scripts for frontend dropdown menus
 - update make, get and process routes for compatibility between transaction handling and model calls
 - create detect_anomaly backend route to link backend with detection models + move models directory to backend folder
+- overhaul Transaction model and backend transaction routes to match model features exactly (full-stack)

@@ -11,16 +11,16 @@ const TransactionHistory = () => {
 
   const columns = [
     {
-      name: "Payer name",
-      selector: row => row.username
+      name: "Sender account number",
+      selector: row => row.cc_num
     },
     {
-      name: "Payee name",
-      selector: row => row.payee_name
+      name: "Payee account name",
+      selector: row => row.merchant
     },
     {
       name: "Amount",
-      selector: row => row.amount
+      selector: row => row.amt
     },
     {
       name: "Category",
@@ -30,6 +30,10 @@ const TransactionHistory = () => {
       name: "Time of transfer",
       selector: row => row.time_of_transfer
     },
+    // {
+    //   name: "Anomalous?",
+    //   selector: row => row.anomalous
+    // }
   ]
 
   const fetchData = async (page_no) => {

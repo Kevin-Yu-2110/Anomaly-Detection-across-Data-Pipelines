@@ -240,6 +240,7 @@ def get_transaction_history(request):
         transaction_history = serialize('json', transactions)
         transaction_history = json.loads(transaction_history)
         transaction_history = [transaction['fields'] for transaction in transaction_history]
+        [print(t) for t in transaction_history]
         return JsonResponse({'success': True, 'transaction_history' : transaction_history, 'total_entries' : total_entries})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})

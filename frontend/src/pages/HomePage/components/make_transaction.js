@@ -6,6 +6,7 @@ import SearchableDropdown from "../../../components/search_dropdown";
 import { cities, jobs, categories } from "../../../components/model_features";
 import axios from "axios";
 import { toast } from 'react-toastify';
+import style from "./header.module.css";
 
 const MakeTransaction = () => {
   const {username, token} = useUser();
@@ -62,7 +63,7 @@ const MakeTransaction = () => {
   return (
     <>
       <Button variant="outline-info" onClick={handleShow}>
-        <BsCash className="icon"></BsCash>
+        <BsCash className={style.icon}></BsCash>
         Make Transaction
       </Button>
 

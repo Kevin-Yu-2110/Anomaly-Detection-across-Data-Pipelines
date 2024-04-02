@@ -203,7 +203,7 @@ class UserAuthenticationTests(TestCase):
         data = response.json()
         self.assertTrue(data['success'])
         # get Alice's transaction history
-        response = self.client.post(
+        response = self.client.get(
             reverse('get_transaction_history'),
             data={'username': 'Alice', 'page_no' : 1},
             headers={
@@ -213,7 +213,7 @@ class UserAuthenticationTests(TestCase):
         data = response.json()
         self.assertTrue(data['total_entries'] == "1")
         # get Bob's transaction history
-        response = self.client.post(
+        response = self.client.get(
             reverse('get_transaction_history'),
             data={'username': 'Bob', 'page_no' : 1},
             headers={
@@ -223,7 +223,7 @@ class UserAuthenticationTests(TestCase):
         data = response.json()
         self.assertTrue(data['total_entries'] == "1")
         # get Claire's transaction history
-        response = self.client.post(
+        response = self.client.get(
             reverse('get_transaction_history'),
             data={'username': 'Claire', 'page_no' : 1},
             headers={
@@ -271,14 +271,14 @@ class UserAuthenticationTests(TestCase):
             data = response.json()
             self.assertTrue(data['success'])
         # get transaction history
-        response = self.client.post(
+        response = self.client.get(
             reverse('get_transaction_history'),
             data={'username': 'Alice', 'page_no' : 1},
             headers={
                 'Authorization': f"Bearer {alice_auth}"
             }
         )
-        # default capped at 50
+        # default capped at 25
         data = response.json()
-        self.assertTrue(len(data['transaction_history']) == 50)
+        self.assertTrue(len(data['transaction_history']) == 25)
         self.assertTrue(data['total_entries'] == "100")

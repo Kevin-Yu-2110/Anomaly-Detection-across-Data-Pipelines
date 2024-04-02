@@ -4,15 +4,14 @@ from sklearn.preprocessing import LabelEncoder
 
 
 def clean_up(X, enc = None):
-    pd.options.mode.chained_assignment = None
-    numerical_X = X[["amt"]]
+    numerical_X = X[["amt"]].copy()
     date_information = pd.DatetimeIndex(pd.to_datetime(X["trans_date_trans_time"]))
     numerical_X["year"] = date_information.year
     numerical_X["month"] = date_information.month
     numerical_X["day"] = date_information.day
     numerical_X["time"] = date_information.second + 60 * date_information.minute + 3600 * date_information.second
     numerical_X["age"] = (pd.to_datetime(X["trans_date_trans_time"]) - pd.to_datetime(X["dob"])).dt.days
-    categorical_X = X[["cc_num", "merchant", "category", "city", "job"]]
+    categorical_X = X[["cc_num", "merchant", "category", "city", "job"]].copy()
     if not enc:
         enc = LabelEncoder()
     for column in categorical_X:

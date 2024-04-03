@@ -23,7 +23,20 @@ const SignupPage = () => {
   const [password2, setPassword2] = useState('');
   const navigate = useNavigate();
 
-  const signupFailed = () => toast.error("Invalid credentials");
+  const signupFailed = (data) => {
+    if (data.username) {
+      toast.error(`error: ${data.username}`);
+    }
+    if (data.email) {
+      toast.error(`error: ${data.email}`);
+    }
+    if (data.password1) {
+      toast.error(`error: ${data.password1}`);
+    }
+    if (data.password2) {
+      toast.error(`error: ${data.password2}`);
+    }
+  };
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -50,7 +63,8 @@ const SignupPage = () => {
         user_login(username, response.data.token)
         navigate("/home");
       } else {
-        signupFailed();
+        console.log(response.data.errors);
+        signupFailed(response.data.errors);
       }
     } catch (error) {
       console.error('Signup Failed with error:', error);

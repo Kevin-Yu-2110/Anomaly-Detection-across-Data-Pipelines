@@ -14,7 +14,9 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const loginFailed = () => toast.error("Invalid credentials");
+  const loginFailed = (data) => {
+    toast.error(`error: ${data.error}`);
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -37,7 +39,7 @@ const LoginPage = () => {
         user_login(username, response.data.token);
         navigate("/home");
       } else {
-        loginFailed();
+        loginFailed(response.data);
       }
     } catch (error) {
       console.error('Login Failed: Failed to contact server:', error);

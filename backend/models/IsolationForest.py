@@ -7,7 +7,7 @@ import pandas as pd
 from sklearn.metrics import confusion_matrix
 from sklearn.ensemble import IsolationForest
 from sklearn.preprocessing import LabelEncoder
-from model.clean_up import clean_up
+from models.clean_up import clean_up
 
 import mlflow
 from mlflow import MlflowClient

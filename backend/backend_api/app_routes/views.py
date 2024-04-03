@@ -186,6 +186,7 @@ def make_transaction(request):
             dob = request.POST['dob'],
         )
         detect_anomaly(transaction)
+        transaction.save()
         return JsonResponse({'success': True})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
@@ -232,7 +233,7 @@ def get_transaction_history(request):
         username=request.GET['username']
         page_no=request.GET['page_no']
         items_per_page = 25
-        transactions = Transaction.objects.filter(Q(uploading_user=username)).order_by('time_of_transfer')
+        transactions = Transaction.objects.filter(Q(uploading_user=username)).order_by('-time_of_transfer')
         total_entries = str(len(transactions))
         paginator = Paginator(transactions, items_per_page)
         page = paginator.page(page_no)
@@ -267,6 +268,7 @@ def process_transaction_log(request):
                     dob = row[7],
                 )
                 detect_anomaly(transaction)
+                transaction.save()
             row_count += 1
         return JsonResponse({'success': True})
     except Exception as e:

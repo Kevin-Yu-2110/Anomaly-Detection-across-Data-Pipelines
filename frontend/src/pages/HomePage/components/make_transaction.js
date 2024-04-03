@@ -8,7 +8,7 @@ import axios from "axios";
 import { toast } from 'react-toastify';
 import style from "./header.module.css";
 
-const MakeTransaction = () => {
+const MakeTransaction = ({ dataCounter, setDataCounter }) => {
   const {username, token} = useUser();
   const [show, setShow] = useState(false);
   const [cc_num, setCc_num] = useState('');
@@ -50,8 +50,10 @@ const MakeTransaction = () => {
       );
       // Handle Response
       if (response.data.success) {
+        setDataCounter(dataCounter + 1);
         transferSuccess();
       } else {
+        console.error(response.data.error);
         transferFailed();
       }
     } catch (error) {
@@ -83,6 +85,23 @@ const MakeTransaction = () => {
               />
             </Form.Group>
             <Form.Group className="mb-3">
+              <Form.Label>City of Sending User Account:</Form.Label>
+              <SearchableDropdown items={cities} selectedItem={city} setSelectedItem={setCity} custom_prompt={"Select City..."}/>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Job of Sending User Account:</Form.Label>
+              <SearchableDropdown items={jobs} selectedItem={job} setSelectedItem={setJob} custom_prompt={"Select Job..."}/>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>D/O/B of Sending User Account:</Form.Label>
+              <Form.Control
+                required
+                type="date"
+                value={dob}
+                onChange={e => setDob(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
               <Form.Label>Merchant Account:</Form.Label>
               <Form.Control
                 required
@@ -102,23 +121,6 @@ const MakeTransaction = () => {
                 type="text"
                 value={amt}
                 onChange={e => setAmt(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>City of Sending User Account:</Form.Label>
-              <SearchableDropdown items={cities} selectedItem={city} setSelectedItem={setCity} custom_prompt={"Select City..."}/>
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Job of Sending User Account:</Form.Label>
-              <SearchableDropdown items={jobs} selectedItem={job} setSelectedItem={setJob} custom_prompt={"Select Job..."}/>
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>D/O/B of Sending User Account:</Form.Label>
-              <Form.Control
-                required
-                type="date"
-                value={dob}
-                onChange={e => setDob(e.target.value)}
               />
             </Form.Group>
             <Button variant="primary" type="submit">

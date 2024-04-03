@@ -63,8 +63,6 @@ const SignupPage = () => {
     <Menu/>
     <div className={style.container}>
       <p className={style.headsignup}>Create account</p>
-      {signupFailed && <div>{signupFailed}</div>}
-
       <form className={style.form} onSubmit={handleSignup}>
         <input className={style.input} type="text" value={username} placeholder='Username' onChange={(e) => setUsernameInput(e.target.value)} />
         <input className={style.input} type="text" value={email} placeholder='Email' onChange={(e) => setEmail(e.target.value)} />

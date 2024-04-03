@@ -48,7 +48,6 @@ const ResetRequestPage = () => {
     <Menu/>
     <div className={style.container}>
       <p className={style.headforgot}>Reset Password</p>
-      {OTPSendFailed && <div>{OTPSendFailed}</div>} 
       <form onSubmit={handleReset}>
         <input className={style.input} type="text" value={email} placeholder='Email' onChange={(e) => setEmail(e.target.value)} />
         <button className={style.button} type="submit">Send OTP</button>

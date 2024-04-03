@@ -3,14 +3,14 @@ import style from "./dashboard.module.css";
 
 import TransactionHistory from "./transaction_history";
 
-const Dashboard = () => {
+const Dashboard = ({ dataCounter }) => {
   return (
     <main className={style["dashboard-container"]}>
       <div className={style["dashboard-title"]}>
         <h3>DASHBOARD</h3>
       </div>
 
-      <TransactionHistory />
+      <TransactionHistory dataCounter={dataCounter}/>
     </main>
   );
 };

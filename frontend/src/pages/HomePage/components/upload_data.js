@@ -6,7 +6,7 @@ import axios from 'axios';
 import { toast } from "react-toastify";
 import style from "./header.module.css";
 
-const UploadData = () => {
+const UploadData = ({ dataCounter, setDataCounter }) => {
   const [show, setShow] = useState(false);
   const [file, setFile] = useState();
   const {username, token} = useUser();
@@ -36,9 +36,10 @@ const UploadData = () => {
       );
       // Handle Response
       if (response.data.success) {
+        setDataCounter(dataCounter + 1);
         uploadSuccess();
       } else {
-        console.error(response.data.error)
+        console.error(response.data.error);
         uploadFailed();
       }
     } catch (error) {

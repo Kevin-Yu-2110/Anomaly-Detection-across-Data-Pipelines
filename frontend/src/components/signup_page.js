@@ -5,6 +5,8 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 import style from './style.module.css';
+import video from './assets/background1.mp4';
+import Menu from './menu';
 
 const SignupPage = () => {
   const {user_login} = useUser();
@@ -46,6 +48,9 @@ const SignupPage = () => {
   };
 
   return (
+    <div className={style.background}>
+    <video src={video} autoPlay loop muted />
+    <Menu/>
     <div className={style.container}>
       <p className={style.headsignup}>Create account</p>
       {signupFailed && <div>{signupFailed}</div>}
@@ -61,11 +66,12 @@ const SignupPage = () => {
 
         <br></br>
         
-        <button className={style.button} type="submit">Signup</button>
+        <button className={style.button} type="submit">Sign Up</button>
       </form>
       <div>
-        <p>Already have an account? <button className={style.button} onClick={() => navigate("/")}>Login</button></p>
+        <p>Already have an account? <button className={style.button} onClick={() => navigate("/login")}>Login</button></p>
       </div>
+    </div>
     </div>
   );
 };

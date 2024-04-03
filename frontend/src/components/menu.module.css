@@ -1,0 +1,31 @@
+#bigContainer {
+    position: absolute;
+    width: 100%;
+    top: 0%;
+    background-color: #333;
+}
+
+#smallContainer {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.elementC {
+    margin: 0 10px;
+}
+
+.elementS {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.elementS:hover {
+    background-color: #555;
+  }

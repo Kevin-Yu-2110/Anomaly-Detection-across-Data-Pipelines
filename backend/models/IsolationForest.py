@@ -7,7 +7,7 @@ import pandas as pd
 from sklearn.metrics import confusion_matrix
 from sklearn.ensemble import IsolationForest
 from sklearn.preprocessing import LabelEncoder
-from models.clean_up import clean_up
+from clean_up import clean_up
 
 import mlflow
 from mlflow import MlflowClient
@@ -55,9 +55,11 @@ class isolationForestModel():
     def __init__(self):
         try:
             model_path = os.path.join(os.path.dirname(__file__), 'IsolationForest.pickle')
-            self.model = open(model_path, 'rb')
+            with open(model_path, 'rb') as model:
+                self.model = pickle.load(model)
             encoder_path = os.path.join(os.path.dirname(__file__), 'Encoder.pickle')
-            self.encoder = open(encoder_path, 'rb')
+            with open(encoder_path, 'rb') as encoder:
+                self.encoder = pickle.load(encoder)
         except Exception as e:
             print("EXCEPTION: ", e)
             model, encoder = train_model()
@@ -71,10 +73,18 @@ class isolationForestModel():
     def predict(self, X):
         try:
             data_input = pd.DataFrame(X, columns=['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob'])
-            encoded_input = clean_up(data_input, self.encoder)
-            return self.model.predict(encoded_input)
+            encoded_input = clean_up(data_input, self.encoder)[0]
+            prediction = self.model.predict(encoded_input)[0]
+            if (prediction == -1):
+                prediction = 1
+            elif (prediction == 1):
+                prediction = 0
+            return prediction
         except Exception as e:
+            print("EXCEPTION: ", e)
             pass
 
 if __name__ == '__main__':
     badModel = isolationForestModel()
+    sample_obs = [['2020-06-21 22:06:39', '4.859526e+15', "fraud_Effertz, Welch and Schowalter", "entertainment", 700000, "Notrees", "Cytogeneticist", "1969-09-15"]]
+    print(badModel.predict(sample_obs))

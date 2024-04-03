@@ -7,7 +7,7 @@ import pandas as pd
 from sklearn.metrics import confusion_matrix
 from sklearn.ensemble import IsolationForest
 from sklearn.preprocessing import LabelEncoder
-from clean_up import clean_up
+from model.clean_up import clean_up
 
 import mlflow
 from mlflow import MlflowClient
@@ -86,5 +86,3 @@ class isolationForestModel():
 
 if __name__ == '__main__':
     badModel = isolationForestModel()
-    sample_obs = [['2020-06-21 22:06:39', '4.859526e+15', "fraud_Effertz, Welch and Schowalter", "entertainment", 700000, "Notrees", "Cytogeneticist", "1969-09-15"]]
-    print(badModel.predict(sample_obs))

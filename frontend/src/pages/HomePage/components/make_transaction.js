@@ -50,10 +50,10 @@ const MakeTransaction = ({ dataCounter, setDataCounter }) => {
       );
       // Handle Response
       if (response.data.success) {
-        console.log(setDataCounter);
         setDataCounter(dataCounter + 1);
         transferSuccess();
       } else {
+        console.error(response.data.error);
         transferFailed();
       }
     } catch (error) {

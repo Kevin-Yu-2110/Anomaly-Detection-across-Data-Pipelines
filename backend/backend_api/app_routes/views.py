@@ -186,6 +186,7 @@ def make_transaction(request):
             dob = request.POST['dob'],
         )
         detect_anomaly(transaction)
+        transaction.save()
         return JsonResponse({'success': True})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
@@ -267,6 +268,7 @@ def process_transaction_log(request):
                     dob = row[7],
                 )
                 detect_anomaly(transaction)
+                transaction.save()
             row_count += 1
         return JsonResponse({'success': True})
     except Exception as e:

@@ -78,10 +78,24 @@ const TransactionHistory = ({ dataCounter }) => {
       name: "Time of transfer",
       selector: row => row.time_of_transfer
     },
-    // {
-    //   name: "Anomalous?",
-    //   selector: row => row.anomalous
-    // }
+    {
+      name: "Anomalous?",
+      cell: row => <div>{row.anomalous ? (<div>Yes</div>) : (<div>No</div>)}</div>,
+      conditionalCellStyles: [
+        {
+          when: row => row.anomalous,
+          style: {
+            backgroundColor: "#610000",
+          }
+        },
+        {
+          when: row => !row.anomalous,
+          style: {
+            // backgroundColor: "#234711"
+          }
+        }
+      ]
+    }
   ]
 
   // fetch data based on the currently selected page
@@ -99,6 +113,7 @@ const TransactionHistory = ({ dataCounter }) => {
       }
     );
     setData(response.data.transaction_history);
+    console.log(response.data.transaction_history)
     setTotalRows(response.data.total_entries);
     setLoading(false);
   }

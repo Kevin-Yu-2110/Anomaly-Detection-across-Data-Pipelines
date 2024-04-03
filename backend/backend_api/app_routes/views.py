@@ -30,7 +30,10 @@ def validate_attached_token(request):
         token = request.META['HTTP_AUTHORIZATION'][7:] # remove "Bearer " prefix
         decoded_token = jwt.decode(token, JWT_KEY, algorithms=['HS256'])
         requesting_user = decoded_token.get('username')
-        impacted_user = request.POST['username']
+        if request.method == 'POST':
+            impacted_user = request.POST['username']
+        elif request.method == 'GET':
+            impacted_user = request.GET['username']
         return impacted_user == requesting_user
     except:
         return False
@@ -222,13 +225,13 @@ def update_email(request):
         return JsonResponse({'success': False, 'error': str(e)})
 
 @csrf_exempt
-@require_POST
+@require_GET
 @auth_required
 def get_transaction_history(request):
     try:
-        username=request.POST['username']
-        page_no=request.POST['page_no']
-        items_per_page = 50
+        username=request.GET['username']
+        page_no=request.GET['page_no']
+        items_per_page = 25
         transactions = Transaction.objects.filter(Q(uploading_user=username)).order_by('time_of_transfer')
         total_entries = str(len(transactions))
         paginator = Paginator(transactions, items_per_page)

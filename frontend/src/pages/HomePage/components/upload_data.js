@@ -4,6 +4,7 @@ import { BsUpload } from "react-icons/bs";
 import { useUser } from "../../../UserContext.js";
 import axios from 'axios';
 import { toast } from "react-toastify";
+import style from "./header.module.css";
 
 const UploadData = () => {
   const [show, setShow] = useState(false);
@@ -37,6 +38,7 @@ const UploadData = () => {
       if (response.data.success) {
         uploadSuccess();
       } else {
+        console.error(response.data.error)
         uploadFailed();
       }
     } catch (error) {
@@ -47,7 +49,7 @@ const UploadData = () => {
   return (
     <>
       <Button variant="outline-info" onClick={handleShow}>
-        <BsUpload className="icon"></BsUpload>
+        <BsUpload className={style.icon}></BsUpload>
         Upload Data
       </Button>
 

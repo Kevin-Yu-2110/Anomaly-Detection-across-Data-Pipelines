@@ -5,6 +5,7 @@ import { useUser } from "../../../UserContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import style from "./header.module.css";
 
 const UserProfile = () => {
   const navigate = useNavigate();
@@ -138,7 +139,7 @@ const UserProfile = () => {
 
   return (
     <>
-      <BsPersonCircle className="icon" onClick={handleShowProfile}></BsPersonCircle>
+      <BsPersonCircle className={style.icon} onClick={handleShowProfile}></BsPersonCircle>
 
       {/** user profile modal */}
       <Modal show={showProfile} onHide={handleCloseProfile}>

@@ -39,6 +39,7 @@ const UploadData = ({ dataCounter, setDataCounter }) => {
         setDataCounter(dataCounter + 1);
         uploadSuccess();
       } else {
+        console.error(response.data.error);
         uploadFailed();
       }
     } catch (error) {

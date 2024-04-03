@@ -91,7 +91,7 @@ const TransactionHistory = ({ dataCounter }) => {
         {
           when: row => !row.anomalous,
           style: {
-            // backgroundColor: "#234711"
+            backgroundColor: "#234711"
           }
         }
       ]
@@ -113,7 +113,6 @@ const TransactionHistory = ({ dataCounter }) => {
       }
     );
     setData(response.data.transaction_history);
-    console.log(response.data.transaction_history)
     setTotalRows(response.data.total_entries);
     setLoading(false);
   }

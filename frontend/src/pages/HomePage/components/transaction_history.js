@@ -140,6 +140,7 @@ const TransactionHistory = ({ dataCounter }) => {
         paginationServer
         paginationTotalRows={totalRows}
         onChangePage={handlePageChange}
+        selectableRows
         theme="customDark"
         customStyles={tableStyle}
       />

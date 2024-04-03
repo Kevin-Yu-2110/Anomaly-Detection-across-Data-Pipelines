@@ -14,6 +14,7 @@ def clean_up(X, enc = None):
     numerical_X["age"] = (pd.to_datetime(X["trans_date_trans_time"]) - pd.to_datetime(X["dob"])).dt.days
     categorical_X = X[["cc_num", "merchant", "category", "city", "job"]].copy()
     categorical_X[["cc_num"]] = categorical_X[["cc_num"]].astype("int64")
+    categorical_X["merchant"] = categorical_X["merchant"].apply(lambda x : x.replace("fraud_", "", 1))
     if not enc:
         enc = {}
         for column in categorical_X:

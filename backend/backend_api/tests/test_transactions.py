@@ -357,6 +357,24 @@ class UserAuthenticationTests(TestCase):
         data = response.json()
         self.assertTrue(data['success'])
         response = self.client.post(
+            reverse('make_transaction'),
+            data={
+                'username': 'Jimmy',
+                'cc_num': '1947292075921022',
+                'merchant': 'merchant',
+                'category': 'personal_care',
+                'amt': '59.99',
+                'city': 'Melbourne',
+                'job': 'Accountant',
+                'dob': '1995-04-23',
+            },
+            headers={
+                'Authorization': f"Bearer {auth_token}"
+            }
+        )
+        data = response.json()
+        self.assertTrue(data['success'])
+        response = self.client.post(
             reverse('get_transaction_by_field'),
             data={
                 'username': 'Jimmy',
@@ -365,12 +383,13 @@ class UserAuthenticationTests(TestCase):
                     'merchant': 'merchant3',
                     'category': 'personal_care'
                 }),
-                'sort_fields': json.dumps([])
+                'sort_fields': json.dumps(['dob'])
             },
             headers={
                 'Authorization': f"Bearer {auth_token}"
             }
         )
+        #search by merchant = merchant 3
         data = response.json()
         self.assertTrue(data['success'])
         self.assertTrue(data['total_entries'] == "1")

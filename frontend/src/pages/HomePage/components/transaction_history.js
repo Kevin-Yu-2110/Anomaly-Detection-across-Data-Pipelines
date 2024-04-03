@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import DataTable, { createTheme } from "react-data-table-component";
 import { useUser } from "../../../UserContext";
+import { Button } from "react-bootstrap";
 
 const TransactionHistory = ({ dataCounter }) => {
   const {username, token} = useUser();
@@ -64,11 +65,11 @@ const TransactionHistory = ({ dataCounter }) => {
     },
     {
       name: "Payee account name",
-      selector: row => row.merchant
+      selector: row => row.merchant,
     },
     {
       name: "Amount",
-      selector: row => row.amt
+      selector: row => row.amt,
     },
     {
       name: "Category",
@@ -81,6 +82,8 @@ const TransactionHistory = ({ dataCounter }) => {
     {
       name: "Anomalous?",
       cell: row => <div>{row.anomalous ? (<div>Yes</div>) : (<div>No</div>)}</div>,
+      wrap: true,
+      maxWidth: "150px",
       conditionalCellStyles: [
         {
           when: row => row.anomalous,
@@ -95,6 +98,16 @@ const TransactionHistory = ({ dataCounter }) => {
           }
         }
       ]
+    },
+    {
+      name: "Accept",
+      button: true,
+      cell: row => <div>{row.anomalous && <Button>Accept</Button>}</div>
+    },
+    {
+      name: "Ignore",
+      button: true,
+      cell: row => <div>{row.anomalous && <Button>Ignore</Button>}</div>
     }
   ]
 
@@ -140,7 +153,7 @@ const TransactionHistory = ({ dataCounter }) => {
         paginationServer
         paginationTotalRows={totalRows}
         onChangePage={handlePageChange}
-        selectableRows
+        responsive
         theme="customDark"
         customStyles={tableStyle}
       />

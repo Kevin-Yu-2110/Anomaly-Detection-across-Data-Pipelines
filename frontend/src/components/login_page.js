@@ -4,7 +4,9 @@ import { useUser } from '../UserContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
+import video from './assets/background1.mp4';
 import login_style from './style.module.css';
+import Menu from './menu';
 
 const LoginPage = () => {
   const {user_login} = useUser();
@@ -43,20 +45,24 @@ const LoginPage = () => {
   };
 
   return (
-    <div className={login_style.container}>
-      <p className={login_style.headlogin}>Login</p>
-      <form onSubmit={handleLogin}>
-        <input className={login_style.input} type="text" placeholder='Username' value={username} onChange={(e) => setUsernameInput(e.target.value)} />
-        <br></br>
-        <input className={login_style.input} type="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
-        <br></br>
-        <button className={login_style.button} type="submit">Login</button>
-      </form>
-      <div style={{marginTop:'10px'}}>
-        <p>Create a new account? <button className={login_style.button} onClick={() => navigate("/signup")}>Sign Up</button></p>
-      </div>
-      <div style={{marginTop:'10px'}}>
-        <p>Forgot password? <button className={login_style.button} onClick={() => navigate("/resetRequest")}>Reset Password</button></p>
+    <div className={login_style.background}>
+      <video src={video} autoPlay loop muted />
+      <Menu/>
+      <div className={login_style.container}>
+        <p className={login_style.headlogin}>Login</p>
+        <form onSubmit={handleLogin}>
+          <input className={login_style.input} type="text" placeholder='Username' value={username} onChange={(e) => setUsernameInput(e.target.value)} />
+          <br></br>
+          <input className={login_style.input} type="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
+          <br></br>
+          <button className={login_style.button} type="submit">Login</button>
+        </form>
+        <div style={{marginTop:'10px'}}>
+          <p><button className={login_style.button} onClick={() => navigate("/signup")}>Sign Up</button></p>
+        </div>
+        <div style={{marginTop:'10px'}}>
+        <a className={login_style.link} href="/resetRequest">forgot password</a>
+        </div>
       </div>
     </div>
   );

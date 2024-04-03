@@ -4,6 +4,8 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 import style from './style.module.css';
+import video from './assets/background1.mp4';
+import Menu from './menu';
 
 const ResetRequestPage = () => {
   const [email, setEmail] = useState('');
@@ -40,6 +42,10 @@ const ResetRequestPage = () => {
   }
   
   return (
+    <div className={style.background}>
+    
+    <video src={video} autoPlay loop muted />
+    <Menu/>
     <div className={style.container}>
       <p className={style.headforgot}>Reset Password</p>
       {OTPSendFailed && <div>{OTPSendFailed}</div>} 
@@ -48,8 +54,9 @@ const ResetRequestPage = () => {
         <button className={style.button} type="submit">Send OTP</button>
       </form>
       <div style={{marginTop:'10px'}}>
-        <p>Back to <button className={style.button} onClick={() => navigate("/")}>Login</button></p>
+        <p>Back to <button className={style.button} onClick={() => navigate("/login")}>Login</button></p>
       </div>
+    </div>
     </div>
   );
 };

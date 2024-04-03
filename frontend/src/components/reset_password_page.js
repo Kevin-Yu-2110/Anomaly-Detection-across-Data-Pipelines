@@ -4,6 +4,8 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 import style from './style.module.css';
+import video from './assets/background1.mp4';
+import Menu from './menu';
 
 const ResetPasswordPage = () => {
   const [password1, setPassword1] = useState('');
@@ -37,7 +39,7 @@ const ResetPasswordPage = () => {
       );
       // Handle Response
       if (response.data.success) {
-          navigate("/resetDone");
+          navigate("/login");
       } else {
         resetFailed();
       }
@@ -47,6 +49,9 @@ const ResetPasswordPage = () => {
   };
 
   return (
+    <div className={style.background}>
+    <video src={video} autoPlay loop muted />
+    <Menu/>
     <div className={style.container}>
       <p className={style.headforgot}>Reset Password</p>
       {resetFailed && <div>{resetFailed}</div>}
@@ -60,8 +65,9 @@ const ResetPasswordPage = () => {
         <button className={style.button} type="submit">Reset</button>
       </form>
       <div style={{marginTop:'10px'}}>
-        <p>Back to <button className={style.button} onClick={() => navigate("/")}>Login</button></p>
+        <p>Back to <button className={style.button} onClick={() => navigate("/login")}>Login</button></p>
       </div>
+    </div>
     </div>
   );
 };

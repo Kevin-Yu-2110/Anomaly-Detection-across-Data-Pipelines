@@ -5,7 +5,12 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import SearchableDropdown from './search_dropdown';
 import style from './style.module.css';
+
+import video from './assets/background1.mp4';
+import Menu from './menu';
+=======
 import {cities, jobs} from './model_features'
+
 
 const SignupPage = () => {
   // input fields
@@ -54,6 +59,9 @@ const SignupPage = () => {
   };
 
   return (
+    <div className={style.background}>
+    <video src={video} autoPlay loop muted />
+    <Menu/>
     <div className={style.container}>
       <p className={style.headsignup}>Create account</p>
       {signupFailed && <div>{signupFailed}</div>}
@@ -68,11 +76,12 @@ const SignupPage = () => {
         <input className={style.input} type="password" value={password2} placeholder='Confirm Password' onChange={(e) => setPassword2(e.target.value)} />
 
         <br></br>
-        <button className={style.button} type="submit">Signup</button>
+        <button className={style.button} type="submit">Sign Up</button>
       </form>
       <div>
-        <p>Already have an account? <button className={style.button} onClick={() => navigate("/")}>Login</button></p>
+        <p>Already have an account? <button className={style.button} onClick={() => navigate("/login")}>Login</button></p>
       </div>
+    </div>
     </div>
   );
 };

@@ -3,28 +3,15 @@ import os
 import pickle
 import numpy as np
 import pandas as pd
+
 from sklearn.metrics import confusion_matrix
 from sklearn.ensemble import IsolationForest
 from sklearn.preprocessing import LabelEncoder
-
+from models.clean_up import clean_up
 
 import mlflow
 from mlflow import MlflowClient
 
-def clean_up(X, enc = None):
-    numerical_X = X[["amt"]]
-    date_information = pd.DatetimeIndex(pd.to_datetime(X["trans_date_trans_time"]))
-    numerical_X["year"] = date_information.year
-    numerical_X["month"] = date_information.month
-    numerical_X["day"] = date_information.day
-    numerical_X["time"] = date_information.second + 60 * date_information.minute + 3600 * date_information.second
-    numerical_X["age"] = (pd.to_datetime(X["trans_date_trans_time"]) - pd.to_datetime(X["dob"])).dt.days
-    categorical_X = X[["cc_num", "merchant", "category", "city", "job"]]
-    if not enc:
-        enc = LabelEncoder()
-    for column in categorical_X:
-        categorical_X[column] = enc.fit_transform(categorical_X[column])
-    return pd.concat([numerical_X, categorical_X], axis = 1), enc
 
 def train_model():
     # enable autologging
@@ -68,9 +55,11 @@ class isolationForestModel():
     def __init__(self):
         try:
             model_path = os.path.join(os.path.dirname(__file__), 'IsolationForest.pickle')
-            self.model = open(model_path, 'rb')
+            with open(model_path, 'rb') as model:
+                self.model = pickle.load(model)
             encoder_path = os.path.join(os.path.dirname(__file__), 'Encoder.pickle')
-            self.encoder = open(encoder_path, 'rb')
+            with open(encoder_path, 'rb') as encoder:
+                self.encoder = pickle.load(encoder)
         except Exception as e:
             print("EXCEPTION: ", e)
             model, encoder = train_model()
@@ -84,9 +73,15 @@ class isolationForestModel():
     def predict(self, X):
         try:
             data_input = pd.DataFrame(X, columns=['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob'])
-            encoded_input = clean_up(data_input, self.encoder)
-            return self.model.predict(encoded_input)
+            encoded_input = clean_up(data_input, self.encoder)[0]
+            prediction = self.model.predict(encoded_input)[0]
+            if (prediction == -1):
+                prediction = 1
+            elif (prediction == 1):
+                prediction = 0
+            return prediction
         except Exception as e:
+            print("EXCEPTION: ", e)
             pass
 
 if __name__ == '__main__':

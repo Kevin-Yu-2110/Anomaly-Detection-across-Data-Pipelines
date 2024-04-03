@@ -8,7 +8,6 @@ import style from './style.module.css';
 
 import video from './assets/background1.mp4';
 import Menu from './menu';
-=======
 import {cities, jobs} from './model_features'
 
 

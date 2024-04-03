@@ -49,7 +49,6 @@ const ResetPasswordPage = () => {
   return (
     <div className={style.container}>
       <p className={style.headforgot}>Reset Password</p>
-      {resetFailed && <div>{resetFailed}</div>}
       <form onSubmit={handleReset}>
         <input className={style.input} type="text" value={otp} placeholder='6 digit otp' onChange={(e) => setotp(e.target.value)} />
 

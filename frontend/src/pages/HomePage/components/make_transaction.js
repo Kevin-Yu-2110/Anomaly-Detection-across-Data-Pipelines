@@ -8,7 +8,7 @@ import axios from "axios";
 import { toast } from 'react-toastify';
 import style from "./header.module.css";
 
-const MakeTransaction = () => {
+const MakeTransaction = ({ dataCounter, setDataCounter }) => {
   const {username, token} = useUser();
   const [show, setShow] = useState(false);
   const [cc_num, setCc_num] = useState('');
@@ -50,6 +50,8 @@ const MakeTransaction = () => {
       );
       // Handle Response
       if (response.data.success) {
+        console.log(setDataCounter);
+        setDataCounter(dataCounter + 1);
         transferSuccess();
       } else {
         transferFailed();

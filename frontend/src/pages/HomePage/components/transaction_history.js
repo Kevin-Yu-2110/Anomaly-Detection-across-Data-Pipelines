@@ -1,13 +1,61 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import DataTable from "react-data-table-component";
+import DataTable, { createTheme } from "react-data-table-component";
 import { useUser } from "../../../UserContext";
 
-const TransactionHistory = () => {
+const TransactionHistory = ({ dataCounter }) => {
   const {username, token} = useUser();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [totalRows, setTotalRows] = useState(0);
+  const [page, setPage] = useState(1);
+
+  createTheme("customDark", {
+    text: {
+      primary: "#f2f2f2",
+    },
+    background: {
+      default: "#2f4468",
+    }
+  }, "dark");
+
+  const tableStyle = {
+    table: {
+      style: {
+        minHeight: "100vh"
+      }
+    },
+    header: {
+      style: {
+        fontSize: "180%",
+        paddingTop: "10px",
+      },
+    },
+    head: {
+      style: {
+        fontSize: "110%",
+        fontWeight: "bold"
+      }
+    },
+    headRow: {
+      style: {
+        borderBottomColor: 'gray'
+      }
+    },
+    rows: {
+      style: {
+        fontSize: "100%",
+        '&:not(:last-of-type)': {
+          borderBottomColor: 'gray'
+        },
+      }
+    },
+    pagination: {
+      style: {
+        borderTopColor: 'gray'
+      }
+    }
+  };
 
   const columns = [
     {
@@ -36,6 +84,7 @@ const TransactionHistory = () => {
     // }
   ]
 
+  // fetch data based on the currently selected page
   const fetchData = async (page_no) => {
     setLoading(true);
     const response = await axios.get("http://127.0.0.1:8000/api/get_transaction_history/",
@@ -55,13 +104,14 @@ const TransactionHistory = () => {
   }
 
   const handlePageChange = (page) => {
+    setPage(page);
     fetchData(page);
   }
 
   useEffect(() => {
-    fetchData(1);
+    fetchData(page);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dataCounter]);
 
   return (
     <>
@@ -76,6 +126,8 @@ const TransactionHistory = () => {
         paginationServer
         paginationTotalRows={totalRows}
         onChangePage={handlePageChange}
+        theme="customDark"
+        customStyles={tableStyle}
       />
     </>
   )

@@ -232,7 +232,7 @@ def get_transaction_history(request):
         username=request.GET['username']
         page_no=request.GET['page_no']
         items_per_page = 25
-        transactions = Transaction.objects.filter(Q(uploading_user=username)).order_by('time_of_transfer')
+        transactions = Transaction.objects.filter(Q(uploading_user=username)).order_by('-time_of_transfer')
         total_entries = str(len(transactions))
         paginator = Paginator(transactions, items_per_page)
         page = paginator.page(page_no)

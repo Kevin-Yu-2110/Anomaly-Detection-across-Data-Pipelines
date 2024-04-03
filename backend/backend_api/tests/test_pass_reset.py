@@ -11,6 +11,9 @@ class UserAuthenticationTests(TestCase):
             data = {
                 'username': 'newuser',
                 'email': 'pearproject3900@gmail.com',
+                'city': 'Melbourne',
+                'job': 'Cartographer',
+                'dob': '1971-11-03',
                 'password1': 'admin123123',
                 'password2': 'admin123123',
             }
@@ -71,6 +74,9 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'newuser',
                 'email': 'pearproject3900@gmail.com',
+                'city': 'Melbourne',
+                'job': 'Cartographer',
+                'dob': '1971-11-03',
                 'password1': 'admin123123',
                 'password2': 'admin123123',
             }

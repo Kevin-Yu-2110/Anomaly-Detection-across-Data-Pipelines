@@ -1,0 +1,46 @@
+Week 1
+- Joined group
+- Selected project 15 based on the skillset of group members
+- Set up jira
+
+Week 2
+- Finalised group members and project selection
+- Selected as scrum master
+
+Week 3
+- Met with client 
+- Worked on and wrote user stories, requirements section of project proposal together with rest of the group
+- Wrote the sprints and novelty section of project proposal 
+- Created user stories on Jira and assigned some for first sprint
+- Submitted project proposal
+
+Sprint 1:
+Week 4
+- Brainstorm and research possible models for anomaly detection
+- Created a basic Autoencoder model 
+- Tested basic Autoencoder model with basic preprocessed data
+- Created 2 other neural network models that did not work well
+- Found a more suitable dataset and finalised dataset selection
+
+Week 5
+- Prepared model results for demo A
+- Meeting with team after demo for retrospective/reflection on sprint 1 as well as discussing plans for sprint 2
+- Submitted retrospective A
+
+Sprint 2:
+Week 6
+- Planned objectives for sprint 2 with group
+- Trained Autoencoder model on actual dataset
+- Trained KNN model on actual dataset
+- Trained SVC model on actual dataset
+- Trained Gradient boosted tree model on actual dataset
+- Trained Random Forest model on actual dataset
+- Trained Adaboosted tree model on actual dataset
+
+Week 7
+- Assessed model accuracy
+- Created predict function for each model for backend to call
+- Explore ways to improve model preformance
+- Performed hyperparameter tuning for KNN, Gradient boosted tree and Random Forest model
+- Explored options for better predictions such as combining models
+- Extracted list of possible values for categorical features

@@ -23,7 +23,7 @@ const MakeTransaction = ({ dataCounter, setDataCounter }) => {
   const handleShow = () => setShow(true);
 
   const transferSuccess = () => toast.success("Transferred successfully");
-  const transferFailed = () => toast.error("Transfer failed");
+  const transferFailed = (error) => toast.error(`Transfer failed: ${error}`);
 
   const makeTransaction = async (e) => {
     e.preventDefault();
@@ -53,11 +53,10 @@ const MakeTransaction = ({ dataCounter, setDataCounter }) => {
         setDataCounter(dataCounter + 1);
         transferSuccess();
       } else {
-        console.error(response.data.error);
-        transferFailed();
+        transferFailed(response.data.error);
       }
     } catch (error) {
-      console.error('Transaction Failed: Server-Side Error:', error);
+      transferFailed(error);
     }
     handleClose();
   };
@@ -66,12 +65,13 @@ const MakeTransaction = ({ dataCounter, setDataCounter }) => {
     <>
       <Button variant="outline-info" onClick={handleShow}>
         <BsCash className={style.icon}></BsCash>
-        Make Transaction
+        Upload Transaction
       </Button>
 
+      {/** Popup form that allows user to upload a single transaction */}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Make Transaction</Modal.Title>
+          <Modal.Title>Upload Transaction</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={makeTransaction}>

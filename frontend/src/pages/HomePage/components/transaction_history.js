@@ -3,6 +3,7 @@ import axios from "axios";
 import DataTable, { createTheme } from "react-data-table-component";
 import { useUser } from "../../../UserContext";
 import { Button } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const TransactionHistory = ({ dataCounter }) => {
   const {username, token} = useUser();
@@ -10,6 +11,8 @@ const TransactionHistory = ({ dataCounter }) => {
   const [loading, setLoading] = useState(false);
   const [totalRows, setTotalRows] = useState(0);
   const [page, setPage] = useState(1);
+
+  const fetchFailed = (error) => toast.error(`Failed to fetch data: ${error}`);
 
   createTheme("customDark", {
     text: {
@@ -23,7 +26,8 @@ const TransactionHistory = ({ dataCounter }) => {
   const tableStyle = {
     table: {
       style: {
-        minHeight: "100vh"
+        minHeight: "100vh",
+        maxWidth: "100vw"
       }
     },
     header: {
@@ -82,7 +86,6 @@ const TransactionHistory = ({ dataCounter }) => {
     {
       name: "Anomalous?",
       cell: row => <div>{row.anomalous ? (<div>Yes</div>) : (<div>No</div>)}</div>,
-      wrap: true,
       maxWidth: "150px",
       conditionalCellStyles: [
         {
@@ -100,34 +103,38 @@ const TransactionHistory = ({ dataCounter }) => {
       ]
     },
     {
-      name: "Accept",
-      button: true,
-      cell: row => <div>{row.anomalous && <Button>Accept</Button>}</div>
-    },
-    {
-      name: "Ignore",
-      button: true,
-      cell: row => <div>{row.anomalous && <Button>Ignore</Button>}</div>
+      cell: row => <Button variant="primary outline-warning">Flag prediction</Button>
     }
   ]
 
   // fetch data based on the currently selected page
   const fetchData = async (page_no) => {
-    setLoading(true);
-    const response = await axios.get("http://127.0.0.1:8000/api/get_transaction_history/",
-      {
-        params: {
-          username,
-          page_no
-        },
-        headers: {
-          Authorization: token
+    // request transaction history based on page and search/sort/aggregate parmams
+    try {
+      setLoading(true);
+      const response = await axios.get("http://127.0.0.1:8000/api/get_transaction_history/",
+        {
+          params: {
+            username,
+            page_no
+          },
+          headers: {
+            Authorization: token
+          }
         }
+      );
+      // handle response
+      if (response.data.success) {
+        setData(response.data.transaction_history);
+        setTotalRows(response.data.total_entries);
+        setLoading(false);
+      } else {
+        fetchFailed(response.data.error);
+        setLoading(false);
       }
-    );
-    setData(response.data.transaction_history);
-    setTotalRows(response.data.total_entries);
-    setLoading(false);
+    } catch (error) {
+      fetchFailed(error);
+    }
   }
 
   const handlePageChange = (page) => {

@@ -15,7 +15,7 @@ const UploadData = ({ dataCounter, setDataCounter }) => {
   const handleShow = () => setShow(true);
 
   const uploadSuccess = () => toast.success("File uploaded succesfully");
-  const uploadFailed = () => toast.error("File upload failed");
+  const uploadFailed = (error) => toast.error(`File upload failed: ${error}`);
 
   const uploadFile = async (e) => {
     e.preventDefault();
@@ -39,11 +39,10 @@ const UploadData = ({ dataCounter, setDataCounter }) => {
         setDataCounter(dataCounter + 1);
         uploadSuccess();
       } else {
-        console.error(response.data.error);
-        uploadFailed();
+        uploadFailed(response.data.error);
       }
     } catch (error) {
-      console.error('Error uploading file:', error);
+      uploadFailed(error);
     }
   }
 

@@ -8,7 +8,7 @@ from sklearn.metrics import confusion_matrix
 from sklearn.ensemble import IsolationForest
 from sklearn.preprocessing import LabelEncoder
 from models.clean_up import clean_up
-from backend.models.abstract_model import abstract_model
+from models.abstract_model import abstract_model
 
 import mlflow
 from mlflow import MlflowClient

@@ -48,7 +48,7 @@ class isolationForestModel(abstract_model):
             pass
         
     def retrain(self, X):
-        model, encoder = train_model(X)
+        model, encoder = train_model(pd.DataFrame(X, columns = ['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob', 'class']))
         self.model = model
         self.encoder = encoder
 

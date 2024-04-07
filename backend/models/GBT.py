@@ -62,6 +62,6 @@ class GBTModel(abstract_model):
             pass
     
     def retrain(self, X):
-        model, encoder = train_model(pd.DataFrame(X, columns = ['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob', 'class']))
+        model, encoder = train_model(pd.DataFrame(X, columns = ['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob', 'is_fraud']))
         self.model = model
         self.encoder = encoder

@@ -23,8 +23,8 @@ def train_model(data = None):
 
     x_train, y_train = SMOTE().fit_resample(x_train, y_train)
     
-    model = AdaBoostClassifier(algorithm='SAMME.R', learning_rate=0.1)
-    model.fit(x_train, y_train)
+    model = AdaBoostClassifier(algorithm='SAMME', learning_rate=0.1)
+    model.fit(x_train, y_train.values.ravel())
 
     return model, encoder
 

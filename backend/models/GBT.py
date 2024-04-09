@@ -25,7 +25,7 @@ def train_model(data = None):
     x_train, y_train = SMOTE().fit_resample(x_train, y_train)
 
     model = HistGradientBoostingClassifier(learning_rate=0.1)
-    model.fit(x_train, y_train)
+    model.fit(x_train, y_train.values.ravel())
 
     return model, encoder
 

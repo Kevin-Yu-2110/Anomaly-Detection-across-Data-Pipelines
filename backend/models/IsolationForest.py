@@ -16,11 +16,11 @@ from mlflow import MlflowClient
 
 class isolationForestModel(abstract_model):
     def __init__(self):
+        model_path = os.path.join(os.path.dirname(__file__), 'IsolationForest.pickle')
+        encoder_path = os.path.join(os.path.dirname(__file__), 'Encoder.pickle')
         try:
-            model_path = os.path.join(os.path.dirname(__file__), 'IsolationForest.pickle')
             with open(model_path, 'rb') as model:
                 self.model = pickle.load(model)
-            encoder_path = os.path.join(os.path.dirname(__file__), 'Encoder.pickle')
             with open(encoder_path, 'rb') as encoder:
                 self.encoder = pickle.load(encoder)
         except Exception as e:

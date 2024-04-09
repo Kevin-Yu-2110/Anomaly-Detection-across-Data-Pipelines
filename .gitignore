@@ -1,7 +1,11 @@
 backend/db.sqlite3
 backend/models/archive/
+backend/models/mlartifacts/
+backend/models/mlruns/
+backend/models/IsolationForest.pickle
+backend/models/IsolationForest.py
+backend/models/fraudTest.csv
 backend/models/fraudTrain.csv
-
 frontend/node_modules
 frontend/.pnp
 frontend/.pnp.js

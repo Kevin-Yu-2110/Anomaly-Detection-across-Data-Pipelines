@@ -111,6 +111,7 @@ def get_email(request):
 def delete_account(request):
     try:
         username = request.POST['username']
+        delete_transaction_history(request)
         StandardUser.objects.get(username=username).delete()
         return JsonResponse({'success': True})
     except Exception as e:
@@ -276,7 +277,6 @@ def process_transaction_log(request):
     
 def get_transaction_by_field(request):
     try:
-       
         username=request.POST['username']
         page_no=request.POST['page_no']
         search_fields=json.loads(request.POST['search_fields'])
@@ -297,6 +297,14 @@ def get_transaction_by_field(request):
         return JsonResponse({'success': True, 'total_entries': total_entries})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
+
+def delete_transaction_history(request):
+    try:
+        username=request.POST['username']
+        Transaction.objects.filter(uploading_user=username).delete()
+        return JsonResponse({'success': True})
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': repr(e)})
 
 def detect_anomaly(transaction):
     model = isolationForestModel()

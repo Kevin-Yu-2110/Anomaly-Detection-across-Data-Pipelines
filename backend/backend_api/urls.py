@@ -14,5 +14,6 @@ urlpatterns = [
     path('update_email/', views.update_email, name='update_email'),
     path('get_transaction_history/', views.get_transaction_history, name='get_transaction_history'),
     path('process_transaction_log/', views.process_transaction_log, name='process_transaction_log'),
-    path('get_transaction_by_field/', views.get_transaction_by_field, name='get_transaction_by_field')
+    path('get_transaction_by_field/', views.get_transaction_by_field, name='get_transaction_by_field'),
+    path('delete_transation_history', views.delete_transaction_history, name='delete_transaction_history')
 ]

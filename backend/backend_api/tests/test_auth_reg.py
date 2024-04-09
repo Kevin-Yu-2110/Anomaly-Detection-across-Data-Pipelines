@@ -267,6 +267,3 @@ class UserAuthenticationTests(TestCase):
         )
         data = response.json()
         self.assertTrue(data['email'] == 'randomuser@gmail.com')
-
-
-

@@ -10,11 +10,12 @@ import style from "../header.module.css";
 const UserProfile = () => {
   const navigate = useNavigate();
   const {user_logout, email, username, token, updateEmail, updateUsername, updateToken} = useUser();
-
   const [newUsername, setNewUsername] = useState(username);
   const [newEmail, setNewEmail] = useState(email);
-
   const [showProfile, setShowProfile] = useState(false);
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+  const [showConfirmClear, setShowConfirmClear] = useState(false);
+
   const handleCloseProfile = () => {
     setShowProfile(false);
     setEditable(false);
@@ -24,25 +25,40 @@ const UserProfile = () => {
     setNewEmail(email);
     setShowProfile(true);
   }
-
-  const [showConfirm, setShowConfirm] = useState(false);
-  const handleCloseConfirm = () => setShowConfirm(false);
-  const handleShowConfirm = () => setShowConfirm(true);
+  const handleShowConfirmDelete = () => {
+    setShowConfirmDelete(true)
+  }
+  const handleCloseConfirmDelete = () => {
+    setShowConfirmDelete(false)
+  }
+  const handleShowConfirmClear = () => {
+    setShowConfirmClear(true)
+  }
+  const handleCloseConfirmClear = () => {
+    setShowConfirmClear(false)
+  }
 
   const confirmDelete = () => {
     handleCloseProfile();
-    handleShowConfirm();
+    handleShowConfirmDelete();
+  }
+
+  const confirmClearHistory = () => {
+    handleCloseProfile();
+    handleShowConfirmClear();
   }
 
   const [editable, setEditable] = useState(false);
   const handleEdit = () => setEditable(true);
 
   const deleteFailed = (error) => toast.error(`Delete account failed: ${error}`);
+  const clearHistoryFailed = (error) => toast.error(`Clear history failed: ${error}`);
   const updateUserSucceeded = () => toast.success("Username updated successfully");
   const updateUserFailed = (error) => toast.error(`Username update failed: ${error}`);
   const updateEmailSucceeded = () => toast.success("Email updated successfully");
   const updateEmailFailed = (error) => toast.error(`Email update failed: ${error}`);
 
+  // AXIOS request to call delete_account on backend
   const deleteAccount = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -68,6 +84,31 @@ const UserProfile = () => {
     }
   }
 
+  // AXIOS request to call clear_history on backend
+  const clearHistory = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("username", username);
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/api/clear_transaction_history/",
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: token
+          }
+        }
+      );
+      if (response.data.success) {
+        handleCloseConfirmClear();
+      } else {
+        clearHistoryFailed(response.data.error);
+      }
+    } catch (error) {
+      clearHistoryFailed(error);
+    }
+  }
+  
   const editAccount = async (e) => {
     e.preventDefault();
 
@@ -168,6 +209,9 @@ const UserProfile = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
+          <Button variant="danger" onClick={confirmClearHistory}> 
+            Clear History
+          </Button>
           <Button variant="danger" onClick={confirmDelete}> 
             Delete Account
           </Button>
@@ -181,7 +225,7 @@ const UserProfile = () => {
       </Modal>
 
       {/** confirm delete account modal */}
-      <Modal show={showConfirm} onHide={handleCloseConfirm}>
+      <Modal show={showConfirmDelete} onHide={handleCloseConfirmDelete}>
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
           <div>Are you sure you want to delete your account?</div>
@@ -189,6 +233,19 @@ const UserProfile = () => {
         <Modal.Footer>
           <Button variant="danger" onClick={deleteAccount}>
             Delete Account
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/** confirm clear history modal */}
+      <Modal show={showConfirmClear} onHide={handleCloseConfirmClear}>
+        <Modal.Header closeButton></Modal.Header>
+        <Modal.Body>
+          <div>Are you sure you want to delete all submitted transaction data?</div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={clearHistory}>
+            Clear History
           </Button>
         </Modal.Footer>
       </Modal>

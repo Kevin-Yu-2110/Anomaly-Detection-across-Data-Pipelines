@@ -6,6 +6,7 @@ urlpatterns = [
     path('login/', views.user_login, name='login'),
     path('logout/', views.user_logout, name='logout'),
     path('get_email/', views.get_email, name='get_email'),
+    path('clear_transaction_history/', views.clear_transaction_history, name='clear_transaction_history'),
     path('delete_account/', views.delete_account, name='delete_account'),
     path('make_transaction/', views.make_transaction, name='make_transaction'),
     path('reset_request/', views.reset_request, name='reset_request'),

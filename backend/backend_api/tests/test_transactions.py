@@ -4,7 +4,6 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 import json
 
 class UserAuthenticationTests(TestCase):
-
     def test_make_transaction(self):
         # register account
         response = self.client.post(
@@ -400,7 +399,7 @@ class UserAuthenticationTests(TestCase):
                 'username': 'Jimmy',
                 'page_no': 1,
                 'search_string': 'merchant3',
-                'sort_string': 'dob'
+                'sort_string': '-time_of_transfer'
             },
             headers={
                 'Authorization': f"Bearer {auth_token}"
@@ -410,3 +409,84 @@ class UserAuthenticationTests(TestCase):
         data = response.json()
         self.assertTrue(data['success'])
         self.assertTrue(data['total_entries'] == "1")
+
+    def test_clear_history(self):
+        # register account
+        response = self.client.post(
+            reverse('signup'), 
+            data={
+                'username': 'Jimmy',
+                'email': 'Neutron@IMBCorporate.com',
+                'city': 'Melbourne',
+                'job': 'Cartographer',
+                'dob': '1971-11-03',
+                'password1': 'alax_memento_j44',
+                'password2': 'alax_memento_j44',
+            }
+        )
+        data = response.json()
+        self.assertTrue(data['success'])
+        auth_token = data['token']
+        # Make a transaction
+        response = self.client.post(
+            reverse('make_transaction'),
+            data={
+                'username': 'Jimmy',
+                'cc_num': '1947292075921022',
+                'merchant': 'merchant1',
+                'category': 'personal_care',
+                'amt': '59.99',
+                'city': 'Melbourne',
+                'job': 'Accountant',
+                'dob': '1995-04-23',
+            },
+            headers={
+                'Authorization': f"Bearer {auth_token}"
+            }
+        )
+        data = response.json()
+        self.assertTrue(data['success'])
+        # there should exist one stored transaction
+        response = self.client.get(
+            reverse('get_transaction_history'),
+            data={
+                'username': 'Jimmy',
+                'page_no': 1,
+                'search_string': '',
+                'sort_string': '-time_of_transfer'
+            },
+            headers={
+                'Authorization': f"Bearer {auth_token}"
+            }
+        )
+        data = response.json()
+        self.assertTrue(data['success'])
+        self.assertTrue(data['total_entries'] == "1")
+        # clear transaction history
+        response = self.client.post(
+            reverse('clear_transaction_history'),
+            data={
+                'username': 'Jimmy',
+            },
+            headers={
+                'Authorization': f"Bearer {auth_token}"
+            }
+        )
+        data = response.json()
+        self.assertTrue(data['success'])
+        # there should exist no stored transactions
+        response = self.client.get(
+            reverse('get_transaction_history'),
+            data={
+                'username': 'Jimmy',
+                'page_no': 1,
+                'search_string': '',
+                'sort_string': '-time_of_transfer'
+            },
+            headers={
+                'Authorization': f"Bearer {auth_token}"
+            }
+        )
+        data = response.json()
+        self.assertTrue(data['success'])
+        self.assertTrue(data['total_entries'] == "0")

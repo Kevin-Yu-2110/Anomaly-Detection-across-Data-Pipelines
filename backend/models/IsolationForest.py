@@ -23,13 +23,15 @@ def train_model():
 
     ########################################
     ### needs to be replaced with big data pipeline
-        
-    train_data = pd.read_csv('backend/models/fraudTrain.csv')
+
+    training_data_path = os.path.join(os.path.dirname(__file__), 'fraudTrain.csv')
+    train_data = pd.read_csv(training_data_path)
     X_train, enc = clean_up(train_data.iloc[:, :-1])
     y_train = train_data.iloc[:, -1:]
 
     random_state = np.random.RandomState(42)
-    test_data = pd.read_csv('backend/models/fraudTest.csv')
+    test_data_path = os.path.join(os.path.dirname(__file__), 'fraudTest.csv')
+    test_data = pd.read_csv(test_data_path)
     X_test, enc = clean_up(test_data.iloc[:, :-1], enc)
     y_test = test_data.iloc[:, -1:]
     ##########################################
@@ -53,19 +55,19 @@ def train_model():
     
 class isolationForestModel():
     def __init__(self):
+        model_path = os.path.join(os.path.dirname(__file__), 'IsolationForest.pickle')
+        encoder_path = os.path.join(os.path.dirname(__file__), 'Encoder.pickle')
         try:
-            model_path = os.path.join(os.path.dirname(__file__), 'IsolationForest.pickle')
             with open(model_path, 'rb') as model:
                 self.model = pickle.load(model)
-            encoder_path = os.path.join(os.path.dirname(__file__), 'Encoder.pickle')
             with open(encoder_path, 'rb') as encoder:
                 self.encoder = pickle.load(encoder)
         except Exception as e:
             print("EXCEPTION: ", e)
             model, encoder = train_model()
-            with open('backend/models/IsolationForest.pickle', 'wb') as handle:
+            with open(model_path, 'wb') as handle:
                 pickle.dump(model, handle)
-            with open('backend/models/Encoder.pickle', 'wb') as handle:
+            with open(encoder_path, 'wb') as handle:
                 pickle.dump(encoder, handle)
             self.model = model
             self.encoder = encoder

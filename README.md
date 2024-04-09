@@ -11,6 +11,10 @@ npm install
 ```
 pip install -r requirements.txt
 ```
+### Install Model Training Data
+Training set must be manually installed due to git file size limitations. \
+Source from https://www.kaggle.com/datasets/kartik2112/fraud-detection?select=fraudTrain.csv.
+Unzip and move fraudTrain.csv and fraudTest.csv to the backend/models directory.
 ### Run the frontend
 ```
 cd frontend
@@ -21,7 +25,14 @@ npm start
 cd backend
 python manage.py runserver
 ```
+### Run the MLflow tracking server
+```
+cd backend
+cd models
+mlflow server
+```
 ### Run backend tests
+first run the MLflow tracking server then
 ```
 cd backend
 python manage.py test
@@ -31,11 +42,6 @@ python manage.py test
 cd backend
 python manage.py makemigrations
 python manage.py migrate
-```
-### Run MLflow tracking server
-```
-cd models
-mlflow server
 ```
 ### Train network models
 ```

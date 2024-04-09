@@ -108,8 +108,20 @@ def get_email(request):
 @csrf_exempt
 @require_POST
 @auth_required
+def clear_transaction_history(request):
+    try:
+        username = request.POST['username']
+        Transaction.objects.filter(uploading_user=username).delete()
+        return JsonResponse({'success': True})
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)})
+
+@csrf_exempt
+@require_POST
+@auth_required
 def delete_account(request):
     try:
+        clear_transaction_history(request)
         username = request.POST['username']
         StandardUser.objects.get(username=username).delete()
         return JsonResponse({'success': True})

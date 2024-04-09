@@ -11,9 +11,6 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Jimmy',
                 'email': 'Neutron@IMBCorporate.com',
-                'city': 'Melbourne',
-                'job': 'Cartographer',
-                'dob': '1971-11-03',
                 'password1': 'alax_memento_j44',
                 'password2': 'alax_memento_j44',
             }
@@ -49,9 +46,6 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Alice_9348',
                 'email': 'Alice814@gmail.com',
-                'city': 'Melbourne',
-                'job': 'Cartographer',
-                'dob': '1971-11-03',
                 'password1': 'SpringClean__324',
                 'password2': 'SpringClean__324',
             }
@@ -85,9 +79,6 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Alice',
                 'email': 'Alice814@gmail.com',
-                'city': 'Melbourne',
-                'job': 'Cartographer',
-                'dob': '1971-11-03',
                 'password1': 'SpringClean__324',
                 'password2': 'SpringClean__324',
             }
@@ -101,9 +92,6 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Bob',
                 'email': 'Bob2394@gmail.com',
-                'city': 'Melbourne',
-                'job': 'Cartographer',
-                'dob': '1971-11-03',
                 'password1': 'CleanSpring__391',
                 'password2': 'CleanSpring__391',
             }
@@ -117,9 +105,6 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Claire',
                 'email': 'Claire@protonmail.com',
-                'city': 'Melbourne',
-                'job': 'Cartographer',
-                'dob': '1971-11-03',
                 'password1': 'Elly294F4our',
                 'password2': 'Elly294F4our',
             }
@@ -255,9 +240,6 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Alice',
                 'email': 'Alice814@gmail.com',
-                'city': 'Melbourne',
-                'job': 'Cartographer',
-                'dob': '1971-11-03',
                 'password1': 'SpringClean__324',
                 'password2': 'SpringClean__324',
             }
@@ -310,9 +292,6 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Jimmy',
                 'email': 'Neutron@IMBCorporate.com',
-                'city': 'Melbourne',
-                'job': 'Cartographer',
-                'dob': '1971-11-03',
                 'password1': 'alax_memento_j44',
                 'password2': 'alax_memento_j44',
             }
@@ -417,9 +396,6 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Jimmy',
                 'email': 'Neutron@IMBCorporate.com',
-                'city': 'Melbourne',
-                'job': 'Cartographer',
-                'dob': '1971-11-03',
                 'password1': 'alax_memento_j44',
                 'password2': 'alax_memento_j44',
             }

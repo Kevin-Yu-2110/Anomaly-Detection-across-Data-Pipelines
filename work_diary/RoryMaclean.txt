@@ -30,3 +30,4 @@ Sprint Two (w6-w8)
 
 Sprint Three (w9-w10)
 - Add Clear History Button to User Profile + frontend UI functionality + backend clear_transaction_history route
+- separate account user from transaction user (update user model + frontend sign-up form + backend routes/tests to reflect such)

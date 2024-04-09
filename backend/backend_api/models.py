@@ -5,9 +5,6 @@ from django.db import models
 class StandardUser(AbstractUser):
     otp = models.CharField(max_length=6, null=True, blank=True)
     cc_num = models.IntegerField(unique=True)
-    city = models.CharField(max_length=100)
-    job = models.CharField(max_length=100)
-    dob = models.DateField()
 
     groups = models.ManyToManyField(
         'auth.Group',

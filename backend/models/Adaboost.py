@@ -10,12 +10,12 @@ from imblearn.over_sampling import SMOTE
 from models.clean_up import clean_up
 from models.abstract_model import abstract_model
 
-def train_model(data = None):
+def train_model(data=pd.Dataframe()):
     train_path = os.path.join(os.path.dirname(__file__), 'fraudTrain.csv')
     train_data = pd.read_csv(train_path)
     features = ['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob', 'is_fraud']
     train_data = train_data[features]
-    if data:
+    if not data.empty:
         train_data = pd.concat([train_data, data])
 
     x_train = train_data.iloc[:, :-1]

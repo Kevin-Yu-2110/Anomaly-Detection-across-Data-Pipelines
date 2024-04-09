@@ -53,7 +53,7 @@ class isolationForestModel(abstract_model):
         self.model = model
         self.encoder = encoder
 
-def train_model(data = None):
+def train_model(data=pd.Dataframe()):
     # enable autologging
     # mlflow.sklearn.autolog()
 
@@ -65,7 +65,7 @@ def train_model(data = None):
     ### needs to be replaced with big data pipeline
     train_path = os.path.join(os.path.dirname(__file__), 'fraudTrain.csv')
     train_data = pd.read_csv(train_path)
-    if data:
+    if not data.empty:
         train_data = pd.concat([train_data, data])
 
     X_train, enc = clean_up(train_data.iloc[:, :-1])

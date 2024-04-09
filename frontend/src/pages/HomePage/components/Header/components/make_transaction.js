@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { BsCash } from "react-icons/bs";
-import { useUser } from "../../../UserContext";
-import SearchableDropdown from "../../../components/search_dropdown";
-import { cities, jobs, categories } from "../../../components/model_features";
+import { useUser } from "../../../../../UserContext";
+import SearchableDropdown from "../../../../../components/search_dropdown";
+import { cities, jobs, categories } from "../../../../../components/model_features";
 import axios from "axios";
 import { toast } from 'react-toastify';
-import style from "./header.module.css";
+import style from "../header.module.css";
 
 const MakeTransaction = ({ dataCounter, setDataCounter }) => {
   const {username, token} = useUser();
@@ -68,7 +68,7 @@ const MakeTransaction = ({ dataCounter, setDataCounter }) => {
         Upload Transaction
       </Button>
 
-      {/** Popup form that allows user to upload a single transaction */}
+      {/** popup form that allows user to upload a single transaction */}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Upload Transaction</Modal.Title>

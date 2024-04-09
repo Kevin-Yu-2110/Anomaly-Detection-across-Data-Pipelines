@@ -230,10 +230,21 @@ def update_email(request):
 @auth_required
 def get_transaction_history(request):
     try:
-        username=request.GET['username']
-        page_no=request.GET['page_no']
+        username = request.GET['username']
+        page_no = request.GET['page_no']
+        search_string = request.GET['search_string']
+        sort_string = request.GET['sort_string']
         items_per_page = 25
-        transactions = Transaction.objects.filter(Q(uploading_user=username)).order_by('-time_of_transfer')
+        transactions = Transaction.objects.filter(uploading_user=username)
+        if search_string:
+            q_objects = Q()
+            # can search for cc num, merchant or category
+            fields = ['cc_num', 'merchant', 'category']
+            for field in fields:
+                q_objects |= Q(**{f"{field}__contains": search_string})
+            transactions = transactions.filter(q_objects)
+        # can sort by time_of_transfer, cc_num, merchant, category, amt, anomalous
+        transactions = transactions.order_by(sort_string)
         total_entries = str(len(transactions))
         paginator = Paginator(transactions, items_per_page)
         page = paginator.page(page_no)
@@ -274,29 +285,29 @@ def process_transaction_log(request):
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
     
-def get_transaction_by_field(request):
-    try:
-       
-        username=request.POST['username']
-        page_no=request.POST['page_no']
-        search_fields=json.loads(request.POST['search_fields'])
-        sort_fields=json.loads(request.POST['sort_fields'])
-        if not sort_fields:
-            sort_fields = ['time_of_transfer']
-        items_per_page = 50
-        transactions = Transaction.objects.filter(uploading_user=username)
-        transactions = transactions.filter(**search_fields)
-        transactions = transactions.order_by(*sort_fields)
-        total_entries = str(len(transactions))
-        paginator = Paginator(transactions, items_per_page)
-        page = paginator.page(page_no)
-        transactions = page.object_list
-        transaction_history = serialize('json', transactions)
-        transaction_history = json.loads(transaction_history)
-        transaction_history = [transaction['fields'] for transaction in transaction_history]
-        return JsonResponse({'success': True, 'total_entries': total_entries})
-    except Exception as e:
-        return JsonResponse({'success': False, 'error': str(e)})
+# def get_transaction_by_field(request):
+#     try:
+#         username=request.POST['username']
+#         page_no=request.POST['page_no']
+#         search_fields=json.loads(request.POST['search_fields'])
+#         # sort_fields: time_of_transfer, cc_num, merchant, category, amt, anomalous
+#         sort_fields=json.loads(request.POST['sort_fields'])
+#         if not sort_fields:
+#             sort_fields = ['time_of_transfer']
+#         items_per_page = 50
+#         transactions = Transaction.objects.filter(uploading_user=username)
+#         transactions = transactions.filter(**search_fields)
+#         transactions = transactions.order_by(*sort_fields)
+#         total_entries = str(len(transactions))
+#         paginator = Paginator(transactions, items_per_page)
+#         page = paginator.page(page_no)
+#         transactions = page.object_list
+#         transaction_history = serialize('json', transactions)
+#         transaction_history = json.loads(transaction_history)
+#         transaction_history = [transaction['fields'] for transaction in transaction_history]
+#         return JsonResponse({'success': True, 'total_entries': total_entries})
+#     except Exception as e:
+#         return JsonResponse({'success': False, 'error': str(e)})
 
 def detect_anomaly(transaction):
     model = isolationForestModel()

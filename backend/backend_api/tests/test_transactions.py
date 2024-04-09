@@ -206,7 +206,12 @@ class UserAuthenticationTests(TestCase):
         # get Alice's transaction history
         response = self.client.get(
             reverse('get_transaction_history'),
-            data={'username': 'Alice', 'page_no' : 1},
+            data={
+                'username': 'Alice', 
+                'page_no' : 1,
+                'search_string': '',
+                'sort_string': '-time_of_transfer'
+            },
             headers={
                 'Authorization': f"Bearer {alice_auth}"
             },
@@ -216,7 +221,12 @@ class UserAuthenticationTests(TestCase):
         # get Bob's transaction history
         response = self.client.get(
             reverse('get_transaction_history'),
-            data={'username': 'Bob', 'page_no' : 1},
+            data={
+                'username': 'Bob', 
+                'page_no' : 1,
+                'search_string': '',
+                'sort_string': '-time_of_transfer'
+            },
             headers={
                 'Authorization': f"Bearer {bob_auth}"
             }
@@ -226,7 +236,12 @@ class UserAuthenticationTests(TestCase):
         # get Claire's transaction history
         response = self.client.get(
             reverse('get_transaction_history'),
-            data={'username': 'Claire', 'page_no' : 1},
+            data={
+                'username': 'Claire', 
+                'page_no' : 1,
+                'search_string': '',
+                'sort_string': '-time_of_transfer'
+            },
             headers={
                 'Authorization': f"Bearer {claire_auth}"
             }
@@ -274,7 +289,12 @@ class UserAuthenticationTests(TestCase):
         # get transaction history
         response = self.client.get(
             reverse('get_transaction_history'),
-            data={'username': 'Alice', 'page_no' : 1},
+            data={
+                'username': 'Alice', 
+                'page_no' : 1,
+                'search_string': '',
+                'sort_string': '-time_of_transfer'
+            },
             headers={
                 'Authorization': f"Bearer {alice_auth}"
             }
@@ -374,22 +394,19 @@ class UserAuthenticationTests(TestCase):
         )
         data = response.json()
         self.assertTrue(data['success'])
-        response = self.client.post(
-            reverse('get_transaction_by_field'),
+        response = self.client.get(
+            reverse('get_transaction_history'),
             data={
                 'username': 'Jimmy',
                 'page_no': 1,
-                'search_fields': json.dumps({
-                    'merchant': 'merchant3',
-                    'category': 'personal_care'
-                }),
-                'sort_fields': json.dumps(['dob'])
+                'search_string': 'merchant3',
+                'sort_string': 'dob'
             },
             headers={
                 'Authorization': f"Bearer {auth_token}"
             }
         )
-        #search by merchant = merchant 3
+        #search by merchant = merchant3
         data = response.json()
         self.assertTrue(data['success'])
         self.assertTrue(data['total_entries'] == "1")

@@ -1,8 +1,8 @@
 import React from "react";
-import LogoutButton from "../../../components/logout_button";
-import UserProfile from "./user_profile";
-import MakeTransaction from "./make_transaction";
-import UploadData from "./upload_data";
+import LogoutButton from "../../../../components/logout_button";
+import UserProfile from "./components/user_profile";
+import MakeTransaction from "./components/make_transaction";
+import UploadData from "./components/upload_data";
 import style from "./header.module.css";
 
 const Header = ({ dataCounter, setDataCounter }) => {

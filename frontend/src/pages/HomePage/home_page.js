@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import Header from "./components/header";
-import Dashboard from "./components/dashboard";
+import Header from "./components/Header/header";
+import Dashboard from "./components/Dashboard/dashboard";
 import style from "./home_page.module.css";
 
 const Home = () => {

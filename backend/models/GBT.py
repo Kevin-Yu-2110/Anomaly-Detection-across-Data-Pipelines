@@ -2,8 +2,9 @@
 
 import numpy as np
 import pandas as pd
+import os
+import pickle
 from sklearn.preprocessing import OrdinalEncoder
-from sklearn.model_selection import train_test_split
 from sklearn.ensemble import HistGradientBoostingClassifier
 from imblearn.over_sampling import SMOTE
 from models.clean_up import clean_up

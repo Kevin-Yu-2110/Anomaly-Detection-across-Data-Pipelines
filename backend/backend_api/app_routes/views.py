@@ -233,7 +233,8 @@ def get_transaction_history(request):
         username = request.GET['username']
         page_no = request.GET['page_no']
         search_string = request.GET['search_string']
-        sort_string = request.GET['sort_string']
+        # by default, sort by time of transfer descending
+        sort_string = request.GET.get('sort_string', '-time_of_transfer')
         items_per_page = 25
         transactions = Transaction.objects.filter(uploading_user=username)
         if search_string:

@@ -13,6 +13,7 @@ function App() {
       </BrowserRouter>
 
       {/** Documentation: https://fkhadra.github.io/react-toastify/introduction/ */}
+      {/** Popup handler for errors */}
       <ToastContainer
         position="top-center"
         closeOnClick

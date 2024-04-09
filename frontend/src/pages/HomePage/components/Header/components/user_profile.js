@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { BsPersonCircle } from "react-icons/bs";
-import { useUser } from "../../../UserContext";
+import { useUser } from "../../../../../UserContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import style from "./header.module.css";
+import style from "../header.module.css";
 
 const UserProfile = () => {
   const navigate = useNavigate();
@@ -37,11 +37,11 @@ const UserProfile = () => {
   const [editable, setEditable] = useState(false);
   const handleEdit = () => setEditable(true);
 
-  const deleteFailed = () => toast.error("Delete account failed");
+  const deleteFailed = (error) => toast.error(`Delete account failed: ${error}`);
   const updateUserSucceeded = () => toast.success("Username updated successfully");
-  const updateUserFailed = () => toast.error("Username update failed");
+  const updateUserFailed = (error) => toast.error(`Username update failed: ${error}`);
   const updateEmailSucceeded = () => toast.success("Email updated successfully");
-  const updateEmailFailed = () => toast.error("Email update failed");
+  const updateEmailFailed = (error) => toast.error(`Email update failed: ${error}`);
 
   const deleteAccount = async (e) => {
     e.preventDefault();
@@ -61,10 +61,10 @@ const UserProfile = () => {
         user_logout();
         navigate("/");
       } else {
-        deleteFailed();
+        deleteFailed(response.data.error);
       }
     } catch (error) {
-      console.error("Delete account failed: Server-Side Error", error);
+      deleteFailed(error);
     }
   }
 
@@ -92,11 +92,10 @@ const UserProfile = () => {
             updateEmail(newEmail);
             updateEmailSucceeded();
           } else {
-            updateEmailFailed();
-            console.error(response.data.error);
+            updateEmailFailed(response.data.error);
           }
         } catch (error) {
-          console.error("Update email failed: Server-side Error", error);
+          updateEmailFailed(error);
         }
       }
     }
@@ -124,10 +123,10 @@ const UserProfile = () => {
           // try to update email with new token after updating username
           doUpdateEmail(`Bearer ${response.data.token}`);
         } else {
-          updateUserFailed();
+          updateUserFailed(response.data.error);
         }
       } catch (error) {
-        console.error("Update username failed: Server-Side Error", error);
+        updateEmailFailed(error);
       }
     } else {
       // try to update email with current token, as username is unchanged

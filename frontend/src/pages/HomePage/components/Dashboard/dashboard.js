@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./dashboard.module.css";
 
-import TransactionHistory from "./transaction_history";
+import TransactionHistory from "./components/transaction_history";
 
 const Dashboard = ({ dataCounter }) => {
   return (

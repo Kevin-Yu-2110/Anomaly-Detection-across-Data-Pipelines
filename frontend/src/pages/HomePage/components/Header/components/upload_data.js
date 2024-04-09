@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { BsUpload } from "react-icons/bs";
-import { useUser } from "../../../UserContext.js";
+import { useUser } from "../../../../../UserContext.js";
 import axios from 'axios';
 import { toast } from "react-toastify";
-import style from "./header.module.css";
+import style from "../header.module.css";
 
 const UploadData = ({ dataCounter, setDataCounter }) => {
   const [show, setShow] = useState(false);
@@ -15,7 +15,7 @@ const UploadData = ({ dataCounter, setDataCounter }) => {
   const handleShow = () => setShow(true);
 
   const uploadSuccess = () => toast.success("File uploaded succesfully");
-  const uploadFailed = () => toast.error("File upload failed");
+  const uploadFailed = (error) => toast.error(`File upload failed: ${error}`);
 
   const uploadFile = async (e) => {
     e.preventDefault();
@@ -39,11 +39,10 @@ const UploadData = ({ dataCounter, setDataCounter }) => {
         setDataCounter(dataCounter + 1);
         uploadSuccess();
       } else {
-        console.error(response.data.error);
-        uploadFailed();
+        uploadFailed(response.data.error);
       }
     } catch (error) {
-      console.error('Error uploading file:', error);
+      uploadFailed(error);
     }
   }
 
@@ -54,6 +53,7 @@ const UploadData = ({ dataCounter, setDataCounter }) => {
         Upload Data
       </Button>
 
+      {/** popup form that allows user to upload data via .csv files */}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Upload Data</Modal.Title>

@@ -12,7 +12,8 @@ from models.abstract_model import abstract_model
 
 
 def train_model(data = None):
-    train_data = pd.read_csv('fraudTrain.csv')
+    train_path = os.path.join(os.path.dirname(__file__), 'fraudTrain.csv')
+    train_data = pd.read_csv(train_path)
     features = ['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob', 'is_fraud']
     train_data = train_data[features]
     if data:
@@ -39,11 +40,12 @@ class GBTModel(abstract_model):
             with open(encoder_path, 'rb') as encoder:
                 self.encoder = pickle.load(encoder)
         except Exception as e:
-            print("EXCEPTION: ", e)
             model, encoder = train_model()
-            with open('GBTModel.pickle', 'wb') as handle:
+            model_path = os.path.join(os.path.dirname(__file__), 'GBTModel.pickle')
+            with open(model_path, 'wb') as handle:
                 pickle.dump(model, handle)
-            with open('Encoder.pickle', 'wb') as handle:
+            encoder_path = os.path.join(os.path.dirname(__file__), 'Encoder.pickle')
+            with open(encoder_path, 'wb') as handle:
                 pickle.dump(encoder, handle)
             self.model = model
             self.encoder = encoder

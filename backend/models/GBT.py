@@ -11,7 +11,7 @@ from models.clean_up import clean_up
 from models.abstract_model import abstract_model
 
 
-def train_model(data=pd.Dataframe()):
+def train_model(data=pd.DataFrame()):
     train_path = os.path.join(os.path.dirname(__file__), 'fraudTrain.csv')
     train_data = pd.read_csv(train_path)
     features = ['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob', 'is_fraud']

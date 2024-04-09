@@ -53,7 +53,7 @@ class isolationForestModel(abstract_model):
         self.model = model
         self.encoder = encoder
 
-def train_model(data=pd.Dataframe()):
+def train_model(data=pd.DataFrame()):
     # enable autologging
     # mlflow.sklearn.autolog()
 

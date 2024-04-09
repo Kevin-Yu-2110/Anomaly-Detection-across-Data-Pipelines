@@ -8,26 +8,19 @@ from imblearn.over_sampling import SMOTE
 from models.clean_up import clean_up
 from models.abstract_model import abstract_model
 
-def train_model():
-    data = pd.read_csv('fraudTrain.csv')
+def train_model(data = None):
+    train_data = pd.read_csv('fraudTrain.csv')
     features = ['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob', 'is_fraud']
-    data = data[features]
-    data.dropna(ignore_index=True)
-    x_train = data.iloc[:, :-1]
-    y_train = data.iloc[:, -1:]
+    train_data = train_data[features]
+    if data:
+        train_data = pd.concat([train_data, data])
 
-    test = pd.read_csv('fraudTest.csv')
-    test = test[features]
-    x_test = test.iloc[:, :-1]
-    y_test = test.iloc[:, -1:]
-
-
+    x_train = train_data.iloc[:, :-1]
+    y_train = train_data.iloc[:, -1:]
     x_train, encoder = clean_up(x_train)
-    x_test = clean_up(x_test, encoder)[0]
 
     x_train, y_train = SMOTE().fit_resample(x_train, y_train)
-
-
+    
     model = AdaBoostClassifier(algorithm='SAMME.R', learning_rate=0.1)
     model.fit(x_train, y_train)
 

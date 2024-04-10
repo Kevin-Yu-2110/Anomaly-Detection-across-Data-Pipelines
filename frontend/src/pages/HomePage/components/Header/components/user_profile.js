@@ -15,6 +15,8 @@ const UserProfile = () => {
   const [showProfile, setShowProfile] = useState(false);
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const [showConfirmClear, setShowConfirmClear] = useState(false);
+  const [deleteConfirmationText, setDeleteConfirmationText] = useState('');
+  const [clearConfirmationText, setClearConfirmationText] = useState('');
 
   const handleCloseProfile = () => {
     setShowProfile(false);
@@ -48,6 +50,26 @@ const UserProfile = () => {
     handleShowConfirmClear();
   }
 
+  const handleDeleteConfirmation = (event) => {
+    setDeleteConfirmationText(event.target.value);
+  };
+
+  const handleClearConfirmation = (event) => {
+    setClearConfirmationText(event.target.value);
+  };
+
+  const handleDeleteButtonClick = () => {
+    if (deleteConfirmationText.toLowerCase() === 'delete') {
+      deleteAccount();
+    }
+  };
+
+  const handleClearButtonClick = () => {
+    if (clearConfirmationText.toLowerCase() === 'clear') {
+      clearHistory();
+    }
+  };
+
   const [editable, setEditable] = useState(false);
   const handleEdit = () => setEditable(true);
 
@@ -59,8 +81,7 @@ const UserProfile = () => {
   const updateEmailFailed = (error) => toast.error(`Email update failed: ${error}`);
 
   // AXIOS request to call delete_account on backend
-  const deleteAccount = async (e) => {
-    e.preventDefault();
+  const deleteAccount = async () => {
     const formData = new FormData();
     formData.append("username", username);
     try {
@@ -85,8 +106,7 @@ const UserProfile = () => {
   }
 
   // AXIOS request to call clear_history on backend
-  const clearHistory = async (e) => {
-    e.preventDefault();
+  const clearHistory = async () => {
     const formData = new FormData();
     formData.append("username", username);
     try {
@@ -229,9 +249,12 @@ const UserProfile = () => {
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
           <div>Are you sure you want to delete your account?</div>
+          <div>Please type "delete" to confirm:</div>
+          <input type="text" value={deleteConfirmationText} onChange={handleDeleteConfirmation}
+          />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={deleteAccount}>
+          <Button variant="danger" onClick={handleDeleteButtonClick}>
             Delete Account
           </Button>
         </Modal.Footer>
@@ -241,10 +264,13 @@ const UserProfile = () => {
       <Modal show={showConfirmClear} onHide={handleCloseConfirmClear}>
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
-          <div>Are you sure you want to delete all submitted transaction data?</div>
+          <div>Are you sure you want to clear all transaction data?</div>
+          <div>Please type "clear" to confirm:</div>
+          <input type="text" value={clearConfirmationText} onChange={handleClearConfirmation}
+          />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={clearHistory}>
+          <Button variant="danger" onClick={handleClearButtonClick}>
             Clear History
           </Button>
         </Modal.Footer>

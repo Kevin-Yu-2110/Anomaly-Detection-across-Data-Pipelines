@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import style from "../header.module.css";
 
-const UserProfile = () => {
+const UserProfile = ({ dataCounter, setDataCounter }) => {
   const navigate = useNavigate();
   const {user_logout, email, username, token, updateEmail, updateUsername, updateToken} = useUser();
   const [newUsername, setNewUsername] = useState(username);
@@ -100,6 +100,7 @@ const UserProfile = () => {
         }
       );
       if (response.data.success) {
+        setDataCounter(dataCounter + 1);
         handleCloseConfirmClear();
       } else {
         clearHistoryFailed(response.data.error);
@@ -209,11 +210,11 @@ const UserProfile = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={confirmClearHistory}> 
-            Clear History
-          </Button>
           <Button variant="danger" onClick={confirmDelete}> 
             Delete Account
+          </Button>
+          <Button variant="danger" onClick={confirmClearHistory}> 
+            Clear History
           </Button>
           <Button variant="secondary" onClick={handleEdit}>
             Edit

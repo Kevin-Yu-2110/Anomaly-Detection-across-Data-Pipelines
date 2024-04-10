@@ -13,7 +13,7 @@ const Header = ({ dataCounter, setDataCounter }) => {
         <UploadData dataCounter={dataCounter} setDataCounter={setDataCounter}/>
       </div>
       <div>
-        <UserProfile />
+        <UserProfile dataCounter={dataCounter} setDataCounter={setDataCounter}/>
         <LogoutButton />
       </div>
     </header>

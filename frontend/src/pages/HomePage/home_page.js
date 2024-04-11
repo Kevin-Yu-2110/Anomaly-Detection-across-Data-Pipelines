@@ -6,17 +6,17 @@ import style from "./home_page.module.css";
 
 const Home = () => {
   /**
-   * update counter when transaction is successfully made, data is successfully uploaded
+   * update flag when transaction is successfully made, data is successfully uploaded
    * or when transactions are deleted through clear history
    * 
    * this lets our transaction history table know when to update
    */
-  const [dataCounter, setDataCounter] = useState(0);
+  const [dataFlag, setDataFlag] = useState(false);
 
   return (
     <div className={style["homepage-container"]}>
-      <Header dataCounter={dataCounter} setDataCounter={setDataCounter}/>
-      <Dashboard dataCounter={dataCounter}/>
+      <Header dataFlag={dataFlag} setDataFlag={setDataFlag}/>
+      <Dashboard dataFlag={dataFlag}/>
     </div>
   );
 };

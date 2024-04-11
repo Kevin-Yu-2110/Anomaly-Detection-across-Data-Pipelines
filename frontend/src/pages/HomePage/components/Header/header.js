@@ -5,15 +5,15 @@ import MakeTransaction from "./components/make_transaction";
 import UploadData from "./components/upload_data";
 import style from "./header.module.css";
 
-const Header = ({ dataCounter, setDataCounter }) => {
+const Header = ({ dataFlag, setDataFlag }) => {
   return (
     <header className={style.header}>
       <div>
-        <MakeTransaction dataCounter={dataCounter} setDataCounter={setDataCounter}/>
-        <UploadData dataCounter={dataCounter} setDataCounter={setDataCounter}/>
+        <MakeTransaction dataFlag={dataFlag} setDataFlag={setDataFlag}/>
+        <UploadData dataFlag={dataFlag} setDataFlag={setDataFlag}/>
       </div>
       <div>
-        <UserProfile dataCounter={dataCounter} setDataCounter={setDataCounter}/>
+        <UserProfile dataFlag={dataFlag} setDataFlag={setDataFlag}/>
         <LogoutButton />
       </div>
     </header>

@@ -16,5 +16,7 @@ urlpatterns = [
     path('get_transaction_history/', views.get_transaction_history, name='get_transaction_history'),
     path('flag_prediction/', views.flag_prediction, name='flag_prediction'),
     path('process_transaction_log/', views.process_transaction_log, name='process_transaction_log'),
+    path('detect_anomalies/', views.detect_anomalies, name='detect_anomalies'),
+    path('retrain_model/', views.retrain_model, name='retrain_model'),
     # path('get_transaction_by_field/', views.get_transaction_by_field, name='get_transaction_by_field')
 ]

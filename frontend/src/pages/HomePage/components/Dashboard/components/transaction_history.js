@@ -101,18 +101,18 @@ const TransactionHistory = ({ dataCounter }) => {
       sortField: "time_of_transfer"
     },
     {
-      name: "Anomalous?",
-      cell: row => <div>{row.anomalous ? (<div>Yes</div>) : (<div>No</div>)}</div>,
+      name: "Anomaly",
+      cell: row => <div>{row.anomalous !== null ? (row.anomalous ? (<div>Yes</div>) : (<div>No</div>)) : null} </div>,
       maxWidth: "160px",
       conditionalCellStyles: [
         {
-          when: row => row.anomalous,
+          when: row => row.anomalous === true,
           style: {
-            backgroundColor: "#610000",
+            backgroundColor: "#610000"
           }
         },
         {
-          when: row => !row.anomalous,
+          when: row => row.anomalous === false,
           style: {
             backgroundColor: "#234711"
           }
@@ -122,7 +122,7 @@ const TransactionHistory = ({ dataCounter }) => {
       sortField: "anomalous"
     },
     {
-      cell: row => <Button variant="primary outline-warning" onClick={() => flagPrediction(row)}>Flag prediction</Button>
+      cell: row => <Button variant="outline-warning" onClick={() => flagPrediction(row)}>Flag prediction</Button>
     }
   ]
 

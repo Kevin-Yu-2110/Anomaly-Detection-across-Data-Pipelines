@@ -1,10 +1,12 @@
 import random
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from models.IsolationForest import isolationForestModel
 
 class StandardUser(AbstractUser):
     otp = models.CharField(max_length=6, null=True, blank=True)
     cc_num = models.IntegerField(unique=True)
+    isolation_forest_model = isolationForestModel()
 
     groups = models.ManyToManyField(
         'auth.Group',
@@ -15,10 +17,9 @@ class StandardUser(AbstractUser):
         'auth.Permission',
         related_name='standard_users_permissions'
     )
-    
-    # Method to Put a Random OTP in the CustomerUser table.
+
     def save(self, *args, **kwargs):
-        # A six digit random number from the list will be saved in top field
+        # StandardUser is assigned six-digit random number upon creation
         self.otp = ''.join(random.choices([str(i) for i in range(10)], k=6))
         super().save(*args, **kwargs)
 

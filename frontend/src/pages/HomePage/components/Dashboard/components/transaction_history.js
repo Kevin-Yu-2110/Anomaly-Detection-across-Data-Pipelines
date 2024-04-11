@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import DataTable, { createTheme } from "react-data-table-component";
 import { useUser } from "../../../../../UserContext";
@@ -6,7 +6,7 @@ import { Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 import TableOptions from "./table_options";
 
-const TransactionHistory = ({ dataCounter }) => {
+const TransactionHistory = ({ dataFlag }) => {
   const {username, token} = useUser();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -15,8 +15,11 @@ const TransactionHistory = ({ dataCounter }) => {
   const [searchString, setSearchString] = useState('');
   const [sortString, setSortString] = useState('-time_of_transfer');
   const [resetPaginationToggle, setResetPaginationToggle] = React.useState(false);
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [toggleCleared, setToggleCleared] = useState(false);
 
   const fetchFailed = (error) => toast.error(`Failed to fetch data: ${error}`);
+  const deleteFailed = (error) => toast.error(`Failed to delete selected transactions: ${error}`);
 
   // table colour theme
   createTheme("customDark", {
@@ -50,20 +53,25 @@ const TransactionHistory = ({ dataCounter }) => {
     },
     headRow: {
       style: {
-        borderBottomColor: 'gray'
+        borderBottomColor: "gray"
       }
     },
     rows: {
       style: {
         fontSize: "100%",
         '&:not(:last-of-type)': {
-          borderBottomColor: 'gray'
+          borderBottomColor: "gray"
         },
       }
     },
     pagination: {
       style: {
-        borderTopColor: 'gray'
+        borderTopColor: "gray"
+      }
+    },
+    contextMenu: {
+      style: {
+        backgroundColor: "#3c5684"
       }
     }
   };
@@ -197,11 +205,10 @@ const TransactionHistory = ({ dataCounter }) => {
       if (response.data.success) {
         setData(response.data.transaction_history);
         setTotalRows(response.data.total_entries);
-        setLoading(false);
       } else {
         fetchFailed(response.data.error);
-        setLoading(false);
       }
+      setLoading(false);
     } catch (error) {
       fetchFailed(error);
     }
@@ -211,6 +218,42 @@ const TransactionHistory = ({ dataCounter }) => {
     setPage(page);
     fetchData(page);
   }
+
+  const handleRowSelected = (state) => setSelectedRows(state.selectedRows);
+
+  const contextActions = useMemo(() => {
+    // request deletion of selected rows
+    const handleDeleteRows = async () => {
+      const formData = new FormData();
+      // transaction id is stored as row.id when initially fetching data from backend
+      const rowIds = selectedRows.map(row => row.id);
+      formData.append("username", username);
+      formData.append("transaction_ids", JSON.stringify(rowIds));
+      try {
+        const response = await axios.post("http://127.0.0.1:8000/api/delete_transactions/",
+          formData,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+              Authorization: token
+            }
+          }
+        );
+        // handle response
+        if (!response.data.success) {
+          deleteFailed(response.data.error);
+        }
+        setToggleCleared(!toggleCleared);
+      } catch (error) {
+        deleteFailed(error);
+      }
+    };
+
+    return (
+      <Button variant="danger" onClick ={handleDeleteRows}>Delete</Button>
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedRows]);
 
   const handleSort = (column, sortDirection) => {
     if (sortDirection === "desc") {
@@ -223,7 +266,7 @@ const TransactionHistory = ({ dataCounter }) => {
   useEffect(() => {
     fetchData(page);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataCounter, searchString, sortString]);
+  }, [dataFlag, searchString, sortString, toggleCleared]);
 
   return (
     <DataTable 
@@ -241,6 +284,10 @@ const TransactionHistory = ({ dataCounter }) => {
       paginationTotalRows={totalRows}
       onChangePage={handlePageChange}
       responsive
+      selectableRows
+      onSelectedRowsChange={handleRowSelected}
+      clearSelectedRows={toggleCleared}
+      contextActions={contextActions}
       subHeader
       subHeaderComponent={
       <TableOptions 

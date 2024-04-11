@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import style from "../header.module.css";
 
-const UserProfile = () => {
+const UserProfile = ({ dataFlag, setDataFlag }) => {
   const navigate = useNavigate();
   const {user_logout, email, username, token, updateEmail, updateUsername, updateToken} = useUser();
   const [newUsername, setNewUsername] = useState(username);
@@ -28,16 +28,16 @@ const UserProfile = () => {
     setShowProfile(true);
   }
   const handleShowConfirmDelete = () => {
-    setShowConfirmDelete(true)
+    setShowConfirmDelete(true);
   }
   const handleCloseConfirmDelete = () => {
-    setShowConfirmDelete(false)
+    setShowConfirmDelete(false);
   }
   const handleShowConfirmClear = () => {
-    setShowConfirmClear(true)
+    setShowConfirmClear(true);
   }
   const handleCloseConfirmClear = () => {
-    setShowConfirmClear(false)
+    setShowConfirmClear(false);
   }
 
   const confirmDelete = () => {
@@ -120,6 +120,7 @@ const UserProfile = () => {
         }
       );
       if (response.data.success) {
+        setDataFlag(!dataFlag);
         handleCloseConfirmClear();
       } else {
         clearHistoryFailed(response.data.error);
@@ -229,11 +230,11 @@ const UserProfile = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={confirmClearHistory}> 
-            Clear History
-          </Button>
           <Button variant="danger" onClick={confirmDelete}> 
             Delete Account
+          </Button>
+          <Button variant="danger" onClick={confirmClearHistory}> 
+            Clear History
           </Button>
           <Button variant="secondary" onClick={handleEdit}>
             Edit

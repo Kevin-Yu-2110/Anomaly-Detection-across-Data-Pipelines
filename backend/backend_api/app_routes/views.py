@@ -114,6 +114,19 @@ def clear_transaction_history(request):
         return JsonResponse({'success': True})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
+    
+@csrf_exempt
+@require_POST
+@auth_required
+def delete_transactions(request):
+    try:
+        username = request.POST['username']
+        transaction_ids = json.loads(request.POST['transaction_ids'])
+        transactions = Transaction.objects.filter(id__in=transaction_ids, uploading_user=username)
+        transactions.delete()
+        return JsonResponse({'success': True})
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)})
 
 @csrf_exempt
 @require_POST
@@ -261,7 +274,8 @@ def get_transaction_history(request):
         transactions = page.object_list
         transaction_history = serialize('json', transactions)
         transaction_history = json.loads(transaction_history)
-        transaction_history = [transaction['fields'] for transaction in transaction_history]
+        # additionally pass id of transaction to allow for easy deletion
+        transaction_history = [{'id': transaction['pk'], **transaction['fields']} for transaction in transaction_history]
         return JsonResponse({'success': True, 'transaction_history' : transaction_history, 'total_entries' : total_entries})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})

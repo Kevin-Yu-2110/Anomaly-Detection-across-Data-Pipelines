@@ -164,7 +164,11 @@ const TransactionHistory = ({ dataCounter }) => {
           toast.update(toastId, {render: 'Prediction flagged successfully', autoClose: 5000});
         }
       } else {
-        toast.error("Failed to flag prediction")
+        if (response.data.error === "already flagged") {
+          toast.error("Already Flagged")
+        } else {
+          toast.error("Failed to flag prediction")
+        }
       }
     } catch (error) {
       toast.error("Failed to flag prediction")

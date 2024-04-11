@@ -274,7 +274,7 @@ def get_transaction_history(request):
 @auth_required
 def flag_prediction(request):
     try:
-        feedback_transaction = FeedbackTransaction.objects.create(
+        feedback_transaction, created = FeedbackTransaction.objects.get_or_create(
             uploading_user = request.POST['username'],
             time_of_transfer = request.POST['time_of_transfer'],
             cc_num = request.POST['cc_num'],
@@ -285,11 +285,14 @@ def flag_prediction(request):
             job = request.POST['job'],
             dob = request.POST['dob'],
         )
-        feedback_transaction.anomalous = False if request.POST['anomalous'] == "true" else False
-        feedback_transaction.save()
-        return JsonResponse({'success': True})
+        if created:
+            feedback_transaction.anomalous = False if request.POST['anomalous'] == "true" else False
+            feedback_transaction.save()
+            return JsonResponse({'success': True})
+        else:
+            return JsonResponse({'success': False, 'error': "already flagged"})
     except Exception as e:
-        print("ERROR: ", e)
+        print("Error", e)
         return JsonResponse({'success': False, 'error': str(e)})
 
 @csrf_exempt

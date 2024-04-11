@@ -7,6 +7,7 @@ import ResetPasswordPage from './reset_password_page';
 import HomePage from '../pages/HomePage/home_page';
 import { useUser } from '../UserContext';
 import CoverPage from './cover_page'
+import AboutPage from './about_us'
 
 const AppRoutes = () => {
   const {isLoggedIn} = useUser()
@@ -19,6 +20,7 @@ const AppRoutes = () => {
       <Route path="/home" element={isLoggedIn ? <HomePage /> : <Navigate to="/" />} />
       <Route path="/resetRequest" element={<ResetRequestPage />} />
       <Route path="/resetPassword" element={<ResetPasswordPage />} />
+      <Route path="/aboutus" element={<AboutPage />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

@@ -52,9 +52,6 @@ const ResetRequestPage = () => {
         <input className={style.input} type="text" value={email} placeholder='Email' onChange={(e) => setEmail(e.target.value)} />
         <button className={style.button} type="submit">Send OTP</button>
       </form>
-      <div style={{marginTop:'10px'}}>
-        <p>Back to <button className={style.button} onClick={() => navigate("/login")}>Login</button></p>
-      </div>
     </div>
     </div>
   );

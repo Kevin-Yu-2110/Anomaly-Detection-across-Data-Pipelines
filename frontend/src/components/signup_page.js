@@ -78,9 +78,7 @@ const SignupPage = () => {
         <br></br>
         <button className={style.button} type="submit">Sign Up</button>
       </form>
-      <div>
-        <p>Already have an account? <button className={style.button} onClick={() => navigate("/login")}>Login</button></p>
-      </div>
+      <a className={style.link} href="/login">Already have an account?</a>
     </div>
     </div>
   );

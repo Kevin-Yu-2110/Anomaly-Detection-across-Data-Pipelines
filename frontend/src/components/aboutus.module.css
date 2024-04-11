@@ -1,0 +1,35 @@
+.largeContainer {
+    padding-bottom: 20vh;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('assets/background.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    position: fixed;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.text {
+    padding: 10px;
+    background-color: rgba(36, 36, 36, 0.719);
+    color: white;
+    position: relative;
+    top: 20vh;
+    left: 30vw;
+    width: 40vw;
+    margin-bottom: 20vh;
+    border-radius: 1%;
+}
+
+.text h2 {
+    margin-top: 20px;
+}
+
+.text li {
+    margin-top: 5px;
+}

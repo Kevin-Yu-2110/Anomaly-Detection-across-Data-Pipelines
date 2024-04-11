@@ -63,7 +63,7 @@ const MakeTransaction = ({ dataCounter, setDataCounter }) => {
 
   return (
     <>
-      <Button variant="outline-info" onClick={handleShow}>
+      <Button style={{margin: '0 20px 0 0 '}} variant="outline-info" onClick={handleShow}>
         <BsCash className={style.icon}></BsCash>
         Upload Transaction
       </Button>

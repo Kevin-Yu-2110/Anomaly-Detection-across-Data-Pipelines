@@ -101,18 +101,18 @@ const TransactionHistory = ({ dataCounter }) => {
       sortField: "time_of_transfer"
     },
     {
-      name: "Anomalous?",
-      cell: row => <div>{row.anomalous ? (<div>Yes</div>) : (<div>No</div>)}</div>,
+      name: "Anomaly",
+      cell: row => <div>{row.anomalous !== null ? (row.anomalous ? (<div>Yes</div>) : (<div>No</div>)) : null} </div>,
       maxWidth: "160px",
       conditionalCellStyles: [
         {
-          when: row => row.anomalous,
+          when: row => row.anomalous === true,
           style: {
-            backgroundColor: "#610000",
+            backgroundColor: "#610000"
           }
         },
         {
-          when: row => !row.anomalous,
+          when: row => row.anomalous === false,
           style: {
             backgroundColor: "#234711"
           }
@@ -122,9 +122,58 @@ const TransactionHistory = ({ dataCounter }) => {
       sortField: "anomalous"
     },
     {
-      cell: row => <Button variant="primary outline-warning">Flag prediction</Button>
+      cell: row => <Button variant="outline-warning" onClick={() => flagPrediction(row)}>Flag prediction</Button>
     }
   ]
+
+  // send axios request to flag prediction on backend
+  let toastId = null;
+  const flagPrediction = async (row) => {
+    // Create Request Form
+    const formData = new FormData();
+    formData.append('username', username);
+    formData.append('time_of_transfer', row.time_of_transfer);
+    formData.append('cc_num', row.cc_num);
+    formData.append('merchant', row.merchant);
+    formData.append('category', row.category);
+    formData.append('amt', row.amt);
+    formData.append('city', row.city);
+    formData.append('job', row.job);
+    formData.append('dob', row.dob);
+    formData.append('anomalous', row.anomalous);
+    // Send Request Form
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/api/flag_prediction/',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: token
+          }
+        }
+      );
+      // Handle Response
+      if (response.data.success) {
+        console.log(toastId)
+        if (toastId === null) {
+          toastId = toast.success('Prediction flagged successfully', {
+            autoClose: 5000,
+            onClose: () => {toastId = null;}
+          });
+        } else {
+          toast.update(toastId, {render: 'Prediction flagged successfully', autoClose: 5000});
+        }
+      } else {
+        if (response.data.error === "already flagged") {
+          toast.error("Already Flagged")
+        } else {
+          toast.error("Failed to flag prediction")
+        }
+      }
+    } catch (error) {
+      toast.error("Failed to flag prediction")
+    }
+  };
 
   // fetch data based on the currently selected page and search/sort params
   const fetchData = async (page_no) => {

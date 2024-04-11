@@ -1,5 +1,5 @@
 from backend_api.app_routes.forms import SignUpForm
-from backend_api.models import StandardUser, Transaction
+from backend_api.models import StandardUser, Transaction, FeedbackTransaction
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 from email.message import EmailMessage
@@ -10,7 +10,6 @@ from django.contrib.auth import login, logout
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST, require_GET
 from functools import wraps
-from models.IsolationForest import isolationForestModel
 import random
 import smtplib
 import json
@@ -186,7 +185,7 @@ def reset_password(request):
 @auth_required
 def make_transaction(request):
     try:
-        transaction = Transaction.objects.create(
+        Transaction.objects.create(
             uploading_user = request.POST['username'],
             time_of_transfer = datetime.now(),
             cc_num = request.POST['cc_num'],
@@ -197,8 +196,6 @@ def make_transaction(request):
             job = request.POST['job'],
             dob = request.POST['dob'],
         )
-        detect_anomaly(transaction)
-        transaction.save()
         return JsonResponse({'success': True})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
@@ -272,6 +269,31 @@ def get_transaction_history(request):
 @csrf_exempt
 @require_POST
 @auth_required
+def flag_prediction(request):
+    try:
+        feedback_transaction, created = FeedbackTransaction.objects.get_or_create(
+            uploading_user = request.POST['username'],
+            time_of_transfer = request.POST['time_of_transfer'],
+            cc_num = request.POST['cc_num'],
+            merchant = request.POST['merchant'],
+            category = request.POST['category'],
+            amt = request.POST['amt'],
+            city = request.POST['city'],
+            job = request.POST['job'],
+            dob = request.POST['dob'],
+        )
+        if created:
+            feedback_transaction.anomalous = False if request.POST['anomalous'] == "true" else False
+            feedback_transaction.save()
+            return JsonResponse({'success': True})
+        else:
+            return JsonResponse({'success': False, 'error': "already flagged"})
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)})
+
+@csrf_exempt
+@require_POST
+@auth_required
 def process_transaction_log(request):
     try:
         uploaded_file = request.FILES['transaction_log']
@@ -280,7 +302,7 @@ def process_transaction_log(request):
         row_count = 0
         for row in rows:
             if row_count: 
-                transaction = Transaction.objects.create(
+                Transaction.objects.create(
                     uploading_user = request.POST['username'],
                     time_of_transfer = row[0],
                     cc_num = row[1],
@@ -291,8 +313,6 @@ def process_transaction_log(request):
                     job = row[6],
                     dob = row[7],
                 )
-                detect_anomaly(transaction)
-                transaction.save()
             row_count += 1
         return JsonResponse({'success': True})
     except Exception as e:
@@ -322,10 +342,44 @@ def process_transaction_log(request):
 #     except Exception as e:
 #         return JsonResponse({'success': False, 'error': str(e)})
 
-def detect_anomaly(transaction):
-    model = isolationForestModel()
-    # 'trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob'
-    model_input = [[transaction.time_of_transfer, transaction.cc_num, transaction.merchant, transaction.category, transaction.amt, \
-        transaction.city, transaction.job, transaction.dob]]
-    # update transaction 'anomalous' field according to result
-    transaction.anomalous = model.predict(model_input)
+@csrf_exempt
+@require_POST
+@auth_required
+def detect_anomalies(request):
+    try:
+        username = request.POST['username']
+        selected_model = request.POST['selected_model']
+        user = StandardUser.objects.get(username=username)
+        model = user.isolation_forest_model
+        # for every transaction in db with username as uploading_user, update 'anomalous' field
+        transactions = Transaction.objects.filter(uploading_user=username)
+        for t in transactions:
+            model_input = [[t.time_of_transfer, t.cc_num, t.merchant, t.category, t.amt, t.city, t.job, t.dob]]
+            t.anomalous = True if model.predict(model_input) else False 
+            t.save()
+        return JsonResponse({'success': True})
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)})
+
+@csrf_exempt
+@require_POST
+@auth_required
+def retrain_model(request):
+    try:
+        username = request.POST['username']
+        user = StandardUser.objects.get(username=username)
+        model = user.isolation_forest_model
+        # retrain model with user's feedback transactions, 
+        transactions = FeedbackTransaction.objects.filter(uploading_user=username)
+        # convert datetime object to string without milliseconds
+        for t in transactions:
+            time_of_transfer = datetime.strptime(t.time_of_transfer, "%Y-%m-%d %H:%M:%S.%f")
+            time_of_transfer = time_of_transfer.strftime("%Y-%m-%d %H:%M:%S")
+            model_input = [[time_of_transfer, t.cc_num, t.merchant, t.category, t.amt, t.city, t.job, t.dob, t.anomalous]]
+            model.retrain(model_input)
+        # clear feedback transactions
+        FeedbackTransaction.objects.filter(uploading_user=username).delete()
+        return JsonResponse({'success': True})
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)})
+

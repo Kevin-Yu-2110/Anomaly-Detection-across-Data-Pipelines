@@ -10,9 +10,6 @@ class UserUpdateTests(TestCase):
             data={
                 'username': 'newuser',
                 'email': 'newuser@example.com',
-                'city': 'Melbourne',
-                'job': 'Cartographer',
-                'dob': '1971-11-03',
                 'password1': 'newpassword123',
                 'password2': 'newpassword123',
             }

@@ -78,12 +78,6 @@ const TransactionHistory = ({ dataFlag }) => {
 
   // table columns
   const columns = [
-    // column is invisible, only exists to track the id of the specific transaction
-    {
-      name: "id",
-      selector: row => row.id,
-      omit: true
-    },
     {
       name: "Sender account number",
       selector: row => row.cc_num,
@@ -182,6 +176,7 @@ const TransactionHistory = ({ dataFlag }) => {
     // request deletion of selected rows
     const handleDeleteRows = async () => {
       const formData = new FormData();
+      // transaction id is stored as row.id when initially fetching data from backend
       const rowIds = selectedRows.map(row => row.id);
       formData.append("username", username);
       formData.append("transaction_ids", JSON.stringify(rowIds));

@@ -1,5 +1,5 @@
 from backend_api.app_routes.forms import SignUpForm
-from backend_api.models import StandardUser, Transaction
+from backend_api.models import StandardUser, Transaction, FeedbackTransaction
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 from email.message import EmailMessage
@@ -267,6 +267,29 @@ def get_transaction_history(request):
         transaction_history = [transaction['fields'] for transaction in transaction_history]
         return JsonResponse({'success': True, 'transaction_history' : transaction_history, 'total_entries' : total_entries})
     except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)})
+
+@csrf_exempt
+@require_POST
+@auth_required
+def flag_prediction(request):
+    try:
+        feedback_transaction = FeedbackTransaction.objects.create(
+            uploading_user = request.POST['username'],
+            time_of_transfer = request.POST['time_of_transfer'],
+            cc_num = request.POST['cc_num'],
+            merchant = request.POST['merchant'],
+            category = request.POST['category'],
+            amt = request.POST['amt'],
+            city = request.POST['city'],
+            job = request.POST['job'],
+            dob = request.POST['dob'],
+        )
+        feedback_transaction.anomalous = False if request.POST['anomalous'] == "true" else False
+        feedback_transaction.save()
+        return JsonResponse({'success': True})
+    except Exception as e:
+        print("ERROR: ", e)
         return JsonResponse({'success': False, 'error': str(e)})
 
 @csrf_exempt

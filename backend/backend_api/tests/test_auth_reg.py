@@ -10,9 +10,6 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Joseph_493',
                 'email': 'Joseph_493@gmail.com',
-                'city': 'Melbourne',
-                'job': 'Cartographer',
-                'dob': '1971-11-03',
                 'password1': 'newpassword123',
                 'password2': 'newpassword123',
             },
@@ -26,9 +23,6 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Joseph_493',
                 'email': 'Joseph_493@gmail.com',
-                'city': 'Melbourne',
-                'job': 'Cartographer',
-                'dob': '1971-11-03',
                 'password1': 'newpassword123',
                 'password2': 'newpassword123',
             }
@@ -51,9 +45,6 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'newuser2',
                 'email': 'newuser2@example.com',
-                'city': 'North Wilkesboro',
-                'job': 'Applications Developer',
-                'dob': '1983-04-21',
                 'password1': 'newpassword1234',
                 'password2': 'newpassword1234',
             }
@@ -88,9 +79,6 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'newuser3',
                 'email': 'newuser2@example.com',
-                'city': 'North Wilkesboro',
-                'job': 'Applications Developer',
-                'dob': '1983-04-21',
                 'password1': 'newpassword12345',
                 'password2': 'newpassword12345',
             },
@@ -123,9 +111,6 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'newuser3',
                 'email': 'newuser2@example.com',
-                'city': 'West Green',
-                'job': 'Building surveyor',
-                'dob': '1995-07-26',
                 'password1': 'newpassword12345',
                 'password2': 'newpassword12345',
             }
@@ -172,9 +157,6 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'SarahH184',
                 'email': 'SarahHMonty@outlook.com',
-                'city': 'Mulberry Grove',
-                'job': 'Broadcast journalist',
-                'dob': '1983-04-21',
                 'password1': 'persephone_ajx4',
                 'password2': 'persephone_ajx4',
             }
@@ -207,9 +189,6 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Alice',
                 'email': 'Alice814@gmail.com',
-                'city': 'Mulberry Grove',
-                'job': 'Broadcast journalist',
-                'dob': '1983-04-21',
                 'password1': 'SpringClean__324',
                 'password2': 'SpringClean__324',
             }
@@ -221,9 +200,6 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'Bob',
                 'email': 'Bob2394@gmail.com',
-                'city': 'Oaks',
-                'job': 'Chemist, analytical',
-                'dob': '1975-06-17',
                 'password1': 'CleanSpring__391',
                 'password2': 'CleanSpring__391',
             }
@@ -249,9 +225,6 @@ class UserAuthenticationTests(TestCase):
             data={
                 'username': 'randomuser',
                 'email': 'randomuser@gmail.com',
-                'city': 'Oaks',
-                'job': 'Chemist, analytical',
-                'dob': '1983-04-21',
                 'password1': 'randompassword',
                 'password2': 'randompassword',
             }
@@ -267,6 +240,3 @@ class UserAuthenticationTests(TestCase):
         )
         data = response.json()
         self.assertTrue(data['email'] == 'randomuser@gmail.com')
-
-
-

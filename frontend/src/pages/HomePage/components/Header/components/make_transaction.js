@@ -8,7 +8,7 @@ import axios from "axios";
 import { toast } from 'react-toastify';
 import style from "../header.module.css";
 
-const MakeTransaction = ({ dataCounter, setDataCounter }) => {
+const MakeTransaction = ({ dataFlag, setDataFlag }) => {
   const {username, token} = useUser();
   const [show, setShow] = useState(false);
   const [cc_num, setCc_num] = useState('');
@@ -50,7 +50,7 @@ const MakeTransaction = ({ dataCounter, setDataCounter }) => {
       );
       // Handle Response
       if (response.data.success) {
-        setDataCounter(dataCounter + 1);
+        setDataFlag(!dataFlag);
         transferSuccess();
       } else {
         transferFailed(response.data.error);
@@ -63,7 +63,7 @@ const MakeTransaction = ({ dataCounter, setDataCounter }) => {
 
   return (
     <>
-      <Button variant="outline-info" onClick={handleShow}>
+      <Button style={{margin: '0 20px 0 0 '}} variant="outline-info" onClick={handleShow}>
         <BsCash className={style.icon}></BsCash>
         Upload Transaction
       </Button>

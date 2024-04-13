@@ -548,3 +548,106 @@ class UserTransactionTests(TestCase):
         data = response.json()
         self.assertTrue(data['success'])
         self.assertTrue(data['total_entries'] == "0")
+
+    def test_agg_on_cc(self):
+
+        response = self.client.post(
+            reverse('signup'), 
+            data={
+                'username': 'Jimmy',
+                'email': 'Neutron@IMBCorporate.com',
+                'password1': 'alax_memento_j44',
+                'password2': 'alax_memento_j44',
+            }
+        )
+        data = response.json()
+        self.assertTrue(data['success'])
+        auth_token = data['token']
+        # Jimmy makes a transaction
+        response = self.client.post(
+            reverse('make_transaction'),
+            data={
+                'username': 'Jimmy',
+                'cc_num': '1947292075921022',
+                'merchant': 'person1',
+                'category': 'category1',
+                'amt': '30.00',
+                'city': 'Melbourne',
+                'job': 'Accountant',
+                'dob': '1995-04-23',
+            },
+            headers={
+                'Authorization': f"Bearer {auth_token}"
+            }
+        )
+        data = response.json()
+        self.assertTrue(data['success'])
+        response = self.client.post(
+            reverse('make_transaction'),
+            data={
+                'username': 'Jimmy',
+                'cc_num': '1947292075921022',
+                'merchant': 'person2',
+                'category': 'category1',
+                'amt': '60.00',
+                'city': 'Melbourne',
+                'job': 'Accountant',
+                'dob': '1995-04-23',
+            },
+            headers={
+                'Authorization': f"Bearer {auth_token}"
+            }
+        )
+        data = response.json()
+        self.assertTrue(data['success'])
+        response = self.client.post(
+            reverse('make_transaction'),
+            data={
+                'username': 'Jimmy',
+                'cc_num': '1947292075921022',
+                'merchant': 'person3',
+                'category': 'personal_care',
+                'amt': '30.00',
+                'city': 'Melbourne',
+                'job': 'Accountant',
+                'dob': '1995-04-23',
+            },
+            headers={
+                'Authorization': f"Bearer {auth_token}"
+            }
+        )
+        data = response.json()
+        self.assertTrue(data['success'])
+        response = self.client.post(
+            reverse('make_transaction'),
+            data={
+                'username': 'Jimmy',
+                'cc_num': '1947292075921022',
+                'merchant': 'person3',
+                'category': 'category3',
+                'amt': '60.00',
+                'city': 'Melbourne',
+                'job': 'Accountant',
+                'dob': '1995-04-23',
+            },
+            headers={
+                'Authorization': f"Bearer {auth_token}"
+            }
+        )
+
+        data = response.json()
+        self.assertTrue(data['success'])
+        response = self.client.get(
+            reverse('agg_by_cc_num'),
+            data={
+                'username': 'Jimmy',
+                'cc_num': '1947292075921022'
+            }
+        )
+        data=response.json()
+        self.assertTrue(data['success'])
+        aggregations = data['aggregations']
+        self.assertTrue(float(aggregations['avg_amount']) == 45)
+        self.assertTrue(aggregations['merchant_counts']['person1'] == 1 and aggregations['merchant_counts']['person3'] == 2)
+        self.assertTrue(aggregations['category_counts']['category1'] == 2 and aggregations['category_counts']['category3'] == 1)
+        

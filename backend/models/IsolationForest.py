@@ -16,24 +16,24 @@ from mlflow import MlflowClient
 
 class isolationForestModel(abstract_model):
     def __init__(self):
-            model_path = os.path.join(os.path.dirname(__file__), 'IsolationForest.pickle')
-        # try:
-            with open(model_path, 'rb') as model:
-                self.model = pickle.load(model)
+        model_path = os.path.join(os.path.dirname(__file__), 'IsolationForest.pickle')
+        try:
+            #with open(model_path, 'rb') as model:
+            #    self.model = pickle.load(model)
             encoder_path = os.path.join(os.path.dirname(__file__), 'Encoder.pickle')
             with open(encoder_path, 'rb') as encoder:
                 self.encoder = pickle.load(encoder)
             model_name = 'default-IF'
-        # except Exception as e:
-        #     model_name, encoder = train_model()
-        #     # model_path = os.path.join(os.path.dirname(__file__), 'IsolationForest.pickle')
-        #     # with open(model_path, 'wb') as handle:
-        #     #      pickle.dump(model, handle)
-        #     encoder_path = os.path.join(os.path.dirname(__file__), 'Encoder.pickle')
-        #     with open(encoder_path, 'wb') as handle:
-        #         pickle.dump(encoder, handle)
-        #     print(encoder)
-        # finally:
+        except Exception as e:
+            model_name, encoder = train_model()
+            # model_path = os.path.join(os.path.dirname(__file__), 'IsolationForest.pickle')
+            # with open(model_path, 'wb') as handle:
+            #      pickle.dump(model, handle)
+            encoder_path = os.path.join(os.path.dirname(__file__), 'Encoder.pickle')
+            with open(encoder_path, 'wb') as handle:
+                pickle.dump(encoder, handle)
+            print(encoder)
+        finally:
             self.model_name = model_name
             self.encoder = encoder
         

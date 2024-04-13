@@ -15,20 +15,14 @@ from mlflow import MlflowClient
 
 
 class isolationForestModel(abstract_model):
-    def __init__(self):
-        model_path = os.path.join(os.path.dirname(__file__), 'IsolationForest.pickle')
+    def __init__(self, owner):
         try:
-            #with open(model_path, 'rb') as model:
-            #    self.model = pickle.load(model)
             encoder_path = os.path.join(os.path.dirname(__file__), 'Encoder.pickle')
             with open(encoder_path, 'rb') as encoder:
-                self.encoder = pickle.load(encoder)
+                encoder = pickle.load(encoder)
             model_name = 'default-IF'
         except Exception as e:
             model_name, encoder = train_model()
-            # model_path = os.path.join(os.path.dirname(__file__), 'IsolationForest.pickle')
-            # with open(model_path, 'wb') as handle:
-            #      pickle.dump(model, handle)
             encoder_path = os.path.join(os.path.dirname(__file__), 'Encoder.pickle')
             with open(encoder_path, 'wb') as handle:
                 pickle.dump(encoder, handle)
@@ -36,12 +30,15 @@ class isolationForestModel(abstract_model):
         finally:
             self.model_name = model_name
             self.encoder = encoder
+            self.owner = owner
         
     def predict(self, X):
-        # try:
+        try:
             data_input = pd.DataFrame(X, columns=['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob'])
             encoded_input = clean_up(data_input, self.encoder)[0]
-            #prediction = self.model.predict(encoded_input)[0]
+            
+            remote_server_uri = "http://127.0.0.1:5000"
+            mlflow.set_tracking_uri(remote_server_uri)
             model = mlflow.pyfunc.load_model('models:/' + self.model_name + "/latest")
             prediction = model.predict(encoded_input)
             if (prediction == -1):
@@ -49,16 +46,18 @@ class isolationForestModel(abstract_model):
             elif (prediction == 1):
                 prediction = 0
             return prediction
-        # except Exception as e:
-        #     print("EXCEPTION: ", e)
-        #     pass
+        except Exception as e:
+            print("EXCEPTION: ", e)
+            pass
         
     def retrain(self, X):
-        model, encoder = train_model(pd.DataFrame(X, columns = ['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob', 'class']))
-        self.model = model
+        model_name, encoder = train_model(pd.DataFrame(X, columns = ['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob', 'class']), self.owner)
+        encoder_path = os.path.join(os.path.dirname(__file__), 'Encoder.pickle')
+        with open(encoder_path, 'wb') as handle:
+            pickle.dump(encoder, handle)
         self.encoder = encoder
 
-def train_model(data=pd.DataFrame()):
+def train_model(data=pd.DataFrame(), owner=None):
     # enable autologging
     mlflow.sklearn.autolog()
 
@@ -66,8 +65,6 @@ def train_model(data=pd.DataFrame()):
     mlflow.set_tracking_uri(remote_server_uri)
     mlflow.set_experiment("isolationforest")
 
-    ########################################
-    ### needs to be replaced with big data pipeline
     train_path = os.path.join(os.path.dirname(__file__), 'fraudTrain.csv')
     train_data = pd.read_csv(train_path)
     if not data.empty:
@@ -80,7 +77,6 @@ def train_model(data=pd.DataFrame()):
     test_data = pd.read_csv('backend/models/fraudTest.csv')
     X_test, enc = clean_up(test_data.iloc[:, :-1], enc)
     y_test = test_data.iloc[:, -1:]
-    #########################################
 
     model = IsolationForest(n_estimators=100,max_samples='auto',contamination=float(0.2),random_state=random_state)
     with mlflow.start_run() as run:
@@ -97,13 +93,11 @@ def train_model(data=pd.DataFrame()):
         false_negatives = sum(1 if (y_actual[i] == 1 and y_predict[i] == 0) else 0 for i in range(len(y_actual)))
         mlflow.log_metric("false negative rate", false_negatives/len(y_actual))
         print(confusion_matrix(y_actual, y_predict))
+        model_name = owner + '-IF' if owner else 'default-IF' 
+        
         mlflow.sklearn.log_model(
             sk_model = model,
             artifact_path = 'isolation-forest',
-            registered_model_name = 'default-IF'
+            registered_model_name = model_name
         )
-    return 'default-IF', enc
-
-
-thing = isolationForestModel()
-print(thing.predict([["2020-06-21 12:15:17",3526826139003047,"fraud_Johnston-Casper","travel",3.19,"Falmouth","Furniture designer","1955-07-06"]]))
+    return model_name, enc

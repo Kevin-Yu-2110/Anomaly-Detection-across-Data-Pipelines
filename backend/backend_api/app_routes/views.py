@@ -386,11 +386,13 @@ def retrain_model(request):
         # retrain model with user's feedback transactions, 
         transactions = FeedbackTransaction.objects.filter(uploading_user=username)
         # convert datetime object to string without milliseconds
+        model_input = []
         for t in transactions:
             time_of_transfer = datetime.strptime(t.time_of_transfer, "%Y-%m-%d %H:%M:%S.%f")
             time_of_transfer = time_of_transfer.strftime("%Y-%m-%d %H:%M:%S")
-            model_input = [[time_of_transfer, t.cc_num, t.merchant, t.category, t.amt, t.city, t.job, t.dob, t.anomalous]]
-            model.retrain(model_input)
+            
+            model_input.append([time_of_transfer, t.cc_num, t.merchant, t.category, t.amt, t.city, t.job, t.dob, t.anomalous])
+        model.retrain(model_input)
         # clear feedback transactions
         FeedbackTransaction.objects.filter(uploading_user=username).delete()
         return JsonResponse({'success': True})

@@ -6,7 +6,7 @@ from models.IsolationForest import isolationForestModel
 class StandardUser(AbstractUser):
     otp = models.CharField(max_length=6, null=True, blank=True)
     cc_num = models.IntegerField(unique=True)
-    isolation_forest_model = isolationForestModel()
+    isolation_forest_model = isolationForestModel(cc_num)
 
     groups = models.ManyToManyField(
         'auth.Group',

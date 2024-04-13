@@ -136,7 +136,6 @@ def delete_account(request):
     try:
         clear_transaction_history(request)
         username = request.POST['username']
-        delete_transaction_history(request)
         StandardUser.objects.get(username=username).delete()
         return JsonResponse({'success': True})
     except Exception as e:

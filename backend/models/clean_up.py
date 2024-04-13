@@ -19,7 +19,7 @@ def clean_up(X, enc = None):
         enc = {}
         for column in categorical_X:
             current_encoder = OrdinalEncoder(handle_unknown='use_encoded_value',
-                                 unknown_value=-1)
+                                unknown_value=-1)
             categorical_X[column] = current_encoder.fit_transform(categorical_X[column].to_frame())
             enc[column] = current_encoder
     else:

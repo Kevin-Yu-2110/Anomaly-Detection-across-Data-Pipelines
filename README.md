@@ -43,8 +43,3 @@ cd backend
 python manage.py makemigrations
 python manage.py migrate
 ```
-### Train network models
-```
-cd models
-python client_model.py
-```

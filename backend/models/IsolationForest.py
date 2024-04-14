@@ -26,7 +26,6 @@ class isolationForestModel(abstract_model):
             encoder_path = os.path.join(os.path.dirname(__file__), 'encoders/default_encoder.pickle')
             with open(encoder_path, 'wb') as handle:
                 pickle.dump(encoder, handle)
-            print(encoder)
         finally:
             self.model_name = model_name
             self.encoder = encoder

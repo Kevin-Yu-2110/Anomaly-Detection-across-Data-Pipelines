@@ -634,9 +634,21 @@ class UserTransactionTests(TestCase):
                 'Authorization': f"Bearer {auth_token}"
             }
         )
-
         data = response.json()
         self.assertTrue(data['success'])
+        response = self.client.post(
+            reverse('detect_anomalies'),
+            data={
+                'username': 'Jimmy',
+                'selected_model': 'Placeholder' #placeholder
+            },
+            headers={
+                'Authorization': f"Bearer {auth_token}"
+            }
+        )
+        data = response.json()
+        self.assertTrue(data['success'])
+
         response = self.client.get(
             reverse('agg_by_cc_num'),
             data={
@@ -650,4 +662,7 @@ class UserTransactionTests(TestCase):
         self.assertTrue(float(aggregations['avg_amount']) == 45)
         self.assertTrue(aggregations['merchant_counts']['person1'] == 1 and aggregations['merchant_counts']['person3'] == 2)
         self.assertTrue(aggregations['category_counts']['category1'] == 2 and aggregations['category_counts']['category3'] == 1)
-        
+        self.assertTrue(aggregations['num_transactions'] == 4)
+        self.assertTrue(aggregations['max_amt'] == 60)
+        self.assertTrue(aggregations['min_amt'] == 30)
+

@@ -53,6 +53,7 @@ class XGBoostModel(abstract_model):
         encoder_path = os.path.join(os.path.dirname(__file__), 'encoders/' + self.model_name + '-encoder.pickle')
         with open(encoder_path, 'wb') as handle:
             pickle.dump(encoder, handle)
+        self.model_name = model_name
         self.encoder = encoder
 
 

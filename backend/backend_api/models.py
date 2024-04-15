@@ -2,6 +2,8 @@ import random
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from models.IsolationForest import isolationForestModel
+from models.XGBoost import XGBoostModel
+from models.NeuralNetwork import NeuralNetworkModel
 
 class StandardUser(AbstractUser):
     otp = models.CharField(max_length=6, null=True, blank=True)
@@ -25,6 +27,8 @@ class StandardUser(AbstractUser):
 
     def get_models(self):
         self.model_list['IF'] = isolationForestModel(self.cc_num)
+        self.model_list['XG'] = XGBoostModel(self.cc_num)
+        self.model_list['NN'] = NeuralNetworkModel(self.cc_num)
     
     def call_model(self, model):
         return self.model_list[model]

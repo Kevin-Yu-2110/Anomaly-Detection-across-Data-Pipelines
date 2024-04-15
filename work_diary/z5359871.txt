@@ -62,4 +62,5 @@ Week 9
 - Created neural network, xgboost, catboost, lightBGM models and performed tuning for all
 - Compared performance for all models
 - Decided finals models to be: XGboost (default), isolation forest, neural network
+- Formatted new models to use MLflow
 - Created plan for final demo and report with group

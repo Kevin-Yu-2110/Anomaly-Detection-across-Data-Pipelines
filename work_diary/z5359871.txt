@@ -59,3 +59,7 @@ Week 9
 - Eliminated bad models
 - Performed hyperparameter tuning for Adaboost
 - Reformatted GBT and Adaboost models to be used for backend and allow for retraining
+- Created neural network, xgboost, catboost, lightBGM models and performed tuning for all
+- Compared performance for all models
+- Decided finals models to be: XGboost (default), isolation forest, neural network
+- Created plan for final demo and report with group

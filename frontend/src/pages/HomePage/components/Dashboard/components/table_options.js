@@ -67,6 +67,8 @@ const TableOptions = ({ setPage, setSearchString, pageToggle, setPageToggle }) =
     // Create Request Form
     const formData = new FormData();
     formData.append('username', username);
+    // Notify User of Asynchronous call
+    toast.success("Model Retrain Initiated. Awaiting response")
     // Send Request Form
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/retrain_model/',

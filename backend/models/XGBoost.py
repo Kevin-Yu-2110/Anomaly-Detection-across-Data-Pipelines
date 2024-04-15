@@ -28,9 +28,6 @@ class XGBoostModel(abstract_model):
             self.encoder = encoder
             self.owner = str(owner)
     
-    def details(self):
-        print(self.owner)
-        print(self.model_name)
     
     def predict(self, X):
         try:

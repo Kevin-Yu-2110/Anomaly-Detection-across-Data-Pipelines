@@ -30,10 +30,6 @@ class NeuralNetworkModel(abstract_model):
             self.encoder = encoder
             self.owner = str(owner)
     
-    def details(self):
-        print(self.owner)
-        print(self.model_name)
-    
     def predict(self, X):
         try:
             data_input = pd.DataFrame(X, columns=['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob'])

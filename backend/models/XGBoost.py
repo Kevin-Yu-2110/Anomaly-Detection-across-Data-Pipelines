@@ -15,12 +15,12 @@ class XGBoostModel(abstract_model):
     def __init__(self, owner):
         try:
             model_name = 'default-XG'
-            encoder_path = os.path.join(os.path.dirname(__file__), 'encoders\\' + model_name + '-encoder.pickle')
+            encoder_path = os.path.join(os.path.dirname(__file__), 'encoders/' + model_name + '-encoder.pickle')
             with open(encoder_path, 'rb') as encoder:
                 encoder = pickle.load(encoder)
         except Exception as e:
             model_name, encoder = train_model(retrain = False)
-            encoder_path = os.path.join(os.path.dirname(__file__), 'encoders\default-XG-encoder.pickle')
+            encoder_path = os.path.join(os.path.dirname(__file__), 'encoders/default-XG-encoder.pickle')
             with open(encoder_path, 'wb') as handle:
                 pickle.dump(encoder, handle)
         finally:
@@ -50,7 +50,7 @@ class XGBoostModel(abstract_model):
     def retrain(self, X):
         cleaned_input = pd.DataFrame(X, columns = ['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob', 'is_fraud'])
         model_name, encoder = train_model(cleaned_input, self.owner, retrain = True)
-        encoder_path = os.path.join(os.path.dirname(__file__), 'encoders\\' + self.model_name + '-encoder.pickle')
+        encoder_path = os.path.join(os.path.dirname(__file__), 'encoders/' + self.model_name + '-encoder.pickle')
         with open(encoder_path, 'wb') as handle:
             pickle.dump(encoder, handle)
         self.encoder = encoder

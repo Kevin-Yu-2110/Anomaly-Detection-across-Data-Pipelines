@@ -6,8 +6,8 @@ from models.IsolationForest import isolationForestModel
 class StandardUser(AbstractUser):
     otp = models.CharField(max_length=6, null=True, blank=True)
     cc_num = models.IntegerField(unique=True)
-    isolation_forest_model = isolationForestModel(cc_num)
-
+    model_list = {}
+    
     groups = models.ManyToManyField(
         'auth.Group',
         related_name='standard_users_groups'
@@ -23,6 +23,12 @@ class StandardUser(AbstractUser):
         self.otp = ''.join(random.choices([str(i) for i in range(10)], k=6))
         super().save(*args, **kwargs)
 
+    def get_models(self):
+        self.model_list['IF'] = isolationForestModel(self.cc_num)
+    
+    def call_model(self, model):
+        return self.model_list[model]
+    
     def __str__(self):
         return self.username
 

@@ -17,20 +17,25 @@ from mlflow import MlflowClient
 class isolationForestModel(abstract_model):
     def __init__(self, owner):
         try:
-            encoder_path = os.path.join(os.path.dirname(__file__), 'encoders/' + self.model_name + '-encoder.pickle')
+            model_name = 'default-IF'
+            encoder_path = os.path.join(os.path.dirname(__file__), 'encoders\\' + model_name + '-encoder.pickle')
             with open(encoder_path, 'rb') as encoder:
                 encoder = pickle.load(encoder)
-            model_name = 'default-IF'
         except Exception as e:
-            model_name, encoder = train_model()
-            encoder_path = os.path.join(os.path.dirname(__file__), 'encoders/default_encoder.pickle')
+            print(e)
+            model_name, encoder = train_model(retrain = False)
+            encoder_path = os.path.join(os.path.dirname(__file__), 'encoders\default-IF-encoder.pickle')
             with open(encoder_path, 'wb') as handle:
                 pickle.dump(encoder, handle)
         finally:
             self.model_name = model_name
             self.encoder = encoder
-            self.owner = owner
-        
+            self.owner = str(owner)
+    
+    def details(self):
+        print(self.owner)
+        print(self.model_name)
+    
     def predict(self, X):
         try:
             data_input = pd.DataFrame(X, columns=['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob'])
@@ -50,19 +55,16 @@ class isolationForestModel(abstract_model):
             pass
         
     def retrain(self, X):
-        model_name, encoder = train_model(pd.DataFrame(X, columns = ['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob', 'class']), self.owner)
-        encoder_path = os.path.join(os.path.dirname(__file__), 'encoders/' + self.model_name + '-encoder.pickle')
+        cleaned_input = pd.DataFrame(X, columns = ['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob', 'class'])
+        model_name, encoder = train_model(cleaned_input, self.owner, retrain = True)
+        encoder_path = os.path.join(os.path.dirname(__file__), 'encoders\\' + self.model_name + '-encoder.pickle')
         with open(encoder_path, 'wb') as handle:
             pickle.dump(encoder, handle)
         self.encoder = encoder
 
-def train_model(data=pd.DataFrame(), owner=None):
-    # enable autologging
-    #mlflow.sklearn.autolog()
-
+def train_model(data=pd.DataFrame(), owner=None, retrain=bool):
     remote_server_uri = "http://127.0.0.1:5000"
     mlflow.set_tracking_uri(remote_server_uri)
-    #mlflow.set_experiment("isolationforest")
 
     train_path = os.path.join(os.path.dirname(__file__), 'fraudTrain.csv')
     train_data = pd.read_csv(train_path)
@@ -73,26 +75,11 @@ def train_model(data=pd.DataFrame(), owner=None):
     y_train = train_data.iloc[:, -1:]
 
     random_state = np.random.RandomState(42)
-    #test_data = pd.read_csv('backend/models/fraudTest.csv')
-    #X_test, enc = clean_up(test_data.iloc[:, :-1], enc)
-    #y_test = test_data.iloc[:, -1:]
 
     model = IsolationForest(n_estimators=100,max_samples='auto',contamination=float(0.2),random_state=random_state)
     with mlflow.start_run() as run:
         model.fit(X_train, y_train)
-
-        #y_actual = y_test.to_numpy().transpose()[0]
-        #y_predict = model.predict(X_test)
-        #y_predict[y_predict == 1] = 0
-        #y_predict[y_predict == -1] = 1
-        #count = (y_actual == y_predict).sum()
-        #mlflow.log_metric("accuracy", count/len(y_actual))
-        #false_positives = sum(1 if (y_actual[i] == 0 and y_predict[i] == 1) else 0 for i in range(len(y_actual)))
-        #mlflow.log_metric("false positive rate", false_positives/len(y_actual))
-        #false_negatives = sum(1 if (y_actual[i] == 1 and y_predict[i] == 0) else 0 for i in range(len(y_actual)))
-        #mlflow.log_metric("false negative rate", false_negatives/len(y_actual))
-        #print(confusion_matrix(y_actual, y_predict))
-        model_name = owner + '-IF' if owner else 'default-IF' 
+        model_name = owner + '-IF' if retrain else 'default-IF' 
         
         mlflow.sklearn.log_model(
             sk_model = model,

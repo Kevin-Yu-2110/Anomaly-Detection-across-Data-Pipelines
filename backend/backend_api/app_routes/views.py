@@ -58,6 +58,11 @@ def user_signup(request):
             cc_num = random.randint(10**15, (10**16)-1)
         form.instance.cc_num = cc_num
         form.save()
+        
+        user = StandardUser.objects.get(username=username)
+        user.get_models()
+        user.save()
+        
         # Generate JSON Web Token for User-Auth
         token = generate_jwt(username, password)
         login(request, StandardUser.objects.get(username=username))
@@ -362,9 +367,10 @@ def process_transaction_log(request):
 def detect_anomalies(request):
     try:
         username = request.POST['username']
-        selected_model = request.POST['selected_model']
+        #selected_model = request.POST['selected_model']
+        selected_model = 'IF' #current placeholder
         user = StandardUser.objects.get(username=username)
-        model = user.isolation_forest_model
+        model = user.call_model(selected_model)
         # for every transaction in db with username as uploading_user, update 'anomalous' field
         transactions = Transaction.objects.filter(uploading_user=username)
         for t in transactions:
@@ -381,8 +387,10 @@ def detect_anomalies(request):
 def retrain_model(request):
     try:
         username = request.POST['username']
+        #selected_model = request.POST['selected_model']
+        selected_model = 'IF' #current placeholder
         user = StandardUser.objects.get(username=username)
-        model = user.isolation_forest_model
+        model = user.call_model(selected_model)
         # retrain model with user's feedback transactions, 
         transactions = FeedbackTransaction.objects.filter(uploading_user=username)
         # convert datetime object to string without milliseconds

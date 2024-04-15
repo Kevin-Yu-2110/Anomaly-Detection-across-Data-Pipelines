@@ -9,6 +9,7 @@ from django.core.serializers import serialize
 from django.contrib.auth import login, logout
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST, require_GET
+from django.db.models import Avg, Count, Max, Min
 from functools import wraps
 import random
 import smtplib
@@ -377,3 +378,36 @@ def retrain_model(request):
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
 
+
+def agg_by_cc_num(request):
+    try:
+        username=request.GET['username']
+        cc_num=request.GET['cc_num']
+        transactions = Transaction.objects.filter(uploading_user=username, cc_num=cc_num)
+        aggregations = {}
+        aggregations['avg_amount'] = transactions.aggregate(Avg("amt"))['amt__avg']
+
+        def convert(l):
+            res = {}
+            for kv in l:
+                kv = list(kv.values())
+                key = str(kv[0])
+                val = kv[1]
+                res[key] = val
+            return res
+
+        aggregations['merchant_counts'] = convert(list(transactions.values('merchant').annotate(Count('merchant')).order_by('merchant')))
+        aggregations['time_counts'] = convert(list(transactions.values('time_of_transfer').annotate(Count('time_of_transfer')).order_by('time_of_transfer')))
+        aggregations['category_counts'] = convert(list(transactions.values('category').annotate(Count('category')).order_by('category')))
+        aggregations['city_counts'] = convert(list(transactions.values('city').annotate(Count('city')).order_by('city')))
+        aggregations['job_counts'] = convert(list(transactions.values('job').annotate(Count('job')).order_by('job')))
+        aggregations['dob_counts'] = convert(list(transactions.values('dob').annotate(Count('dob')).order_by('dob')))
+
+        aggregations['num_transactions'] = transactions.count()
+        aggregations['percentage_anomaly'] = transactions.filter(anomalous=True).count() / aggregations['num_transactions']
+        aggregations['max_amt'] = float(transactions.aggregate(Max('amt'))['amt__max'])
+        aggregations['min_amt'] = float(transactions.aggregate(Min('amt'))['amt__min'])
+        return JsonResponse({'success': True, 'aggregations': aggregations})
+    except Exception as e:
+        print('Exception', repr(e))
+        return JsonResponse({'success': False, 'error': str(e)})

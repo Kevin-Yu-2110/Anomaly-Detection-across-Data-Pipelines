@@ -18,7 +18,7 @@ const TextField = styled.input`
   }
 `;
 
-const TableOptions = ({ setPage, setSearchString, pageToggle, setPageToggle }) => {
+const TableOptions = ({ setPage, setSearchString, pageToggle, setPageToggle, refreshToggle, setRefreshToggle }) => {
   const [searchText, setSearchText] = useState('');
   const {username, token} = useUser();
   const [selectedModel, setSelectedModel] = useState('IsolationForestModel');
@@ -54,12 +54,13 @@ const TableOptions = ({ setPage, setSearchString, pageToggle, setPageToggle }) =
         );
         // Handle Response
         if (response.data.success) {
-          toast.success("Anomaly Detection Complete")
+          setRefreshToggle(!refreshToggle);
+          toast.success("Anomaly Detection Complete");
         } else {
-          toast.error("Failed to call Anomaly Detection Pipeline")
+          toast.error("Failed to call Anomaly Detection Pipeline");
         }
       } catch (error) {
-        toast.error("Failed to call Anomaly Detection Pipeline")
+        toast.error("Failed to call Anomaly Detection Pipeline");
       }
   };
 
@@ -80,12 +81,13 @@ const TableOptions = ({ setPage, setSearchString, pageToggle, setPageToggle }) =
       );
       // Handle Response
       if (response.data.success) {
-        toast.success("Model Retrain Completed")
+        setRefreshToggle(!refreshToggle);
+        toast.success("Model Retrain Completed");
       } else {
-        toast.error("Failed to call Model Retrain")
+        toast.error("Failed to call Model Retrain");
       }
     } catch (error) {
-      toast.error("Failed to call Model Retrain")
+      toast.error("Failed to call Model Retrain");
     }
 };
 

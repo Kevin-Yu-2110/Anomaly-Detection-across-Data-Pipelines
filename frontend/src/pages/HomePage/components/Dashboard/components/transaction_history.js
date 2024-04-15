@@ -17,6 +17,7 @@ const TransactionHistory = ({ dataFlag }) => {
   const [resetPaginationToggle, setResetPaginationToggle] = React.useState(false);
   const [selectedRows, setSelectedRows] = useState([]);
   const [toggleCleared, setToggleCleared] = useState(false);
+  const [refreshToggle, setRefreshToggle] = useState(false);
 
   const fetchFailed = (error) => toast.error(`Failed to fetch data: ${error}`);
   const deleteFailed = (error) => toast.error(`Failed to delete selected transactions: ${error}`);
@@ -260,7 +261,7 @@ const TransactionHistory = ({ dataFlag }) => {
   useEffect(() => {
     fetchData(page);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataFlag, searchString, sortString, toggleCleared]);
+  }, [dataFlag, searchString, sortString, toggleCleared, refreshToggle]);
 
   return (
     <DataTable 
@@ -288,7 +289,9 @@ const TransactionHistory = ({ dataFlag }) => {
         setPage={setPage}
         setSearchString={setSearchString}
         pageToggle={resetPaginationToggle}
-        setPageToggle={setResetPaginationToggle} 
+        setPageToggle={setResetPaginationToggle}
+        refreshToggle={refreshToggle}
+        setRefreshToggle={setRefreshToggle} 
       />}
       theme="customDark"
       customStyles={tableStyle}

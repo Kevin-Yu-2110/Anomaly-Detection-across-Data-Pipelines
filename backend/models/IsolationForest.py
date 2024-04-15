@@ -16,13 +16,13 @@ class isolationForestModel(abstract_model):
     def __init__(self, owner):
         try:
             model_name = 'default-IF'
-            encoder_path = os.path.join(os.path.dirname(__file__), 'encoders\\' + model_name + '-encoder.pickle')
+            encoder_path = os.path.join(os.path.dirname(__file__), 'encoders/' + model_name + '-encoder.pickle')
             with open(encoder_path, 'rb') as encoder:
                 encoder = pickle.load(encoder)
         except Exception as e:
             print(e)
             model_name, encoder = train_model(retrain = False)
-            encoder_path = os.path.join(os.path.dirname(__file__), 'encoders\default-IF-encoder.pickle')
+            encoder_path = os.path.join(os.path.dirname(__file__), 'encoders/default-IF-encoder.pickle')
             with open(encoder_path, 'wb') as handle:
                 pickle.dump(encoder, handle)
         finally:
@@ -51,7 +51,7 @@ class isolationForestModel(abstract_model):
     def retrain(self, X):
         cleaned_input = pd.DataFrame(X, columns = ['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob', 'class'])
         model_name, encoder = train_model(cleaned_input, self.owner, retrain = True)
-        encoder_path = os.path.join(os.path.dirname(__file__), 'encoders\\' + model_name + '-encoder.pickle')
+        encoder_path = os.path.join(os.path.dirname(__file__), 'encoders/' + model_name + '-encoder.pickle')
         with open(encoder_path, 'wb') as handle:
             pickle.dump(encoder, handle)
         self.model_name = model_name

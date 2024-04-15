@@ -32,10 +32,6 @@ class isolationForestModel(abstract_model):
             self.encoder = encoder
             self.owner = str(owner)
     
-    def details(self):
-        print(self.owner)
-        print(self.model_name)
-    
     def predict(self, X):
         try:
             data_input = pd.DataFrame(X, columns=['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob'])
@@ -57,9 +53,10 @@ class isolationForestModel(abstract_model):
     def retrain(self, X):
         cleaned_input = pd.DataFrame(X, columns = ['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob', 'class'])
         model_name, encoder = train_model(cleaned_input, self.owner, retrain = True)
-        encoder_path = os.path.join(os.path.dirname(__file__), 'encoders\\' + self.model_name + '-encoder.pickle')
+        encoder_path = os.path.join(os.path.dirname(__file__), 'encoders\\' + model_name + '-encoder.pickle')
         with open(encoder_path, 'wb') as handle:
             pickle.dump(encoder, handle)
+        self.model_name = model_name
         self.encoder = encoder
 
 def train_model(data=pd.DataFrame(), owner=None, retrain=bool):

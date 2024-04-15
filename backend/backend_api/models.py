@@ -42,9 +42,9 @@ class Transaction(models.Model):
     anomalous = models.BooleanField(null=True, blank=True)
 
     def __str__(self):
-        return f"Transaction from {self.username} to {self.payee_name} of type {self.category} and amount ${self.amount}\n"
+        return f"Transaction from {self.cc_num} to {self.merchant} of type {self.category} and amount ${self.amount}\n"
 
 # Model identifcal to Transaction model, except with anomalous corrected
 class FeedbackTransaction(Transaction):
     def __str__(self):
-        return f"Feedback Transaction from {self.username} to {self.payee_name} with ' anomalous {self.anomalous}' prediction flagged"
+        return f"Feedback Transaction from {self.cc_num} to {self.merchant} with anomalous {self.anomalous} prediction flagged"

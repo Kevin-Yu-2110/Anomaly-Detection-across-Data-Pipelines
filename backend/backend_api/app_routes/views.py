@@ -279,29 +279,33 @@ def get_transaction_history(request):
         return JsonResponse({'success': True, 'transaction_history' : transaction_history, 'total_entries' : total_entries})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
-
+    
 @csrf_exempt
 @require_POST
 @auth_required
-def flag_prediction(request):
+def flag_predictions(request):
     try:
-        feedback_transaction, created = FeedbackTransaction.objects.get_or_create(
-            uploading_user = request.POST['username'],
-            time_of_transfer = request.POST['time_of_transfer'],
-            cc_num = request.POST['cc_num'],
-            merchant = request.POST['merchant'],
-            category = request.POST['category'],
-            amt = request.POST['amt'],
-            city = request.POST['city'],
-            job = request.POST['job'],
-            dob = request.POST['dob'],
-        )
-        if created:
-            feedback_transaction.anomalous = False if request.POST['anomalous'] == "true" else False
-            feedback_transaction.save()
-            return JsonResponse({'success': True})
-        else:
-            return JsonResponse({'success': False, 'error': "already flagged"})
+        uploading_user = request.POST['username']
+        transactions = json.loads(request.POST['transactions'])
+        for t in transactions:
+            feedback_transaction, created = FeedbackTransaction.objects.get_or_create(
+                uploading_user = uploading_user,
+                time_of_transfer = t['time_of_transfer'],
+                cc_num = t['cc_num'],
+                merchant = t['merchant'],
+                category = t['category'],
+                amt = t['amt'],
+                city = t['city'],
+                job = t['job'],
+                dob = t['dob'],
+            )
+            if created:
+                feedback_transaction.anomalous = False if t['anomalous'] else True
+                feedback_transaction.save()
+            else:
+                return JsonResponse({'success': False, 'error': "already flagged"})
+        # only returns success if all transactions are not already flagged
+        return JsonResponse({'success': True})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
 
@@ -331,30 +335,6 @@ def process_transaction_log(request):
         return JsonResponse({'success': True})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
-    
-# def get_transaction_by_field(request):
-#     try:
-#         username=request.POST['username']
-#         page_no=request.POST['page_no']
-#         search_fields=json.loads(request.POST['search_fields'])
-#         # sort_fields: time_of_transfer, cc_num, merchant, category, amt, anomalous
-#         sort_fields=json.loads(request.POST['sort_fields'])
-#         if not sort_fields:
-#             sort_fields = ['time_of_transfer']
-#         items_per_page = 50
-#         transactions = Transaction.objects.filter(uploading_user=username)
-#         transactions = transactions.filter(**search_fields)
-#         transactions = transactions.order_by(*sort_fields)
-#         total_entries = str(len(transactions))
-#         paginator = Paginator(transactions, items_per_page)
-#         page = paginator.page(page_no)
-#         transactions = page.object_list
-#         transaction_history = serialize('json', transactions)
-#         transaction_history = json.loads(transaction_history)
-#         transaction_history = [transaction['fields'] for transaction in transaction_history]
-#         return JsonResponse({'success': True, 'total_entries': total_entries})
-#     except Exception as e:
-#         return JsonResponse({'success': False, 'error': str(e)})
 
 @csrf_exempt
 @require_POST

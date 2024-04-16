@@ -19,5 +19,5 @@ urlpatterns = [
     path('process_transaction_log/', views.process_transaction_log, name='process_transaction_log'),
     path('detect_anomalies/', views.detect_anomalies, name='detect_anomalies'),
     path('retrain_model/', views.retrain_model, name='retrain_model'),
-    path('agg_by_cc_num', views.agg_by_cc_num, name='agg_by_cc_num')
+    path('agg_by_cc_num/', views.agg_by_cc_num, name='agg_by_cc_num')
 ]

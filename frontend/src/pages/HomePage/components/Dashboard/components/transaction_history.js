@@ -21,7 +21,7 @@ const TransactionHistory = ({ dataFlag }) => {
 
   const fetchFailed = (error) => toast.error(`Failed to fetch data: ${error}`);
   const deleteFailed = (error) => toast.error(`Failed to delete selected transactions: ${error}`);
-  const flagSuccess = () => toast.success("Prediction flagged successfully");
+  const flagSuccess = () => toast.success("Predictions flagged successfully");
   const flagFailed = (error) => toast.error(`Failed to flag predictions: ${error}`);
 
   // table colour theme
@@ -94,7 +94,7 @@ const TransactionHistory = ({ dataFlag }) => {
       sortField: "merchant"
     },
     {
-      name: "Amount",
+      name: "Amount ($)",
       selector: row => row.amt,
       sortable: true,
       sortField: "amt"
@@ -113,7 +113,7 @@ const TransactionHistory = ({ dataFlag }) => {
     },
     {
       name: "Anomaly",
-      cell: row => <div>{row.anomalous !== null ? (row.anomalous ? (<div>Yes</div>) : (<div>No</div>)) : null} </div>,
+      cell: row => <div>{row.anomalous !== null ? (row.anomalous ? "Yes" : "No") : null} </div>,
       conditionalCellStyles: [
         {
           when: row => row.anomalous === true,
@@ -244,6 +244,85 @@ const TransactionHistory = ({ dataFlag }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedRows]);
 
+  // shows additional info about the specific transaction, including aggregate data
+  const ExpandedRow = ({ data }) => {
+    const [aggregateData, setAggregateData] = useState(null);
+
+    const style = {
+      table: {
+        margin: "10px",
+        backgroundColor: "#3c5684"
+      },
+      cell: {
+        padding: "5px 10px"
+      },
+      row: {
+        borderTop: "1px solid gray"
+      }
+    };
+
+    // request aggregate data based on the account number of the transaction
+    const fetchAggregateData = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/api/agg_by_cc_num/",
+          {  
+            params: {
+              username,
+              cc_num: data.cc_num
+            },
+            headers: {
+              Authorization: token
+            }
+          }
+        );
+        // handle response
+        if (response.data.success) {
+          setAggregateData(response.data.aggregations);
+        } else {
+          fetchFailed(response.data.error);
+        }
+      } catch (error) {
+        fetchFailed(error);
+      }
+    }
+
+    useEffect(() => {
+      fetchAggregateData();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+    return (
+      <table style={style.table}>
+        <thead>
+          <tr>
+            <th style={style.cell}>Sender City</th>
+            <th style={style.cell}>Sender Job</th>
+            <th style={style.cell}>Sender DOB</th>
+            <th style={style.cell}>Total from Sender</th>
+            <th style={style.cell}>Anomaly percentage &#40;%&#41;</th>
+            <th style={style.cell}>Avg &#40;$&#41;</th>
+            <th style={style.cell}>Min &#40;$&#41;</th>
+            <th style={style.cell}>Max &#40;$&#41;</th>
+            <th style={style.cell}>Flagged?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style={style.row}>
+            <td style={style.cell}>{data.city}</td>
+            <td style={style.cell}>{data.job}</td>
+            <td style={style.cell}>{data.dob}</td>
+            <td style={style.cell}>{aggregateData ? aggregateData.num_transactions : "Loading..."}</td>
+            <td style={style.cell}>{aggregateData ? aggregateData.percentage_anomaly * 100: "Loading..."}</td>
+            <td style={style.cell}>{aggregateData ? aggregateData.avg_amt : "Loading..."}</td>
+            <td style={style.cell}>{aggregateData ? aggregateData.min_amt : "Loading..."}</td>
+            <td style={style.cell}>{aggregateData ? aggregateData.max_amt : "Loading..."}</td>
+            <td style={style.cell}>{data.is_flagged ? "Yes" : "No"}</td>
+          </tr>
+        </tbody>
+      </table>
+    )
+  }
+
   const handleSort = (column, sortDirection) => {
     if (sortDirection === "desc") {
       setSortString("-" + column.sortField);
@@ -273,6 +352,8 @@ const TransactionHistory = ({ dataFlag }) => {
       paginationTotalRows={totalRows}
       onChangePage={handlePageChange}
       responsive
+      expandableRows
+      expandableRowsComponent={ExpandedRow}
       selectableRows
       onSelectedRowsChange={handleRowSelected}
       clearSelectedRows={toggleCleared}

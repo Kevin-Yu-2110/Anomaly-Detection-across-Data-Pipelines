@@ -1,5 +1,5 @@
 from backend_api.app_routes.forms import SignUpForm
-from backend_api.models import StandardUser, Transaction, FeedbackTransaction
+from backend_api.models import StandardUser, Transaction
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 from email.message import EmailMessage
@@ -291,23 +291,12 @@ def get_transaction_history(request):
 @auth_required
 def flag_prediction(request):
     try:
-        feedback_transaction, created = FeedbackTransaction.objects.get_or_create(
-            uploading_user = request.POST['username'],
-            time_of_transfer = request.POST['time_of_transfer'],
-            cc_num = request.POST['cc_num'],
-            merchant = request.POST['merchant'],
-            category = request.POST['category'],
-            amt = request.POST['amt'],
-            city = request.POST['city'],
-            job = request.POST['job'],
-            dob = request.POST['dob'],
-        )
-        if created:
-            feedback_transaction.anomalous = False if request.POST['anomalous'] == "true" else False
-            feedback_transaction.save()
-            return JsonResponse({'success': True})
-        else:
+        transaction = Transaction.objects.get(uploading_user=request.POST['username'], time_of_transfer = request.POST['time_of_transfer'])
+        if transaction.is_flagged:
             return JsonResponse({'success': False, 'error': "already flagged"})
+        transaction.is_flagged = True
+        transaction.save()
+        return JsonResponse({'success': True})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
 
@@ -321,7 +310,7 @@ def process_transaction_log(request):
         rows = csv.reader(decoded_file)
         row_count = 0
         for row in rows:
-            if row_count: 
+            if row_count:
                 Transaction.objects.create(
                     uploading_user = request.POST['username'],
                     time_of_transfer = row[0],
@@ -403,7 +392,6 @@ def retrain_model(request):
             model_input.append([time_of_transfer, t.cc_num, t.merchant, t.category, t.amt, t.city, t.job, t.dob, t.anomalous])
         model.retrain(model_input)
         # clear feedback transactions
-        FeedbackTransaction.objects.filter(uploading_user=username).delete()
         return JsonResponse({'success': True})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})

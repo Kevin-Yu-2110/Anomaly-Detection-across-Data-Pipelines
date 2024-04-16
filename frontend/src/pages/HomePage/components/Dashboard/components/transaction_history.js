@@ -21,7 +21,7 @@ const TransactionHistory = ({ dataFlag }) => {
 
   const fetchFailed = (error) => toast.error(`Failed to fetch data: ${error}`);
   const deleteFailed = (error) => toast.error(`Failed to delete selected transactions: ${error}`);
-  const flagSuccess = () => toast.success("Prediction flagged successfully");
+  const flagSuccess = () => toast.success("Predictions flagged successfully");
   const flagFailed = (error) => toast.error(`Failed to flag predictions: ${error}`);
 
   // table colour theme
@@ -113,7 +113,7 @@ const TransactionHistory = ({ dataFlag }) => {
     },
     {
       name: "Anomaly",
-      cell: row => <div>{row.anomalous !== null ? (row.anomalous ? (<div>Yes</div>) : (<div>No</div>)) : null} </div>,
+      cell: row => <div>{row.anomalous !== null ? (row.anomalous ? "Yes" : "No") : null} </div>,
       conditionalCellStyles: [
         {
           when: row => row.anomalous === true,
@@ -303,6 +303,7 @@ const TransactionHistory = ({ dataFlag }) => {
             <th style={style.cell}>Avg &#40;$&#41;</th>
             <th style={style.cell}>Min &#40;$&#41;</th>
             <th style={style.cell}>Max &#40;$&#41;</th>
+            <th style={style.cell}>Flagged?</th>
           </tr>
         </thead>
         <tbody>
@@ -315,6 +316,7 @@ const TransactionHistory = ({ dataFlag }) => {
             <td style={style.cell}>{aggregateData ? aggregateData.avg_amt : "Loading..."}</td>
             <td style={style.cell}>{aggregateData ? aggregateData.min_amt : "Loading..."}</td>
             <td style={style.cell}>{aggregateData ? aggregateData.max_amt : "Loading..."}</td>
+            <td style={style.cell}>{data.is_flagged ? "Yes" : "No"}</td>
           </tr>
         </tbody>
       </table>

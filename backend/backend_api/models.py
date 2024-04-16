@@ -53,4 +53,4 @@ class Transaction(models.Model):
     anomalous = models.BooleanField(null=True, blank=True)
 
     def __str__(self):
-        return f"Transaction from {self.username} to {self.payee_name} of type {self.category} and amount ${self.amount}\n"
+        return f"Transaction from {self.cc_num} to {self.merchant} of type {self.category} and amount ${self.amount}\n"

@@ -654,15 +654,18 @@ class UserTransactionTests(TestCase):
             data={
                 'username': 'Jimmy',
                 'cc_num': '1947292075921022'
+            },
+            headers={
+                'Authorization': f"Bearer {auth_token}"
             }
         )
         data=response.json()
         self.assertTrue(data['success'])
         aggregations = data['aggregations']
-        self.assertTrue(float(aggregations['avg_amount']) == 45)
+        self.assertTrue(float(aggregations['avg_amt']) == 45)
         self.assertTrue(aggregations['merchant_counts']['person1'] == 1 and aggregations['merchant_counts']['person3'] == 2)
         self.assertTrue(aggregations['category_counts']['category1'] == 2 and aggregations['category_counts']['category3'] == 1)
         self.assertTrue(aggregations['num_transactions'] == 4)
-        self.assertTrue(aggregations['max_amt'] == 60)
-        self.assertTrue(aggregations['min_amt'] == 30)
+        self.assertTrue(float(aggregations['max_amt']) == 60)
+        self.assertTrue(float(aggregations['min_amt']) == 30)
 

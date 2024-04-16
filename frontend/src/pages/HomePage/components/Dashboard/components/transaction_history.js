@@ -12,14 +12,17 @@ const TransactionHistory = ({ dataFlag }) => {
   const [loading, setLoading] = useState(false);
   const [totalRows, setTotalRows] = useState(0);
   const [page, setPage] = useState(1);
-  const [searchString, setSearchString] = useState('');
-  const [sortString, setSortString] = useState('-time_of_transfer');
+  const [searchString, setSearchString] = useState("");
+  const [sortString, setSortString] = useState("-time_of_transfer");
   const [resetPaginationToggle, setResetPaginationToggle] = React.useState(false);
   const [selectedRows, setSelectedRows] = useState([]);
   const [toggleCleared, setToggleCleared] = useState(false);
+  const [refreshToggle, setRefreshToggle] = useState(false);
 
   const fetchFailed = (error) => toast.error(`Failed to fetch data: ${error}`);
   const deleteFailed = (error) => toast.error(`Failed to delete selected transactions: ${error}`);
+  const flagSuccess = () => toast.success("Predictions flagged successfully");
+  const flagFailed = (error) => toast.error(`Failed to flag predictions: ${error}`);
 
   // table colour theme
   createTheme("customDark", {
@@ -59,7 +62,7 @@ const TransactionHistory = ({ dataFlag }) => {
     rows: {
       style: {
         fontSize: "100%",
-        '&:not(:last-of-type)': {
+        "&:not(:last-of-type)": {
           borderBottomColor: "gray"
         },
       }
@@ -91,7 +94,7 @@ const TransactionHistory = ({ dataFlag }) => {
       sortField: "merchant"
     },
     {
-      name: "Amount",
+      name: "Amount ($)",
       selector: row => row.amt,
       sortable: true,
       sortField: "amt"
@@ -110,8 +113,7 @@ const TransactionHistory = ({ dataFlag }) => {
     },
     {
       name: "Anomaly",
-      cell: row => <div>{row.anomalous !== null ? (row.anomalous ? (<div>Yes</div>) : (<div>No</div>)) : null} </div>,
-      maxWidth: "160px",
+      cell: row => <div>{row.anomalous !== null ? (row.anomalous ? "Yes" : "No") : null} </div>,
       conditionalCellStyles: [
         {
           when: row => row.anomalous === true,
@@ -128,60 +130,8 @@ const TransactionHistory = ({ dataFlag }) => {
       ],
       sortable: true,
       sortField: "anomalous"
-    },
-    {
-      cell: row => <Button variant="outline-warning" onClick={() => flagPrediction(row)}>Flag prediction</Button>
     }
   ]
-
-  // send axios request to flag prediction on backend
-  let toastId = null;
-  const flagPrediction = async (row) => {
-    // Create Request Form
-    const formData = new FormData();
-    formData.append('username', username);
-    formData.append('time_of_transfer', row.time_of_transfer);
-    formData.append('cc_num', row.cc_num);
-    formData.append('merchant', row.merchant);
-    formData.append('category', row.category);
-    formData.append('amt', row.amt);
-    formData.append('city', row.city);
-    formData.append('job', row.job);
-    formData.append('dob', row.dob);
-    formData.append('anomalous', row.anomalous);
-    // Send Request Form
-    try {
-      const response = await axios.post('http://127.0.0.1:8000/api/flag_prediction/',
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            Authorization: token
-          }
-        }
-      );
-      // Handle Response
-      if (response.data.success) {
-        console.log(toastId)
-        if (toastId === null) {
-          toastId = toast.success('Prediction flagged successfully', {
-            autoClose: 5000,
-            onClose: () => {toastId = null;}
-          });
-        } else {
-          toast.update(toastId, {render: 'Prediction flagged successfully', autoClose: 5000});
-        }
-      } else {
-        if (response.data.error === "already flagged") {
-          toast.error("Already Flagged")
-        } else {
-          toast.error("Failed to flag prediction")
-        }
-      }
-    } catch (error) {
-      toast.error("Failed to flag prediction")
-    }
-  };
 
   // fetch data based on the currently selected page and search/sort params
   const fetchData = async (page_no) => {
@@ -249,11 +199,129 @@ const TransactionHistory = ({ dataFlag }) => {
       }
     };
 
+    // send data of flagged predictions to backend
+    const handleFlagPredictions = async () => {
+      const formData = new FormData();
+      const rowIds = selectedRows.map(row => row.id);
+      formData.append("username", username);
+      formData.append("transaction_ids", JSON.stringify(rowIds));
+      try {
+        const response = await axios.post("http://127.0.0.1:8000/api/flag_predictions/",
+          formData,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+              Authorization: token
+            }
+          }
+        );
+        // handle response
+        if (response.data.success) {
+          flagSuccess();
+        } else {
+          flagFailed(response.data.error);
+        }
+        setToggleCleared(!toggleCleared);
+      } catch (error) {
+        flagFailed(error);
+      }
+    }
+
     return (
-      <Button variant="danger" onClick ={handleDeleteRows}>Delete</Button>
+      // Flag predictions button only appears if every selected row has been analysed
+      <>
+        <Button variant="danger" onClick={handleDeleteRows}>Delete</Button>
+        {(selectedRows.length > 0 && selectedRows.every(row => row.anomalous !== null)) &&
+          <Button 
+            variant="warning" style={{marginLeft: "10px"}} 
+            onClick={handleFlagPredictions} 
+            disabled={selectedRows.some(row => row.is_flagged)}>
+            {selectedRows.some(row => row.is_flagged) ? "Already flagged" : "Flag predictions"}
+          </Button>
+        }
+      </>
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedRows]);
+
+  // shows additional info about the specific transaction, including aggregate data
+  const ExpandedRow = ({ data }) => {
+    const [aggregateData, setAggregateData] = useState(null);
+
+    const style = {
+      table: {
+        margin: "10px",
+        backgroundColor: "#3c5684"
+      },
+      cell: {
+        padding: "5px 10px"
+      },
+      row: {
+        borderTop: "1px solid gray"
+      }
+    };
+
+    // request aggregate data based on the account number of the transaction
+    const fetchAggregateData = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/api/agg_by_cc_num/",
+          {  
+            params: {
+              username,
+              cc_num: data.cc_num
+            },
+            headers: {
+              Authorization: token
+            }
+          }
+        );
+        // handle response
+        if (response.data.success) {
+          setAggregateData(response.data.aggregations);
+        } else {
+          fetchFailed(response.data.error);
+        }
+      } catch (error) {
+        fetchFailed(error);
+      }
+    }
+
+    useEffect(() => {
+      fetchAggregateData();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+    return (
+      <table style={style.table}>
+        <thead>
+          <tr>
+            <th style={style.cell}>Sender City</th>
+            <th style={style.cell}>Sender Job</th>
+            <th style={style.cell}>Sender DOB</th>
+            <th style={style.cell}>Total from Sender</th>
+            <th style={style.cell}>Anomaly percentage &#40;%&#41;</th>
+            <th style={style.cell}>Avg &#40;$&#41;</th>
+            <th style={style.cell}>Min &#40;$&#41;</th>
+            <th style={style.cell}>Max &#40;$&#41;</th>
+            <th style={style.cell}>Flagged?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style={style.row}>
+            <td style={style.cell}>{data.city}</td>
+            <td style={style.cell}>{data.job}</td>
+            <td style={style.cell}>{data.dob}</td>
+            <td style={style.cell}>{aggregateData ? aggregateData.num_transactions : "Loading..."}</td>
+            <td style={style.cell}>{aggregateData ? aggregateData.percentage_anomaly * 100: "Loading..."}</td>
+            <td style={style.cell}>{aggregateData ? aggregateData.avg_amt : "Loading..."}</td>
+            <td style={style.cell}>{aggregateData ? aggregateData.min_amt : "Loading..."}</td>
+            <td style={style.cell}>{aggregateData ? aggregateData.max_amt : "Loading..."}</td>
+            <td style={style.cell}>{data.is_flagged ? "Yes" : "No"}</td>
+          </tr>
+        </tbody>
+      </table>
+    )
+  }
 
   const handleSort = (column, sortDirection) => {
     if (sortDirection === "desc") {
@@ -266,7 +334,7 @@ const TransactionHistory = ({ dataFlag }) => {
   useEffect(() => {
     fetchData(page);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataFlag, searchString, sortString, toggleCleared]);
+  }, [dataFlag, searchString, sortString, toggleCleared, refreshToggle]);
 
   return (
     <DataTable 
@@ -284,6 +352,8 @@ const TransactionHistory = ({ dataFlag }) => {
       paginationTotalRows={totalRows}
       onChangePage={handlePageChange}
       responsive
+      expandableRows
+      expandableRowsComponent={ExpandedRow}
       selectableRows
       onSelectedRowsChange={handleRowSelected}
       clearSelectedRows={toggleCleared}
@@ -294,7 +364,9 @@ const TransactionHistory = ({ dataFlag }) => {
         setPage={setPage}
         setSearchString={setSearchString}
         pageToggle={resetPaginationToggle}
-        setPageToggle={setResetPaginationToggle} 
+        setPageToggle={setResetPaginationToggle}
+        refreshToggle={refreshToggle}
+        setRefreshToggle={setRefreshToggle} 
       />}
       theme="customDark"
       customStyles={tableStyle}

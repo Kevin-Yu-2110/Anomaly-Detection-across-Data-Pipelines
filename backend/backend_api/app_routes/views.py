@@ -11,6 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST, require_GET
 from django.db.models import Avg, Count, Max, Min
 from functools import wraps
+from decimal import Decimal, ROUND_HALF_UP
 import random
 import smtplib
 import json
@@ -206,7 +207,7 @@ def make_transaction(request):
     try:
         Transaction.objects.create(
             uploading_user = request.POST['username'],
-            time_of_transfer = datetime.now(),
+            time_of_transfer = datetime.now().replace(microsecond=0),
             cc_num = request.POST['cc_num'],
             merchant = request.POST['merchant'],
             category = request.POST['category'],
@@ -285,17 +286,21 @@ def get_transaction_history(request):
         return JsonResponse({'success': True, 'transaction_history' : transaction_history, 'total_entries' : total_entries})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
-
+    
 @csrf_exempt
 @require_POST
 @auth_required
-def flag_prediction(request):
+def flag_predictions(request):
     try:
-        transaction = Transaction.objects.get(uploading_user=request.POST['username'], time_of_transfer = request.POST['time_of_transfer'])
-        if transaction.is_flagged:
-            return JsonResponse({'success': False, 'error': "already flagged"})
-        transaction.is_flagged = True
-        transaction.save()
+        username = request.POST['username']
+        transaction_ids = json.loads(request.POST['transaction_ids'])
+        for id in transaction_ids:
+            transaction = Transaction.objects.get(id=id, uploading_user=username)
+            if transaction.is_flagged:
+                return JsonResponse({'success': False, 'error': "already flagged"})
+            transaction.is_flagged = True
+            transaction.save()
+        # only returns success if all transactions are not already flagged
         return JsonResponse({'success': True})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
@@ -326,30 +331,6 @@ def process_transaction_log(request):
         return JsonResponse({'success': True})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
-    
-# def get_transaction_by_field(request):
-#     try:
-#         username=request.POST['username']
-#         page_no=request.POST['page_no']
-#         search_fields=json.loads(request.POST['search_fields'])
-#         # sort_fields: time_of_transfer, cc_num, merchant, category, amt, anomalous
-#         sort_fields=json.loads(request.POST['sort_fields'])
-#         if not sort_fields:
-#             sort_fields = ['time_of_transfer']
-#         items_per_page = 50
-#         transactions = Transaction.objects.filter(uploading_user=username)
-#         transactions = transactions.filter(**search_fields)
-#         transactions = transactions.order_by(*sort_fields)
-#         total_entries = str(len(transactions))
-#         paginator = Paginator(transactions, items_per_page)
-#         page = paginator.page(page_no)
-#         transactions = page.object_list
-#         transaction_history = serialize('json', transactions)
-#         transaction_history = json.loads(transaction_history)
-#         transaction_history = [transaction['fields'] for transaction in transaction_history]
-#         return JsonResponse({'success': True, 'total_entries': total_entries})
-#     except Exception as e:
-#         return JsonResponse({'success': False, 'error': str(e)})
 
 @csrf_exempt
 @require_POST
@@ -386,7 +367,11 @@ def retrain_model(request):
         # convert datetime object to string without milliseconds
         model_input = []
         for t in transactions:
-            time_of_transfer = datetime.strptime(t.time_of_transfer, "%Y-%m-%d %H:%M:%S.%f")
+            if '.' in t.time_of_transfer:
+                time_format = "%Y-%m-%d %H:%M:%S.%f"
+            else:
+                time_format = "%Y-%m-%d %H:%M:%S"
+            time_of_transfer = datetime.strptime(t.time_of_transfer, time_format)
             time_of_transfer = time_of_transfer.strftime("%Y-%m-%d %H:%M:%S")
             
             model_input.append([time_of_transfer, t.cc_num, t.merchant, t.category, t.amt, t.city, t.job, t.dob, t.anomalous])
@@ -396,14 +381,15 @@ def retrain_model(request):
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
 
-
+@csrf_exempt
+@require_GET
+@auth_required
 def agg_by_cc_num(request):
     try:
         username=request.GET['username']
         cc_num=request.GET['cc_num']
         transactions = Transaction.objects.filter(uploading_user=username, cc_num=cc_num)
         aggregations = {}
-        aggregations['avg_amount'] = transactions.aggregate(Avg("amt"))['amt__avg']
 
         def convert(l):
             res = {}
@@ -422,9 +408,10 @@ def agg_by_cc_num(request):
         aggregations['dob_counts'] = convert(list(transactions.values('dob').annotate(Count('dob')).order_by('dob')))
 
         aggregations['num_transactions'] = transactions.count()
-        aggregations['percentage_anomaly'] = transactions.filter(anomalous=True).count() / aggregations['num_transactions']
-        aggregations['max_amt'] = float(transactions.aggregate(Max('amt'))['amt__max'])
-        aggregations['min_amt'] = float(transactions.aggregate(Min('amt'))['amt__min'])
+        aggregations['percentage_anomaly'] = round(transactions.filter(anomalous=True).count() / aggregations['num_transactions'], 4)
+        aggregations['avg_amt'] = round(transactions.aggregate(Avg("amt"))['amt__avg'], 2)
+        aggregations['min_amt'] = round(transactions.aggregate(Min('amt'))['amt__min'], 2)
+        aggregations['max_amt'] = round(transactions.aggregate(Max('amt'))['amt__max'], 2)
         return JsonResponse({'success': True, 'aggregations': aggregations})
     except Exception as e:
         print('Exception', repr(e))

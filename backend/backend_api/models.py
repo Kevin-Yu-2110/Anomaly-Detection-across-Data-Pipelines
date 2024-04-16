@@ -38,13 +38,9 @@ class Transaction(models.Model):
     city = models.CharField(max_length=100)
     job = models.CharField(max_length=100)
     dob = models.DateField()
-    # fields storing result of model analysis
+    # fields required for model analysis and training
+    is_flagged = models.BooleanField(default=False)
     anomalous = models.BooleanField(null=True, blank=True)
 
     def __str__(self):
-        return f"Transaction from {self.username} to {self.payee_name} of type {self.category} and amount ${self.amount}\n"
-
-# Model identifcal to Transaction model, except with anomalous corrected
-class FeedbackTransaction(Transaction):
-    def __str__(self):
-        return f"Feedback Transaction from {self.username} to {self.payee_name} with ' anomalous {self.anomalous}' prediction flagged"
+        return f"Transaction from {self.cc_num} to {self.merchant} of type {self.category} and amount ${self.amount}\n"

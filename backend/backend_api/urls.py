@@ -15,10 +15,9 @@ urlpatterns = [
     path('update_username/', views.update_username, name='update_username'),
     path('update_email/', views.update_email, name='update_email'),
     path('get_transaction_history/', views.get_transaction_history, name='get_transaction_history'),
-    path('flag_prediction/', views.flag_prediction, name='flag_prediction'),
+    path('flag_predictions/', views.flag_predictions, name='flag_predictions'),
     path('process_transaction_log/', views.process_transaction_log, name='process_transaction_log'),
     path('detect_anomalies/', views.detect_anomalies, name='detect_anomalies'),
     path('retrain_model/', views.retrain_model, name='retrain_model'),
     path('agg_by_cc_num/', views.agg_by_cc_num, name='agg_by_cc_num')
-    # path('get_transaction_by_field/', views.get_transaction_by_field, name='get_transaction_by_field')
 ]

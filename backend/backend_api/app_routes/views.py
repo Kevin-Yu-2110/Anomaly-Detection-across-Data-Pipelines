@@ -1,5 +1,5 @@
 from backend_api.app_routes.forms import SignUpForm
-from backend_api.models import StandardUser, Transaction, FeedbackTransaction
+from backend_api.models import StandardUser, Transaction
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 from email.message import EmailMessage
@@ -202,7 +202,7 @@ def make_transaction(request):
     try:
         Transaction.objects.create(
             uploading_user = request.POST['username'],
-            time_of_transfer = datetime.now(),
+            time_of_transfer = datetime.now().replace(microsecond=0),
             cc_num = request.POST['cc_num'],
             merchant = request.POST['merchant'],
             category = request.POST['category'],
@@ -281,29 +281,22 @@ def get_transaction_history(request):
         return JsonResponse({'success': True, 'transaction_history' : transaction_history, 'total_entries' : total_entries})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
-
+    
 @csrf_exempt
 @require_POST
 @auth_required
-def flag_prediction(request):
+def flag_predictions(request):
     try:
-        feedback_transaction, created = FeedbackTransaction.objects.get_or_create(
-            uploading_user = request.POST['username'],
-            time_of_transfer = request.POST['time_of_transfer'],
-            cc_num = request.POST['cc_num'],
-            merchant = request.POST['merchant'],
-            category = request.POST['category'],
-            amt = request.POST['amt'],
-            city = request.POST['city'],
-            job = request.POST['job'],
-            dob = request.POST['dob'],
-        )
-        if created:
-            feedback_transaction.anomalous = False if request.POST['anomalous'] == "true" else False
-            feedback_transaction.save()
-            return JsonResponse({'success': True})
-        else:
-            return JsonResponse({'success': False, 'error': "already flagged"})
+        username = request.POST['username']
+        transaction_ids = json.loads(request.POST['transaction_ids'])
+        for id in transaction_ids:
+            transaction = Transaction.objects.get(id=id, uploading_user=username)
+            if transaction.is_flagged:
+                return JsonResponse({'success': False, 'error': "already flagged"})
+            transaction.is_flagged = True
+            transaction.save()
+        # only returns success if all transactions are not already flagged
+        return JsonResponse({'success': True})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
 
@@ -317,7 +310,7 @@ def process_transaction_log(request):
         rows = csv.reader(decoded_file)
         row_count = 0
         for row in rows:
-            if row_count: 
+            if row_count:
                 Transaction.objects.create(
                     uploading_user = request.POST['username'],
                     time_of_transfer = row[0],
@@ -333,30 +326,6 @@ def process_transaction_log(request):
         return JsonResponse({'success': True})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
-    
-# def get_transaction_by_field(request):
-#     try:
-#         username=request.POST['username']
-#         page_no=request.POST['page_no']
-#         search_fields=json.loads(request.POST['search_fields'])
-#         # sort_fields: time_of_transfer, cc_num, merchant, category, amt, anomalous
-#         sort_fields=json.loads(request.POST['sort_fields'])
-#         if not sort_fields:
-#             sort_fields = ['time_of_transfer']
-#         items_per_page = 50
-#         transactions = Transaction.objects.filter(uploading_user=username)
-#         transactions = transactions.filter(**search_fields)
-#         transactions = transactions.order_by(*sort_fields)
-#         total_entries = str(len(transactions))
-#         paginator = Paginator(transactions, items_per_page)
-#         page = paginator.page(page_no)
-#         transactions = page.object_list
-#         transaction_history = serialize('json', transactions)
-#         transaction_history = json.loads(transaction_history)
-#         transaction_history = [transaction['fields'] for transaction in transaction_history]
-#         return JsonResponse({'success': True, 'total_entries': total_entries})
-#     except Exception as e:
-#         return JsonResponse({'success': False, 'error': str(e)})
 
 @csrf_exempt
 @require_POST
@@ -385,16 +354,21 @@ def retrain_model(request):
         username = request.POST['username']
         user = StandardUser.objects.get(username=username)
         model = user.isolation_forest_model
-        # retrain model with user's feedback transactions, 
-        transactions = FeedbackTransaction.objects.filter(uploading_user=username)
+        # retrain model with user's feedback transactions,
+        transactions = Transaction.objects.filter(uploading_user=username, is_flagged=True)
         # convert datetime object to string without milliseconds
         for t in transactions:
-            time_of_transfer = datetime.strptime(t.time_of_transfer, "%Y-%m-%d %H:%M:%S.%f")
+            if '.' in t.time_of_transfer:
+                time_format = "%Y-%m-%d %H:%M:%S.%f"
+            else:
+                time_format = "%Y-%m-%d %H:%M:%S"
+            time_of_transfer = datetime.strptime(t.time_of_transfer, time_format)
             time_of_transfer = time_of_transfer.strftime("%Y-%m-%d %H:%M:%S")
             model_input = [[time_of_transfer, t.cc_num, t.merchant, t.category, t.amt, t.city, t.job, t.dob, t.anomalous]]
             model.retrain(model_input)
+            t.is_flagged = False
+            t.save()
         # clear feedback transactions
-        FeedbackTransaction.objects.filter(uploading_user=username).delete()
         return JsonResponse({'success': True})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})

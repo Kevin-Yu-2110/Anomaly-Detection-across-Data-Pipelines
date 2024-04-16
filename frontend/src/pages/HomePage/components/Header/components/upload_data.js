@@ -41,6 +41,7 @@ const UploadData = ({ dataFlag, setDataFlag }) => {
       } else {
         uploadFailed(response.data.error);
       }
+      setFile(null);
     } catch (error) {
       uploadFailed(error);
     }

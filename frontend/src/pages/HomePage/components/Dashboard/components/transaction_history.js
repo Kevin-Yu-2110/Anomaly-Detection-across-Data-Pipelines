@@ -202,19 +202,9 @@ const TransactionHistory = ({ dataFlag }) => {
     // send data of flagged predictions to backend
     const handleFlagPredictions = async () => {
       const formData = new FormData();
-      const flaggedTransactions = selectedRows.map(row => ({
-        time_of_transfer: row.time_of_transfer,
-        cc_num: row.cc_num,
-        merchant: row.merchant,
-        category: row.category,
-        amt: row.amt,
-        city: row.city,
-        job: row.job,
-        dob: row.dob,
-        anomalous: row.anomalous
-      }));
+      const rowIds = selectedRows.map(row => row.id);
       formData.append("username", username);
-      formData.append("transactions", JSON.stringify(flaggedTransactions));
+      formData.append("transaction_ids", JSON.stringify(rowIds));
       try {
         const response = await axios.post("http://127.0.0.1:8000/api/flag_predictions/",
           formData,
@@ -231,6 +221,7 @@ const TransactionHistory = ({ dataFlag }) => {
         } else {
           flagFailed(response.data.error);
         }
+        setToggleCleared(!toggleCleared);
       } catch (error) {
         flagFailed(error);
       }
@@ -241,8 +232,11 @@ const TransactionHistory = ({ dataFlag }) => {
       <>
         <Button variant="danger" onClick={handleDeleteRows}>Delete</Button>
         {(selectedRows.length > 0 && selectedRows.every(row => row.anomalous !== null)) &&
-          <Button variant="warning" style={{marginLeft: "10px"}} onClick={handleFlagPredictions}>
-            Flag predictions
+          <Button 
+            variant="warning" style={{marginLeft: "10px"}} 
+            onClick={handleFlagPredictions} 
+            disabled={selectedRows.some(row => row.is_flagged)}>
+            {selectedRows.some(row => row.is_flagged) ? "Already flagged" : "Flag predictions"}
           </Button>
         }
       </>

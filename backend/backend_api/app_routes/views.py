@@ -201,7 +201,7 @@ def make_transaction(request):
     try:
         Transaction.objects.create(
             uploading_user = request.POST['username'],
-            time_of_transfer = datetime.now(),
+            time_of_transfer = datetime.now().replace(microsecond=0),
             cc_num = request.POST['cc_num'],
             merchant = request.POST['merchant'],
             category = request.POST['category'],
@@ -286,31 +286,14 @@ def get_transaction_history(request):
 @auth_required
 def flag_predictions(request):
     try:
-        transaction = Transaction.objects.get(uploading_user=request.POST['username'], time_of_transfer = request.POST['time_of_transfer'])
-        if transaction.is_flagged:
-            return JsonResponse({'success': False, 'error': "already flagged"})
-        transaction.is_flagged = True
-        transaction.save()
-        return JsonResponse({'success': True})
-        uploading_user = request.POST['username']
-        transactions = json.loads(request.POST['transactions'])
-        for t in transactions:
-            feedback_transaction, created = FeedbackTransaction.objects.get_or_create(
-                uploading_user = uploading_user,
-                time_of_transfer = t['time_of_transfer'],
-                cc_num = t['cc_num'],
-                merchant = t['merchant'],
-                category = t['category'],
-                amt = t['amt'],
-                city = t['city'],
-                job = t['job'],
-                dob = t['dob'],
-            )
-            if created:
-                feedback_transaction.anomalous = False if t['anomalous'] else True
-                feedback_transaction.save()
-            else:
+        username = request.POST['username']
+        transaction_ids = json.loads(request.POST['transaction_ids'])
+        for id in transaction_ids:
+            transaction = Transaction.objects.get(id=id, uploading_user=username)
+            if transaction.is_flagged:
                 return JsonResponse({'success': False, 'error': "already flagged"})
+            transaction.is_flagged = True
+            transaction.save()
         # only returns success if all transactions are not already flagged
         return JsonResponse({'success': True})
     except Exception as e:
@@ -374,7 +357,11 @@ def retrain_model(request):
         transactions = Transaction.objects.filter(uploading_user=username, is_flagged=True)
         # convert datetime object to string without milliseconds
         for t in transactions:
-            time_of_transfer = datetime.strptime(t.time_of_transfer, "%Y-%m-%d %H:%M:%S.%f")
+            if '.' in t.time_of_transfer:
+                time_format = "%Y-%m-%d %H:%M:%S.%f"
+            else:
+                time_format = "%Y-%m-%d %H:%M:%S"
+            time_of_transfer = datetime.strptime(t.time_of_transfer, time_format)
             time_of_transfer = time_of_transfer.strftime("%Y-%m-%d %H:%M:%S")
             model_input = [[time_of_transfer, t.cc_num, t.merchant, t.category, t.amt, t.city, t.job, t.dob, t.anomalous]]
             model.retrain(model_input)

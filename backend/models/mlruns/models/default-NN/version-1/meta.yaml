@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1713268756133
+current_stage: None
+description: ''
+last_updated_timestamp: 1713268756133
+name: default-NN
+run_id: 9f77ccc490354bb58a896ab2e989ae4a
+run_link: ''
+source: mlflow-artifacts:/0/9f77ccc490354bb58a896ab2e989ae4a/artifacts/neural-network
+status: READY
+status_message: null
+storage_location: mlflow-artifacts:/0/9f77ccc490354bb58a896ab2e989ae4a/artifacts/neural-network
+user_id: null
+version: 1

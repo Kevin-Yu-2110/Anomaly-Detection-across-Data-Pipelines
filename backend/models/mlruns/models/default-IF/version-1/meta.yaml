@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1713269851197
+current_stage: None
+description: ''
+last_updated_timestamp: 1713269851197
+name: default-IF
+run_id: 88070b5d197c4ff1ad40cfdc58e1fc64
+run_link: ''
+source: mlflow-artifacts:/0/88070b5d197c4ff1ad40cfdc58e1fc64/artifacts/isolation-forest
+status: READY
+status_message: null
+storage_location: mlflow-artifacts:/0/88070b5d197c4ff1ad40cfdc58e1fc64/artifacts/isolation-forest
+user_id: null
+version: 1

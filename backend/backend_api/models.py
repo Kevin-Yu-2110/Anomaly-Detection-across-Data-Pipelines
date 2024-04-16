@@ -2,12 +2,14 @@ import random
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from models.IsolationForest import isolationForestModel
+from models.XGBoost import XGBoostModel
+from models.NeuralNetwork import NeuralNetworkModel
 
 class StandardUser(AbstractUser):
     otp = models.CharField(max_length=6, null=True, blank=True)
     cc_num = models.IntegerField(unique=True)
-    isolation_forest_model = isolationForestModel()
-
+    model_list = {}
+    
     groups = models.ManyToManyField(
         'auth.Group',
         related_name='standard_users_groups'
@@ -23,6 +25,14 @@ class StandardUser(AbstractUser):
         self.otp = ''.join(random.choices([str(i) for i in range(10)], k=6))
         super().save(*args, **kwargs)
 
+    def get_models(self):
+        self.model_list['IF'] = isolationForestModel(self.cc_num)
+        self.model_list['XG'] = XGBoostModel(self.cc_num)
+        self.model_list['NN'] = NeuralNetworkModel(self.cc_num)
+    
+    def call_model(self, model):
+        return self.model_list[model]
+    
     def __str__(self):
         return self.username
 

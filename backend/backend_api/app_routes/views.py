@@ -11,6 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST, require_GET
 from django.db.models import Avg, Count, Max, Min
 from functools import wraps
+from decimal import Decimal, ROUND_HALF_UP
 import random
 import smtplib
 import json
@@ -398,14 +399,15 @@ def retrain_model(request):
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
 
-
+@csrf_exempt
+@require_GET
+@auth_required
 def agg_by_cc_num(request):
     try:
         username=request.GET['username']
         cc_num=request.GET['cc_num']
         transactions = Transaction.objects.filter(uploading_user=username, cc_num=cc_num)
         aggregations = {}
-        aggregations['avg_amount'] = transactions.aggregate(Avg("amt"))['amt__avg']
 
         def convert(l):
             res = {}
@@ -424,9 +426,10 @@ def agg_by_cc_num(request):
         aggregations['dob_counts'] = convert(list(transactions.values('dob').annotate(Count('dob')).order_by('dob')))
 
         aggregations['num_transactions'] = transactions.count()
-        aggregations['percentage_anomaly'] = transactions.filter(anomalous=True).count() / aggregations['num_transactions']
-        aggregations['max_amt'] = float(transactions.aggregate(Max('amt'))['amt__max'])
-        aggregations['min_amt'] = float(transactions.aggregate(Min('amt'))['amt__min'])
+        aggregations['percentage_anomaly'] = round(transactions.filter(anomalous=True).count() / aggregations['num_transactions'], 4)
+        aggregations['avg_amt'] = round(transactions.aggregate(Avg("amt"))['amt__avg'], 2)
+        aggregations['min_amt'] = round(transactions.aggregate(Min('amt'))['amt__min'], 2)
+        aggregations['max_amt'] = round(transactions.aggregate(Max('amt'))['amt__max'], 2)
         return JsonResponse({'success': True, 'aggregations': aggregations})
     except Exception as e:
         print('Exception', repr(e))

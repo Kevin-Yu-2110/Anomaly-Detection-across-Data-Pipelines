@@ -30,3 +30,8 @@ backend/models/encoders/*
 !backend/models/encoders/default-IF-encoder.pickle
 !backend/models/encoders/default-NN-encoder.pickle
 !backend/models/encoders/default-XG-encoder.pickle
+
+backend/models/mlartifacts/0/*
+!backend/models/mlartifacts/0/1df657ece9d841aea3be7eccfa122047
+!backend/models/mlartifacts/0/9f77ccc490354bb58a896ab2e989ae4a
+!backend/models/mlartifacts/0/88070b5d197c4ff1ad40cfdc58e1fc64

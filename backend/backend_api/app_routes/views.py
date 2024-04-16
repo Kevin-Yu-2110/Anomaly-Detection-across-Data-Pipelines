@@ -1,5 +1,5 @@
 from backend_api.app_routes.forms import SignUpForm
-from backend_api.models import StandardUser, Transaction, FeedbackTransaction
+from backend_api.models import StandardUser, Transaction
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 from email.message import EmailMessage
@@ -286,6 +286,12 @@ def get_transaction_history(request):
 @auth_required
 def flag_predictions(request):
     try:
+        transaction = Transaction.objects.get(uploading_user=request.POST['username'], time_of_transfer = request.POST['time_of_transfer'])
+        if transaction.is_flagged:
+            return JsonResponse({'success': False, 'error': "already flagged"})
+        transaction.is_flagged = True
+        transaction.save()
+        return JsonResponse({'success': True})
         uploading_user = request.POST['username']
         transactions = json.loads(request.POST['transactions'])
         for t in transactions:
@@ -320,7 +326,7 @@ def process_transaction_log(request):
         rows = csv.reader(decoded_file)
         row_count = 0
         for row in rows:
-            if row_count: 
+            if row_count:
                 Transaction.objects.create(
                     uploading_user = request.POST['username'],
                     time_of_transfer = row[0],
@@ -364,16 +370,17 @@ def retrain_model(request):
         username = request.POST['username']
         user = StandardUser.objects.get(username=username)
         model = user.isolation_forest_model
-        # retrain model with user's feedback transactions, 
-        transactions = FeedbackTransaction.objects.filter(uploading_user=username)
+        # retrain model with user's feedback transactions,
+        transactions = Transaction.objects.filter(uploading_user=username, is_flagged=True)
         # convert datetime object to string without milliseconds
         for t in transactions:
             time_of_transfer = datetime.strptime(t.time_of_transfer, "%Y-%m-%d %H:%M:%S.%f")
             time_of_transfer = time_of_transfer.strftime("%Y-%m-%d %H:%M:%S")
             model_input = [[time_of_transfer, t.cc_num, t.merchant, t.category, t.amt, t.city, t.job, t.dob, t.anomalous]]
             model.retrain(model_input)
+            t.is_flagged = False
+            t.save()
         # clear feedback transactions
-        FeedbackTransaction.objects.filter(uploading_user=username).delete()
         return JsonResponse({'success': True})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})

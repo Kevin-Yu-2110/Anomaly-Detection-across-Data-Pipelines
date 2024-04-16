@@ -11,3 +11,4 @@ tensorflow==2.13.0
 keras==2.13.1
 pandas==2.0.2
 imbalanced-learn==0.12.2
+xgboost==2.0.3

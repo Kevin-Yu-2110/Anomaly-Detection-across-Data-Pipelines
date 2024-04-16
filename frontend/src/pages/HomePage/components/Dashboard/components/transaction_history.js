@@ -12,14 +12,17 @@ const TransactionHistory = ({ dataFlag }) => {
   const [loading, setLoading] = useState(false);
   const [totalRows, setTotalRows] = useState(0);
   const [page, setPage] = useState(1);
-  const [searchString, setSearchString] = useState('');
-  const [sortString, setSortString] = useState('-time_of_transfer');
+  const [searchString, setSearchString] = useState("");
+  const [sortString, setSortString] = useState("-time_of_transfer");
   const [resetPaginationToggle, setResetPaginationToggle] = React.useState(false);
   const [selectedRows, setSelectedRows] = useState([]);
   const [toggleCleared, setToggleCleared] = useState(false);
+  const [refreshToggle, setRefreshToggle] = useState(false);
 
   const fetchFailed = (error) => toast.error(`Failed to fetch data: ${error}`);
   const deleteFailed = (error) => toast.error(`Failed to delete selected transactions: ${error}`);
+  const flagSuccess = () => toast.success("Prediction flagged successfully");
+  const flagFailed = (error) => toast.error(`Failed to flag predictions: ${error}`);
 
   // table colour theme
   createTheme("customDark", {
@@ -59,7 +62,7 @@ const TransactionHistory = ({ dataFlag }) => {
     rows: {
       style: {
         fontSize: "100%",
-        '&:not(:last-of-type)': {
+        "&:not(:last-of-type)": {
           borderBottomColor: "gray"
         },
       }
@@ -111,7 +114,6 @@ const TransactionHistory = ({ dataFlag }) => {
     {
       name: "Anomaly",
       cell: row => <div>{row.anomalous !== null ? (row.anomalous ? (<div>Yes</div>) : (<div>No</div>)) : null} </div>,
-      maxWidth: "160px",
       conditionalCellStyles: [
         {
           when: row => row.anomalous === true,
@@ -128,60 +130,8 @@ const TransactionHistory = ({ dataFlag }) => {
       ],
       sortable: true,
       sortField: "anomalous"
-    },
-    {
-      cell: row => <Button variant="outline-warning" onClick={() => flagPrediction(row)}>Flag prediction</Button>
     }
   ]
-
-  // send axios request to flag prediction on backend
-  let toastId = null;
-  const flagPrediction = async (row) => {
-    // Create Request Form
-    const formData = new FormData();
-    formData.append('username', username);
-    formData.append('time_of_transfer', row.time_of_transfer);
-    formData.append('cc_num', row.cc_num);
-    formData.append('merchant', row.merchant);
-    formData.append('category', row.category);
-    formData.append('amt', row.amt);
-    formData.append('city', row.city);
-    formData.append('job', row.job);
-    formData.append('dob', row.dob);
-    formData.append('anomalous', row.anomalous);
-    // Send Request Form
-    try {
-      const response = await axios.post('http://127.0.0.1:8000/api/flag_prediction/',
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            Authorization: token
-          }
-        }
-      );
-      // Handle Response
-      if (response.data.success) {
-        console.log(toastId)
-        if (toastId === null) {
-          toastId = toast.success('Prediction flagged successfully', {
-            autoClose: 5000,
-            onClose: () => {toastId = null;}
-          });
-        } else {
-          toast.update(toastId, {render: 'Prediction flagged successfully', autoClose: 5000});
-        }
-      } else {
-        if (response.data.error === "already flagged") {
-          toast.error("Already Flagged")
-        } else {
-          toast.error("Failed to flag prediction")
-        }
-      }
-    } catch (error) {
-      toast.error("Failed to flag prediction")
-    }
-  };
 
   // fetch data based on the currently selected page and search/sort params
   const fetchData = async (page_no) => {
@@ -249,8 +199,47 @@ const TransactionHistory = ({ dataFlag }) => {
       }
     };
 
+    // send data of flagged predictions to backend
+    const handleFlagPredictions = async () => {
+      const formData = new FormData();
+      const rowIds = selectedRows.map(row => row.id);
+      formData.append("username", username);
+      formData.append("transaction_ids", JSON.stringify(rowIds));
+      try {
+        const response = await axios.post("http://127.0.0.1:8000/api/flag_predictions/",
+          formData,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+              Authorization: token
+            }
+          }
+        );
+        // handle response
+        if (response.data.success) {
+          flagSuccess();
+        } else {
+          flagFailed(response.data.error);
+        }
+        setToggleCleared(!toggleCleared);
+      } catch (error) {
+        flagFailed(error);
+      }
+    }
+
     return (
-      <Button variant="danger" onClick ={handleDeleteRows}>Delete</Button>
+      // Flag predictions button only appears if every selected row has been analysed
+      <>
+        <Button variant="danger" onClick={handleDeleteRows}>Delete</Button>
+        {(selectedRows.length > 0 && selectedRows.every(row => row.anomalous !== null)) &&
+          <Button 
+            variant="warning" style={{marginLeft: "10px"}} 
+            onClick={handleFlagPredictions} 
+            disabled={selectedRows.some(row => row.is_flagged)}>
+            {selectedRows.some(row => row.is_flagged) ? "Already flagged" : "Flag predictions"}
+          </Button>
+        }
+      </>
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedRows]);
@@ -266,7 +255,7 @@ const TransactionHistory = ({ dataFlag }) => {
   useEffect(() => {
     fetchData(page);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataFlag, searchString, sortString, toggleCleared]);
+  }, [dataFlag, searchString, sortString, toggleCleared, refreshToggle]);
 
   return (
     <DataTable 
@@ -294,7 +283,9 @@ const TransactionHistory = ({ dataFlag }) => {
         setPage={setPage}
         setSearchString={setSearchString}
         pageToggle={resetPaginationToggle}
-        setPageToggle={setResetPaginationToggle} 
+        setPageToggle={setResetPaginationToggle}
+        refreshToggle={refreshToggle}
+        setRefreshToggle={setRefreshToggle} 
       />}
       theme="customDark"
       customStyles={tableStyle}

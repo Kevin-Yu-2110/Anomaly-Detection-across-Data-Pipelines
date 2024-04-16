@@ -20,7 +20,6 @@ class isolationForestModel(abstract_model):
             with open(encoder_path, 'rb') as encoder:
                 encoder = pickle.load(encoder)
         except Exception as e:
-            print(e)
             model_name, encoder = train_model(retrain = False)
             encoder_path = os.path.join(os.path.dirname(__file__), 'encoders/default-IF-encoder.pickle')
             with open(encoder_path, 'wb') as handle:

@@ -11,6 +11,7 @@ from models.clean_up import clean_up
 from models.abstract_model import abstract_model
 
 import mlflow
+import mlflow.keras
 from mlflow import MlflowClient
 
 class NeuralNetworkModel(abstract_model):
@@ -74,8 +75,8 @@ def train_model(data=pd.DataFrame(), owner=None, retrain=bool):
     test_path = os.path.join(os.path.dirname(__file__), 'fraudTest.csv')
     test_data = pd.read_csv(test_path)
     test_data = test_data[features]
-    x_test = test.iloc[:, :-1]
-    y_test = test.iloc[:, -1:]
+    x_test = test_data.iloc[:, :-1]
+    y_test = test_data.iloc[:, -1:]
     x_test = clean_up(x_test, encoder)[0]
 
     min_max_scaler = MinMaxScaler(feature_range=(0, 1))
@@ -97,7 +98,7 @@ def train_model(data=pd.DataFrame(), owner=None, retrain=bool):
         model_name = owner + '-NN' if retrain else 'default-NN' 
         
         mlflow.keras.log_model(
-            keras_model = model,
+            model,
             artifact_path = 'neural-network',
             registered_model_name = model_name
         )

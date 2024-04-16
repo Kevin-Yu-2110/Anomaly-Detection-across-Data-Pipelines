@@ -89,6 +89,7 @@ def train_model(data=pd.DataFrame(), owner=None, retrain=bool):
         mlflow.xgboost.log_model(
             xgb_model = model,
             artifact_path = 'XGBoost',
-            registered_model_name = model_name
+            registered_model_name = model_name,
+            model_format="ubj",
         )
     return model_name, encoder

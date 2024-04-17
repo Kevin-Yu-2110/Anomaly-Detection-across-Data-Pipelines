@@ -35,3 +35,6 @@ backend/models/mlartifacts/0/*
 !backend/models/mlartifacts/0/1df657ece9d841aea3be7eccfa122047
 !backend/models/mlartifacts/0/d5449ca856b24982864eb3fa0f13895b
 !backend/models/mlartifacts/0/88070b5d197c4ff1ad40cfdc58e1fc64
+
+backend/models/scalers/*
+!backend/models/scalers/default-NN-scaler.pickle

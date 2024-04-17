@@ -78,7 +78,7 @@ const TableOptions = ({ setPage, setSearchString, pageToggle, setPageToggle, ref
     // Create Request Form
     const formData = new FormData();
     formData.append('username', username);
-    formData.append('selected_model', selectedModel);
+    formData.append('selected_model', selectedModelAbbrev);
     // Notify User of Asynchronous call
     toast.success("Model Retrain Initiated. Awaiting response");
     // Send Request Form

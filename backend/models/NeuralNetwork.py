@@ -35,19 +35,20 @@ class NeuralNetworkModel(abstract_model):
         try:
             data_input = pd.DataFrame(X, columns=['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob'])
             encoded_input = clean_up(data_input, self.encoder)[0]
-            
             remote_server_uri = "http://127.0.0.1:5000"
             mlflow.set_tracking_uri(remote_server_uri)
+            print("MODEL NAME: ", self.model_name)
             model = mlflow.pyfunc.load_model('models:/' + self.model_name + "/latest")
+            print("SOMETHING-E")
             prediction = model.predict(encoded_input) > 0.6
-            return prediction
+            return [prediction, None]
         except Exception as e:
             print("EXCEPTION: ", e)
             pass
 
     def predict_prob(self, X):
         # Not avaliable for this model
-        return NULL
+        return None
         
     def retrain(self, X):
         cleaned_input = pd.DataFrame(X, columns = ['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob', 'is_fraud'])

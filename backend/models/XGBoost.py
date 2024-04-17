@@ -33,17 +33,17 @@ class XGBoostModel(abstract_model):
         try:
             data_input = pd.DataFrame(X, columns=['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob'])
             encoded_input = clean_up(data_input, self.encoder)[0]
-            
             remote_server_uri = "http://127.0.0.1:5000"
             mlflow.set_tracking_uri(remote_server_uri)
             model = mlflow.pyfunc.load_model('models:/' + self.model_name + "/latest")
             prediction = model.predict(encoded_input)
-            prob = model.predict_proba(encoded_input)[prediction]
-            return prediction, prob
+            # prob = model.predict_proba(encoded_input)[prediction]
+            return [prediction, None]
         except Exception as e:
             print("EXCEPTION: ", e)
             pass
-        
+
+
     def retrain(self, X):
         cleaned_input = pd.DataFrame(X, columns = ['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob', 'is_fraud'])
         model_name, encoder = train_model(cleaned_input, self.owner, retrain = True)

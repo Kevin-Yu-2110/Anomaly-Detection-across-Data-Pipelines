@@ -60,7 +60,7 @@ def user_signup(request):
             cc_num = random.randint(10**15, (10**16)-1)
         form.instance.cc_num = cc_num
         form.save()
-        
+        # instantiate user prediction models
         user = StandardUser.objects.get(username=username)
         user.get_models()
         user.save()
@@ -343,12 +343,15 @@ def detect_anomalies(request):
         model = user.call_model(selected_model)
         # for every transaction in db with username as uploading_user, update 'anomalous' field
         transactions = Transaction.objects.filter(uploading_user=username)
-        for t in transactions:
-            model_input = [[t.time_of_transfer, t.cc_num, t.merchant, t.category, t.amt, t.city, t.job, t.dob]]
-            t.anomalous = True if model.predict(model_input) else False 
+        model_input = [[t.time_of_transfer, t.cc_num, t.merchant, t.category, t.amt, t.city, t.job, t.dob] for t in transactions]
+        prediction, confidence = model.predict(model_input)
+        for i, t in enumerate(transactions):
+            t.anomalous = True if prediction[i] else False
+            t.confidence = confidence[i] if confidence else None
             t.save()
         return JsonResponse({'success': True})
     except Exception as e:
+        print("THE ERROR: ", e)
         return JsonResponse({'success': False, 'error': str(e)})
 
 @csrf_exempt
@@ -377,6 +380,7 @@ def retrain_model(request):
         # clear feedback transactions
         return JsonResponse({'success': True})
     except Exception as e:
+        print("ERROR: ", e)
         return JsonResponse({'success': False, 'error': str(e)})
 
 @csrf_exempt

@@ -15,6 +15,6 @@ flavors:
     save_format: tf
 mlflow_version: 2.10.2
 model_size_bytes: 357755
-model_uuid: 9e13b93fe4da46128e4e36987c8be745
-run_id: 9f77ccc490354bb58a896ab2e989ae4a
-utc_time_created: '2024-04-16 11:59:08.344106'
+model_uuid: c7d744633ae24f58af41d1daf0678634
+run_id: d5449ca856b24982864eb3fa0f13895b
+utc_time_created: '2024-04-17 14:58:29.254547'

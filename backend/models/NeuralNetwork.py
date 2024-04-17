@@ -55,7 +55,7 @@ class NeuralNetworkModel(abstract_model):
 
     def predict_prob(self, X):
         # Not avaliable for this model
-        return NULL
+        return None
         
     def retrain(self, X):
         cleaned_input = pd.DataFrame(X, columns = ['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob', 'is_fraud'])

@@ -33,23 +33,23 @@ class isolationForestModel(abstract_model):
         try:
             data_input = pd.DataFrame(X, columns=['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob'])
             encoded_input = clean_up(data_input, self.encoder)[0]
-            
             remote_server_uri = "http://127.0.0.1:5000"
             mlflow.set_tracking_uri(remote_server_uri)
             model = mlflow.pyfunc.load_model('models:/' + self.model_name + "/latest")
             prediction = model.predict(encoded_input)
-            if (prediction == -1):
-                prediction = 1
-            elif (prediction == 1):
-                prediction = 0
-            return prediction
+            for i, val in enumerate(prediction):
+                if val == -1:
+                    prediction[i] = 1
+                elif val == 1:
+                    prediction[i] = 0
+            return [prediction, None]
         except Exception as e:
             print("EXCEPTION: ", e)
             pass
 
     def predict_prob(self, X):
         # Not avaliable for this model
-        return NULL
+        return None
         
     def retrain(self, X):
         cleaned_input = pd.DataFrame(X, columns = ['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob', 'class'])

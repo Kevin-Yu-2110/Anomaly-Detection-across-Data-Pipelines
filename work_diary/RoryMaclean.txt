@@ -36,3 +36,4 @@ Sprint Three (w9-w10)
 - create full-stack retrain model route with notifications
 - implement select model full-stack functionality
 - refactor backend-db routes for model retraining, remove FeedbackTransaction model as part of overhaul
+- multiple model integration + home page css design fixes 

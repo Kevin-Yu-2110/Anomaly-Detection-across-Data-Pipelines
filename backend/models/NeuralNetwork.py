@@ -46,7 +46,6 @@ class NeuralNetworkModel(abstract_model):
             
             remote_server_uri = "http://127.0.0.1:5000"
             mlflow.set_tracking_uri(remote_server_uri)
-            print("MODEL NAME: ", self.model_name)
             model = mlflow.pyfunc.load_model('models:/' + self.model_name + "/latest")
             prediction = model.predict(scaled_input) > 0.6
             return prediction

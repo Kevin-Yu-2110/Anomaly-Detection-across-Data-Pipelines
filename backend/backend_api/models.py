@@ -32,7 +32,6 @@ class StandardUser(AbstractUser):
         self.model_list['NN'] = NeuralNetworkModel(self.cc_num)
 
     def call_model(self, model):
-        print("MODEL IS: ", self.model_list[model])
         return self.model_list[model]
     
     def __str__(self):

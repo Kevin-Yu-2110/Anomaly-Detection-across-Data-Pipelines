@@ -44,6 +44,10 @@ class NeuralNetworkModel(abstract_model):
         except Exception as e:
             print("EXCEPTION: ", e)
             pass
+
+    def predict_prob(self, X):
+        # Not avaliable for this model
+        return NULL
         
     def retrain(self, X):
         cleaned_input = pd.DataFrame(X, columns = ['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob', 'is_fraud'])

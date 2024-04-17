@@ -48,7 +48,7 @@ class NeuralNetworkModel(abstract_model):
             mlflow.set_tracking_uri(remote_server_uri)
             model = mlflow.pyfunc.load_model('models:/' + self.model_name + "/latest")
             prediction = model.predict(scaled_input) > 0.6
-            return prediction
+            return [prediction, None]
         except Exception as e:
             print("EXCEPTION: ", e)
             pass

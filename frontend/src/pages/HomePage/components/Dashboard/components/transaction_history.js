@@ -113,7 +113,10 @@ const TransactionHistory = ({ dataFlag }) => {
     },
     {
       name: "Anomaly",
-      cell: row => <div>{row.anomalous !== null ? (row.anomalous ? "Yes" : "No") : null} </div>,
+      cell: row => <>
+        <div>{row.anomalous !== null && (row.anomalous ? "Yes" : "No")}</div>
+        <div>{row.confidence !== null && <span>&nbsp;({row.confidence * 100}%)</span>}</div>
+      </>,
       conditionalCellStyles: [
         {
           when: row => row.anomalous === true,

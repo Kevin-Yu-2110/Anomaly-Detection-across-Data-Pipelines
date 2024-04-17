@@ -38,7 +38,6 @@ class XGBoostModel(abstract_model):
             mlflow.set_tracking_uri(remote_server_uri)
             model = mlflow.pyfunc.load_model('models:/' + self.model_name + "/latest")
             prediction = model.predict(encoded_input)
-            prob = model.predict_proba(encoded_input)[prediction]
             return prediction
         except Exception as e:
             print("EXCEPTION: ", e)

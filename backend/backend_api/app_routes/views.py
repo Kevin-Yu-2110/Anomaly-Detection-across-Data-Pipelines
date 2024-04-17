@@ -375,7 +375,8 @@ def retrain_model(request):
             time_of_transfer = datetime.strptime(t.time_of_transfer, time_format)
             time_of_transfer = time_of_transfer.strftime("%Y-%m-%d %H:%M:%S")
             
-            model_input.append([time_of_transfer, t.cc_num, t.merchant, t.category, t.amt, t.city, t.job, t.dob, not t.anomalous])
+            anomalous = 1 if t.anomalous else 0
+            model_input.append([time_of_transfer, t.cc_num, t.merchant, t.category, t.amt, t.city, t.job, t.dob, anomalous])
         model.retrain(model_input)
         # clear feedback transactions
         return JsonResponse({'success': True})

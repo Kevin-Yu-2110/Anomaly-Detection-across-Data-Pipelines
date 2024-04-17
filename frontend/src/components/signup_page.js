@@ -78,7 +78,9 @@ const SignupPage = () => {
         <br></br>
         <button className={style.button} type="submit">Sign Up</button>
       </form>
-      <a className={style.link} href="/login">Already have an account?</a>
+      <div style={{marginTop:'10px'}}>
+        <a className={style.link} href="/login">Already have an account?</a>
+      </div>
     </div>
     </div>
   );

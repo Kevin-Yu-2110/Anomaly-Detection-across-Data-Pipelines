@@ -640,7 +640,7 @@ class UserTransactionTests(TestCase):
             reverse('detect_anomalies'),
             data={
                 'username': 'Jimmy',
-                'selected_model': 'Placeholder' #placeholder
+                'selected_model': 'XG'
             },
             headers={
                 'Authorization': f"Bearer {auth_token}"

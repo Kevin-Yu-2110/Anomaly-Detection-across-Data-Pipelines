@@ -349,7 +349,6 @@ def detect_anomalies(request):
             t.save()
         return JsonResponse({'success': True})
     except Exception as e:
-        print("ERROR: ", e)
         return JsonResponse({'success': False, 'error': str(e)})
 
 @csrf_exempt
@@ -413,5 +412,4 @@ def agg_by_cc_num(request):
         aggregations['max_amt'] = round(transactions.aggregate(Max('amt'))['amt__max'], 2)
         return JsonResponse({'success': True, 'aggregations': aggregations})
     except Exception as e:
-        print('Exception', repr(e))
         return JsonResponse({'success': False, 'error': str(e)})

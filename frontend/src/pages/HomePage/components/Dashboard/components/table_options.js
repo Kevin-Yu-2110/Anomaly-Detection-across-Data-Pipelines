@@ -21,7 +21,8 @@ const TextField = styled.input`
 const TableOptions = ({ setPage, setSearchString, pageToggle, setPageToggle, refreshToggle, setRefreshToggle }) => {
   const [searchText, setSearchText] = useState('');
   const {username, token} = useUser();
-  const [selectedModel, setSelectedModel] = useState('IsolationForestModel');
+  const [selectedModel, setSelectedModel] = useState('XGBoost');
+  const [selectedModelAbbrev, setSelectedModelAbbrev] = useState('XG');
 
   const handleSearch = () => {
     if (searchText) {
@@ -34,13 +35,22 @@ const TableOptions = ({ setPage, setSearchString, pageToggle, setPageToggle, ref
 
   const handleModelSelect = (eventKey) => {
     setSelectedModel(eventKey);
+    if (eventKey === "XGBoost") {
+      setSelectedModelAbbrev('XG');
+    } else if (eventKey === "Isolation Forest") {
+      setSelectedModelAbbrev('IF');
+    } else if (eventKey === "Neural Network") {
+      setSelectedModelAbbrev('NN');  
+    }
   };
 
   const handleDetect = async () => {
-      // Create Request Form
+    console.log("SOMETHING")
+    // Create Request Form
       const formData = new FormData();
       formData.append('username', username);
-      formData.append('selected_model', selectedModel);
+      formData.append('selected_model', selectedModelAbbrev);
+      toast.success("Anomaly Detection Initiated");
       // Send Request Form
       try {
         const response = await axios.post('http://127.0.0.1:8000/api/detect_anomalies/',
@@ -68,6 +78,7 @@ const TableOptions = ({ setPage, setSearchString, pageToggle, setPageToggle, ref
     // Create Request Form
     const formData = new FormData();
     formData.append('username', username);
+    formData.append('selected_model', selectedModel);
     // Notify User of Asynchronous call
     toast.success("Model Retrain Initiated. Awaiting response");
     // Send Request Form
@@ -106,12 +117,12 @@ const TableOptions = ({ setPage, setSearchString, pageToggle, setPageToggle, ref
       {/* Select Model, Detect Anomaly, and Retrain*/}
       <Dropdown style={{margin: '0 10px 0 0'}} onSelect={handleModelSelect}>
         <Dropdown.Toggle variant="outline-info" size="sm" id="dropdown-basic">
-          Select Model
+          {selectedModel}
         </Dropdown.Toggle>
         <Dropdown.Menu>
-          <Dropdown.Item eventKey="IsolationForestModel">Isolation Forest Model</Dropdown.Item>
-          <Dropdown.Item eventKey="IsolationForestModel">AdaBoost Model</Dropdown.Item>
-          <Dropdown.Item eventKey="IsolationForestModel">GBT Model</Dropdown.Item>
+          <Dropdown.Item eventKey="XGBoost">XGBoost</Dropdown.Item>
+          <Dropdown.Item eventKey="Isolation Forest">Isolation Forest</Dropdown.Item>
+          <Dropdown.Item eventKey="Neural Network">Neural Network</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
       {/* Search and Reset*/}

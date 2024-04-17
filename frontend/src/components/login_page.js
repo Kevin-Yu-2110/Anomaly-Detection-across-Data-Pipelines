@@ -63,7 +63,7 @@ const LoginPage = () => {
           <p><button className={login_style.button} onClick={() => navigate("/signup")}>Sign Up</button></p>
         </div>
         <div style={{marginTop:'10px'}}>
-        <a className={login_style.link} href="/resetRequest">forgot password</a>
+        <a className={login_style.link} href="/resetRequest">Forgot password?</a>
         </div>
       </div>
     </div>

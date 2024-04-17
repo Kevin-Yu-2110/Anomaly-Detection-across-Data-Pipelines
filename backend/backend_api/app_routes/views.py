@@ -338,8 +338,7 @@ def process_transaction_log(request):
 def detect_anomalies(request):
     try:
         username = request.POST['username']
-        #selected_model = request.POST['selected_model']
-        selected_model = 'IF' #current placeholder
+        selected_model = request.POST['selected_model']
         user = StandardUser.objects.get(username=username)
         model = user.call_model(selected_model)
         # for every transaction in db with username as uploading_user, update 'anomalous' field
@@ -350,6 +349,7 @@ def detect_anomalies(request):
             t.save()
         return JsonResponse({'success': True})
     except Exception as e:
+        print("ERROR: ", e)
         return JsonResponse({'success': False, 'error': str(e)})
 
 @csrf_exempt
@@ -358,12 +358,11 @@ def detect_anomalies(request):
 def retrain_model(request):
     try:
         username = request.POST['username']
-        #selected_model = request.POST['selected_model']
-        selected_model = 'IF' #current placeholder
+        selected_model = request.POST['selected_model']
         user = StandardUser.objects.get(username=username)
         model = user.call_model(selected_model)
         # retrain model with user's feedback transactions, 
-        transactions = FeedbackTransaction.objects.filter(uploading_user=username)
+        transactions = Transaction.objects.filter(uploading_user=username, is_flagged=True)
         # convert datetime object to string without milliseconds
         model_input = []
         for t in transactions:
@@ -374,7 +373,7 @@ def retrain_model(request):
             time_of_transfer = datetime.strptime(t.time_of_transfer, time_format)
             time_of_transfer = time_of_transfer.strftime("%Y-%m-%d %H:%M:%S")
             
-            model_input.append([time_of_transfer, t.cc_num, t.merchant, t.category, t.amt, t.city, t.job, t.dob, t.anomalous])
+            model_input.append([time_of_transfer, t.cc_num, t.merchant, t.category, t.amt, t.city, t.job, t.dob, not t.anomalous])
         model.retrain(model_input)
         # clear feedback transactions
         return JsonResponse({'success': True})

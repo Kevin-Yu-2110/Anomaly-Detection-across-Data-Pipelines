@@ -10,9 +10,8 @@ function Cover() {
         <video src={video} autoPlay loop muted />
         <div className={style.container}>
             <Menu/>
-            <h2>WELCOME</h2>
             <h1>Anomaly Detection across Data Pipelines</h1>
-            <a className={style.link} href="/login">&#8658; Start Now</a>
+            <a className={style.link} href="/login">Start Now</a>
         </div>
     </div>
   );

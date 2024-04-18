@@ -63,7 +63,7 @@ const MakeTransaction = ({ dataFlag, setDataFlag }) => {
 
   return (
     <>
-      <Button style={{margin: '0 20px 0 0 '}} variant="outline-info" onClick={handleShow}>
+      <Button style={{margin: '0 10px 0 0 '}} variant="outline-info" onClick={handleShow}>
         <BsCash className={style.icon}></BsCash>
         Upload Transaction
       </Button>

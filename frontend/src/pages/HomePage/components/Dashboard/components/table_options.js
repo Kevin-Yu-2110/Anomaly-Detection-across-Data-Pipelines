@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useUser } from "../../../../../UserContext";
 import { toast } from "react-toastify";
 import axios from "axios";
-
 import { Button, Dropdown } from "react-bootstrap";
 
 // text field for search feature in transaction history table
@@ -23,6 +22,7 @@ const TableOptions = ({ setPage, setSearchString, pageToggle, setPageToggle, ref
   const {username, token} = useUser();
   const [selectedModel, setSelectedModel] = useState('XGBoost');
   const [selectedModelAbbrev, setSelectedModelAbbrev] = useState('XG');
+  const [disabled, setDisabled] = useState(false);
 
   const handleSearch = () => {
     if (searchText) {
@@ -51,6 +51,7 @@ const TableOptions = ({ setPage, setSearchString, pageToggle, setPageToggle, ref
       formData.append('username', username);
       formData.append('selected_model', selectedModelAbbrev);
       toast.success("Anomaly Detection Initiated");
+      setDisabled(true);
       // Send Request Form
       try {
         const response = await axios.post('http://127.0.0.1:8000/api/detect_anomalies/',
@@ -69,8 +70,10 @@ const TableOptions = ({ setPage, setSearchString, pageToggle, setPageToggle, ref
         } else {
           toast.error(`Failed to call Anomaly Detection Pipeline: ${response.data.error}`);
         }
+        setDisabled(false);
       } catch (error) {
         toast.error(`Failed to call Anomaly Detection Pipeline: ${error}`);
+        setDisabled(false);
       }
   };
 
@@ -81,6 +84,7 @@ const TableOptions = ({ setPage, setSearchString, pageToggle, setPageToggle, ref
     formData.append('selected_model', selectedModelAbbrev);
     // Notify User of Asynchronous call
     toast.success("Model Retrain Initiated. Awaiting response");
+    setDisabled(true);
     // Send Request Form
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/retrain_model/',
@@ -99,8 +103,10 @@ const TableOptions = ({ setPage, setSearchString, pageToggle, setPageToggle, ref
       } else {
         toast.error(`Failed to call Model Retrain: ${response.data.error}`);
       }
+      setDisabled(false);
     } catch (error) {
       toast.error(`Failed to call Model Retrain: ${error}`);
+      setDisabled(false);
     }
 };
 
@@ -126,8 +132,8 @@ const TableOptions = ({ setPage, setSearchString, pageToggle, setPageToggle, ref
         </Dropdown.Menu>
       </Dropdown>
       {/* Search and Reset*/}
-      <Button variant="outline-info" onClick={handleDetect} size="sm">Detect</Button>
-      <Button variant="outline-info" style={{margin: '0 50px 0 0'}} onClick={handleRetrain} size="sm">Retrain</Button>
+      <Button variant="outline-info" onClick={handleDetect} size="sm" disabled={disabled}>Detect</Button>
+      <Button variant="outline-info" style={{margin: '0 50px 0 0'}} onClick={handleRetrain} size="sm" disabled={disabled}>Retrain</Button>
       <TextField
         key="searchfield"
         id="search"

@@ -5,11 +5,11 @@ import { useUser } from "../../../../../UserContext";
 import { Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 import TableOptions from "./table_options";
+import LoadingSpinner from "../../../../../components/loading_spinner";
 
-const TransactionHistory = ({ dataFlag }) => {
+const TransactionHistory = ({ dataFlag, loading, setLoading }) => {
   const {username, token} = useUser();
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [totalRows, setTotalRows] = useState(0);
   const [page, setPage] = useState(1);
   const [searchString, setSearchString] = useState("");
@@ -113,7 +113,10 @@ const TransactionHistory = ({ dataFlag }) => {
     },
     {
       name: "Anomaly",
-      cell: row => <div>{row.anomalous !== null ? (row.anomalous ? "Yes" : "No") : null} </div>,
+      cell: row => <>
+        <div>{row.anomalous !== null && (row.anomalous ? "Yes" : "No")}</div>
+        <div>{row.confidence !== null && <span>&nbsp;({row.confidence * 100}%)</span>}</div>
+      </>,
       conditionalCellStyles: [
         {
           when: row => row.anomalous === true,
@@ -135,9 +138,9 @@ const TransactionHistory = ({ dataFlag }) => {
 
   // fetch data based on the currently selected page and search/sort params
   const fetchData = async (page_no) => {
+    setLoading(true);
     // request transaction history based on page and search/sort/aggregate parmams
     try {
-      setLoading(true);
       const response = await axios.get("http://127.0.0.1:8000/api/get_transaction_history/",
         {
           params: {
@@ -161,6 +164,7 @@ const TransactionHistory = ({ dataFlag }) => {
       setLoading(false);
     } catch (error) {
       fetchFailed(error);
+      setLoading(false);
     }
   }
 
@@ -341,9 +345,11 @@ const TransactionHistory = ({ dataFlag }) => {
       title="Transaction History"
       columns={columns}
       data={data}
+      noDataComponent="There are no transactions to display"
       sortServer
       onSort={handleSort}
       progressPending={loading}
+      progressComponent={<LoadingSpinner />}
       pagination
       paginationPerPage={25}
       paginationResetDefaultPage={resetPaginationToggle}
@@ -358,7 +364,7 @@ const TransactionHistory = ({ dataFlag }) => {
       onSelectedRowsChange={handleRowSelected}
       clearSelectedRows={toggleCleared}
       contextActions={contextActions}
-      subHeader
+      subHeader={data.length !== 0}
       subHeaderComponent={
       <TableOptions 
         setPage={setPage}

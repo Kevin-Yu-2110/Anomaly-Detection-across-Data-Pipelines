@@ -6,7 +6,7 @@ import axios from 'axios';
 import { toast } from "react-toastify";
 import style from "../header.module.css";
 
-const UploadData = ({ dataFlag, setDataFlag }) => {
+const UploadData = ({ dataFlag, setDataFlag, setLoading }) => {
   const [show, setShow] = useState(false);
   const [file, setFile] = useState();
   const {username, token} = useUser();
@@ -23,6 +23,7 @@ const UploadData = ({ dataFlag, setDataFlag }) => {
     const formData = new FormData();
     formData.append('transaction_log', file);
     formData.append('username', username);
+    setLoading(true);
     // Send Request Form
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/process_transaction_log/',
@@ -42,8 +43,10 @@ const UploadData = ({ dataFlag, setDataFlag }) => {
         uploadFailed(response.data.error);
       }
       setFile(null);
+      setLoading(false);
     } catch (error) {
       uploadFailed(error);
+      setLoading(false);
     }
   }
 

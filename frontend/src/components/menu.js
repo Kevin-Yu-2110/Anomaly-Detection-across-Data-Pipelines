@@ -10,7 +10,7 @@ function Menu() {
           <li className={style.elementC}><a className={style.elementS} href="/login">Sign In</a></li>
           <li className={style.elementC}><a className={style.elementS} href="/signup">Sign Up</a></li>
           <li className={style.elementC}><a className={style.elementS} href="/resetRequest">Reset Password</a></li>
-          <li className={style.elementC}><a className={style.elementS} href="/aboutus">About us</a></li>
+          <li className={style.elementC}><a className={style.elementS} href="/aboutus">About Us</a></li>
         </ul>
       </nav>
     );

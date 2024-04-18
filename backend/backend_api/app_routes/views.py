@@ -347,7 +347,7 @@ def detect_anomalies(request):
         prediction, confidence = model.predict(model_input)
         for i, t in enumerate(transactions):
             t.anomalous = True if prediction[i] else False
-            t.confidence = confidence[i][prediction[i]] if confidence.any else None
+            t.confidence = confidence[i][prediction[i]] if confidence else None
             t.save()
         return JsonResponse({'success': True})
     except Exception as e:

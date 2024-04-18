@@ -38,7 +38,7 @@ class XGBoostModel(abstract_model):
             model = mlflow.xgboost.load_model('models:/' + self.model_name + "/latest")
             prediction = model.predict(encoded_input)
             prob = model.predict_proba(encoded_input)
-            return [prediction, prob]
+            return [prediction, list(prob)]
         except Exception as e:
             print("EXCEPTION: ", e)
             pass

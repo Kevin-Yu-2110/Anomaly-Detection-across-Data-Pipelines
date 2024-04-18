@@ -115,7 +115,7 @@ const TransactionHistory = ({ dataFlag, loading, setLoading }) => {
       name: "Anomaly",
       cell: row => <>
         <div>{row.anomalous !== null && (row.anomalous ? "Yes" : "No")}</div>
-        <div>{row.confidence !== null && <span>&nbsp;({row.confidence * 100}%)</span>}</div>
+        <div>{row.confidence !== null && <span>&nbsp;({(row.confidence * 100).toFixed(2)}%)</span>}</div>
       </>,
       conditionalCellStyles: [
         {

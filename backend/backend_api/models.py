@@ -42,7 +42,7 @@ class Transaction(models.Model):
     uploading_user = models.CharField(max_length=100)
     # model feature fields: 'trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob'
     time_of_transfer = models.CharField(max_length=100)
-    cc_num = models.IntegerField()
+    cc_num = models.CharField(max_length=100)
     merchant = models.CharField(max_length=100)
     category=models.CharField(max_length=100)
     amt = models.DecimalField(max_digits=10, decimal_places=2)

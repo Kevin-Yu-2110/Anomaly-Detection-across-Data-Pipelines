@@ -52,7 +52,7 @@ const UploadData = ({ dataFlag, setDataFlag, setLoading }) => {
 
   return (
     <>
-      <Button variant="outline-info" onClick={handleShow}>
+      <Button style={{margin: '0 10px 0 0 '}} variant="outline-info" onClick={handleShow}>
         <BsUpload className={style.icon}></BsUpload>
         Upload Data
       </Button>

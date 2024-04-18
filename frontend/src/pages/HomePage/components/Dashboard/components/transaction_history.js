@@ -364,7 +364,7 @@ const TransactionHistory = ({ dataFlag, loading, setLoading }) => {
       onSelectedRowsChange={handleRowSelected}
       clearSelectedRows={toggleCleared}
       contextActions={contextActions}
-      subHeader={data.length !== 0}
+      subHeader
       subHeaderComponent={
       <TableOptions 
         setPage={setPage}

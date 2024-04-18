@@ -4,6 +4,7 @@ import UserProfile from "./components/user_profile";
 import MakeTransaction from "./components/make_transaction";
 import UploadData from "./components/upload_data";
 import style from "./header.module.css";
+import ModelInfo from "./components/model_info";
 
 const Header = ({ dataFlag, setDataFlag, setLoading }) => {
   return (
@@ -11,6 +12,7 @@ const Header = ({ dataFlag, setDataFlag, setLoading }) => {
       <div>
         <MakeTransaction dataFlag={dataFlag} setDataFlag={setDataFlag}/>
         <UploadData dataFlag={dataFlag} setDataFlag={setDataFlag} setLoading={setLoading}/>
+        <ModelInfo />
       </div>
       <div>
         <UserProfile dataFlag={dataFlag} setDataFlag={setDataFlag}/>

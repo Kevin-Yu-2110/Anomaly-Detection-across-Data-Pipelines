@@ -4,8 +4,7 @@
     grid-template-areas:
       'header'
       'main';
-    height: 100%;
-    background-color: #23324d;
+    height: 100vh;
     color: white;
 }
   

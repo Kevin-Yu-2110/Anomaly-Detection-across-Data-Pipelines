@@ -13,10 +13,13 @@ const Home = () => {
    */
   const [dataFlag, setDataFlag] = useState(false);
 
+  // show loading indicator instead of table when uploading data
+  const [loading, setLoading] = useState(false);
+
   return (
     <div className={style["homepage-container"]}>
-      <Header dataFlag={dataFlag} setDataFlag={setDataFlag}/>
-      <Dashboard dataFlag={dataFlag}/>
+      <Header dataFlag={dataFlag} setDataFlag={setDataFlag} setLoading={setLoading}/>
+      <Dashboard dataFlag={dataFlag} loading={loading} setLoading={setLoading}/>
     </div>
   );
 };

@@ -12,6 +12,7 @@ def clean_up(X, enc = None):
     numerical_X["day"] = date_information.day
     numerical_X["time"] = date_information.second + 60 * date_information.minute + 3600 * date_information.hour
     numerical_X["age"] = (pd.to_datetime(X["trans_date_trans_time"]) - pd.to_datetime(X["dob"])).dt.days
+    numerical_X = numerical_X.fillna(numerical_X.median())
     categorical_X = X[["cc_num", "merchant", "category", "city", "job"]].copy()
     categorical_X[["cc_num"]] = categorical_X[["cc_num"]].astype("int64")
     categorical_X["merchant"] = categorical_X["merchant"].apply(lambda x : x.replace("fraud_", "", 1))

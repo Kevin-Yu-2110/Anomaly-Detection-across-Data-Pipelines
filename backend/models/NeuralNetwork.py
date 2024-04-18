@@ -48,7 +48,7 @@ class NeuralNetworkModel(abstract_model):
             mlflow.set_tracking_uri(remote_server_uri)
             model = mlflow.pyfunc.load_model('models:/' + self.model_name + "/latest")
             prediction = model.predict(scaled_input) > 0.6
-            return prediction
+            return [prediction, None]
         except Exception as e:
             print("EXCEPTION: ", e)
             pass
@@ -60,10 +60,10 @@ class NeuralNetworkModel(abstract_model):
     def retrain(self, X):
         cleaned_input = pd.DataFrame(X, columns = ['trans_date_trans_time', 'cc_num', 'merchant', 'category', 'amt', 'city', 'job', 'dob', 'is_fraud'])
         model_name, encoder, scaler = train_model(cleaned_input, self.owner, retrain = True)
-        encoder_path = os.path.join(os.path.dirname(__file__), 'encoders/' + self.model_name + '-encoder.pickle')
+        encoder_path = os.path.join(os.path.dirname(__file__), 'encoders/' + model_name + '-encoder.pickle')
         with open(encoder_path, 'wb') as handle:
             pickle.dump(encoder, handle)
-        scaler_path = os.path.join(os.path.dirname(__file__), 'scalers/' + self.model_name + '-scaler.pickle')
+        scaler_path = os.path.join(os.path.dirname(__file__), 'scalers/' + model_name + '-scaler.pickle')
         with open(scaler_path, 'wb') as handle:
             pickle.dump(scaler, handle)
         self.model_name = model_name

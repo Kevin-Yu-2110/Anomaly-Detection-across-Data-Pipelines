@@ -347,7 +347,7 @@ def detect_anomalies(request):
         prediction, confidence = model.predict(model_input)
         for i, t in enumerate(transactions):
             t.anomalous = True if prediction[i] else False
-            t.confidence = confidence[i] if confidence else None
+            t.confidence = confidence[i][prediction[i]] if confidence.any else None
             t.save()
         return JsonResponse({'success': True})
     except Exception as e:
@@ -375,7 +375,8 @@ def retrain_model(request):
             time_of_transfer = datetime.strptime(t.time_of_transfer, time_format)
             time_of_transfer = time_of_transfer.strftime("%Y-%m-%d %H:%M:%S")
             
-            model_input.append([time_of_transfer, t.cc_num, t.merchant, t.category, t.amt, t.city, t.job, t.dob, not t.anomalous])
+            anomalous = 1 if t.anomalous else 0
+            model_input.append([time_of_transfer, t.cc_num, t.merchant, t.category, t.amt, t.city, t.job, t.dob, anomalous])
         model.retrain(model_input)
         # clear feedback transactions
         return JsonResponse({'success': True})

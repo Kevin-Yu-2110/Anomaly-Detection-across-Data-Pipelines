@@ -1,0 +1,501 @@
+trans_date_trans_time,cc_num,merchant,category,amt,city,job,dob
+2020-06-21 22:06:39,3560725013359375,Hamill-D'Amore,health_fitness,24.84,Notrees,Cytogeneticist,1969-09-15
+2020-06-21 22:32:22,6564459919350820,"Rodriguez, Yost and Jenkins",misc_net,780.52,Benton,Public relations officer,1958-09-10
+2020-06-21 22:37:27,6564459919350820,Nienow PLC,entertainment,620.33,Benton,Public relations officer,1958-09-10
+2020-06-21 22:38:55,4005676619255478,"Heathcote, Yost and Kertzmann",shopping_net,1077.69,Denham Springs,Herbalist,1994-05-31
+2020-06-21 23:02:16,3560725013359375,Hermann and Sons,shopping_pos,842.65,Notrees,Cytogeneticist,1969-09-15
+2020-06-21 23:16:12,3524574586339330,Thompson-Gleason,health_fitness,22.55,Vero Beach,"Librarian, public",1986-05-07
+2020-06-21 23:21:44,4005676619255478,Kuhic LLC,shopping_net,1128.26,Denham Springs,Herbalist,1994-05-31
+2020-06-21 23:35:27,4005676619255478,"Reichert, Rowe and Mraz",shopping_net,931.82,Denham Springs,Herbalist,1994-05-31
+2020-06-21 23:40:26,4005676619255478,"Kihn, Abernathy and Douglas",shopping_net,983.0,Denham Springs,Herbalist,1994-05-31
+2020-06-21 23:59:05,6564459919350820,Lemke-Gutmann,shopping_net,955.16,Benton,Public relations officer,1958-09-10
+2020-06-22 00:06:40,4005676619255478,"Rodriguez, Yost and Jenkins",misc_net,701.81,Denham Springs,Herbalist,1994-05-31
+2020-06-22 01:18:02,3524574586339330,"Yost, Block and Koepp",misc_pos,8.39,Vero Beach,"Librarian, public",1986-05-07
+2020-06-22 01:25:13,4005676619255478,"Goldner, Kovacek and Abbott",grocery_pos,326.94,Denham Springs,Herbalist,1994-05-31
+2020-06-22 01:54:33,3524574586339330,"Osinski, Ledner and Leuschke",grocery_pos,353.08,Vero Beach,"Librarian, public",1986-05-07
+2020-06-22 03:38:35,4005676619255478,"Kerluke, Considine and Macejkovic",misc_net,868.48,Denham Springs,Herbalist,1994-05-31
+2020-06-22 03:48:20,3524574586339330,Skiles-Ankunding,grocery_net,13.25,Vero Beach,"Librarian, public",1986-05-07
+2020-06-22 03:55:36,3524574586339330,Kuhn LLC,shopping_pos,777.45,Vero Beach,"Librarian, public",1986-05-07
+2020-06-22 04:58:25,3524574586339330,Schumm PLC,shopping_net,967.86,Vero Beach,"Librarian, public",1986-05-07
+2020-06-22 21:51:05,4005676619255478,"Baumbach, Strosin and Nicolas",shopping_pos,825.81,Denham Springs,Herbalist,1994-05-31
+2020-06-22 22:20:13,3524574586339330,Shanahan-Lehner,personal_care,21.92,Vero Beach,"Librarian, public",1986-05-07
+2020-06-22 23:08:25,3524574586339330,"Haley, Batz and Auer",health_fitness,21.74,Vero Beach,"Librarian, public",1986-05-07
+2020-06-22 23:35:47,3524574586339330,Kutch-Wilderman,home,250.32,Vero Beach,"Librarian, public",1986-05-07
+2020-06-24 00:26:45,180098888332620,DuBuque LLC,grocery_pos,315.45,Springville,"Scientist, research (maths)",1959-03-30
+2020-06-24 00:44:24,180098888332620,"Huel, Hammes and Witting",grocery_pos,279.78,Springville,"Scientist, research (maths)",1959-03-30
+2020-06-24 02:56:50,180098888332620,Murray-Smitham,grocery_pos,287.38,Springville,"Scientist, research (maths)",1959-03-30
+2020-06-24 03:21:56,180098888332620,Heidenreich PLC,grocery_pos,276.4,Springville,"Scientist, research (maths)",1959-03-30
+2020-06-24 03:33:40,180098888332620,Huels-Hahn,gas_transport,7.82,Springville,"Scientist, research (maths)",1959-03-30
+2020-06-24 22:03:55,180098888332620,Durgan-Auer,misc_net,790.54,Springville,"Scientist, research (maths)",1959-03-30
+2020-06-24 22:07:11,180098888332620,Bednar Group,misc_net,723.23,Springville,"Scientist, research (maths)",1959-03-30
+2020-06-24 22:26:26,3593118134380341,Hills-Boyer,personal_care,46.36,Steuben,Make,1959-05-10
+2020-06-24 22:30:10,180098888332620,Sawayn PLC,shopping_pos,996.31,Springville,"Scientist, research (maths)",1959-03-30
+2020-06-24 23:06:34,180098888332620,"Mosciski, Ziemann and Farrell",shopping_net,902.3,Springville,"Scientist, research (maths)",1959-03-30
+2020-06-24 23:15:28,180098888332620,"Baumbach, Hodkiewicz and Walsh",shopping_pos,741.77,Springville,"Scientist, research (maths)",1959-03-30
+2020-06-24 23:20:06,3593118134380341,Terry-Huel,shopping_net,900.77,Steuben,Make,1959-05-10
+2020-06-24 23:24:22,180098888332620,Pfeffer and Sons,shopping_pos,1047.3,Springville,"Scientist, research (maths)",1959-03-30
+2020-06-24 23:46:55,3593118134380341,Ruecker Group,misc_net,737.99,Steuben,Make,1959-05-10
+2020-06-24 23:54:32,3593118134380341,Turcotte-Halvorson,misc_pos,49.18,Steuben,Make,1959-05-10
+2020-06-25 18:16:26,3593118134380341,"Mosciski, Ziemann and Farrell",shopping_net,1046.97,Steuben,Make,1959-05-10
+2020-06-25 22:24:27,3593118134380341,Miller-Harris,misc_net,850.82,Steuben,Make,1959-05-10
+2020-06-25 23:01:19,3593118134380341,Goyette Inc,shopping_net,976.48,Steuben,Make,1959-05-10
+2020-06-25 23:37:19,3593118134380341,Lemke and Sons,travel,4.64,Steuben,Make,1959-05-10
+2020-06-25 23:48:37,180098888332620,"Bahringer, Osinski and Block",food_dining,95.52,Springville,"Scientist, research (maths)",1959-03-30
+2020-06-26 01:35:14,213161231269724,"Osinski, Ledner and Leuschke",grocery_pos,297.2,Gadsden,Physiological scientist,1963-02-09
+2020-06-26 01:51:55,213161231269724,Kilback LLC,grocery_pos,315.72,Gadsden,Physiological scientist,1963-02-09
+2020-06-26 05:56:53,213161231269724,"Schaefer, Maggio and Daugherty",gas_transport,8.32,Gadsden,Physiological scientist,1963-02-09
+2020-06-26 09:31:33,6544734391390261,Kunze Inc,grocery_pos,309.04,Highland,Community arts worker,1982-02-08
+2020-06-26 16:34:06,213161231269724,"Schiller, Blanda and Johnson",home,219.46,Gadsden,Physiological scientist,1963-02-09
+2020-06-26 22:08:07,213161231269724,"Herman, Treutel and Dickens",misc_net,749.59,Gadsden,Physiological scientist,1963-02-09
+2020-06-26 22:20:01,213161231269724,Heathcote LLC,shopping_net,1129.53,Gadsden,Physiological scientist,1963-02-09
+2020-06-26 22:55:04,213161231269724,Volkman Ltd,misc_net,844.29,Gadsden,Physiological scientist,1963-02-09
+2020-06-26 23:18:46,6544734391390261,Schumm PLC,shopping_net,949.88,Highland,Community arts worker,1982-02-08
+2020-06-26 23:37:45,6544734391390261,Boyer PLC,shopping_net,935.06,Highland,Community arts worker,1982-02-08
+2020-06-26 23:38:10,6544734391390261,Kerluke-Abshire,shopping_net,1025.61,Highland,Community arts worker,1982-02-08
+2020-06-27 00:42:18,3573386445588324,"Stroman, Hudson and Erdman",gas_transport,18.25,Barnard,Systems developer,1969-10-30
+2020-06-27 01:14:25,6544734391390261,Koss and Sons,gas_transport,11.82,Highland,Community arts worker,1982-02-08
+2020-06-27 02:06:49,6544734391390261,"Tillman, Fritsch and Schmitt",misc_net,764.71,Highland,Community arts worker,1982-02-08
+2020-06-27 03:48:35,6544734391390261,Hackett-Lueilwitz,grocery_pos,294.78,Highland,Community arts worker,1982-02-08
+2020-06-27 16:14:03,6544734391390261,Schumm PLC,shopping_net,917.11,Highland,Community arts worker,1982-02-08
+2020-06-27 19:47:59,3573386445588324,Volkman Ltd,misc_net,667.17,Barnard,Systems developer,1969-10-30
+2020-06-27 22:23:08,6544734391390261,Mosciski Group,travel,9.99,Highland,Community arts worker,1982-02-08
+2020-06-27 22:39:07,3573386445588324,Zboncak LLC,food_dining,135.82,Barnard,Systems developer,1969-10-30
+2020-06-27 22:55:13,3573386445588324,Spencer PLC,entertainment,614.72,Barnard,Systems developer,1969-10-30
+2020-06-27 23:04:11,213161231269724,"Towne, Greenholt and Koepp",shopping_net,996.41,Gadsden,Physiological scientist,1963-02-09
+2020-06-27 23:07:02,213161231269724,Medhurst PLC,shopping_net,895.25,Gadsden,Physiological scientist,1963-02-09
+2020-06-27 23:26:42,213161231269724,Bashirian Group,shopping_net,1134.41,Gadsden,Physiological scientist,1963-02-09
+2020-06-28 02:01:49,3581130339108561,Heidenreich PLC,grocery_pos,314.28,Akron,Call centre manager,1964-03-15
+2020-06-28 03:23:52,3573386445588324,"Schumm, Bauch and Ondricka",grocery_pos,319.53,Barnard,Systems developer,1969-10-30
+2020-06-28 06:58:06,3581130339108561,"Schultz, Simonis and Little",grocery_pos,241.45,Akron,Call centre manager,1964-03-15
+2020-06-28 22:12:08,3581130339108561,"Labadie, Treutel and Bode",shopping_net,1159.89,Akron,Call centre manager,1964-03-15
+2020-06-28 22:21:29,3573386445588324,Gerlach Inc,shopping_net,1051.14,Barnard,Systems developer,1969-10-30
+2020-06-28 23:24:26,3581130339108561,Fisher-Schowalter,shopping_net,1142.66,Akron,Call centre manager,1964-03-15
+2020-06-28 23:28:24,3573386445588324,Miller-Harris,misc_net,777.75,Barnard,Systems developer,1969-10-30
+2020-06-28 23:48:51,3581130339108561,"Heathcote, Yost and Kertzmann",shopping_net,1197.26,Akron,Call centre manager,1964-03-15
+2020-06-29 00:15:24,571844099986,"Schoen, Kuphal and Nitzsche",grocery_pos,307.26,Louisville,Engineering geologist,1952-04-02
+2020-06-29 01:17:03,4761403817546679245,Lemke-Gutmann,shopping_net,969.7,Viola,Psychiatric nurse,1986-05-02
+2020-06-29 01:29:03,3581130339108561,"Goldner, Kovacek and Abbott",grocery_pos,314.73,Akron,Call centre manager,1964-03-15
+2020-06-29 02:10:13,4761403817546679245,Auer-Mosciski,grocery_pos,347.63,Viola,Psychiatric nurse,1986-05-02
+2020-06-29 02:23:28,3528231451607350,"Schultz, Simonis and Little",grocery_pos,342.87,Heislerville,Exercise physiologist,1940-09-06
+2020-06-29 02:44:41,571844099986,Kunze Inc,grocery_pos,291.15,Louisville,Engineering geologist,1952-04-02
+2020-06-29 03:32:01,3528231451607350,"Schultz, Simonis and Little",grocery_pos,326.49,Heislerville,Exercise physiologist,1940-09-06
+2020-06-29 06:55:59,4761403817546679245,Gleason-Macejkovic,shopping_net,1071.19,Viola,Psychiatric nurse,1986-05-02
+2020-06-29 08:16:40,571844099986,"Osinski, Ledner and Leuschke",grocery_pos,344.74,Louisville,Engineering geologist,1952-04-02
+2020-06-29 17:44:27,571844099986,Wilkinson Ltd,entertainment,443.97,Louisville,Engineering geologist,1952-04-02
+2020-06-29 22:10:42,3528231451607350,Dooley Inc,shopping_pos,854.92,Heislerville,Exercise physiologist,1940-09-06
+2020-06-29 22:35:58,4761403817546679245,"Schiller, Blanda and Johnson",home,342.36,Viola,Psychiatric nurse,1986-05-02
+2020-06-29 22:43:27,3528231451607350,Lockman Ltd,grocery_pos,320.36,Heislerville,Exercise physiologist,1940-09-06
+2020-06-29 23:10:14,4761403817546679245,Monahan-Morar,personal_care,21.88,Viola,Psychiatric nurse,1986-05-02
+2020-06-29 23:16:13,30551643947183,Ankunding-Carroll,travel,8.85,Grover,Toxicologist,1973-11-14
+2020-06-29 23:28:28,571844099986,Sawayn PLC,shopping_pos,888.56,Louisville,Engineering geologist,1952-04-02
+2020-06-29 23:38:00,4761403817546679245,Pacocha-Weissnat,kids_pets,20.53,Viola,Psychiatric nurse,1986-05-02
+2020-06-29 23:40:46,571844099986,Jaskolski-Vandervort,misc_net,878.42,Louisville,Engineering geologist,1952-04-02
+2020-06-29 23:52:03,4761403817546679245,Osinski Inc,personal_care,22.91,Viola,Psychiatric nurse,1986-05-02
+2020-06-29 23:55:16,3581130339108561,"Gottlieb, Considine and Schultz",shopping_net,1004.99,Akron,Call centre manager,1964-03-15
+2020-06-29 23:55:18,3581130339108561,Brown PLC,misc_net,793.07,Akron,Call centre manager,1964-03-15
+2020-06-29 23:56:05,3581130339108561,Jewess LLC,shopping_pos,1013.85,Akron,Call centre manager,1964-03-15
+2020-06-30 00:03:56,3586008444788268,Schmitt Inc,gas_transport,9.78,Issaquah,Osteopath,1984-02-29
+2020-06-30 00:16:08,571844099986,"Schoen, Kuphal and Nitzsche",grocery_pos,302.75,Louisville,Engineering geologist,1952-04-02
+2020-06-30 00:24:48,3528231451607350,Bins-Rice,gas_transport,18.82,Heislerville,Exercise physiologist,1940-09-06
+2020-06-30 00:27:19,571844099986,Bogisich Inc,grocery_pos,315.39,Louisville,Engineering geologist,1952-04-02
+2020-06-30 01:25:08,3586008444788268,Fisher Inc,shopping_net,1020.48,Issaquah,Osteopath,1984-02-29
+2020-06-30 01:32:44,4761403817546679245,Kerluke PLC,misc_net,795.07,Viola,Psychiatric nurse,1986-05-02
+2020-06-30 01:40:26,4761403817546679245,"Langworth, Boehm and Gulgowski",shopping_net,829.4,Viola,Psychiatric nurse,1986-05-02
+2020-06-30 02:02:32,30551643947183,"Kovacek, Dibbert and Ondricka",grocery_pos,319.23,Grover,Toxicologist,1973-11-14
+2020-06-30 02:11:22,3586008444788268,Ledner-Pfannerstill,gas_transport,8.06,Issaquah,Osteopath,1984-02-29
+2020-06-30 02:16:22,30551643947183,Sawayn PLC,shopping_pos,772.65,Grover,Toxicologist,1973-11-14
+2020-06-30 02:36:40,4761403817546679245,Miller-Hauck,grocery_pos,353.35,Viola,Psychiatric nurse,1986-05-02
+2020-06-30 02:59:45,3586008444788268,Kiehn Inc,grocery_pos,348.48,Issaquah,Osteopath,1984-02-29
+2020-06-30 03:06:29,3528231451607350,DuBuque LLC,grocery_pos,320.73,Heislerville,Exercise physiologist,1940-09-06
+2020-06-30 03:13:30,3586008444788268,"Goyette, Howell and Collier",shopping_pos,826.27,Issaquah,Osteopath,1984-02-29
+2020-06-30 03:16:01,3586008444788268,Wilkinson Ltd,entertainment,483.28,Issaquah,Osteopath,1984-02-29
+2020-06-30 03:21:07,30551643947183,Fisher-Schowalter,shopping_net,1071.12,Grover,Toxicologist,1973-11-14
+2020-06-30 03:27:49,3528231451607350,Kuhic Inc,grocery_pos,307.33,Heislerville,Exercise physiologist,1940-09-06
+2020-06-30 03:49:23,3528231451607350,Doyle Ltd,grocery_pos,347.88,Heislerville,Exercise physiologist,1940-09-06
+2020-06-30 03:59:50,3586008444788268,"Effertz, Welch and Schowalter",entertainment,520.02,Issaquah,Osteopath,1984-02-29
+2020-06-30 04:41:27,30551643947183,Herzog Ltd,misc_pos,8.13,Grover,Toxicologist,1973-11-14
+2020-06-30 05:05:00,4761403817546679245,Huel-Langworth,misc_net,778.42,Viola,Psychiatric nurse,1986-05-02
+2020-06-30 10:04:00,4761403817546679245,Boyer-Reichert,shopping_net,989.92,Viola,Psychiatric nurse,1986-05-02
+2020-06-30 12:27:14,571844099986,"Kuhic, Bins and Pfeffer",shopping_net,1143.96,Louisville,Engineering geologist,1952-04-02
+2020-06-30 16:42:15,3586008444788268,Schaefer Ltd,kids_pets,19.68,Issaquah,Osteopath,1984-02-29
+2020-06-30 19:16:07,3528231451607350,Gutmann-Upton,misc_pos,50.07,Heislerville,Exercise physiologist,1940-09-06
+2020-06-30 21:38:41,3528231451607350,"Kihn, Abernathy and Douglas",shopping_net,1123.95,Heislerville,Exercise physiologist,1940-09-06
+2020-06-30 22:02:57,3528231451607350,McGlynn-Heathcote,misc_net,830.06,Heislerville,Exercise physiologist,1940-09-06
+2020-06-30 22:18:16,3586008444788268,"Mueller, Gerhold and Mueller",health_fitness,23.36,Issaquah,Osteopath,1984-02-29
+2020-06-30 22:32:25,4761403817546679245,Hilpert-Conroy,kids_pets,18.85,Viola,Psychiatric nurse,1986-05-02
+2020-06-30 22:43:00,30551643947183,Ziemann-Waters,health_fitness,18.4,Grover,Toxicologist,1973-11-14
+2020-06-30 23:04:32,571844099986,"Gottlieb, Considine and Schultz",shopping_net,993.55,Louisville,Engineering geologist,1952-04-02
+2020-06-30 23:16:18,3528231451607350,"Romaguera, Cruickshank and Greenholt",shopping_net,970.38,Heislerville,Exercise physiologist,1940-09-06
+2020-06-30 23:16:28,3528231451607350,"Kerluke, Kertzmann and Wiza",misc_net,809.53,Heislerville,Exercise physiologist,1940-09-06
+2020-06-30 23:16:40,571844099986,"Haley, Jewess and Bechtelar",shopping_pos,917.97,Louisville,Engineering geologist,1952-04-02
+2020-06-30 23:21:21,4761403817546679245,Jakubowski Inc,home,277.68,Viola,Psychiatric nurse,1986-05-02
+2020-06-30 23:45:52,3528231451607350,"Huel, Hammes and Witting",grocery_pos,359.26,Heislerville,Exercise physiologist,1940-09-06
+2020-06-30 23:46:30,3528231451607350,Torphy-Goyette,shopping_pos,727.32,Heislerville,Exercise physiologist,1940-09-06
+2020-06-30 23:48:35,571844099986,"Huel, Hammes and Witting",grocery_pos,284.94,Louisville,Engineering geologist,1952-04-02
+2020-07-01 03:52:51,3586008444788268,Bashirian Group,shopping_net,1001.99,Issaquah,Osteopath,1984-02-29
+2020-07-01 15:21:14,3586008444788268,"Bahringer, Bergnaum and Quitzon",home,232.25,Issaquah,Osteopath,1984-02-29
+2020-07-01 22:51:21,6011893664860915,Zulauf LLC,personal_care,17.71,Littleton,Water engineer,1975-07-31
+2020-07-02 04:12:43,6011893664860915,"Koss, McLaughlin and Mayer",food_dining,132.33,Littleton,Water engineer,1975-07-31
+2020-07-02 23:17:05,3540416671210051,Balistreri-Nader,misc_pos,9.03,Rice,"Engineer, water",1944-05-30
+2020-07-03 00:18:13,3540416671210051,"Casper, Hand and Zulauf",grocery_pos,286.73,Rice,"Engineer, water",1944-05-30
+2020-07-03 00:41:07,3589255887819806,"Moen, Reinger and Murphy",grocery_pos,278.04,Hancock,Press photographer,1984-02-14
+2020-07-03 01:52:30,3589255887819806,Kuvalis Ltd,gas_transport,6.99,Hancock,Press photographer,1984-02-14
+2020-07-03 02:07:47,3540416671210051,"Schumm, Bauch and Ondricka",grocery_pos,262.49,Rice,"Engineer, water",1944-05-30
+2020-07-03 09:35:53,3589255887819806,"Schumm, Bauch and Ondricka",grocery_pos,305.34,Hancock,Press photographer,1984-02-14
+2020-07-03 22:19:41,3589255887819806,"Nienow, Ankunding and Collier",misc_pos,6.67,Hancock,Press photographer,1984-02-14
+2020-07-03 22:31:00,3540416671210051,"Schmeler, Bashirian and Price",shopping_net,1115.94,Rice,"Engineer, water",1944-05-30
+2020-07-03 22:44:10,3589255887819806,McGlynn-Heathcote,misc_net,693.71,Hancock,Press photographer,1984-02-14
+2020-07-03 22:56:41,3540416671210051,Bednar Inc,travel,10.32,Rice,"Engineer, water",1944-05-30
+2020-07-03 23:07:22,3589255887819806,"Langworth, Boehm and Gulgowski",shopping_net,991.33,Hancock,Press photographer,1984-02-14
+2020-07-03 23:13:05,3540416671210051,Kuphal-Bartoletti,misc_net,912.89,Rice,"Engineer, water",1944-05-30
+2020-07-03 23:17:06,3540416671210051,Kozey-McDermott,travel,11.83,Rice,"Engineer, water",1944-05-30
+2020-07-03 23:22:20,3540416671210051,Gleason-Macejkovic,shopping_net,1061.91,Rice,"Engineer, water",1944-05-30
+2020-07-03 23:43:45,3589255887819806,Gerlach Inc,shopping_net,840.53,Hancock,Press photographer,1984-02-14
+2020-07-04 01:26:48,3589255887819806,Doyle Ltd,grocery_pos,291.0,Hancock,Press photographer,1984-02-14
+2020-07-04 01:30:56,3589255887819806,Bednar Group,misc_net,685.26,Hancock,Press photographer,1984-02-14
+2020-07-04 03:17:41,4989847570577635369,Kiehn Inc,grocery_pos,352.15,Prosperity,Archaeologist,1994-07-09
+2020-07-04 03:30:13,4989847570577635369,Macejkovic-Lesch,shopping_pos,627.43,Prosperity,Archaeologist,1994-07-09
+2020-07-04 04:42:16,4989847570577635369,Wilkinson Ltd,entertainment,572.32,Prosperity,Archaeologist,1994-07-09
+2020-07-04 10:28:50,4989847570577635369,Cole PLC,grocery_pos,349.74,Prosperity,Archaeologist,1994-07-09
+2020-07-04 22:35:47,3589255887819806,Hills-Witting,shopping_net,874.99,Hancock,Press photographer,1984-02-14
+2020-07-04 23:44:03,3589255887819806,Schmitt Ltd,misc_net,709.43,Hancock,Press photographer,1984-02-14
+2020-07-04 23:45:01,3589255887819806,Gislason Group,misc_pos,7.6,Hancock,Press photographer,1984-02-14
+2020-07-05 00:18:33,4462038234743679432,"Casper, Hand and Zulauf",grocery_pos,343.75,Dell City,Hydrogeologist,1945-11-26
+2020-07-05 01:22:56,4989847570577635369,Kuphal-Bartoletti,misc_net,875.02,Prosperity,Archaeologist,1994-07-09
+2020-07-05 01:46:18,4989847570577635369,Bradtke PLC,grocery_pos,338.47,Prosperity,Archaeologist,1994-07-09
+2020-07-05 02:44:58,4989847570577635369,Will Ltd,food_dining,136.93,Prosperity,Archaeologist,1994-07-09
+2020-07-05 03:15:53,4462038234743679432,"Harris, Gusikowski and Heaney",grocery_net,13.13,Dell City,Hydrogeologist,1945-11-26
+2020-07-05 03:42:14,4989847570577635369,Connelly PLC,food_dining,115.28,Prosperity,Archaeologist,1994-07-09
+2020-07-05 03:50:28,4989847570577635369,Wilkinson Ltd,entertainment,520.74,Prosperity,Archaeologist,1994-07-09
+2020-07-05 17:04:01,4989847570577635369,"McDermott, Osinski and Morar",home,252.48,Prosperity,Archaeologist,1994-07-09
+2020-07-05 22:13:31,4989847570577635369,Kozey-Kuhlman,personal_care,21.11,Prosperity,Archaeologist,1994-07-09
+2020-07-05 22:29:31,4462038234743679432,Roberts-Beahan,misc_pos,51.79,Dell City,Hydrogeologist,1945-11-26
+2020-07-05 22:49:40,4989847570577635369,Cartwright PLC,kids_pets,19.44,Prosperity,Archaeologist,1994-07-09
+2020-07-05 23:14:28,4989847570577635369,"Streich, Rolfson and Wilderman",kids_pets,17.05,Prosperity,Archaeologist,1994-07-09
+2020-07-05 23:27:39,4989847570577635369,Carroll PLC,health_fitness,17.0,Prosperity,Archaeologist,1994-07-09
+2020-07-05 23:33:17,4989847570577635369,Ziemann-Waters,health_fitness,19.05,Prosperity,Archaeologist,1994-07-09
+2020-07-06 00:44:35,4462038234743679432,Lockman Ltd,grocery_pos,315.89,Dell City,Hydrogeologist,1945-11-26
+2020-07-06 01:01:59,30197398657930,Jast Ltd,shopping_net,794.77,Creedmoor,Chief Strategy Officer,1987-09-19
+2020-07-06 01:07:20,30197398657930,Gibson-Deckow,entertainment,576.52,Creedmoor,Chief Strategy Officer,1987-09-19
+2020-07-06 01:13:28,30197398657930,"Swaniawski, Lowe and Robel",shopping_pos,881.1,Creedmoor,Chief Strategy Officer,1987-09-19
+2020-07-06 02:47:51,4462038234743679432,Bahringer-Larson,grocery_net,15.85,Dell City,Hydrogeologist,1945-11-26
+2020-07-06 02:51:13,4462038234743679432,Bradtke PLC,grocery_pos,341.91,Dell City,Hydrogeologist,1945-11-26
+2020-07-06 03:29:11,4462038234743679432,"Tillman, Dickinson and Labadie",gas_transport,23.11,Dell City,Hydrogeologist,1945-11-26
+2020-07-06 03:47:08,4462038234743679432,Collier Inc,grocery_net,10.84,Dell City,Hydrogeologist,1945-11-26
+2020-07-06 03:51:56,30197398657930,"Bins, Balistreri and Beatty",shopping_pos,835.42,Creedmoor,Chief Strategy Officer,1987-09-19
+2020-07-06 19:11:56,4462038234743679432,Kerluke Inc,misc_net,913.39,Dell City,Hydrogeologist,1945-11-26
+2020-07-06 22:08:55,30197398657930,Bode-Schuster,kids_pets,23.1,Creedmoor,Chief Strategy Officer,1987-09-19
+2020-07-06 22:21:31,30197398657930,Berge-Ullrich,home,249.28,Creedmoor,Chief Strategy Officer,1987-09-19
+2020-07-06 22:33:04,30197398657930,Gaylord-Powlowski,home,217.73,Creedmoor,Chief Strategy Officer,1987-09-19
+2020-07-06 22:44:38,4462038234743679432,Boyer-Reichert,shopping_net,887.24,Dell City,Hydrogeologist,1945-11-26
+2020-07-06 23:15:29,30197398657930,Eichmann-Kilback,home,198.97,Creedmoor,Chief Strategy Officer,1987-09-19
+2020-07-06 23:48:11,30197398657930,"Kling, Howe and Schneider",home,259.8,Creedmoor,Chief Strategy Officer,1987-09-19
+2020-07-07 00:58:49,4713464490314802,Cole PLC,grocery_pos,274.81,Mc Intosh,"Designer, industrial/product",1981-01-26
+2020-07-07 02:12:52,4713464490314802,Wolf Inc,grocery_pos,312.58,Mc Intosh,"Designer, industrial/product",1981-01-26
+2020-07-07 03:34:47,4713464490314802,Cartwright-Harris,grocery_pos,299.28,Mc Intosh,"Designer, industrial/product",1981-01-26
+2020-07-07 03:47:13,30197398657930,"Moen, Reinger and Murphy",grocery_pos,346.42,Creedmoor,Chief Strategy Officer,1987-09-19
+2020-07-07 09:49:26,30197398657930,"Stanton, Jakubowski and Baumbach",shopping_net,1041.39,Creedmoor,Chief Strategy Officer,1987-09-19
+2020-07-07 14:14:05,30197398657930,Romaguera and Sons,travel,7.9,Creedmoor,Chief Strategy Officer,1987-09-19
+2020-07-07 18:19:10,4713464490314802,Stoltenberg-Beatty,shopping_pos,892.88,Mc Intosh,"Designer, industrial/product",1981-01-26
+2020-07-07 22:35:15,4713464490314802,Bashirian Group,shopping_net,1008.78,Mc Intosh,"Designer, industrial/product",1981-01-26
+2020-07-08 02:05:41,503851367360,Doyle Ltd,grocery_pos,331.18,Grifton,Forensic psychologist,1957-06-27
+2020-07-08 02:51:09,4713464490314802,O'Keefe-Hudson,grocery_pos,309.7,Mc Intosh,"Designer, industrial/product",1981-01-26
+2020-07-08 11:05:54,4713464490314802,Pacocha-O'Reilly,grocery_pos,288.84,Mc Intosh,"Designer, industrial/product",1981-01-26
+2020-07-08 12:15:23,4713464490314802,Bauch-Raynor,grocery_pos,279.11,Mc Intosh,"Designer, industrial/product",1981-01-26
+2020-07-08 22:30:04,503851367360,Lynch Ltd,shopping_pos,915.47,Grifton,Forensic psychologist,1957-06-27
+2020-07-08 22:35:20,4713464490314802,Goyette Inc,shopping_net,1083.38,Mc Intosh,"Designer, industrial/product",1981-01-26
+2020-07-08 22:44:21,503851367360,Bashirian Group,shopping_net,913.98,Grifton,Forensic psychologist,1957-06-27
+2020-07-08 23:11:56,503851367360,Wiza LLC,misc_pos,7.97,Grifton,Forensic psychologist,1957-06-27
+2020-07-08 23:24:56,4713464490314802,"Rodriguez, Yost and Jenkins",misc_net,667.98,Mc Intosh,"Designer, industrial/product",1981-01-26
+2020-07-08 23:47:48,4713464490314802,"Kihn, Abernathy and Douglas",shopping_net,1002.25,Mc Intosh,"Designer, industrial/product",1981-01-26
+2020-07-09 00:02:54,503851367360,Cummerata-Jones,gas_transport,10.77,Grifton,Forensic psychologist,1957-06-27
+2020-07-09 00:52:11,503851367360,Hintz-Bruen,grocery_net,7.11,Grifton,Forensic psychologist,1957-06-27
+2020-07-09 01:53:48,503851367360,Bauch-Raynor,grocery_pos,311.42,Grifton,Forensic psychologist,1957-06-27
+2020-07-09 18:49:23,503851367360,"Swaniawski, Lowe and Robel",shopping_pos,952.8,Grifton,Forensic psychologist,1957-06-27
+2020-07-09 22:30:55,503851367360,Pouros-Haag,shopping_pos,999.59,Grifton,Forensic psychologist,1957-06-27
+2020-07-09 23:59:54,503851367360,Cartwright-Harris,grocery_pos,279.28,Grifton,Forensic psychologist,1957-06-27
+2020-07-10 15:57:47,675961917837,Torphy-Goyette,shopping_pos,732.17,Sprague,Chiropodist,1967-08-24
+2020-07-10 20:38:35,675961917837,"Baumbach, Hodkiewicz and Walsh",shopping_pos,837.54,Sprague,Chiropodist,1967-08-24
+2020-07-10 22:42:44,675961917837,Koepp-Parker,grocery_pos,333.89,Sprague,Chiropodist,1967-08-24
+2020-07-10 22:50:19,6011399591920186,"Roberts, Daniel and Macejkovic",kids_pets,19.05,Sheffield,Radio producer,1973-10-14
+2020-07-10 23:09:59,6011399591920186,"Schneider, Hayes and Nikolaus",food_dining,149.42,Sheffield,Radio producer,1973-10-14
+2020-07-10 23:19:01,675961917837,McGlynn-Jaskolski,misc_pos,51.07,Sprague,Chiropodist,1967-08-24
+2020-07-10 23:26:13,675961917837,Pouros-Haag,shopping_pos,951.91,Sprague,Chiropodist,1967-08-24
+2020-07-10 23:46:17,6011399591920186,Lynch-Mohr,travel,8.41,Sheffield,Radio producer,1973-10-14
+2020-07-10 23:59:14,6011399591920186,"Schoen, Nienow and Bauch",personal_care,17.77,Sheffield,Radio producer,1973-10-14
+2020-07-11 00:52:17,38544312728630,"Rowe, Batz and Goodwin",grocery_pos,347.28,Bonita Springs,Claims inspector/assessor,1991-08-21
+2020-07-11 01:33:31,6011399591920186,Bogisich Inc,grocery_pos,378.56,Sheffield,Radio producer,1973-10-14
+2020-07-11 01:43:56,675961917837,"Schumm, Bauch and Ondricka",grocery_pos,309.97,Sprague,Chiropodist,1967-08-24
+2020-07-11 02:22:39,38544312728630,Fisher Inc,shopping_net,1129.96,Bonita Springs,Claims inspector/assessor,1991-08-21
+2020-07-11 03:15:16,6011399591920186,Gutmann Ltd,grocery_net,8.96,Sheffield,Radio producer,1973-10-14
+2020-07-11 03:16:53,6011399591920186,O'Keefe-Hudson,grocery_pos,369.18,Sheffield,Radio producer,1973-10-14
+2020-07-11 03:22:29,6011399591920186,Dickinson-Rempel,misc_pos,629.85,Sheffield,Radio producer,1973-10-14
+2020-07-11 03:29:00,675961917837,"Bernier, Streich and Jewess",grocery_net,19.92,Sprague,Chiropodist,1967-08-24
+2020-07-11 03:37:28,6011399591920186,"Stehr, Jewess and Schimmel",misc_net,748.43,Sheffield,Radio producer,1973-10-14
+2020-07-11 03:58:59,38544312728630,Friesen Inc,shopping_pos,730.65,Bonita Springs,Claims inspector/assessor,1991-08-21
+2020-07-11 22:01:07,675961917837,Auer-West,shopping_net,979.0,Sprague,Chiropodist,1967-08-24
+2020-07-11 22:01:22,501882822387,"Lehner, Reichert and Mills",misc_pos,8.08,Meadville,"Therapist, horticultural",1961-01-21
+2020-07-11 22:12:40,501882822387,Doyle Ltd,grocery_pos,278.9,Meadville,"Therapist, horticultural",1961-01-21
+2020-07-11 22:22:15,675961917837,Terry-Huel,shopping_net,1133.22,Sprague,Chiropodist,1967-08-24
+2020-07-11 23:06:29,501882822387,Block-Parisian,misc_net,741.45,Meadville,"Therapist, horticultural",1961-01-21
+2020-07-11 23:27:48,501882822387,"Reichert, Huels and Hoppe",shopping_net,1166.0,Meadville,"Therapist, horticultural",1961-01-21
+2020-07-11 23:37:59,675961917837,"Schmeler, Bashirian and Price",shopping_net,953.63,Sprague,Chiropodist,1967-08-24
+2020-07-11 23:42:46,675961917837,O'Keefe-Wisoky,food_dining,123.61,Sprague,Chiropodist,1967-08-24
+2020-07-11 23:42:56,675961917837,"Heathcote, Yost and Kertzmann",shopping_net,1037.75,Sprague,Chiropodist,1967-08-24
+2020-07-11 23:57:24,675961917837,Heathcote LLC,shopping_net,882.13,Sprague,Chiropodist,1967-08-24
+2020-07-12 01:18:57,3540075240003197,"Rowe, Batz and Goodwin",grocery_pos,304.0,Lonsdale,Chief Strategy Officer,1987-01-27
+2020-07-12 01:33:09,3540075240003197,"Parisian, Schiller and Altenwerth",misc_net,814.9,Lonsdale,Chief Strategy Officer,1987-01-27
+2020-07-12 01:43:23,501882822387,Schamberger-O'Keefe,grocery_pos,278.32,Meadville,"Therapist, horticultural",1961-01-21
+2020-07-12 02:38:24,501882822387,"Jenkins, Hauck and Friesen",gas_transport,5.62,Meadville,"Therapist, horticultural",1961-01-21
+2020-07-12 03:05:43,3514897282719543,Strosin-Cruickshank,grocery_pos,306.32,Farmington,Cytogeneticist,1952-10-13
+2020-07-12 03:47:00,501882822387,Hudson-Ratke,grocery_pos,296.17,Meadville,"Therapist, horticultural",1961-01-21
+2020-07-12 06:27:56,501882822387,Jaskolski-Dibbert,grocery_net,8.88,Meadville,"Therapist, horticultural",1961-01-21
+2020-07-12 12:28:46,501882822387,"Gottlieb, Considine and Schultz",shopping_net,959.71,Meadville,"Therapist, horticultural",1961-01-21
+2020-07-12 14:45:32,3540075240003197,Klocko LLC,misc_net,730.44,Lonsdale,Chief Strategy Officer,1987-01-27
+2020-07-12 15:46:54,3514897282719543,"Weimann, Kuhic and Beahan",shopping_pos,1100.78,Farmington,Cytogeneticist,1952-10-13
+2020-07-12 22:07:55,501882822387,"Baumbach, Feeney and Morar",shopping_net,1045.16,Meadville,"Therapist, horticultural",1961-01-21
+2020-07-12 22:42:52,3540075240003197,"Mosciski, Ziemann and Farrell",shopping_net,985.9,Lonsdale,Chief Strategy Officer,1987-01-27
+2020-07-12 22:43:52,501882822387,Kerluke-Abshire,shopping_net,1112.33,Meadville,"Therapist, horticultural",1961-01-21
+2020-07-12 22:53:57,501882822387,Beier-Hyatt,shopping_pos,906.83,Meadville,"Therapist, horticultural",1961-01-21
+2020-07-12 23:12:38,3514897282719543,"Quitzon, Green and Bashirian",shopping_pos,915.25,Farmington,Cytogeneticist,1952-10-13
+2020-07-12 23:20:17,3540075240003197,"Greenholt, O'Hara and Balistreri",shopping_net,852.76,Lonsdale,Chief Strategy Officer,1987-01-27
+2020-07-12 23:21:50,3540075240003197,Kilback LLC,food_dining,102.42,Lonsdale,Chief Strategy Officer,1987-01-27
+2020-07-12 23:40:57,3514897282719543,Stamm-Witting,shopping_net,1111.35,Farmington,Cytogeneticist,1952-10-13
+2020-07-12 23:42:17,3514897282719543,Denesik and Sons,shopping_pos,965.25,Farmington,Cytogeneticist,1952-10-13
+2020-07-12 23:46:59,676314217768,Gaylord-Powlowski,home,260.44,Odessa,Clinical research associate,1972-12-31
+2020-07-12 23:48:55,3514897282719543,"Gottlieb, Considine and Schultz",shopping_net,1031.9,Farmington,Cytogeneticist,1952-10-13
+2020-07-13 01:17:37,3514897282719543,Heller-Langosh,gas_transport,6.39,Farmington,Cytogeneticist,1952-10-13
+2020-07-13 02:28:36,676314217768,Reichel Inc,entertainment,536.63,Odessa,Clinical research associate,1972-12-31
+2020-07-13 16:19:29,3514897282719543,"Hartmann, Rowe and Hermann",travel,9.0,Farmington,Cytogeneticist,1952-10-13
+2020-07-13 22:30:05,3540075240003197,Sawayn PLC,shopping_pos,824.17,Lonsdale,Chief Strategy Officer,1987-01-27
+2020-07-13 22:48:07,3540075240003197,"Quitzon, Green and Bashirian",shopping_pos,984.39,Lonsdale,Chief Strategy Officer,1987-01-27
+2020-07-13 22:52:38,676314217768,"Hyatt, Russel and Gleichner",health_fitness,18.35,Odessa,Clinical research associate,1972-12-31
+2020-07-13 23:45:32,3540075240003197,Botsford Ltd,shopping_pos,626.99,Lonsdale,Chief Strategy Officer,1987-01-27
+2020-07-13 23:57:54,3514897282719543,Leannon-Ward,food_dining,139.84,Farmington,Cytogeneticist,1952-10-13
+2020-07-14 00:17:07,3579200383632826,Parisian and Sons,gas_transport,10.19,Boyd,IT trainer,1975-12-24
+2020-07-14 01:53:36,3579200383632826,"Christiansen, Goyette and Schamberger",gas_transport,10.04,Boyd,IT trainer,1975-12-24
+2020-07-14 22:44:11,3579200383632826,Parker-Kunde,personal_care,23.04,Boyd,IT trainer,1975-12-24
+2020-07-14 23:04:07,3579200383632826,Jast Ltd,shopping_net,967.23,Boyd,IT trainer,1975-12-24
+2020-07-14 23:08:09,3579200383632826,"Schmeler, Bashirian and Price",shopping_net,930.27,Boyd,IT trainer,1975-12-24
+2020-07-15 02:42:23,3579200383632826,Schmitt Inc,gas_transport,10.13,Boyd,IT trainer,1975-12-24
+2020-07-15 18:58:40,3579200383632826,Lemke-Gutmann,shopping_net,932.64,Boyd,IT trainer,1975-12-24
+2020-07-15 22:14:51,3579200383632826,Heathcote LLC,shopping_net,954.08,Boyd,IT trainer,1975-12-24
+2020-07-18 00:21:09,2454076758463217,"Rowe, Batz and Goodwin",grocery_pos,295.91,Remer,Insurance risk surveyor,1987-10-27
+2020-07-18 01:48:20,2703186189652095,"Schultz, Simonis and Little",grocery_pos,335.98,Moravian Falls,"Psychologist, counselling",1988-03-09
+2020-07-18 03:51:48,2703186189652095,"Langworth, Boehm and Gulgowski",shopping_net,1097.18,Moravian Falls,"Psychologist, counselling",1988-03-09
+2020-07-18 15:42:12,2703186189652095,Kihn-Fritsch,food_dining,110.12,Moravian Falls,"Psychologist, counselling",1988-03-09
+2020-07-18 18:43:58,2454076758463217,Koepp-Parker,grocery_pos,275.16,Remer,Insurance risk surveyor,1987-10-27
+2020-07-18 21:00:49,3534330126107879,Gottlieb-Hansen,personal_care,21.38,Bridger,Chartered loss adjuster,1978-01-15
+2020-07-18 22:03:20,2454076758463217,Kuphal-Predovic,misc_net,828.22,Remer,Insurance risk surveyor,1987-10-27
+2020-07-18 22:09:38,2454076758463217,"Zboncak, Rowe and Murazik",shopping_net,958.05,Remer,Insurance risk surveyor,1987-10-27
+2020-07-18 22:10:31,3534330126107879,Kerluke-Abshire,shopping_net,988.18,Bridger,Chartered loss adjuster,1978-01-15
+2020-07-18 22:31:56,2454076758463217,Conroy Ltd,shopping_pos,822.11,Remer,Insurance risk surveyor,1987-10-27
+2020-07-18 23:01:36,2454076758463217,Bashirian Group,shopping_net,1133.57,Remer,Insurance risk surveyor,1987-10-27
+2020-07-18 23:37:00,3534330126107879,"Quitzon, Green and Bashirian",shopping_pos,742.91,Bridger,Chartered loss adjuster,1978-01-15
+2020-07-19 00:28:25,2454076758463217,Bernhard Inc,gas_transport,9.41,Remer,Insurance risk surveyor,1987-10-27
+2020-07-19 01:07:05,2703186189652095,Koepp-Witting,grocery_pos,332.91,Moravian Falls,"Psychologist, counselling",1988-03-09
+2020-07-19 01:07:40,3534330126107879,Wolf Inc,grocery_pos,353.79,Bridger,Chartered loss adjuster,1978-01-15
+2020-07-19 02:10:34,4428780983793657331,"Osinski, Ledner and Leuschke",grocery_pos,316.6,Waukesha,"Therapist, occupational",1946-01-02
+2020-07-19 02:32:29,3534330126107879,"Schoen, Kuphal and Nitzsche",grocery_pos,306.87,Bridger,Chartered loss adjuster,1978-01-15
+2020-07-19 02:35:09,4428780983793657331,Mraz-Herzog,gas_transport,11.61,Waukesha,"Therapist, occupational",1946-01-02
+2020-07-19 02:46:17,2703186189652095,Lemke-Gutmann,shopping_net,1114.79,Moravian Falls,"Psychologist, counselling",1988-03-09
+2020-07-19 03:40:49,2454076758463217,"Kovacek, Dibbert and Ondricka",grocery_pos,306.75,Remer,Insurance risk surveyor,1987-10-27
+2020-07-19 04:39:11,4428780983793657331,Kiehn Inc,grocery_pos,276.43,Waukesha,"Therapist, occupational",1946-01-02
+2020-07-19 11:12:34,2703186189652095,Gerlach Inc,shopping_net,981.45,Moravian Falls,"Psychologist, counselling",1988-03-09
+2020-07-19 16:52:12,3534330126107879,"Reichert, Rowe and Mraz",shopping_net,1022.5,Bridger,Chartered loss adjuster,1978-01-15
+2020-07-19 21:02:01,2703186189652095,"Hettinger, McCullough and Fay",home,218.12,Moravian Falls,"Psychologist, counselling",1988-03-09
+2020-07-19 22:00:56,3534330126107879,Kuphal-Predovic,misc_net,779.4,Bridger,Chartered loss adjuster,1978-01-15
+2020-07-19 22:05:33,4428780983793657331,"Reichert, Huels and Hoppe",shopping_net,1040.83,Waukesha,"Therapist, occupational",1946-01-02
+2020-07-19 22:13:25,3534330126107879,"Zboncak, Rowe and Murazik",shopping_net,857.24,Bridger,Chartered loss adjuster,1978-01-15
+2020-07-19 22:15:59,2454076758463217,Beier-Hyatt,shopping_pos,795.09,Remer,Insurance risk surveyor,1987-10-27
+2020-07-19 22:17:40,2703186189652095,"Cronin, Kshlerin and Weber",health_fitness,20.43,Moravian Falls,"Psychologist, counselling",1988-03-09
+2020-07-19 22:21:21,3534330126107879,Heaney-Marquardt,entertainment,503.53,Bridger,Chartered loss adjuster,1978-01-15
+2020-07-19 22:26:31,4428780983793657331,Klocko LLC,misc_net,890.68,Waukesha,"Therapist, occupational",1946-01-02
+2020-07-19 22:27:40,4428780983793657331,"Bernier, Volkman and Hoeger",misc_net,694.13,Waukesha,"Therapist, occupational",1946-01-02
+2020-07-19 22:32:39,2703186189652095,Gaylord-Powlowski,home,254.25,Moravian Falls,"Psychologist, counselling",1988-03-09
+2020-07-19 22:33:45,3534330126107879,Beer-Jast,kids_pets,18.86,Bridger,Chartered loss adjuster,1978-01-15
+2020-07-19 22:38:32,375534208663984,"Reichert, Shanahan and Hayes",shopping_net,1000.47,Doe Hill,Dance movement psychotherapist,1986-03-28
+2020-07-19 23:00:12,2454076758463217,Roob-Okuneva,health_fitness,23.34,Remer,Insurance risk surveyor,1987-10-27
+2020-07-19 23:01:40,2454076758463217,Erdman-Ebert,personal_care,22.66,Remer,Insurance risk surveyor,1987-10-27
+2020-07-19 23:02:31,375534208663984,Strosin-Cruickshank,grocery_pos,304.55,Doe Hill,Dance movement psychotherapist,1986-03-28
+2020-07-19 23:10:40,3534330126107879,Jast Ltd,shopping_net,843.65,Bridger,Chartered loss adjuster,1978-01-15
+2020-07-19 23:15:44,2703186189652095,Ullrich Ltd,kids_pets,17.41,Moravian Falls,"Psychologist, counselling",1988-03-09
+2020-07-19 23:25:55,3534330126107879,"Heathcote, Yost and Kertzmann",shopping_net,723.15,Bridger,Chartered loss adjuster,1978-01-15
+2020-07-19 23:35:50,2703186189652095,Auer LLC,personal_care,16.5,Moravian Falls,"Psychologist, counselling",1988-03-09
+2020-07-19 23:45:30,375534208663984,Kuhic LLC,shopping_net,1036.64,Doe Hill,Dance movement psychotherapist,1986-03-28
+2020-07-19 23:55:53,4428780983793657331,"Little, Gutmann and Lynch",shopping_net,1068.32,Waukesha,"Therapist, occupational",1946-01-02
+2020-07-20 00:00:52,2268221587779419,Mante Group,misc_net,707.11,Vancouver,Teaching laboratory technician,1985-01-02
+2020-07-20 00:06:38,2268221587779419,"Towne, Greenholt and Koepp",shopping_net,967.39,Vancouver,Teaching laboratory technician,1985-01-02
+2020-07-20 00:11:43,375534208663984,"Heller, Gutmann and Zieme",grocery_pos,325.81,Doe Hill,Dance movement psychotherapist,1986-03-28
+2020-07-20 00:57:49,4428780983793657331,"Tillman, Dickinson and Labadie",gas_transport,7.28,Waukesha,"Therapist, occupational",1946-01-02
+2020-07-20 00:57:58,4225990116481262579,"Olson, Becker and Koch",gas_transport,7.41,Honokaa,Physiotherapist,1966-12-03
+2020-07-20 01:36:36,4874017206859125,"Moen, Reinger and Murphy",grocery_pos,340.67,Lake Oswego,Planning and development surveyor,1982-05-28
+2020-07-20 03:05:18,375534208663984,Rutherford-Mertz,grocery_pos,302.77,Doe Hill,Dance movement psychotherapist,1986-03-28
+2020-07-20 03:05:54,375534208663984,"Swift, Bradtke and Marquardt",grocery_net,8.39,Doe Hill,Dance movement psychotherapist,1986-03-28
+2020-07-20 17:20:08,375534208663984,"Baumbach, Strosin and Nicolas",shopping_pos,790.22,Doe Hill,Dance movement psychotherapist,1986-03-28
+2020-07-20 22:00:44,375534208663984,Beier-Hyatt,shopping_pos,768.27,Doe Hill,Dance movement psychotherapist,1986-03-28
+2020-07-20 22:02:50,375534208663984,"Huel, Hammes and Witting",grocery_pos,317.09,Doe Hill,Dance movement psychotherapist,1986-03-28
+2020-07-20 22:05:35,375534208663984,"Ruecker, Beer and Collier",shopping_net,1152.49,Doe Hill,Dance movement psychotherapist,1986-03-28
+2020-07-20 22:05:45,375534208663984,Durgan-Auer,misc_net,920.6,Doe Hill,Dance movement psychotherapist,1986-03-28
+2020-07-20 22:11:41,375534208663984,"Schoen, Nienow and Bauch",personal_care,19.19,Doe Hill,Dance movement psychotherapist,1986-03-28
+2020-07-20 22:12:37,4428780983793657331,O'Keefe-Hudson,grocery_pos,304.85,Waukesha,"Therapist, occupational",1946-01-02
+2020-07-20 22:14:53,4225990116481262579,"Ferry, Lynch and Kautzer",misc_net,866.99,Honokaa,Physiotherapist,1966-12-03
+2020-07-20 22:18:56,4225990116481262579,"Swaniawski, Lowe and Robel",shopping_pos,981.64,Honokaa,Physiotherapist,1966-12-03
+2020-07-20 22:33:01,4874017206859125,"Eichmann, Hayes and Treutel",travel,9.09,Lake Oswego,Planning and development surveyor,1982-05-28
+2020-07-20 22:36:33,4225990116481262579,"Labadie, Treutel and Bode",shopping_net,1055.28,Honokaa,Physiotherapist,1966-12-03
+2020-07-20 22:57:29,375534208663984,DuBuque LLC,grocery_pos,316.07,Doe Hill,Dance movement psychotherapist,1986-03-28
+2020-07-20 23:00:39,4428780983793657331,Boyer PLC,shopping_net,995.02,Waukesha,"Therapist, occupational",1946-01-02
+2020-07-20 23:05:14,4428780983793657331,"Kihn, Abernathy and Douglas",shopping_net,960.91,Waukesha,"Therapist, occupational",1946-01-02
+2020-07-20 23:10:36,4874017206859125,Erdman-Ebert,personal_care,21.48,Lake Oswego,Planning and development surveyor,1982-05-28
+2020-07-20 23:16:26,4225990116481262579,"Greenholt, O'Hara and Balistreri",shopping_net,888.45,Honokaa,Physiotherapist,1966-12-03
+2020-07-20 23:35:37,4428780983793657331,Kerluke-Abshire,shopping_net,1076.88,Waukesha,"Therapist, occupational",1946-01-02
+2020-07-20 23:45:28,4874017206859125,Stark-Koss,home,274.01,Lake Oswego,Planning and development surveyor,1982-05-28
+2020-07-21 00:22:06,4874017206859125,Stamm-Rodriguez,misc_pos,7.09,Lake Oswego,Planning and development surveyor,1982-05-28
+2020-07-21 00:31:55,4874017206859125,"Koss, McLaughlin and Mayer",food_dining,118.54,Lake Oswego,Planning and development surveyor,1982-05-28
+2020-07-21 00:49:22,4797297220948468262,"Kuhic, Bins and Pfeffer",shopping_net,758.2,Oolitic,Counsellor,1991-03-13
+2020-07-21 01:43:05,2268221587779419,Friesen Inc,shopping_pos,694.91,Vancouver,Teaching laboratory technician,1985-01-02
+2020-07-21 01:54:47,4874017206859125,Schmidt and Sons,shopping_net,952.53,Lake Oswego,Planning and development surveyor,1982-05-28
+2020-07-21 02:23:10,4797297220948468262,"Raynor, Reinger and Hagenes",gas_transport,10.86,Oolitic,Counsellor,1991-03-13
+2020-07-21 02:32:15,4797297220948468262,Rau and Sons,grocery_pos,310.49,Oolitic,Counsellor,1991-03-13
+2020-07-21 15:45:05,4225990116481262579,Kozey-Boehm,shopping_net,979.57,Honokaa,Physiotherapist,1966-12-03
+2020-07-21 22:24:16,4225990116481262579,Strosin-Cruickshank,grocery_pos,306.85,Honokaa,Physiotherapist,1966-12-03
+2020-07-21 22:28:19,4797297220948468262,Ruecker-Mayert,kids_pets,17.79,Oolitic,Counsellor,1991-03-13
+2020-07-21 22:59:02,4225990116481262579,Schamberger-O'Keefe,grocery_pos,293.98,Honokaa,Physiotherapist,1966-12-03
+2020-07-21 23:03:47,4797297220948468262,Beer-Jast,kids_pets,22.02,Oolitic,Counsellor,1991-03-13
+2020-07-21 23:09:48,4797297220948468262,"Cole, Hills and Jewess",home,262.82,Oolitic,Counsellor,1991-03-13
+2020-07-21 23:27:40,4797297220948468262,Lynch-Wisozk,home,230.51,Oolitic,Counsellor,1991-03-13
+2020-07-21 23:49:05,4225990116481262579,Durgan-Auer,misc_net,784.55,Honokaa,Physiotherapist,1966-12-03
+2020-07-21 23:50:40,4797297220948468262,"Wuckert, Wintheiser and Friesen",home,271.38,Oolitic,Counsellor,1991-03-13
+2020-07-21 23:54:26,4797297220948468262,Cruickshank-Mills,entertainment,547.99,Oolitic,Counsellor,1991-03-13
+2020-07-22 00:39:35,4797297220948468262,McCullough LLC,misc_pos,789.86,Oolitic,Counsellor,1991-03-13
+2020-07-22 00:45:20,4195740185974,Erdman-Kertzmann,gas_transport,12.4,Portland,"Engineer, building services",1963-04-04
+2020-07-22 02:22:17,4195740185974,"Olson, Becker and Koch",gas_transport,9.31,Portland,"Engineer, building services",1963-04-04
+2020-07-22 02:39:51,4797297220948468262,Torp-Labadie,gas_transport,8.81,Oolitic,Counsellor,1991-03-13
+2020-07-22 03:11:26,4195740185974,"Connelly, Reichert and Fritsch",gas_transport,8.2,Portland,"Engineer, building services",1963-04-04
+2020-07-22 03:26:57,4195740185974,Bartoletti-Wunsch,gas_transport,7.65,Portland,"Engineer, building services",1963-04-04
+2020-07-22 03:31:11,4195740185974,Kilback LLC,grocery_pos,314.36,Portland,"Engineer, building services",1963-04-04
+2020-07-22 07:21:42,4797297220948468262,"Heller, Gutmann and Zieme",grocery_pos,353.17,Oolitic,Counsellor,1991-03-13
+2020-07-22 19:46:14,4797297220948468262,"Kling, Howe and Schneider",home,258.3,Oolitic,Counsellor,1991-03-13
+2020-07-22 22:36:12,4195740185974,"Rohan, White and Aufderhar",misc_net,897.8,Portland,"Engineer, building services",1963-04-04
+2020-07-22 22:52:00,4195740185974,Jast Ltd,shopping_net,993.91,Portland,"Engineer, building services",1963-04-04
+2020-07-22 23:26:45,4797297220948468262,"Bahringer, Osinski and Block",food_dining,132.1,Oolitic,Counsellor,1991-03-13
+2020-07-22 23:31:15,4195740185974,"Towne, Greenholt and Koepp",shopping_net,1078.15,Portland,"Engineer, building services",1963-04-04
+2020-07-23 00:19:06,4961003488432306,Kuvalis Ltd,gas_transport,18.71,Cressona,Ecologist,1966-05-10
+2020-07-23 01:24:03,4961003488432306,Schmitt Inc,gas_transport,21.45,Cressona,Ecologist,1966-05-10
+2020-07-23 03:12:28,4195740185974,Koepp-Witting,grocery_pos,304.03,Portland,"Engineer, building services",1963-04-04
+2020-07-23 11:53:38,4961003488432306,Koss and Sons,gas_transport,17.26,Cressona,Ecologist,1966-05-10
+2020-07-23 22:06:29,4195740185974,"Kerluke, Considine and Macejkovic",misc_net,716.45,Portland,"Engineer, building services",1963-04-04
+2020-07-23 22:30:36,4961003488432306,Haley Group,misc_pos,49.79,Cressona,Ecologist,1966-05-10
+2020-07-23 23:05:05,4195740185974,Lemke-Gutmann,shopping_net,1042.2,Portland,"Engineer, building services",1963-04-04
+2020-07-23 23:16:22,4961003488432306,"Daugherty, Pouros and Beahan",shopping_pos,750.68,Cressona,Ecologist,1966-05-10
+2020-07-23 23:30:23,4195740185974,"Schuppe, Nolan and Hoeger",shopping_pos,865.11,Portland,"Engineer, building services",1963-04-04
+2020-07-23 23:31:12,4961003488432306,"Kuhic, Bins and Pfeffer",shopping_net,943.97,Cressona,Ecologist,1966-05-10
+2020-07-24 02:50:18,4961003488432306,"Kovacek, Dibbert and Ondricka",grocery_pos,312.81,Cressona,Ecologist,1966-05-10
+2020-07-24 03:57:21,4961003488432306,Schamberger-O'Keefe,grocery_pos,308.05,Cressona,Ecologist,1966-05-10
+2020-07-24 22:38:53,4961003488432306,Ankunding LLC,shopping_net,1080.78,Cressona,Ecologist,1966-05-10
+2020-07-24 23:21:29,4961003488432306,Feil-Morar,health_fitness,16.91,Cressona,Ecologist,1966-05-10
+2020-07-24 23:25:25,4961003488432306,Torp-Lemke,misc_pos,52.89,Cressona,Ecologist,1966-05-10
+2020-07-25 00:03:55,38014427445058,"Tromp, Kerluke and Glover",grocery_net,13.51,Adams,Sport and exercise psychologist,1946-08-11
+2020-07-25 21:43:42,38014427445058,Jast Ltd,shopping_net,974.65,Adams,Sport and exercise psychologist,1946-08-11
+2020-07-25 23:06:21,38014427445058,Volkman Ltd,misc_net,794.73,Adams,Sport and exercise psychologist,1946-08-11
+2020-07-25 23:29:36,38014427445058,Mante Group,misc_net,782.49,Adams,Sport and exercise psychologist,1946-08-11
+2020-07-26 00:22:28,2222157926772399,Strosin-Cruickshank,grocery_pos,343.03,Trenton,"Investment banker, operational",1987-02-26
+2020-07-26 03:42:42,38014427445058,Barton Inc,grocery_pos,301.59,Adams,Sport and exercise psychologist,1946-08-11
+2020-07-26 17:35:56,2222157926772399,Bernhard-Lesch,food_dining,107.32,Trenton,"Investment banker, operational",1987-02-26
+2020-07-26 22:11:29,38014427445058,"Heathcote, Yost and Kertzmann",shopping_net,1049.73,Adams,Sport and exercise psychologist,1946-08-11
+2020-07-26 22:20:19,38014427445058,Jast Ltd,shopping_net,959.52,Adams,Sport and exercise psychologist,1946-08-11
+2020-07-26 22:21:22,2222157926772399,"Armstrong, Walter and Gottlieb",food_dining,119.77,Trenton,"Investment banker, operational",1987-02-26
+2020-07-26 22:29:15,38014427445058,"Labadie, Treutel and Bode",shopping_net,1069.53,Adams,Sport and exercise psychologist,1946-08-11
+2020-07-26 22:46:36,2222157926772399,Berge-Ullrich,home,274.23,Trenton,"Investment banker, operational",1987-02-26
+2020-07-26 23:09:27,2222157926772399,Schoen-Quigley,kids_pets,19.0,Trenton,"Investment banker, operational",1987-02-26
+2020-07-26 23:21:08,38014427445058,"Rodriguez, Yost and Jenkins",misc_net,896.46,Adams,Sport and exercise psychologist,1946-08-11
+2020-07-26 23:25:09,38014427445058,Doyle Ltd,grocery_pos,299.97,Adams,Sport and exercise psychologist,1946-08-11
+2020-07-26 23:25:47,38014427445058,Zemlak Group,misc_net,650.86,Adams,Sport and exercise psychologist,1946-08-11
+2020-07-26 23:33:40,38014427445058,Kutch and Sons,grocery_pos,325.67,Adams,Sport and exercise psychologist,1946-08-11
+2020-07-27 00:45:56,30290551782700,Cole PLC,grocery_pos,280.58,Cadiz,Commissioning editor,1961-09-03
+2020-07-27 05:28:01,2222157926772399,Deckow-O'Conner,grocery_pos,371.84,Trenton,"Investment banker, operational",1987-02-26
+2020-07-27 21:20:53,4671727014157745,Block-Hauck,travel,5.26,Andrews,Retail banker,1955-07-25
+2020-07-27 22:00:28,2222157926772399,Kilback and Sons,entertainment,557.46,Trenton,"Investment banker, operational",1987-02-26
+2020-07-27 22:22:43,30290551782700,Kerluke-Abshire,shopping_net,995.0,Cadiz,Commissioning editor,1961-09-03
+2020-07-27 23:00:25,30290551782700,Macejkovic-Lesch,shopping_pos,951.91,Cadiz,Commissioning editor,1961-09-03
+2020-07-27 23:44:56,30290551782700,Conroy Ltd,shopping_pos,1141.38,Cadiz,Commissioning editor,1961-09-03
+2020-07-28 00:48:10,30290551782700,Cartwright-Harris,grocery_pos,269.01,Cadiz,Commissioning editor,1961-09-03
+2020-07-28 01:40:05,4671727014157745,"Streich, Hansen and Veum",gas_transport,20.09,Andrews,Retail banker,1955-07-25
+2020-07-28 01:46:15,30290551782700,Hudson-Ratke,grocery_pos,320.74,Cadiz,Commissioning editor,1961-09-03
+2020-07-28 01:55:24,4671727014157745,Kutch and Sons,grocery_pos,308.66,Andrews,Retail banker,1955-07-25
+2020-07-28 05:41:42,4671727014157745,Auer-Mosciski,grocery_pos,330.12,Andrews,Retail banker,1955-07-25
+2020-07-28 22:26:11,30290551782700,Volkman Ltd,misc_net,768.37,Cadiz,Commissioning editor,1961-09-03
+2020-07-28 22:38:43,30290551782700,Kerluke PLC,misc_net,789.41,Cadiz,Commissioning editor,1961-09-03
+2020-07-28 22:42:53,30290551782700,Lemke-Gutmann,shopping_net,1041.01,Cadiz,Commissioning editor,1961-09-03
+2020-07-28 23:00:12,4671727014157745,Miller-Hauck,grocery_pos,337.94,Andrews,Retail banker,1955-07-25
+2020-07-28 23:44:06,30290551782700,"Reichert, Rowe and Mraz",shopping_net,1106.41,Cadiz,Commissioning editor,1961-09-03
+2020-07-30 00:06:13,180011453250192,"Greenholt, Jacobi and Gleason",gas_transport,11.21,New Boston,Manufacturing engineer,1993-10-05
+2020-07-30 00:52:25,4352307151555405069,Luettgen PLC,gas_transport,7.84,Falls Church,Armed forces training and education officer,1932-05-09
+2020-07-30 01:22:08,180011453250192,Kilback LLC,grocery_pos,291.8,New Boston,Manufacturing engineer,1993-10-05
+2020-07-30 10:07:12,180011453250192,"Schultz, Simonis and Little",grocery_pos,296.34,New Boston,Manufacturing engineer,1993-10-05
+2020-07-30 15:58:13,676173792455,Shields-Wunsch,health_fitness,19.02,Santa Monica,"Civil engineer, contracting",1961-04-25
+2020-07-30 22:07:21,4352307151555405069,Boyer-Reichert,shopping_net,1051.96,Falls Church,Armed forces training and education officer,1932-05-09
+2020-07-30 22:15:02,676173792455,Corwin-Romaguera,travel,9.25,Santa Monica,"Civil engineer, contracting",1961-04-25
+2020-07-30 22:30:00,180011453250192,Lockman Ltd,grocery_pos,309.43,New Boston,Manufacturing engineer,1993-10-05
+2020-07-30 22:55:55,180011453250192,"Rodriguez, Yost and Jenkins",misc_net,853.47,New Boston,Manufacturing engineer,1993-10-05
+2020-07-30 23:20:10,4352307151555405069,Kuhic LLC,shopping_net,1153.43,Falls Church,Armed forces training and education officer,1932-05-09
+2020-07-30 23:38:50,4352307151555405069,Macejkovic-Lesch,shopping_pos,975.25,Falls Church,Armed forces training and education officer,1932-05-09
+2020-07-30 23:54:57,676173792455,Kassulke PLC,shopping_net,1130.56,Santa Monica,"Civil engineer, contracting",1961-04-25
+2020-07-31 00:48:52,4352307151555405069,Bradtke PLC,grocery_pos,283.96,Falls Church,Armed forces training and education officer,1932-05-09
+2020-07-31 01:08:13,676173792455,Wolf Inc,grocery_pos,285.44,Santa Monica,"Civil engineer, contracting",1961-04-25
+2020-07-31 01:50:35,180011453250192,O'Keefe-Hudson,grocery_pos,310.79,New Boston,Manufacturing engineer,1993-10-05
+2020-07-31 03:03:27,180011453250192,Deckow-O'Conner,grocery_pos,302.23,New Boston,Manufacturing engineer,1993-10-05
+2020-07-31 03:43:07,4352307151555405069,Prohaska-Murray,gas_transport,7.0,Falls Church,Armed forces training and education officer,1932-05-09
+2020-07-31 12:03:09,180011453250192,Dooley-Thompson,misc_net,780.45,New Boston,Manufacturing engineer,1993-10-05
+2020-07-31 22:46:43,676173792455,"Swaniawski, Lowe and Robel",shopping_pos,914.18,Santa Monica,"Civil engineer, contracting",1961-04-25
+2020-07-31 23:07:54,4352307151555405069,"Stehr, Jewess and Schimmel",misc_net,774.14,Falls Church,Armed forces training and education officer,1932-05-09
+2020-07-31 23:08:01,676173792455,"Romaguera, Cruickshank and Greenholt",shopping_net,955.39,Santa Monica,"Civil engineer, contracting",1961-04-25
+2020-07-31 23:37:12,676173792455,Kuhn LLC,misc_net,720.24,Santa Monica,"Civil engineer, contracting",1961-04-25
+2020-07-31 23:49:08,676173792455,"Romaguera, Cruickshank and Greenholt",shopping_net,990.7,Santa Monica,"Civil engineer, contracting",1961-04-25
+2020-07-31 23:51:11,676173792455,Kuphal-Bartoletti,misc_net,931.63,Santa Monica,"Civil engineer, contracting",1961-04-25
+2020-08-01 03:04:03,3576281490078437,Kiehn Inc,grocery_pos,287.69,Williams,Financial adviser,1990-06-13
+2020-08-01 22:21:51,3576281490078437,Heathcote LLC,shopping_net,975.35,Williams,Financial adviser,1990-06-13
+2020-08-01 23:01:10,3576281490078437,Stamm-Witting,shopping_net,982.99,Williams,Financial adviser,1990-06-13
+2020-08-01 23:26:46,3576281490078437,Klocko LLC,misc_net,710.75,Williams,Financial adviser,1990-06-13
+2020-08-01 23:46:01,3576281490078437,Gleason-Macejkovic,shopping_net,941.23,Williams,Financial adviser,1990-06-13
+2020-08-02 00:02:00,3577794103155425,"Gottlieb, Considine and Schultz",shopping_net,1034.33,Reynolds,Visual merchandiser,1994-11-12
+2020-08-02 00:30:35,3577794103155425,Medhurst PLC,shopping_net,934.89,Reynolds,Visual merchandiser,1994-11-12
+2020-08-02 00:36:13,3577794103155425,Beier-Hyatt,shopping_pos,957.05,Reynolds,Visual merchandiser,1994-11-12
+2020-08-02 00:54:51,3577794103155425,"Haley, Jewess and Bechtelar",shopping_pos,920.68,Reynolds,Visual merchandiser,1994-11-12
+2020-08-02 02:32:32,3577794103155425,Cartwright-Harris,grocery_pos,359.67,Reynolds,Visual merchandiser,1994-11-12
+2020-08-02 02:53:29,3577794103155425,"Roob, Conn and Tremblay",shopping_pos,805.5,Reynolds,Visual merchandiser,1994-11-12
+2020-08-02 02:54:42,3577794103155425,Bradtke PLC,grocery_pos,348.61,Reynolds,Visual merchandiser,1994-11-12
+2020-08-02 20:24:16,3577794103155425,Stark-Batz,entertainment,596.85,Reynolds,Visual merchandiser,1994-11-12
+2020-08-02 22:01:47,3576281490078437,Miller-Hauck,grocery_pos,275.75,Williams,Financial adviser,1990-06-13
+2020-08-02 22:04:35,3576281490078437,Price Inc,shopping_net,1021.04,Williams,Financial adviser,1990-06-13
+2020-08-02 22:30:14,3577794103155425,"Streich, Rolfson and Wilderman",kids_pets,19.63,Reynolds,Visual merchandiser,1994-11-12
+2020-08-02 22:39:03,3577794103155425,"Schiller, Blanda and Johnson",home,241.34,Reynolds,Visual merchandiser,1994-11-12
+2020-08-02 22:50:24,3577794103155425,"Klocko, Runolfsdottir and Breitenberg",health_fitness,17.29,Reynolds,Visual merchandiser,1994-11-12
+2020-08-02 22:57:26,3577794103155425,"Turner, Ziemann and Lehner",food_dining,135.12,Reynolds,Visual merchandiser,1994-11-12
+2020-08-02 23:28:50,3576281490078437,"Rippin, Kub and Mann",misc_net,850.64,Williams,Financial adviser,1990-06-13
+2020-08-02 23:33:36,3576281490078437,"Goyette, Howell and Collier",shopping_pos,760.17,Williams,Financial adviser,1990-06-13
+2020-08-03 00:39:40,4653879239169997,Barton Inc,grocery_pos,298.35,Smiths Grove,"Therapist, sports",1999-06-06
+2020-08-03 00:41:02,3577794103155425,Lockman Ltd,grocery_pos,354.63,Reynolds,Visual merchandiser,1994-11-12
+2020-08-03 00:42:24,4653879239169997,"Rohan, White and Aufderhar",misc_net,989.83,Smiths Grove,"Therapist, sports",1999-06-06
+2020-08-03 00:51:44,4653879239169997,"Rippin, Kub and Mann",misc_net,684.27,Smiths Grove,"Therapist, sports",1999-06-06
+2020-08-03 01:23:17,2358122155477959,VonRueden Group,grocery_net,5.6,Linthicum Heights,"Conservator, furniture",1924-10-30
+2020-08-03 01:35:25,4725837176265195730,"Schroeder, Hauck and Treutel",entertainment,532.58,Jay,Higher education careers adviser,1994-11-05
+2020-08-03 01:43:53,3577794103155425,Maggio-Fahey,misc_pos,684.31,Reynolds,Visual merchandiser,1994-11-12
+2020-08-03 01:48:07,2358122155477959,Kiehn-Emmerich,grocery_pos,337.71,Linthicum Heights,"Conservator, furniture",1924-10-30
+2020-08-03 01:50:22,3577794103155425,Koelpin and Sons,misc_net,772.78,Reynolds,Visual merchandiser,1994-11-12
+2020-08-03 02:19:40,4653879239169997,"Moen, Reinger and Murphy",grocery_pos,319.08,Smiths Grove,"Therapist, sports",1999-06-06
+2020-08-03 02:30:27,4725837176265195730,Cormier LLC,shopping_net,987.01,Jay,Higher education careers adviser,1994-11-05
+2020-08-03 02:34:14,4725837176265195730,Kassulke PLC,shopping_net,906.2,Jay,Higher education careers adviser,1994-11-05
+2020-08-03 03:01:17,4653879239169997,Murray-Smitham,grocery_pos,301.61,Smiths Grove,"Therapist, sports",1999-06-06
+2020-08-03 03:18:53,3577794103155425,Cole PLC,grocery_pos,332.09,Reynolds,Visual merchandiser,1994-11-12
+2020-08-03 03:49:18,2358122155477959,Hills-Olson,grocery_net,9.69,Linthicum Heights,"Conservator, furniture",1924-10-30
+2020-08-03 08:32:04,4653879239169997,Hudson-Ratke,grocery_pos,308.32,Smiths Grove,"Therapist, sports",1999-06-06
+2020-08-03 09:28:36,4725837176265195730,Cole PLC,grocery_pos,343.05,Jay,Higher education careers adviser,1994-11-05
+2020-08-03 12:52:43,4653879239169997,"Willms, Kris and Bergnaum",shopping_pos,790.4,Smiths Grove,"Therapist, sports",1999-06-06
+2020-08-03 19:16:35,4725673654161314,Lemke-Gutmann,shopping_net,969.07,Orient,Video editor,1968-09-19
+2020-08-03 22:22:52,2358122155477959,Kihn Inc,shopping_pos,1113.4,Linthicum Heights,"Conservator, furniture",1924-10-30
+2020-08-03 22:48:01,2358122155477959,Schmidt and Sons,shopping_net,1037.21,Linthicum Heights,"Conservator, furniture",1924-10-30
+2020-08-03 22:50:41,4653879239169997,Towne LLC,misc_pos,8.77,Smiths Grove,"Therapist, sports",1999-06-06
+2020-08-03 23:01:00,4725837176265195730,"Schiller, Blanda and Johnson",home,292.85,Jay,Higher education careers adviser,1994-11-05
+2020-08-03 23:02:13,4725837176265195730,Roob-Okuneva,health_fitness,19.79,Jay,Higher education careers adviser,1994-11-05
+2020-08-03 23:09:37,4653879239169997,Stiedemann Inc,misc_pos,7.12,Smiths Grove,"Therapist, sports",1999-06-06

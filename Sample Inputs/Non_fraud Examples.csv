@@ -1,0 +1,501 @@
+trans_date_trans_time,cc_num,merchant,category,amt,city,job,dob
+2020-06-21 12:14:25,2291163933867244,Kirlin and Sons,personal_care,2.86,Columbia,Mechanical engineer,1968-03-19
+2020-06-21 12:14:33,3573030041201292,Sporer-Keebler,personal_care,29.84,Altonah,"Sales professional, IT",1990-01-17
+2020-06-21 12:14:53,3598215285024754,"Swaniawski, Nitzsche and Welch",health_fitness,41.28,Bellmore,"Librarian, public",1970-10-21
+2020-06-21 12:15:15,3591919803438423,Haley Group,misc_pos,60.05,Titusville,Set designer,1987-07-25
+2020-06-21 12:15:17,3526826139003047,Johnston-Casper,travel,3.19,Falmouth,Furniture designer,1955-07-06
+2020-06-21 12:15:37,30407675418785,Daugherty LLC,kids_pets,19.55,Breesport,Psychotherapist,1991-10-13
+2020-06-21 12:15:44,213180742685905,Romaguera Ltd,health_fitness,133.93,Carlotta,"Therapist, occupational",1951-01-15
+2020-06-21 12:15:50,3589289942931264,Reichel LLC,personal_care,10.37,Spencer,"Development worker, international aid",1972-03-05
+2020-06-21 12:16:10,3596357274378601,"Goyette, Howell and Collier",shopping_pos,4.37,Morrisdale,Advice worker,1973-05-27
+2020-06-21 12:16:11,3546897637165774,Kilback Group,food_dining,66.54,Prairie Hill,Barrister,1956-05-30
+2020-06-21 12:16:20,2242542703101233,"Feil, Hilpert and Koss",food_dining,7.01,Westport,Pensions consultant,1996-04-10
+2020-06-21 12:16:47,571465035400,Gottlieb Group,kids_pets,42.4,Fort Washakie,Freight forwarder,1976-02-26
+2020-06-21 12:17:21,6593250708747804,Connelly-Carter,home,2.91,Loxahatchee,Paramedic,1977-01-04
+2020-06-21 12:18:27,4988304376504,Bechtelar-Rippin,food_dining,7.93,Rock Tavern,Building surveyor,1937-03-17
+2020-06-21 12:18:37,6011504998544485,Lubowitz-Walter,kids_pets,2.91,Jones,Materials engineer,1971-11-02
+2020-06-21 12:18:41,4570636521433188,"Welch, Rath and Koepp",entertainment,24.73,Deltona,Commercial horticulturist,1988-04-09
+2020-06-21 12:18:54,4906628655840914250,Hickle Group,shopping_pos,2.33,Key West,Town planner,1987-02-13
+2020-06-21 12:19:50,4908846471916297,"Lang, Towne and Schuppe",kids_pets,16.6,Grandview,"Radiographer, therapeutic",1992-07-24
+2020-06-21 12:19:56,4861310130652566408,Morissette LLC,entertainment,80.11,Saint Amant,"Surveyor, rural practice",1977-12-16
+2020-06-21 12:20:13,6538441737335434,Prosacco LLC,personal_care,5.71,Clarks Mills,Energy manager,1997-09-22
+2020-06-21 12:20:34,2283743876903625,Corwin-Romaguera,travel,8.53,Alpharetta,Prison officer,1997-12-27
+2020-06-21 12:20:42,4560004149983868183,Gottlieb Group,kids_pets,37.95,Colorado Springs,Museum/gallery exhibitions officer,1992-05-09
+2020-06-21 12:20:57,4562827002127,Tillman LLC,travel,1.74,Greenville,Media planner,1971-11-26
+2020-06-21 12:21:46,213153151785052,Veum-Koelpin,travel,6.02,Tomahawk,Seismic interpreter,1997-11-23
+2020-06-21 12:21:47,372509258176510,"Watsica, Haag and Considine",shopping_pos,9.87,Goodrich,Learning disability nurse,1985-06-18
+2020-06-21 12:23:08,6011148190095209,Leannon-Ward,food_dining,47.06,Daly City,"Buyer, industrial",1991-10-04
+2020-06-21 12:23:09,6011917798331152,"Hintz, Bauch and Smith",health_fitness,1.7,South Londonderry,Scientific laboratory technician,1957-08-30
+2020-06-21 12:23:53,3577663406369449,Labadie LLC,personal_care,2.17,Lepanto,Counselling psychologist,1968-10-06
+2020-06-21 12:24:11,3502377050801561,"Eichmann, Hayes and Treutel",travel,6.21,New Waverly,"Scientist, biomedical",1948-11-30
+2020-06-21 12:24:16,180040027502291,Leffler-Goldner,personal_care,24.44,New York City,Audiological scientist,1957-12-29
+2020-06-21 12:25:09,379897244598068,Kautzer and Sons,personal_care,176.23,Pewee Valley,Stage manager,1930-02-28
+2020-06-21 12:26:10,180048185037117,Ernser-Feest,home,134.39,Plainfield,Leisure centre manager,1974-07-19
+2020-06-21 12:26:13,4302475216404898,"Zemlak, Tillman and Cremin",personal_care,19.03,Belmond,Community pharmacist,1964-08-08
+2020-06-21 12:26:23,180036456789979,Nienow PLC,entertainment,210.36,Bagley,Risk analyst,1974-11-20
+2020-06-21 12:26:25,180065479077096,Lynch-Wisozk,home,52.81,Manchester,Clinical research associate,1964-02-15
+2020-06-21 12:26:26,6517217825320610,"Feil, Hilpert and Koss",food_dining,82.32,Sontag,"Librarian, academic",1958-06-11
+2020-06-21 12:27:08,4683520018489354,Schiller Ltd,personal_care,26.31,Hawthorne,"Editor, magazine features",1995-04-19
+2020-06-21 12:27:22,501899453424,Hoppe-Parisian,kids_pets,134.6,Gadsden,Ceramics designer,1970-01-08
+2020-06-21 12:27:40,6011348830550197,Hoppe-Parisian,kids_pets,36.72,Birmingham,Musician,1980-07-12
+2020-06-21 12:27:54,213195754007681,Brown-Greenholt,entertainment,105.78,Ollie,Commercial horticulturist,1969-07-24
+2020-06-21 12:28:06,2712209726293386,Reilly LLC,home,39.95,Baton Rouge,"Designer, furniture",1977-02-22
+2020-06-21 12:28:23,503874407318,"Moore, Williamson and Emmerich",home,47.81,San Antonio,Exhibition designer,1975-12-28
+2020-06-21 12:28:39,676369110710,Rau-Robel,kids_pets,18.96,Southfield,"Engineer, automotive",1974-12-28
+2020-06-21 12:29:25,4783226709001,"Fadel, Mertz and Rippin",entertainment,46.67,Mc Cracken,Film/video editor,1961-04-22
+2020-06-21 12:29:27,375848982312810,Crona and Sons,kids_pets,30.59,Purmela,Web designer,1943-12-15
+2020-06-21 12:29:30,30270432095985,"Bahringer, Bergnaum and Quitzon",home,3.94,Lomax,Environmental consultant,1972-11-28
+2020-06-21 12:29:33,6011149206456997,"Koss, Hansen and Lueilwitz",home,84.11,Tuscarora,"Production assistant, television",1979-12-11
+2020-06-21 12:29:36,4110266553600176127,"Yost, Schamberger and Windler",kids_pets,31.19,Sunflower,"Education officer, community",1986-11-06
+2020-06-21 12:29:46,675990301623,"Armstrong, Walter and Gottlieb",food_dining,4.91,Ogdensburg,Senior tax professional/tax inspector,1994-03-13
+2020-06-21 12:29:56,377026671291680,Friesen Ltd,health_fitness,5.36,Redford,Investment analyst,1974-10-27
+2020-06-21 12:30:19,6011934240159560,Champlin and Sons,home,80.5,Brooklin,"Loss adjuster, chartered",1974-11-02
+2020-06-21 12:30:19,3519607465576254,Bins-Tillman,entertainment,49.57,Fields Landing,"Scientist, audiological",1929-05-06
+2020-06-21 12:30:28,571465035400,Douglas-White,entertainment,79.51,Fort Washakie,Freight forwarder,1976-02-26
+2020-06-21 12:30:39,6011652924285713,"Hermiston, Pacocha and Smith",health_fitness,34.17,Rocky Mount,Tax inspector,1988-10-26
+2020-06-21 12:31:19,4116554952971686,"Denesik, Powlowski and Pouros",home,9.75,Port Saint Lucie,Primary school teacher,1934-03-19
+2020-06-21 12:31:23,4855488158131690372,Nader-Maggio,personal_care,68.88,Graniteville,Agricultural consultant,1993-09-29
+2020-06-21 12:31:32,4599735407877245080,"O'Reilly, Mohr and Purdy",home,30.73,Tiptonville,Geochemist,1964-12-30
+2020-06-21 12:32:35,561942763351,O'Connell-Ullrich,home,63.27,Washington,Prison officer,1986-03-14
+2020-06-21 12:32:36,2227671554547514,Bauch-Blanda,entertainment,121.46,Clearwater,"Geneticist, molecular",1979-10-22
+2020-06-21 12:32:39,2296006538441789,"Ruecker, Beer and Collier",shopping_net,9.23,Brooklyn,Medical sales representative,1999-09-01
+2020-06-21 12:32:50,36722699017270,Berge-Hills,kids_pets,8.86,Superior,Petroleum engineer,1987-10-28
+2020-06-21 12:32:51,213156747557083,White and Sons,home,55.53,Glendale,Advertising account planner,1982-07-30
+2020-06-21 12:33:21,3567697931646329,Adams-Barrows,health_fitness,2.61,Hudson,Travel agency manager,1998-07-29
+2020-06-21 12:33:30,4988304376504,Crona and Sons,kids_pets,1.93,Rock Tavern,Building surveyor,1937-03-17
+2020-06-21 12:33:31,213157767990030,Bauch-Blanda,entertainment,20.03,Rock Springs,Music therapist,1984-08-01
+2020-06-21 12:33:45,4509922033272157,Pouros-Haag,shopping_pos,7.93,Hurley,Neurosurgeon,1972-03-28
+2020-06-21 12:33:58,30044330818990,"Hahn, Bahringer and McLaughlin",personal_care,20.4,Fort Myers,Paramedic,1985-08-29
+2020-06-21 12:34:07,3502377050801561,Ziemann-Waters,health_fitness,181.87,New Waverly,"Scientist, biomedical",1948-11-30
+2020-06-21 12:34:35,4710826438164847414,"Wuckert, Wintheiser and Friesen",home,30.72,Turner,Further education lecturer,1964-01-04
+2020-06-21 12:35:55,4653879239169997,Bauch-Blanda,entertainment,129.58,Smiths Grove,"Therapist, sports",1999-06-06
+2020-06-21 12:35:55,4956828990005111019,Bednar PLC,kids_pets,5.13,Elizabeth,Operational researcher,1980-12-21
+2020-06-21 12:36:17,3590736522064285,Kihn Inc,shopping_pos,189.99,Bauxite,"Scientist, audiological",1975-12-20
+2020-06-21 12:37:03,4755696071492,Fisher Inc,shopping_net,5.37,Sachse,Site engineer,1985-06-20
+2020-06-21 12:37:59,3542162746848552,Leffler-Goldner,personal_care,6.04,Emmons,Communications engineer,1968-01-28
+2020-06-21 12:38:04,30234966027947,"Schneider, Hayes and Nikolaus",food_dining,15.49,New Holstein,Child psychotherapist,1978-01-22
+2020-06-21 12:38:05,180042946491150,"Greenholt, O'Hara and Balistreri",shopping_net,4.94,Saint Petersburg,"Engineer, land",1989-02-28
+2020-06-21 12:38:22,4149238353975790,Gottlieb-Hansen,personal_care,74.52,Cokeburg,Dealer,1989-04-08
+2020-06-21 12:39:10,3583793405872580,"Douglas, Schneider and Turner",shopping_pos,4.4,Roosevelt,Amenity horticulturist,1970-09-27
+2020-06-21 12:39:25,3575789281659026,"Gutmann, McLaughlin and Wiza",home,71.68,Centerview,Electronics engineer,1989-07-17
+2020-06-21 12:39:42,3553629419254918,Champlin and Sons,home,33.97,Conway,"Research officer, political party",1984-09-01
+2020-06-21 12:39:44,375248307838179,Weber and Sons,food_dining,20.87,Tallmansville,Accounting technician,1967-09-16
+2020-06-21 12:39:45,4427805710168,Bednar PLC,kids_pets,19.41,Ruidoso,Licensed conveyancer,2000-08-16
+2020-06-21 12:39:49,371985236239474,Bartoletti and Sons,personal_care,21.57,Oriskany Falls,"Programmer, multimedia",1949-06-09
+2020-06-21 12:39:54,6011348830550197,Powlowski-Weimann,food_dining,19.06,Birmingham,Musician,1980-07-12
+2020-06-21 12:39:56,676275912597,"Lakin, Ferry and Beatty",food_dining,60.07,Elk Rapids,Chief Financial Officer,1986-01-18
+2020-06-21 12:40:32,4173950183554608,Brown-Greenholt,entertainment,15.8,Monmouth Beach,Health promotion specialist,1978-10-05
+2020-06-21 12:40:33,6011197122270059,"Terry, Johns and Bins",misc_pos,2.01,North Brookfield,Field seismologist,1986-04-03
+2020-06-21 12:40:36,4223708906367574214,Thiel-Thiel,entertainment,75.24,Mount Saint Joseph,Exhibition designer,1974-05-30
+2020-06-21 12:40:45,675961917837,Kuhn Group,food_dining,56.3,Sprague,Chiropodist,1967-08-24
+2020-06-21 12:41:34,630425673344,"Schaefer, Fay and Hilll",entertainment,5.95,Cass,Special effects artist,1970-03-14
+2020-06-21 12:42:07,4708992452821239,"Roberts, Ryan and Smith",personal_care,19.73,Cord,"Designer, ceramics/pottery",1938-09-08
+2020-06-21 12:42:11,30234966027947,Stiedemann Ltd,food_dining,128.33,New Holstein,Child psychotherapist,1978-01-22
+2020-06-21 12:42:29,377234009633447,Pacocha-Weissnat,kids_pets,136.16,Shenandoah Junction,Systems developer,1966-02-14
+2020-06-21 12:43:07,4294040533480516,Homenick LLC,personal_care,16.8,New Ellenton,Biomedical scientist,1986-12-31
+2020-06-21 12:43:09,180018375329178,Cartwright PLC,kids_pets,113.89,Munith,Geophysicist/field seismologist,1988-03-21
+2020-06-21 12:43:14,6011438889172900,Pouros-Haag,shopping_pos,37.14,De Witt,Electrical engineer,1993-04-08
+2020-06-21 12:43:58,5501083170975659,Kihn-Fritsch,food_dining,16.06,Cuyahoga Falls,Equities trader,1966-01-04
+2020-06-21 12:44:12,6011104316292105,Lynch Ltd,shopping_pos,1.01,Drakes Branch,Energy engineer,1985-09-02
+2020-06-21 12:44:29,374930071163758,Klein Group,entertainment,6.98,Romulus,Police officer,1971-11-05
+2020-06-21 12:45:23,4500002361389,Quitzon-Goyette,home,31.88,Tyaskin,Music tutor,1965-04-07
+2020-06-21 12:45:48,6592074504369261,Greenholt Ltd,health_fitness,242.35,Philadelphia,Commercial horticulturist,1972-05-23
+2020-06-21 12:46:08,4400011257587661852,Bahringer Group,health_fitness,20.66,North Loup,"Nurse, children's",1980-09-15
+2020-06-21 12:46:16,30570197515105,Hilpert-Conroy,kids_pets,127.76,Hartford,Jewellery designer,1945-12-07
+2020-06-21 12:46:23,6011652924285713,"Lakin, Ferry and Beatty",food_dining,4.24,Rocky Mount,Tax inspector,1988-10-26
+2020-06-21 12:46:44,4561546772499,"Witting, Beer and Ernser",home,28.51,Moriarty,"Therapist, art",1988-08-04
+2020-06-21 12:46:50,4119762878330989,Breitenberg-Hermiston,kids_pets,29.39,Eureka,Archivist,1945-08-19
+2020-06-21 12:46:54,4810839835482794272,Friesen Inc,shopping_pos,5.85,Wheaton,Production manager,1985-08-31
+2020-06-21 12:47:21,4191109180926792,Gottlieb-Hansen,personal_care,12.64,Amanda,Farm manager,1992-10-03
+2020-06-21 12:47:35,676195318214,"Baumbach, Strosin and Nicolas",shopping_pos,9.63,Altair,"Editor, film/video",1983-07-24
+2020-06-21 12:47:36,4128730454058057622,Rippin-VonRueden,health_fitness,18.02,Ratcliff,"Engineer, production",1949-10-04
+2020-06-21 12:47:48,4681699462969,"Nienow, Ankunding and Collier",misc_pos,2.54,Murfreesboro,"Journalist, newspaper",1978-03-06
+2020-06-21 12:47:57,3523843138706408,Schmidt and Sons,shopping_net,9.17,Plantersville,Drilling engineer,1970-11-20
+2020-06-21 12:48:14,4587657402165341815,"Prosacco, Kreiger and Kovacek",home,26.03,Pembroke Township,"Psychotherapist, child",2004-05-08
+2020-06-21 12:48:15,6011860238257910,Schumm PLC,health_fitness,46.81,Lahoma,"Programme researcher, broadcasting/film/video",1952-07-06
+2020-06-21 12:48:23,3576431665303017,Berge-Ullrich,home,61.44,Phoenix,Contractor,1981-10-24
+2020-06-21 12:48:57,30199621383748,"Roob, Conn and Tremblay",shopping_pos,68.51,Leonard,Sub,1977-03-23
+2020-06-21 12:49:01,3540017235499519,Kihn-Schuster,food_dining,57.53,Kittery Point,Broadcast engineer,1983-01-21
+2020-06-21 12:49:42,213161869125933,Tillman LLC,travel,2.3,East Andover,Animal nutritionist,1970-04-17
+2020-06-21 12:50:38,36913587729122,Monahan-Morar,personal_care,28.74,Meridian,Intelligence analyst,1971-02-11
+2020-06-21 12:51:26,2720433095629877,Powlowski-Weimann,food_dining,1.92,Bowdoin,"Engineer, electronics",1997-08-22
+2020-06-21 12:51:34,4584931703207308232,Botsford Ltd,shopping_pos,3.37,Dallas,"Designer, ceramics/pottery",1975-04-16
+2020-06-21 12:51:45,4536996888716062123,Hamill-D'Amore,health_fitness,22.42,Espanola,Historic buildings inspector/conservation officer,1972-07-18
+2020-06-21 12:52:46,3518234918950662,"Bradtke, Torp and Bahringer",personal_care,12.33,Sherman,Systems developer,1970-09-11
+2020-06-21 12:53:48,3546674063249004,Corwin-Romaguera,travel,6.85,Aledo,Optometrist,1984-07-05
+2020-06-21 12:53:58,3533177016567295,Gaylord-Powlowski,home,80.8,Weeping Water,Dealer,1951-11-08
+2020-06-21 12:54:15,4900628639996,Mayert Group,shopping_pos,5.61,Norwalk,Firefighter,1973-09-22
+2020-06-21 12:54:28,38947654498698,"Baumbach, Strosin and Nicolas",shopping_pos,7.47,Creola,"Copywriter, advertising",1979-06-24
+2020-06-21 12:54:44,3547560454237873,Beier and Sons,home,43.47,Arcadia,"Designer, jewellery",1966-12-21
+2020-06-21 12:54:52,378278619832195,Abbott-Steuber,personal_care,8.32,Eugene,"Scientist, physiological",1964-04-06
+2020-06-21 12:54:55,3513618443244549,Sporer-Keebler,personal_care,37.0,Fulton,Financial adviser,1955-06-26
+2020-06-21 12:55:10,2296006538441789,Ernser-Lynch,food_dining,9.76,Brooklyn,Medical sales representative,1999-09-01
+2020-06-21 12:55:14,630484879808,Reilly LLC,home,75.99,Helm,Early years teacher,1973-02-07
+2020-06-21 12:55:19,376445266762684,Little Ltd,kids_pets,26.54,Sutherland,Insurance broker,1982-02-11
+2020-06-21 12:55:19,4683638447911,Gislason Group,travel,558.03,Egan,Broadcast presenter,1972-07-01
+2020-06-21 12:55:21,4503101193493052864,Stark-Koss,home,5.26,Lakeland,Clothing/textile technologist,1979-07-03
+2020-06-21 12:56:06,4259996134423,"Crist, Jakubowski and Littel",home,46.33,Hudson,Probation officer,1968-11-22
+2020-06-21 12:57:44,630424987505,Kling-Ernser,entertainment,19.3,Thomas,Forensic psychologist,1981-08-29
+2020-06-21 12:57:52,348789608637806,Lubowitz-Walter,kids_pets,49.77,Holstein,Telecommunications researcher,1950-08-19
+2020-06-21 12:57:56,3587960728692500,"Cronin, Kshlerin and Weber",health_fitness,109.54,Battle Creek,"Teacher, early years/pre",1997-01-02
+2020-06-21 12:58:07,6538441737335434,Upton PLC,entertainment,48.05,Clarks Mills,Energy manager,1997-09-22
+2020-06-21 12:58:42,4260128500325,Kilback Group,food_dining,7.25,Deane,"Conservation officer, historic buildings",1997-08-04
+2020-06-21 12:58:49,4189814094741,Carroll PLC,health_fitness,145.44,Ragland,Educational psychologist,1998-02-03
+2020-06-21 12:59:36,371009169330125,Effertz LLC,entertainment,173.09,Norman Park,Rural practice surveyor,2003-09-14
+2020-06-21 12:59:43,2227671554547514,Windler LLC,kids_pets,42.21,Clearwater,"Geneticist, molecular",1979-10-22
+2020-06-21 13:00:07,5456776410929288,Satterfield-Lowe,travel,4.13,North Washington,Patent attorney,1954-05-25
+2020-06-21 13:00:47,3556613125071656,Schuppe-Schuppe,food_dining,8.57,Lake Jackson,Futures trader,1999-12-27
+2020-06-21 13:01:05,4653879239169997,Hickle Group,shopping_pos,2.6,Smiths Grove,"Therapist, sports",1999-06-06
+2020-06-21 13:01:16,4653879239169997,Nader-Heller,misc_net,7.01,Smiths Grove,"Therapist, sports",1999-06-06
+2020-06-21 13:01:29,6593250708747804,Auer-West,shopping_net,32.82,Loxahatchee,Paramedic,1977-01-04
+2020-06-21 13:01:36,4990494243023,"Lesch, D'Amore and Brown",food_dining,6.96,Corriganville,Energy engineer,1960-12-13
+2020-06-21 13:01:57,3518669219150142,Barrows PLC,shopping_pos,1.8,Milford,Hospital doctor,1996-11-12
+2020-06-21 13:01:59,4710826438164847414,"O'Connell, Botsford and Hand",home,63.92,Turner,Further education lecturer,1964-01-04
+2020-06-21 13:02:34,639023984367,Kihn Inc,shopping_pos,3.93,Hannawa Falls,Chief Executive Officer,1991-06-05
+2020-06-21 13:03:11,3517814635263522,Bode-Schuster,kids_pets,49.07,Union,Chartered public finance accountant,1941-10-16
+2020-06-21 13:04:11,3567527758368741,O'Keefe-Wisoky,food_dining,9.44,Sterling City,"Scientist, biomedical",1962-03-19
+2020-06-21 13:05:19,5580563567307107,Thiel-Thiel,entertainment,67.9,Smock,Charity fundraiser,1990-06-21
+2020-06-21 13:05:20,4302480582202074,Conroy-Emard,food_dining,2.89,Muskegon,Historic buildings inspector/conservation officer,1995-05-25
+2020-06-21 13:05:42,60416207185,Kutch-Ferry,home,124.66,Fort Washakie,Information systems manager,1986-02-17
+2020-06-21 13:05:55,4044436772018844508,Donnelly LLC,entertainment,147.98,Dayton,Environmental manager,1970-11-09
+2020-06-21 13:06:10,3577663406369449,"Swaniawski, Nitzsche and Welch",health_fitness,12.32,Lepanto,Counselling psychologist,1968-10-06
+2020-06-21 13:06:31,4119762878330989,Weimann-Lockman,kids_pets,96.19,Eureka,Archivist,1945-08-19
+2020-06-21 13:07:39,180094419304907,Runte-Mohr,food_dining,74.93,Sun City,"Designer, exhibition/display",1972-09-22
+2020-06-21 13:07:39,4906628655840914250,"Dare, Fritsch and Zboncak",health_fitness,133.84,Key West,Town planner,1987-02-13
+2020-06-21 13:07:45,4671727014157745,"Kihn, Brakus and Goyette",personal_care,68.79,Andrews,Retail banker,1955-07-25
+2020-06-21 13:07:55,6011104316292105,Medhurst PLC,shopping_net,118.21,Drakes Branch,Energy engineer,1985-09-02
+2020-06-21 13:08:25,3582402971899057,Waelchi Inc,kids_pets,64.36,Spirit Lake,Production manager,1957-06-12
+2020-06-21 13:08:41,4099707841315751,Quitzon-Goyette,home,16.02,Ruckersville,"Designer, ceramics/pottery",1975-07-07
+2020-06-21 13:08:46,6011109736646996,Schumm PLC,shopping_net,1199.45,Wilmington,English as a second language teacher,1983-02-08
+2020-06-21 13:08:55,4482427013979020,O'Keefe-Wisoky,food_dining,7.44,Henderson,Building services engineer,1946-08-30
+2020-06-21 13:09:16,30518196150127,Dickinson Ltd,personal_care,30.09,Rossville,"Buyer, retail",1975-06-02
+2020-06-21 13:09:39,6538441737335434,"Little, Gutmann and Lynch",shopping_net,28.94,Clarks Mills,Energy manager,1997-09-22
+2020-06-21 13:10:11,4736845434667908128,Schaefer Ltd,kids_pets,185.27,Altona,"Surveyor, land/geomatics",1953-05-23
+2020-06-21 13:10:12,2296006538441789,Ankunding LLC,shopping_net,4.74,Brooklyn,Medical sales representative,1999-09-01
+2020-06-21 13:10:51,4861310130652566408,Schoen-Quigley,kids_pets,85.39,Saint Amant,"Surveyor, rural practice",1977-12-16
+2020-06-21 13:11:58,2358122155477959,Leffler-Goldner,personal_care,8.04,Linthicum Heights,"Conservator, furniture",1924-10-30
+2020-06-21 13:12:03,2285066385084291,Towne LLC,misc_pos,3.27,Heidelberg,"Exhibitions officer, museum/gallery",1988-02-15
+2020-06-21 13:12:42,4810839835482794272,Schaefer Ltd,kids_pets,95.67,Wheaton,Production manager,1985-08-31
+2020-06-21 13:13:13,4294040533480516,"O'Connell, Botsford and Hand",home,69.86,New Ellenton,Biomedical scientist,1986-12-31
+2020-06-21 13:14:37,370348764075623,Schoen-Quigley,kids_pets,38.88,Tickfaw,"Accountant, chartered public finance",1951-09-03
+2020-06-21 13:15:08,2296006538441789,"Hills, Hegmann and Schaefer",health_fitness,30.13,Brooklyn,Medical sales representative,1999-09-01
+2020-06-21 13:15:33,4301028321766222513,"Durgan, Gislason and Spencer",home,72.11,Shippingport,Secretary/administrator,1978-10-26
+2020-06-21 13:15:40,4063094974360571498,"Hauck, Dietrich and Funk",kids_pets,70.54,Mendon,"Scientist, audiological",1963-06-13
+2020-06-21 13:15:51,213157767990030,"Lubowitz, Terry and Stracke",personal_care,23.23,Rock Springs,Music therapist,1984-08-01
+2020-06-21 13:15:53,345060451158891,Erdman-Ebert,personal_care,51.05,Ashfield,"Production assistant, radio",1960-04-03
+2020-06-21 13:15:58,6011893664860915,Kub PLC,personal_care,97.73,Littleton,Water engineer,1975-07-31
+2020-06-21 13:16:07,30118423745458,"Lehner, Reichert and Mills",misc_pos,2.13,Matawan,Drilling engineer,1993-04-29
+2020-06-21 13:16:41,4492491748959010,"Schiller, Blanda and Johnson",home,80.71,Premier,Advice worker,1986-10-17
+2020-06-21 13:16:50,377113842678100,Bins-Howell,personal_care,31.94,Greenwich,Insurance risk surveyor,1965-03-25
+2020-06-21 13:17:11,343472729187663,Kautzer and Sons,personal_care,4.5,Center Tuftonboro,"Optician, dispensing",1971-08-05
+2020-06-21 13:17:31,3540210836308425,"Turcotte, Batz and Buckridge",health_fitness,74.12,Summerfield,Fisheries officer,1992-06-19
+2020-06-21 13:17:40,343746486082492,Will Ltd,food_dining,45.95,Cedar,"Social research officer, government",1975-10-11
+2020-06-21 13:18:43,30044330818990,Gibson-Deckow,entertainment,187.1,Fort Myers,Paramedic,1985-08-29
+2020-06-21 13:18:52,3575540972310993,Kihn Inc,shopping_pos,9.15,University,Curator,2001-06-22
+2020-06-21 13:19:19,30175986190993,Treutel-King,travel,1.29,Winger,Applications developer,1966-06-07
+2020-06-21 13:19:48,180058696935600,Romaguera Ltd,health_fitness,77.33,De Lancey,Chartered accountant,2000-08-28
+2020-06-21 13:19:51,4904681492230012,Kihn Inc,shopping_pos,5.53,Cottekill,Comptroller,1990-10-19
+2020-06-21 13:20:20,2264937662466770,Schmidt-Larkin,home,51.89,San Antonio,Land,1995-10-17
+2020-06-21 13:20:22,180072527505094,"Windler, Goodwin and Kovacek",home,49.78,Mooresville,Control and instrumentation engineer,1953-12-08
+2020-06-21 13:20:48,2286236465059468,Medhurst Inc,home,21.81,Blairstown,Agricultural consultant,1950-05-27
+2020-06-21 13:21:16,4220345354880,Breitenberg LLC,travel,8.54,Oxford,Agricultural consultant,1960-01-20
+2020-06-21 13:21:20,4119762878330989,Terry Ltd,home,174.77,Eureka,Archivist,1945-08-19
+2020-06-21 13:21:49,4640395708703,"Runte, Green and Emard",health_fitness,113.53,Fordoche,Community education officer,1951-06-13
+2020-06-21 13:21:57,3586008444788268,Feil-Morar,health_fitness,44.11,Issaquah,Osteopath,1984-02-29
+2020-06-21 13:22:14,3533742182628021,Kilback and Sons,entertainment,49.49,Johns Island,Materials engineer,1997-06-04
+2020-06-21 13:22:21,6011438889172900,"Watsica, Haag and Considine",shopping_pos,25.5,De Witt,Electrical engineer,1993-04-08
+2020-06-21 13:22:37,378278619832195,"Conroy, Balistreri and Gorczany",health_fitness,12.66,Eugene,"Scientist, physiological",1964-04-06
+2020-06-21 13:22:48,4378993458389626,Schuppe LLC,entertainment,61.47,Conway,Surgeon,1999-10-25
+2020-06-21 13:23:07,6554245334757802,Renner Ltd,home,70.59,Laguna Hills,Sales executive,1969-12-22
+2020-06-21 13:24:28,3557442674264531,Cartwright PLC,kids_pets,111.57,Lithopolis,"Lecturer, higher education",2004-06-19
+2020-06-21 13:24:33,213153151785052,"Romaguera, Wehner and Tromp",kids_pets,79.56,Tomahawk,Seismic interpreter,1997-11-23
+2020-06-21 13:24:51,577588686219,McKenzie-Huels,food_dining,155.02,Spring Church,Public relations account executive,1997-10-23
+2020-06-21 13:25:02,3566875419572867,Ernser-Lynch,food_dining,72.76,South Hero,Transport planner,1991-01-31
+2020-06-21 13:25:32,3565196229855512,Renner Ltd,home,94.27,Unionville,"Investment banker, corporate",1950-09-15
+2020-06-21 13:25:44,2305336922781618,Dare-Marvin,entertainment,22.48,Moulton,Probation officer,1961-02-14
+2020-06-21 13:26:39,3523843138706408,Gleason and Sons,kids_pets,64.96,Plantersville,Drilling engineer,1970-11-20
+2020-06-21 13:26:48,213156747557083,"Runte, Green and Emard",health_fitness,52.44,Glendale,Advertising account planner,1982-07-30
+2020-06-21 13:26:56,3596217206093829,"Welch, Rath and Koepp",entertainment,51.75,Birmingham,Camera operator,1988-03-25
+2020-06-21 13:27:02,3512365128314616,"Cole, Hills and Jewess",home,25.64,Arnold,Land/geomatics surveyor,1985-03-31
+2020-06-21 13:27:56,3511058278399773,"Cole, Hills and Jewess",home,48.44,New Goshen,"Engineer, mining",1960-01-06
+2020-06-21 13:28:00,3564839259330465,Gleason and Sons,kids_pets,155.28,Port Costa,Armed forces training and education officer,1959-03-31
+2020-06-21 13:28:22,4451438912406400,Roob-Okuneva,health_fitness,5.22,Norman,Manufacturing engineer,1999-09-11
+2020-06-21 13:29:22,30234966027947,Padberg-Sauer,home,81.57,New Holstein,Child psychotherapist,1978-01-22
+2020-06-21 13:29:23,4855853415727304322,Gerhold LLC,home,15.87,Wittenberg,Senior tax professional/tax inspector,1954-06-30
+2020-06-21 13:29:55,30026790933302,Botsford and Sons,home,76.02,Mayersville,Technical brewer,1979-09-03
+2020-06-21 13:30:19,3500969075198072,Volkman-Predovic,shopping_net,119.15,Tekoa,Clothing/textile technologist,1999-05-31
+2020-06-21 13:30:49,3528407217576457,Dare-Gibson,health_fitness,104.68,Kingsport,Warden/ranger,1987-02-14
+2020-06-21 13:30:50,4003989662068504,Rempel Inc,shopping_net,7.81,Bessemer,Radio broadcast assistant,1989-02-08
+2020-06-21 13:31:01,4836998673805450,Breitenberg-Hermiston,kids_pets,61.85,Manistique,Trade mark attorney,1979-04-12
+2020-06-21 13:31:21,4671727014157745,Stark-Koss,home,80.03,Andrews,Retail banker,1955-07-25
+2020-06-21 13:31:29,30029052116970,"Feil, Hilpert and Koss",food_dining,10.62,Falconer,Metallurgist,1970-10-09
+2020-06-21 13:31:41,3501942333500073,Schuppe LLC,entertainment,51.43,Phoenix,Counselling psychologist,1999-11-30
+2020-06-21 13:31:45,6011367958204270,Torphy-Kertzmann,health_fitness,39.54,Hinckley,Medical sales representative,1988-09-15
+2020-06-21 13:32:05,372382441451095,"Runolfsdottir, Mueller and Hand",entertainment,24.64,Port Ewen,Heritage manager,1966-01-21
+2020-06-21 13:32:30,343668971234893,"Torp, Muller and Borer",health_fitness,3.04,Hopkins,Chiropodist,1949-11-16
+2020-06-21 13:32:40,4634955908138648,Abshire PLC,entertainment,17.44,Hooper,"Engineer, automotive",1973-12-26
+2020-06-21 13:33:50,213174467670432,Crona and Sons,kids_pets,169.09,Cecilton,Podiatrist,1969-01-14
+2020-06-21 13:34:18,4998109455173950,O'Connell-Ullrich,home,127.97,Kansas City,Counsellor,1987-11-18
+2020-06-21 13:34:39,4599285557366057,Spencer-Runolfsson,misc_pos,35.45,Burrton,Gaffer,1997-11-18
+2020-06-21 13:34:56,4904681492230012,Streich Ltd,home,66.84,Cottekill,Comptroller,1990-10-19
+2020-06-21 13:35:01,4822367783500458,Conroy-Emard,food_dining,11.18,Haines City,Exercise physiologist,1991-01-01
+2020-06-21 13:35:11,4509142395811241,Bernier and Sons,kids_pets,37.89,Surrency,"Engineer, technical sales",1926-07-12
+2020-06-21 13:35:13,2296006538441789,"Dare, Casper and Bartoletti",kids_pets,29.76,Brooklyn,Medical sales representative,1999-09-01
+2020-06-21 13:35:18,30551643947183,Zboncak LLC,food_dining,76.83,Grover,Toxicologist,1973-11-14
+2020-06-21 13:35:34,4952583804639909,Erdman-Durgan,health_fitness,3.19,Warren,Magazine features editor,1957-04-05
+2020-06-21 13:35:51,30235268718158,Thiel Ltd,travel,3.88,West Harrison,Lexicographer,1977-08-16
+2020-06-21 13:36:21,4476840372112,Heathcote LLC,shopping_net,236.15,Woodville,"Editor, commissioning",1979-01-21
+2020-06-21 13:36:53,4956828990005111019,Eichmann-Kilback,home,106.86,Elizabeth,Operational researcher,1980-12-21
+2020-06-21 13:37:08,676298633337,Kutch-Ferry,home,4.02,Center Point,Chief Executive Officer,1971-12-10
+2020-06-21 13:38:42,373905417449658,"Gutmann, McLaughlin and Wiza",home,108.51,Meridian,Phytotherapist,1970-11-12
+2020-06-21 13:39:27,30273037698427,Medhurst PLC,shopping_net,34.11,Thida,Careers information officer,2000-06-13
+2020-06-21 13:40:52,676369110710,Erdman-Ebert,personal_care,51.44,Southfield,"Engineer, automotive",1974-12-28
+2020-06-21 13:41:11,4601636330889,"Hoppe, Harris and Bednar",entertainment,8.09,Humble,Tax adviser,1990-12-18
+2020-06-21 13:41:17,4708992452821239,Hammes-Beatty,kids_pets,20.89,Cord,"Designer, ceramics/pottery",1938-09-08
+2020-06-21 13:42:08,2720433095629877,Jacobi and Sons,shopping_pos,7.59,Bowdoin,"Engineer, electronics",1997-08-22
+2020-06-21 13:42:14,3520550088202337,Jast and Sons,food_dining,6.58,Hovland,Freight forwarder,2001-07-05
+2020-06-21 13:42:15,4390966588600992777,"Streich, Rolfson and Wilderman",kids_pets,140.88,Oklahoma City,Advertising copywriter,1966-06-24
+2020-06-21 13:42:30,376656886990758,Gerhold LLC,home,18.02,Zavalla,"Designer, jewellery",1985-12-03
+2020-06-21 13:42:31,2229378226512508,Zboncak Ltd,food_dining,64.18,Cazenovia,Occupational hygienist,1984-11-06
+2020-06-21 13:42:57,375248307838179,Lemke and Sons,travel,100.75,Tallmansville,Accounting technician,1967-09-16
+2020-06-21 13:43:26,6011975266774121,Kulas Group,health_fitness,44.91,Annapolis,"Accountant, chartered certified",1943-05-28
+2020-06-21 13:43:42,3589255887819806,Goldner-Lemke,entertainment,14.85,Hancock,Press photographer,1984-02-14
+2020-06-21 13:43:47,3528407217576457,Predovic Inc,shopping_net,59.08,Kingsport,Warden/ranger,1987-02-14
+2020-06-21 13:43:57,4536996888716062123,Howe Ltd,misc_pos,14.84,Espanola,Historic buildings inspector/conservation officer,1972-07-18
+2020-06-21 13:44:54,30501624614310,Stoltenberg-Beatty,shopping_pos,16.5,Scotia,Magazine features editor,1973-05-04
+2020-06-21 13:44:59,180048185037117,Bode-Schuster,kids_pets,57.53,Plainfield,Leisure centre manager,1974-07-19
+2020-06-21 13:45:05,4716561796955522,Bruen-Yost,misc_pos,7.66,Heart Butte,Water engineer,1972-05-04
+2020-06-21 13:45:53,38588538868506,Little Ltd,kids_pets,9.72,Marathon,Lexicographer,1990-11-23
+2020-06-21 13:45:56,501899453424,"Crist, Jakubowski and Littel",home,9.48,Gadsden,Ceramics designer,1970-01-08
+2020-06-21 13:45:59,4220495028289516646,"Reichel, Bradtke and Blanda",travel,16.68,Corona,Wellsite geologist,1966-05-22
+2020-06-21 13:46:16,4010002218955876,Mayert Group,shopping_pos,13.13,Houston,Animator,1983-08-24
+2020-06-21 13:46:49,4129767952109660,Towne LLC,misc_pos,5.7,Halstad,"Scientist, audiological",1972-06-14
+2020-06-21 13:46:56,567868110212,Morissette PLC,shopping_pos,5.58,Houston,"Copywriter, advertising",1984-12-16
+2020-06-21 13:47:13,3576021480694169,"Reichert, Huels and Hoppe",shopping_net,9.8,Topeka,Secondary school teacher,2004-12-30
+2020-06-21 13:47:20,376944481517097,"Crist, Jakubowski and Littel",home,55.95,Grand Bay,"Scientist, physiological",1957-12-26
+2020-06-21 13:47:41,580954173374,"Zemlak, Tillman and Cremin",personal_care,28.67,Montrose,Race relations officer,1960-01-13
+2020-06-21 13:48:02,4836998673805450,Hills-Witting,shopping_net,6.82,Manistique,Trade mark attorney,1979-04-12
+2020-06-21 13:48:08,676372984911,"Schaefer, Fay and Hilll",entertainment,102.43,Esbon,Tourism officer,1987-07-18
+2020-06-21 13:48:14,3568255211412877,"Hills, Hegmann and Schaefer",health_fitness,4.56,Leo,Biomedical engineer,1994-11-24
+2020-06-21 13:48:42,6011693194885790,Shanahan-Lehner,personal_care,11.09,Stanchfield,"Lecturer, further education",1995-12-04
+2020-06-21 13:48:52,180031190491743,Feil-Morar,health_fitness,132.57,Mobile,"Surveyor, land/geomatics",1972-01-05
+2020-06-21 13:48:56,676369110710,Berge-Ullrich,home,66.06,Southfield,"Engineer, automotive",1974-12-28
+2020-06-21 13:49:06,4873783502705038,Bogisich-Weimann,kids_pets,73.52,Burlington,Public house manager,1974-03-10
+2020-06-21 13:50:07,3596217206093829,Schmidt-Larkin,home,84.21,Birmingham,Camera operator,1988-03-25
+2020-06-21 13:50:12,4503101193493052864,"Douglas, DuBuque and McKenzie",travel,2.4,Lakeland,Clothing/textile technologist,1979-07-03
+2020-06-21 13:51:15,4623560839669,Daugherty-Thompson,food_dining,34.63,Lohrville,Administrator,1954-07-15
+2020-06-21 13:51:15,4599285557366057,Goyette-Herzog,travel,3.74,Burrton,Gaffer,1997-11-18
+2020-06-21 13:51:39,30446018552504,Keeling-Crist,misc_pos,15.37,Achille,Seismic interpreter,1993-05-27
+2020-06-21 13:51:45,6011367958204270,"Walter, Hettinger and Kessler",personal_care,162.07,Hinckley,Medical sales representative,1988-09-15
+2020-06-21 13:52:12,4302480582202074,Kozey-McDermott,travel,2.91,Muskegon,Historic buildings inspector/conservation officer,1995-05-25
+2020-06-21 13:52:21,3561212938177173,Torphy-Kertzmann,health_fitness,20.79,Dadeville,Minerals surveyor,1977-01-04
+2020-06-21 13:52:27,4767265376804500,Ziemann-Waters,health_fitness,196.93,Dublin,Transport planner,1961-06-19
+2020-06-21 13:52:34,378006354724784,"Denesik, Powlowski and Pouros",home,80.28,Etlan,Senior tax professional/tax inspector,1982-01-07
+2020-06-21 13:54:44,501899453424,"McDermott, Osinski and Morar",home,94.86,Gadsden,Ceramics designer,1970-01-08
+2020-06-21 13:55:26,3513506355699497,"Kilback, Nitzsche and Leffler",travel,2.29,Ridgeland,"Scientist, clinical (histocompatibility and immunogenetics)",1966-05-29
+2020-06-21 13:55:54,6011693194885790,Vandervort-Funk,grocery_pos,88.94,Stanchfield,"Lecturer, further education",1995-12-04
+2020-06-21 13:55:58,639046421587,"Dare, Fritsch and Zboncak",health_fitness,77.28,Leetsdale,"Administrator, education",1986-06-20
+2020-06-21 13:55:59,4469777115158234880,Pouros-Haag,shopping_pos,3.04,Methuen,Market researcher,1980-11-22
+2020-06-21 13:56:00,30266994494236,"Bahringer, Bergnaum and Quitzon",home,20.72,Ford,Chief Operating Officer,1976-11-21
+2020-06-21 13:56:10,4956828990005111019,Hills-Boyer,personal_care,25.5,Elizabeth,Operational researcher,1980-12-21
+2020-06-21 13:56:11,3529597930342630,Jast Ltd,shopping_net,7.06,Jordanville,Travel agency manager,1985-09-01
+2020-06-21 13:56:51,38052002992326,Grimes LLC,entertainment,5.21,Cleveland,Building surveyor,1995-09-11
+2020-06-21 13:56:54,4355790796238264643,Bode-Schuster,kids_pets,103.86,Payson,Exhibition designer,1969-08-04
+2020-06-21 13:56:59,3533742182628021,Breitenberg-Hermiston,kids_pets,16.1,Johns Island,Materials engineer,1997-06-04
+2020-06-21 13:57:10,4229733778084049,"McDermott, Osinski and Morar",home,142.1,Elizabethtown,Surgeon,1990-05-03
+2020-06-21 13:57:32,4103158249977,Schaefer Ltd,kids_pets,45.19,Lorenzo,Petroleum engineer,1982-06-27
+2020-06-21 13:57:44,4170689372027579,"Prosacco, Kreiger and Kovacek",home,37.03,Edmond,Media buyer,1993-05-10
+2020-06-21 13:58:33,4302475216404898,Gulgowski LLC,home,42.44,Belmond,Community pharmacist,1964-08-08
+2020-06-21 13:58:54,4173950183554608,Mohr-Bayer,shopping_net,127.6,Monmouth Beach,Health promotion specialist,1978-10-05
+2020-06-21 13:58:57,6011975266774121,"O'Reilly, Mohr and Purdy",home,131.27,Annapolis,"Accountant, chartered certified",1943-05-28
+2020-06-21 13:59:12,348253506557335,Lubowitz-Walter,kids_pets,84.17,Grand Bay,Armed forces logistics/support/administrative officer,1948-03-22
+2020-06-21 13:59:28,2296006538441789,"Bahringer, Osinski and Block",food_dining,7.38,Brooklyn,Medical sales representative,1999-09-01
+2020-06-21 14:00:11,4191109180926792,"Bahringer, Bergnaum and Quitzon",home,117.84,Amanda,Farm manager,1992-10-03
+2020-06-21 14:00:34,376656886990758,Simonis-Prohaska,misc_pos,92.81,Zavalla,"Designer, jewellery",1985-12-03
+2020-06-21 14:00:41,676173792455,Breitenberg-Hermiston,kids_pets,51.49,Santa Monica,"Civil engineer, contracting",1961-04-25
+2020-06-21 14:00:53,4957924165498,Bartoletti and Sons,personal_care,104.69,Kirk,Network engineer,1955-12-04
+2020-06-21 14:01:20,5359543825610251,"Moore, Williamson and Emmerich",home,16.48,Belgrade,"Engineer, drilling",1975-06-29
+2020-06-21 14:01:34,4348786085525522,Kulas Group,health_fitness,76.0,Bryant,Information systems manager,1979-01-08
+2020-06-21 14:01:41,2713913904780408,"Kunze, Larkin and Mayert",travel,1.77,Delhi,Multimedia programmer,1964-02-13
+2020-06-21 14:01:54,3520550088202337,"Becker, Harris and Harvey",personal_care,50.22,Hovland,Freight forwarder,2001-07-05
+2020-06-21 14:02:18,6011893664860915,Weimann-Lockman,kids_pets,73.57,Littleton,Water engineer,1975-07-31
+2020-06-21 14:02:27,4951647200979051,Kutch-Wilderman,home,18.76,Logan,"Scientist, research (physical sciences)",1976-06-15
+2020-06-21 14:03:24,3533742182628021,"Lehner, Mosciski and King",misc_net,63.97,Johns Island,Materials engineer,1997-06-04
+2020-06-21 14:03:27,630423337322,Heaney-Marquardt,entertainment,12.91,Orient,Special educational needs teacher,1978-06-21
+2020-06-21 14:03:32,4400011257587661852,Gerhold LLC,home,20.01,North Loup,"Nurse, children's",1980-09-15
+2020-06-21 14:03:33,38057513087029,"Gutmann, McLaughlin and Wiza",home,60.56,San Jose,Geoscientist,1997-01-18
+2020-06-21 14:03:54,4745996322265,Klein Group,entertainment,79.18,Kingsford Heights,"Psychologist, forensic",1998-10-07
+2020-06-21 14:04:10,6011252220172077,"McCullough, Hudson and Schuster",food_dining,5.22,Alton,"Engineer, land",2001-12-19
+2020-06-21 14:04:38,4294040533480516,Little Ltd,kids_pets,5.25,New Ellenton,Biomedical scientist,1986-12-31
+2020-06-21 14:05:10,2296006538441789,Kilback LLC,food_dining,25.72,Brooklyn,Medical sales representative,1999-09-01
+2020-06-21 14:05:20,4178097073221156,Kub-Heaney,health_fitness,23.2,Baroda,"Horticulturist, commercial",1981-03-29
+2020-06-21 14:05:24,6011542681743618,"Cronin, Kshlerin and Weber",health_fitness,14.59,Basye,"Engineer, mining",1972-08-09
+2020-06-21 14:06:18,4302480582202074,"Schumm, McLaughlin and Carter",food_dining,49.65,Muskegon,Historic buildings inspector/conservation officer,1995-05-25
+2020-06-21 14:06:40,3597926034019603,Mayert Group,shopping_pos,9.1,Oakland,Furniture conservator/restorer,1993-03-23
+2020-06-21 14:06:56,30343344410970,Heller PLC,health_fitness,6.31,Marienville,"Copywriter, advertising",1962-03-20
+2020-06-21 14:07:05,4538566639857,"Hahn, Douglas and Schowalter",travel,7.4,Fairview,"Programmer, multimedia",1967-05-28
+2020-06-21 14:07:05,3551217896304745,Sporer-Keebler,personal_care,35.26,Tupper Lake,Chartered loss adjuster,1976-10-09
+2020-06-21 14:07:24,4956828990005111019,Kertzmann LLC,health_fitness,50.88,Elizabeth,Operational researcher,1980-12-21
+2020-06-21 14:07:28,4646845581490336108,"Bradtke, Torp and Bahringer",personal_care,91.47,West Sayville,Film/video editor,1990-06-25
+2020-06-21 14:08:08,4512828414983801773,"Mueller, Gerhold and Mueller",health_fitness,6.58,Uledi,Tree surgeon,1983-07-25
+2020-06-21 14:09:01,3531129874770000,"Reinger, Weissnat and Strosin",food_dining,61.03,Brandon,"Scientist, marine",1975-07-13
+2020-06-21 14:09:04,4239436242473,Volkman-Predovic,shopping_net,8.54,Alexandria,"Scientist, biomedical",1991-10-04
+2020-06-21 14:09:06,4561546772499,Kilback LLC,food_dining,21.97,Moriarty,"Therapist, art",1988-08-04
+2020-06-21 14:09:50,6011381817520024,Connelly PLC,food_dining,43.13,Lagrange,Product/process development scientist,1973-07-13
+2020-06-21 14:09:54,180042946491150,Heathcote LLC,shopping_net,3.11,Saint Petersburg,"Engineer, land",1989-02-28
+2020-06-21 14:10:27,5104807169438134,Conroy Ltd,shopping_pos,8.48,Westhampton Beach,Financial trader,1978-07-08
+2020-06-21 14:10:30,6011104316292105,Connelly-Carter,home,12.09,Drakes Branch,Energy engineer,1985-09-02
+2020-06-21 14:10:34,5152054598359927,"Welch, Rath and Koepp",entertainment,1.87,Gretna,Biomedical scientist,1972-09-12
+2020-06-21 14:10:35,6011399591920186,"Willms, Kris and Bergnaum",shopping_pos,7.23,Sheffield,Radio producer,1973-10-14
+2020-06-21 14:11:03,30266994494236,Waelchi Inc,kids_pets,94.06,Ford,Chief Operating Officer,1976-11-21
+2020-06-21 14:11:57,4769426683924058915,"Pouros, Walker and Spencer",kids_pets,21.77,Mifflin,Mining engineer,1954-08-22
+2020-06-21 14:12:15,378278619832195,"Roberts, Daniel and Macejkovic",kids_pets,70.06,Eugene,"Scientist, physiological",1964-04-06
+2020-06-21 14:12:21,3598215285024754,Heller PLC,health_fitness,27.68,Bellmore,"Librarian, public",1970-10-21
+2020-06-21 14:12:45,6011693194885790,"Heathcote, Yost and Kertzmann",shopping_net,5.48,Stanchfield,"Lecturer, further education",1995-12-04
+2020-06-21 14:13:15,180058696935600,"Bradtke, Torp and Bahringer",personal_care,62.17,De Lancey,Chartered accountant,2000-08-28
+2020-06-21 14:13:30,30442439074871,Larkin Ltd,kids_pets,116.24,Jermyn,Training and development officer,1981-06-22
+2020-06-21 14:14:02,213148039875802,Metz-Boehm,shopping_pos,3.84,Brandon,Environmental consultant,1978-11-30
+2020-06-21 14:14:04,3547560454237873,Bednar PLC,kids_pets,68.35,Arcadia,"Designer, jewellery",1966-12-21
+2020-06-21 14:14:08,3531129874770000,Connelly-Carter,home,105.16,Brandon,"Scientist, marine",1975-07-13
+2020-06-21 14:14:09,571465035400,Parker-Kunde,personal_care,68.38,Fort Washakie,Freight forwarder,1976-02-26
+2020-06-21 14:14:21,3540075240003197,"Fadel, Mertz and Rippin",entertainment,4.11,Lonsdale,Chief Strategy Officer,1987-01-27
+2020-06-21 14:14:48,3551512895305309,Yost-Rogahn,personal_care,24.45,Rochester,"Development worker, international aid",1947-07-15
+2020-06-21 14:15:33,180094419304907,Crooks and Sons,personal_care,7.6,Sun City,"Designer, exhibition/display",1972-09-22
+2020-06-21 14:16:27,372520049757633,Jast Ltd,shopping_net,141.75,Ranier,Ceramics designer,2000-02-20
+2020-06-21 14:16:38,3559679414981506,Crooks and Sons,personal_care,35.43,Lowville,Theme park manager,1991-03-29
+2020-06-21 14:17:00,4342532437704183,Bednar PLC,kids_pets,17.91,Newark Valley,Further education lecturer,1994-02-16
+2020-06-21 14:17:20,2712209726293386,Rau-Robel,kids_pets,39.14,Baton Rouge,"Designer, furniture",1977-02-22
+2020-06-21 14:17:35,2266735643685262,"Nienow, Barrows and Romaguera",personal_care,3.22,Grant,Curator,1972-07-25
+2020-06-21 14:18:16,3534093764340240,"Dare, Fritsch and Zboncak",health_fitness,18.43,Boulder,Patent attorney,1967-01-12
+2020-06-21 14:18:47,213161231269724,Medhurst Inc,home,31.18,Gadsden,Physiological scientist,1963-02-09
+2020-06-21 14:18:48,2720830304681674,Gleason-Macejkovic,shopping_net,9.77,Clarksville,Pathologist,1974-03-28
+2020-06-21 14:19:24,4292743669224718067,Altenwerth-Kilback,home,62.53,Great Mills,Art therapist,1973-06-09
+2020-06-21 14:19:25,2720830304681674,"Koss, Hansen and Lueilwitz",home,28.5,Clarksville,Pathologist,1974-03-28
+2020-06-21 14:19:31,6011329966782895,Kuphal-Toy,food_dining,85.69,Tulsa,"Teacher, special educational needs",1971-09-01
+2020-06-21 14:19:39,6593250708747804,Schulist Ltd,food_dining,31.85,Loxahatchee,Paramedic,1977-01-04
+2020-06-21 14:20:56,4378993458389626,Kihn-Fritsch,food_dining,7.96,Conway,Surgeon,1999-10-25
+2020-06-21 14:21:32,4890424426862856940,Lynch-Wisozk,home,17.5,Sacramento,Magazine features editor,1979-04-30
+2020-06-21 14:21:38,3512365128314616,Dickinson Ltd,personal_care,61.14,Arnold,Land/geomatics surveyor,1985-03-31
+2020-06-21 14:21:44,2242542703101233,Welch Inc,misc_net,92.44,Westport,Pensions consultant,1996-04-10
+2020-06-21 14:22:23,3545109339866548,Hills-Boyer,personal_care,130.65,Moorhead,Chartered public finance accountant,1999-03-05
+2020-06-21 14:22:27,374497717543058,"Prosacco, Kreiger and Kovacek",home,44.19,Wilton,"Designer, ceramics/pottery",1948-06-30
+2020-06-21 14:22:49,180048185037117,Kassulke PLC,shopping_net,3.12,Plainfield,Leisure centre manager,1974-07-19
+2020-06-21 14:22:52,4560004149983868183,"Denesik, Powlowski and Pouros",home,62.0,Colorado Springs,Museum/gallery exhibitions officer,1992-05-09
+2020-06-21 14:24:30,639030014711,Rau-Grant,kids_pets,55.3,Olmsted,Mechanical engineer,1982-08-01
+2020-06-21 14:24:45,4173950183554608,Macejkovic-Lesch,shopping_pos,7.46,Monmouth Beach,Health promotion specialist,1978-10-05
+2020-06-21 14:24:48,568279015842,"Graham, Hegmann and Hammes",food_dining,58.67,Christine,Television floor manager,1991-05-01
+2020-06-21 14:24:56,581686439828,"Moore, Williamson and Emmerich",home,37.02,Cochranton,Retail merchandiser,1973-07-28
+2020-06-21 14:24:59,180084695172649,Ankunding LLC,shopping_net,98.67,Nokomis,Building surveyor,1985-12-08
+2020-06-21 14:25:20,630441765090,Treutel-King,travel,5.49,May,Corporate investment banker,1965-07-26
+2020-06-21 14:25:34,30082025922891,Waters-Cruickshank,health_fitness,110.85,Naples,"Pilot, airline",1934-06-23
+2020-06-21 14:25:44,213178765398315,"Hintz, Bauch and Smith",health_fitness,189.64,Riverton,"Lecturer, higher education",1993-09-11
+2020-06-21 14:25:49,60487002085,Crona and Sons,kids_pets,8.92,Jackson,"Horticulturist, commercial",1972-08-15
+2020-06-21 14:25:59,4710826438164847414,Powlowski-Weimann,food_dining,49.47,Turner,Further education lecturer,1964-01-04
+2020-06-21 14:26:08,4102003771126577611,Lesch Ltd,shopping_pos,7.68,Keller,Probation officer,1987-06-13
+2020-06-21 14:26:22,343668971234893,"Hermiston, Pacocha and Smith",health_fitness,13.62,Hopkins,Chiropodist,1949-11-16
+2020-06-21 14:27:02,374930071163758,Gislason Group,misc_pos,2.96,Romulus,Police officer,1971-11-05
+2020-06-21 14:27:06,346273234529002,"Streich, Rolfson and Wilderman",kids_pets,31.09,Ronceverte,Statistician,1991-10-22
+2020-06-21 14:27:06,4451952084362894,Kuphal-Toy,food_dining,62.19,Nazareth,Petroleum engineer,1980-07-30
+2020-06-21 14:27:13,6011679934075347,Klein Group,entertainment,32.51,Jelm,Public librarian,1974-04-16
+2020-06-21 14:27:46,4260059589824237,Crooks and Sons,personal_care,8.53,Valentine,Network engineer,1945-03-15
+2020-06-21 14:27:52,3538520143479972,"Roberts, Ryan and Smith",personal_care,44.34,Clay Center,Insurance underwriter,1965-09-15
+2020-06-21 14:28:19,4294040533480516,Rau-Robel,kids_pets,5.63,New Ellenton,Biomedical scientist,1986-12-31
+2020-06-21 14:29:46,4998109455173950,Dickinson Ltd,personal_care,37.3,Kansas City,Counsellor,1987-11-18
+2020-06-21 14:29:54,3543299015720986,Reilly LLC,home,109.09,Lebanon,"Teacher, English as a foreign language",1977-10-19
+2020-06-21 14:30:20,4681601008538160,Kozey-Boehm,shopping_net,156.72,Moundsville,Physiotherapist,1977-08-12
+2020-06-21 14:30:34,4698163635895795,Bode-Rempel,kids_pets,71.62,Wendel,"Teacher, adult education",1989-08-16
+2020-06-21 14:30:42,180048185037117,"Romaguera, Cruickshank and Greenholt",shopping_net,456.22,Plainfield,Leisure centre manager,1974-07-19
+2020-06-21 14:31:15,571465035400,"Pouros, Walker and Spencer",kids_pets,55.03,Fort Washakie,Freight forwarder,1976-02-26
+2020-06-21 14:31:28,3502088871723054,Altenwerth-Kilback,home,27.12,Kensington,Operations geologist,1976-09-08
+2020-06-21 14:31:31,4646845581490336108,Howe PLC,entertainment,108.15,West Sayville,Film/video editor,1990-06-25
+2020-06-21 14:31:43,3596217206093829,Spencer-Runolfsson,misc_pos,9.91,Birmingham,Camera operator,1988-03-25
+2020-06-21 14:31:56,4783226709001,Volkman PLC,food_dining,28.56,Mc Cracken,Film/video editor,1961-04-22
+2020-06-21 14:32:02,4089096483689733451,"Quitzon, Green and Bashirian",shopping_pos,11.35,Kilgore,Multimedia programmer,1983-10-14
+2020-06-21 14:33:02,4585132874641,Shields-Wunsch,health_fitness,15.42,Utica,Land/geomatics surveyor,1972-04-18
+2020-06-21 14:33:16,344709867813900,Williamson LLC,misc_pos,41.07,Sebring,Environmental consultant,1986-01-30
+2020-06-21 14:33:30,5501083170975659,Fadel Inc,health_fitness,25.75,Cuyahoga Falls,Equities trader,1966-01-04
+2020-06-21 14:34:25,3546674063249004,"Witting, Beer and Ernser",home,37.22,Aledo,Optometrist,1984-07-05
+2020-06-21 14:34:38,4228411452607671,Carroll PLC,health_fitness,124.73,Winthrop,Advertising account planner,1995-04-22
+2020-06-21 14:34:39,4897067971111209737,Pacocha-Bauch,shopping_pos,6.65,Port Richey,Environmental education officer,1975-10-07
+2020-06-21 14:34:41,4642894980163,Fisher-Schowalter,shopping_net,4.49,Clarinda,IT trainer,1990-07-13
+2020-06-21 14:34:48,3564839259330465,Johns Inc,entertainment,39.42,Port Costa,Armed forces training and education officer,1959-03-31
+2020-06-21 14:34:55,371284100299909,Friesen Inc,shopping_pos,9.81,Hedley,Early years teacher,1976-05-24
+2020-06-21 14:35:20,213186551511454,Gerhold LLC,home,55.67,West Bethel,Chief Operating Officer,1951-03-31
+2020-06-21 14:35:40,630469040731,Effertz LLC,entertainment,117.46,Cascade Locks,Barrister,1936-05-01
+2020-06-21 14:36:38,4710792708725663,Eichmann-Kilback,home,61.7,Churubusco,"Research officer, trade union",1986-12-13
+2020-06-21 14:36:51,371985236239474,Nolan-Williamson,kids_pets,8.95,Oriskany Falls,"Programmer, multimedia",1949-06-09
+2020-06-21 14:37:28,675990301623,"Dare, Casper and Bartoletti",kids_pets,66.94,Ogdensburg,Senior tax professional/tax inspector,1994-03-13
+2020-06-21 14:37:52,6011679934075347,Maggio-Fahey,misc_pos,72.62,Jelm,Public librarian,1974-04-16
+2020-06-21 14:38:00,6011367958204270,Predovic Inc,shopping_net,31.66,Hinckley,Medical sales representative,1988-09-15
+2020-06-21 14:38:09,38530489946071,Metz-Boehm,shopping_pos,1881.53,Arcadia,Animal technologist,1989-05-14
+2020-06-21 14:38:24,4764202053279782,Denesik and Sons,shopping_pos,3.17,Diamond,Air cabin crew,1981-01-06
+2020-06-21 14:39:33,180036456789979,Jast-McDermott,shopping_pos,7.51,Bagley,Risk analyst,1974-11-20
+2020-06-21 14:39:47,30131826429364,Price Inc,shopping_net,62.44,Knoxville,"Designer, industrial/product",1994-04-22
+2020-06-21 14:40:35,4587657402165341815,Streich Ltd,home,7.46,Pembroke Township,"Psychotherapist, child",2004-05-08
+2020-06-21 14:42:05,30428204673351,Nolan-Williamson,kids_pets,54.15,Schaefferstown,Gaffer,1982-07-02
+2020-06-21 14:42:36,4736845434667908128,Crona and Sons,kids_pets,103.54,Altona,"Surveyor, land/geomatics",1953-05-23
+2020-06-21 14:42:45,583699482621,Schoen Ltd,kids_pets,103.09,Waupaca,"Engineer, civil (contracting)",1936-07-22
+2020-06-21 14:43:01,3575540972310993,"Swaniawski, Nitzsche and Welch",health_fitness,42.67,University,Curator,2001-06-22
+2020-06-21 14:43:13,4587657402165341815,Conroy-Emard,food_dining,6.08,Pembroke Township,"Psychotherapist, child",2004-05-08
+2020-06-21 14:43:26,4683638447911,Fahey Inc,kids_pets,41.13,Egan,Broadcast presenter,1972-07-01
+2020-06-21 14:44:06,4067137330196900,Stiedemann Inc,misc_pos,12.92,Eldridge,Politician's assistant,1986-11-12
+2020-06-21 14:44:09,4586810168620942,Keeling-Crist,misc_pos,81.78,Edisto Island,"Sales professional, IT",1997-07-05
+2020-06-21 14:44:16,377895991033232,Greenholt Ltd,health_fitness,34.01,Higganum,"Librarian, academic",1964-11-17
+2020-06-21 14:44:27,36890292963032,Hoppe-Parisian,kids_pets,82.25,Girard,"Conservator, museum/gallery",1950-04-05
+2020-06-21 14:44:31,4169759661243568,Mohr Inc,shopping_pos,2.91,Lawn,Special educational needs teacher,1972-02-15
+2020-06-21 14:44:50,38530489946071,Bins-Howell,personal_care,24.55,Arcadia,Animal technologist,1989-05-14
+2020-06-21 14:44:51,4716561796955522,Little Ltd,kids_pets,222.08,Heart Butte,Water engineer,1972-05-04
+2020-06-21 14:45:29,4613314721966,White and Sons,home,61.82,Collettsville,Soil scientist,1988-09-15
+2020-06-21 14:45:32,340103199302564,"Hauck, Dietrich and Funk",kids_pets,34.82,Gibsonville,Arboriculturist,1934-02-09
+2020-06-21 14:45:35,30407675418785,Wisozk and Sons,misc_pos,6.12,Breesport,Psychotherapist,1991-10-13
+2020-06-21 14:46:00,6506116513503136,"Cronin, Kshlerin and Weber",health_fitness,54.22,Tyler,Sports development officer,1984-05-04
+2020-06-21 14:46:25,180049032966888,"Feil, Hilpert and Koss",food_dining,52.99,Saxon,Television/film/video producer,1986-04-15
+2020-06-21 14:46:39,3592931352252641,Schoen Ltd,kids_pets,44.87,Afton,Barrister's clerk,1935-06-29
+2020-06-21 14:47:41,2229824890647120,Bauch-Blanda,entertainment,1.52,Pearlington,"Therapist, occupational",1958-02-17
+2020-06-21 14:48:50,3540862542587229,Grimes LLC,entertainment,48.85,Yellowstone National Park,Materials engineer,1941-11-16
+2020-06-21 14:49:12,3506592072985012,"Graham, Hegmann and Hammes",food_dining,17.39,Ballwin,"Engineer, communications",2001-07-26
+2020-06-21 14:50:10,377113842678100,Schumm PLC,health_fitness,47.12,Greenwich,Insurance risk surveyor,1965-03-25
+2020-06-21 14:50:15,4906628655840914250,Brown-Greenholt,entertainment,15.67,Key West,Town planner,1987-02-13
+2020-06-21 14:50:16,3598895972308782,Rolfson-Kunde,personal_care,32.61,Norwalk,Copy,1970-02-22
+2020-06-21 14:51:28,4128027264554082,Shanahan-Lehner,personal_care,44.35,Mount Perry,Barrister's clerk,1953-10-18
+2020-06-21 14:52:51,30501624614310,O'Keefe-Wisoky,food_dining,38.84,Scotia,Magazine features editor,1973-05-04
+2020-06-21 14:53:14,5359543825610251,Wuckert-Goldner,home,88.67,Belgrade,"Engineer, drilling",1975-06-29
+2020-06-21 14:53:47,4169759661243568,Pouros-Conroy,shopping_pos,3.57,Lawn,Special educational needs teacher,1972-02-15
+2020-06-21 14:54:11,4586810168620942,"Witting, Beer and Ernser",home,148.12,Edisto Island,"Sales professional, IT",1997-07-05
+2020-06-21 14:54:38,4208110975550360171,Kuhn LLC,shopping_pos,161.37,West Green,Audiological scientist,1982-01-16
+2020-06-21 14:54:46,4798937978667559470,Maggio-Fahey,misc_pos,552.46,Bay City,Water quality scientist,1995-03-13
+2020-06-21 14:55:09,630451534402,Hickle Group,shopping_pos,8.51,Wetmore,Immunologist,1972-06-12
+2020-06-21 14:55:17,4951647200979051,Skiles LLC,home,45.67,Logan,"Scientist, research (physical sciences)",1976-06-15
+2020-06-21 14:55:20,3576431665303017,Weimann-Lockman,kids_pets,36.69,Phoenix,Contractor,1981-10-24
+2020-06-21 14:55:37,376445266762684,"Lesch, D'Amore and Brown",food_dining,5.89,Sutherland,Insurance broker,1982-02-11
+2020-06-21 14:55:42,3504178999463051,Boyer PLC,misc_pos,41.92,Lima,"Copywriter, advertising",1992-07-23
+2020-06-21 14:55:54,2712209726293386,Kling-Ernser,entertainment,167.02,Baton Rouge,"Designer, furniture",1977-02-22
+2020-06-21 14:56:26,348379466427142,"Lubowitz, Terry and Stracke",personal_care,88.3,Melbourne,Database administrator,1957-01-23
+2020-06-21 14:56:36,4939976756738216,Windler LLC,kids_pets,21.31,Roma,IT trainer,1990-11-07
+2020-06-21 14:57:19,4561892980175,Cartwright PLC,kids_pets,94.2,Greenwood,Financial adviser,1968-02-10
+2020-06-21 14:57:49,4503101193493052864,Pacocha-Bauch,shopping_pos,50.41,Lakeland,Clothing/textile technologist,1979-07-03
+2020-06-21 14:58:20,3583293909206278,Reilly and Sons,health_fitness,19.03,Kirtland Afb,"Surveyor, land/geomatics",1978-09-30
+2020-06-21 14:58:31,3567879740649740,Ratke and Sons,health_fitness,14.89,Brownville,"Producer, radio",1958-08-14
+2020-06-21 14:58:46,4063094974360571498,Zboncak LLC,food_dining,6.55,Mendon,"Scientist, audiological",1963-06-13
+2020-06-21 14:58:48,4079773899158,Emmerich-Rau,personal_care,41.27,Mesa,Cartographer,1965-12-15
+2020-06-21 14:58:59,3502377050801561,Marvin-Lind,personal_care,252.46,New Waverly,"Scientist, biomedical",1948-11-30
+2020-06-21 14:59:06,213178765398315,Wiza LLC,misc_pos,355.74,Riverton,"Lecturer, higher education",1993-09-11
+2020-06-21 14:59:21,3531129874770000,"O'Reilly, Mohr and Purdy",home,24.93,Brandon,"Scientist, marine",1975-07-13
+2020-06-21 15:00:15,30118423745458,Torp-Lemke,misc_pos,313.38,Matawan,Drilling engineer,1993-04-29
+2020-06-21 15:00:26,3556613125071656,"Reichel, Bradtke and Blanda",travel,1.03,Lake Jackson,Futures trader,1999-12-27
+2020-06-21 15:01:18,3566094707272327,Douglas-White,entertainment,67.75,Newhall,Health physicist,1971-04-25
+2020-06-21 15:01:30,4904681492230012,"Effertz, Welch and Schowalter",entertainment,62.35,Cottekill,Comptroller,1990-10-19
+2020-06-21 15:01:39,4424338559877976,Jerde-Hermann,travel,3.34,Kirby,Private music teacher,1957-11-12
+2020-06-21 15:01:45,4561546772499,Kassulke Inc,entertainment,13.46,Moriarty,"Therapist, art",1988-08-04
+2020-06-21 15:02:10,3534330126107879,Ernser-Feest,home,69.11,Bridger,Chartered loss adjuster,1978-01-15
+2020-06-21 15:02:29,3527536963490470,Bruen-Yost,misc_pos,8.69,Brunson,Social researcher,1974-12-05
+2020-06-21 15:02:37,3528407217576457,Botsford Ltd,shopping_pos,9.16,Kingsport,Warden/ranger,1987-02-14
+2020-06-21 15:02:40,4862293128558,Ankunding-Carroll,travel,4.36,Grassflat,Pension scheme manager,1956-09-15
+2020-06-21 15:03:17,180084695172649,Marvin-Lind,personal_care,39.51,Nokomis,Building surveyor,1985-12-08
+2020-06-21 15:03:31,3547574373318979,Waelchi-Wolf,kids_pets,14.63,Dieterich,"Psychologist, clinical",1962-04-30
+2020-06-21 15:03:44,2720830304681674,Pouros-Haag,shopping_pos,1.18,Clarksville,Pathologist,1974-03-28
+2020-06-21 15:04:12,3501365119557234,"Torp, Muller and Borer",health_fitness,36.63,Loving,Educational psychologist,1952-05-26
+2020-06-21 15:04:15,2720433095629877,Sporer-Keebler,personal_care,4.7,Bowdoin,"Engineer, electronics",1997-08-22
+2020-06-21 15:04:53,180046765320457,"Becker, Harris and Harvey",personal_care,6.55,Canton,Building control surveyor,1963-06-30
+2020-06-21 15:05:09,4988304376504,Bahringer Group,health_fitness,96.05,Rock Tavern,Building surveyor,1937-03-17
+2020-06-21 15:05:12,2248735346244816,"Gutmann, McLaughlin and Wiza",home,13.36,Utica,Product/process development scientist,1962-11-11
